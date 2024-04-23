@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [Header("Scriptable Object")]
+    [Header("Scriptable Object: Entity")]
     [SerializeField]private Entity entity;
 
     private float currentHealth;
