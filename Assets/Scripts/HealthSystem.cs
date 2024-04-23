@@ -4,41 +4,44 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [Header("SetUp")]
+    [Header("Scriptable Object")]
     [SerializeField]private Entity entity;
+
+    private float currentHealth;
+    private float maxHealth;
 
     private void Start()
     {
-        entity.health = entity.maxHealth;
-        entity.damage = entity.maxDamage;
+        maxHealth = entity.health;
+        currentHealth = maxHealth;
+    }
+
+    public void SetHealth(float newHealth) 
+    {
+        currentHealth = newHealth;
     }
 
     public void SetMaxHealigh(float newMaxHealth) 
     {
-        entity.maxHealth = newMaxHealth;
+        maxHealth = newMaxHealth;
     }
 
-    public void SetMaxDamage(float newMaxDamage) 
+    public void ReceiveDamage(float damage) 
     {
-        entity.maxDamage = newMaxDamage;
-    }
-
-    public void TakeDamage(float damage) 
-    {
-        if (entity.health <= 0) 
+        if (currentHealth <= 0 && currentHealth <= damage) 
         {
-            entity.health = 0;
+            currentHealth = 0;
         }
 
         else
         {
-            entity.health -= damage;
+            currentHealth -= damage;
         }
     }
 
     public bool isDead() 
     {
-        if (entity.health <= 0) 
+        if (currentHealth <= 0) 
         {
             return true;
         }
