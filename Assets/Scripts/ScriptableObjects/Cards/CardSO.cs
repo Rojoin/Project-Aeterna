@@ -12,4 +12,6 @@ public class CardSO : ScriptableObject
     public string description;
 
     public Sprite cardSprite;
+
+    public int ID;
 }
