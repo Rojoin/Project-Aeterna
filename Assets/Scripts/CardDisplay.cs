@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    [Header("Scriptable Object: Card")]
-    public Card card;
+    [Header("Data")]
+    public CardSO card;
 
-    [Header("Setup")]
+    [Header("References")]
     public new TextMeshProUGUI name;
     public TextMeshProUGUI description;
 

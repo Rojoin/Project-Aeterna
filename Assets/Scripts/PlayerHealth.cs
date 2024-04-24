@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
-    [Header("Scriptable Object: Entity")]
-    [SerializeField]private Entity entity;
+    [Header("Data")]
+    [SerializeField]private EntitySO entity;
 
     private float currentHealth;
     private float maxHealth;
@@ -39,7 +39,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public bool isDead() 
+    public bool IsDead() 
     {
         if (currentHealth <= 0) 
         {
