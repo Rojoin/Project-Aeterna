@@ -90,7 +90,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void RemoveAllCards()
     {
-        currentCards = 0;
+        currentCards = -1;
         playerCardsInventory.Clear();
     }
 

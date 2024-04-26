@@ -40,5 +40,13 @@ public class PlayerHud : MonoBehaviour
                 break;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            for (int i = 0; i < cardGO.Length; i++)
+            {
+                cardGO[i].SetActive(false);
+            }
+        }
     }
 }
