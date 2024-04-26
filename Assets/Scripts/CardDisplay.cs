@@ -6,16 +6,12 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    [Header("Data")]
-    public CardSO card;
-
-    [Header("References")]
     public new TextMeshProUGUI name;
     public TextMeshProUGUI description;
 
     public Image artImage;
 
-    void Start()
+    public void ShowCard(CardSO card) 
     {
         name.text = card.name.ToString();
         description.text = card.description.ToString();
