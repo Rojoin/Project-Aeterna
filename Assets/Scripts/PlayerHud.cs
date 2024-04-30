@@ -7,19 +7,19 @@ public class PlayerHud : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;
 
-    [SerializeField] private CardDisplay[] cardDisplay; 
+    [SerializeField] private List<CardDisplay> cardDisplay; 
 
-    public GameObject[] cardGO;
+    public List<GameObject> cardGO;
 
-    private CardSO[] card;
+    private CardSO card;
 
     private int cardIndex;
 
     void Start()
     {
-        card = new CardSO[playerInventory.GetMaxCards()];
+        card = new CardSO();
 
-        for (int i = 0; i < cardGO.Length; i++)
+        for (int i = 0; i < cardGO.Count; i++)
         {
             cardGO[i].SetActive(false);
         }
@@ -31,9 +31,9 @@ public class PlayerHud : MonoBehaviour
         {
             for (int i = cardIndex; cardIndex < playerInventory.GetCurrentCards();)
             {
-                card[i] = playerInventory.GetCardOnInventory(playerInventory.rand);
+                card = playerInventory.GetCardOnInventory(playerInventory.rand);
 
-                cardDisplay[i].ShowCard(card[i]);
+                cardDisplay[i].ShowCard(card);
 
                 cardGO[i].SetActive(true);
 
@@ -46,9 +46,11 @@ public class PlayerHud : MonoBehaviour
 
     public void DesactiveCardsGO() 
     {
-        for (int i = 0; i < cardGO.Length; i++)
+        for (int i = 0; i < cardGO.Count; i++)
         {
             cardGO[i].SetActive(false);
         }
+
+        cardIndex = 0;
     } 
 }

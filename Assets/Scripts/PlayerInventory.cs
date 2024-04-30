@@ -45,8 +45,6 @@ public class PlayerInventory : MonoBehaviour
     {
         playerCardsInventory.Add(newCard);
         currentCards++;
-
-        Debug.Log(currentCards);
     }
 
     public void RemoveCard(int cardID) 
@@ -71,8 +69,6 @@ public class PlayerInventory : MonoBehaviour
                 return playerCardsInventory[i];
             }
         }
-
-
 
         return playerCardsInventory[0];
     }
