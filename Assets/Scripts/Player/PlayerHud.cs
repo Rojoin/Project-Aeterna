@@ -9,7 +9,7 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private SelectCardMenu selectCardMenu;
 
-    [SerializeField] private List<CardDisplay> cardDisplay; 
+    [SerializeField] private List<CardDisplay> cardDisplay;
 
     public List<GameObject> cardGO;
 
