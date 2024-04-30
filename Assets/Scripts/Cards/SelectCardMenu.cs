@@ -8,7 +8,7 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private GameObject SelectCardUI;
     [SerializeField] private PlayerInventory playerInventory;
 
-    public List<CardSO> cardsSelected = new List<CardSO>();
+    private List<CardSO> cardsSelected = new List<CardSO>();
 
     private bool isCardSelected;
 
