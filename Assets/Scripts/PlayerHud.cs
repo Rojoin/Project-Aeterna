@@ -12,9 +12,12 @@ public class PlayerHud : MonoBehaviour
     public GameObject[] cardGO;
 
     private CardSO[] card;
+
+    private int cardIndex;
+
     void Start()
     {
-        card = new CardSO[5];
+        card = new CardSO[playerInventory.GetMaxCards()];
 
         for (int i = 0; i < cardGO.Length; i++)
         {
@@ -22,31 +25,30 @@ public class PlayerHud : MonoBehaviour
         }
     }
 
-    void Update()
+    public void ShowHud() 
     {
-        if (playerInventory.GetCurrentCard() >= 0)
+        if (playerInventory.GetCurrentCards() <= playerInventory.GetMaxCards()) 
         {
-            for (int i = playerInventory.GetCurrentCard(); i < 5; i++)
+            for (int i = cardIndex; cardIndex < playerInventory.GetCurrentCards();)
             {
-                card[i] = playerInventory.GetCardOnInventory(playerInventory.GetRandomCard());
+                card[i] = playerInventory.GetCardOnInventory(playerInventory.rand);
 
                 cardDisplay[i].ShowCard(card[i]);
 
-                for (int j = playerInventory.GetCurrentCard(); j < 5; j++) 
-                {
-                    cardGO[i].SetActive(true);
-                }
+                cardGO[i].SetActive(true);
+
+                cardIndex++;
 
                 break;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.R)) 
-        {
-            for (int i = 0; i < cardGO.Length; i++)
-            {
-                cardGO[i].SetActive(false);
-            }
-        }
     }
+
+    public void DesactiveCardsGO() 
+    {
+        for (int i = 0; i < cardGO.Length; i++)
+        {
+            cardGO[i].SetActive(false);
+        }
+    } 
 }

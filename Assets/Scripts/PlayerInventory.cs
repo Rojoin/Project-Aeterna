@@ -15,57 +15,49 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] private List<CardSO> allCards;
 
-    private int randCard = 0;
+    public int rand;
 
     void Start()
     {
-        currentCards = -1;
+        currentCards = 0;
         maxCards = 5;
+
+        rand = Random.Range(0, GetMaxCards());
     }
 
-    private void Update()
+    public void PickUpCard(int cardID) 
     {
-        if (Input.GetKeyDown(KeyCode.E) && currentCards < maxCards) 
+        if (maxCards > currentCards) 
         {
-            randCard = Random.Range(0, maxCards);
-            StartCoroutine(PickUpCard(randCard));
-        }
-
-        if (Input.GetKeyDown(KeyCode.R)) 
-        {
-            RemoveAllCards();
-        }
-    }
-
-    public IEnumerator PickUpCard(int cardID) 
-    {
-        for (int i = 0; i < allCards.Count; i++) 
-        {
-            if (cardID == allCards[i].ID)
+            for (int i = 0; i < allCards.Count; i++)
             {
-                AddCard(allCards[i]);
-                break;
+                if (allCards[i].ID == cardID)
+                {
+                    AddCard(allCards[i]);
+
+                    break;
+                }
             }
         }
-
-        yield return new WaitForSeconds(1);
     }
 
     public void AddCard(CardSO newCard) 
     {
         playerCardsInventory.Add(newCard);
         currentCards++;
+
+        Debug.Log(currentCards);
     }
 
     public void RemoveCard(int cardID) 
     {
-        for (int i = 0; i < playerCardsInventory.Count; i++) 
+        for (int i = 0; i < GetMaxCards(); i++) 
         {
             if (playerCardsInventory[i].ID == cardID && currentCards > 0) 
             {
-                currentCards--;
                 playerCardsInventory.Remove(playerCardsInventory[i]);
                 Debug.Log("Remove card:" + playerCardsInventory[i].ID);
+                currentCards--;
             }
         }
     }
@@ -80,21 +72,28 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        return null;
+
+
+        return playerCardsInventory[0];
     }
 
     public int GetRandomCard() 
     {
-        return randCard;
+        return rand;
+    }
+
+    public int GetMaxCards() 
+    {
+        return maxCards;
     }
 
     public void RemoveAllCards()
     {
-        currentCards = -1;
+        currentCards = 0;
         playerCardsInventory.Clear();
     }
 
-    public int GetCurrentCard() 
+    public int GetCurrentCards() 
     {
         return currentCards;
     }

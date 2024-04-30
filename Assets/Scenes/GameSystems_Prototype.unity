@@ -1015,6 +1015,7 @@ GameObject:
   - component: {fileID: 866689483}
   - component: {fileID: 866689482}
   - component: {fileID: 866689481}
+  - component: {fileID: 866689484}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1035,7 +1036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 4d5dcda33e86e544abf1846a89b7660f, type: 2}
-  maxCards: 0
+  maxCards: 5
   currentCards: 0
   playerCardsInventory: []
   allCards:
@@ -1044,7 +1045,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aeb25e97ef497aa46ad626cd84696c59, type: 2}
   - {fileID: 11400000, guid: b79125d7bcba9904c9a4ec8b4d38dd54, type: 2}
   - {fileID: 11400000, guid: c31746079293e55428c16c4e2eab09fc, type: 2}
-  isPickingACard: 0
 --- !u!114 &866689482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,6 +1073,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &866689484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866689480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ea42d248e457141993dd50b2172ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInventory: {fileID: 866689481}
+  playerHud: {fileID: 409414103}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
