@@ -15,14 +15,10 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] private List<CardSO> allCards;
 
-    public int rand;
-
     void Start()
     {
         currentCards = 0;
         maxCards = 5;
-
-        rand = Random.Range(0, GetMaxCards());
     }
 
     public void PickUpCard(int cardID) 
@@ -71,11 +67,6 @@ public class PlayerInventory : MonoBehaviour
         }
 
         return playerCardsInventory[0];
-    }
-
-    public int GetRandomCard() 
-    {
-        return rand;
     }
 
     public int GetMaxCards() 

@@ -7,6 +7,8 @@ public class PlayerHud : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;
 
+    [SerializeField] private SelectCardMenu selectCardMenu;
+
     [SerializeField] private List<CardDisplay> cardDisplay; 
 
     public List<GameObject> cardGO;
@@ -25,13 +27,13 @@ public class PlayerHud : MonoBehaviour
         }
     }
 
-    public void ShowHud() 
+    public void ShowHud(int cardSelected) 
     {
         if (playerInventory.GetCurrentCards() <= playerInventory.GetMaxCards()) 
         {
             for (int i = cardIndex; cardIndex < playerInventory.GetCurrentCards();)
             {
-                card = playerInventory.GetCardOnInventory(playerInventory.rand);
+                card = playerInventory.GetCardOnInventory(cardSelected);
 
                 cardDisplay[i].ShowCard(card);
 

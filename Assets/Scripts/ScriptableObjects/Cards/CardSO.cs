@@ -14,4 +14,6 @@ public class CardSO : ScriptableObject
     public Sprite cardSprite;
 
     public int ID;
+
+    public bool isSelected;
 }
