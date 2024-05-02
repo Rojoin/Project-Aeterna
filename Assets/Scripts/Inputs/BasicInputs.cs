@@ -8,9 +8,17 @@ public class BasicInputs : MonoBehaviour
     [SerializeField] private PlayerInventory playerInventory;
     [SerializeField] private PlayerHud playerHud;
     [SerializeField] private SelectCardMenu selectCardMenu;
+    [SerializeField] private List<CardsCounter> cardsCounter;
+
+    private void Start()
+    {
+        cardsCounter = playerInventory.GetCardsCounterList();
+    }
 
     void Update()
     {
+        playerHud.ShowHud();
+
         if (Input.GetKeyDown(KeyCode.E) && playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
         {
             selectCardMenu.ShowSelectCardMenu(true);
@@ -20,7 +28,13 @@ public class BasicInputs : MonoBehaviour
         {
             selectCardMenu.SetIsCardSelected(false);
             playerInventory.PickUpCard(selectCardMenu.GetCardSelected());
-            playerHud.ShowHud(selectCardMenu.GetCardSelected());
+            playerHud.ShowCardsHud(selectCardMenu.GetCardSelected());
+
+            for (int i = 0; i < cardsCounter.Count; i++)
+            {
+                cardsCounter[i].ShowCardsStacksUI();
+            }
+
             selectCardMenu.RefreshCardsSelectedList();
         }
 

@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHud : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;
 
+    [SerializeField] private PlayerHealth playerHealth;
+
     [SerializeField] private SelectCardMenu selectCardMenu;
+
+    [SerializeField] private TextMeshProUGUI health;
+    [SerializeField] private TextMeshProUGUI damage;
 
     [SerializeField] private List<CardDisplay> cardDisplay;
 
@@ -27,7 +34,7 @@ public class PlayerHud : MonoBehaviour
         }
     }
 
-    public void ShowHud(int cardSelected) 
+    public void ShowCardsHud(int cardSelected) 
     {
         if (playerInventory.GetCurrentCards() <= playerInventory.GetMaxCards()) 
         {
@@ -44,6 +51,12 @@ public class PlayerHud : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void ShowHud() 
+    {
+        health.text = "Health: " + playerHealth.GetHealth().ToString();
+        damage.text = "Damage: " + playerHealth.GetDamage().ToString();
     }
 
     public void DesactiveCardsGO() 

@@ -20,6 +20,8 @@ public class SelectCardMenu : MonoBehaviour
 
     void Start()
     {
+        allCards = playerInventory.GetAllCardsList();
+
         ShowSelectCardMenu(false);
         isCardSelected = false;
     }

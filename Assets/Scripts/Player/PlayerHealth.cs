@@ -9,16 +9,22 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
     private float currentHealth;
     private float maxHealth;
+    private float damage;
 
     private void Start()
     {
         maxHealth = entity.health;
         currentHealth = maxHealth;
+        damage = entity.damage;
     }
 
     public void SetHealth(float newHealth) 
     {
         currentHealth = newHealth;
+    }
+    public float GetHealth() 
+    {
+        return currentHealth;
     }
 
     public void SetMaxHealigh(float newMaxHealth) 
@@ -37,6 +43,15 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             currentHealth -= damage;
         }
+    }
+
+    public void SetDamage(float newDamage) 
+    {
+        damage = newDamage;
+    }
+    public float GetDamage() 
+    {
+        return damage;
     }
 
     public bool IsDead() 

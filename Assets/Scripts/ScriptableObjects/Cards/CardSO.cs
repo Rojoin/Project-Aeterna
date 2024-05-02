@@ -16,4 +16,8 @@ public class CardSO : ScriptableObject
     public int ID;
 
     public bool isSelected;
+
+    public float damage;
+
+    public float helath;
 }

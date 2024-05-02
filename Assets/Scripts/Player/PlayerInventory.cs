@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private EntitySO player;
+    [SerializeField] private PlayerHealth player;
+
+    [SerializeField] private List<CardsCounter> cardsCounter;
 
     [SerializeField] private int maxCards;
 
@@ -14,6 +16,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private List<CardSO> playerCardsInventory;
 
     [SerializeField] private List<CardSO> allCards;
+
+    private float aux = 0;
+    private float newHealth = 0;
+    private float newDamage = 0;
 
     void Start()
     {
@@ -30,7 +36,7 @@ public class PlayerInventory : MonoBehaviour
                 if (allCards[i].ID == cardID)
                 {
                     AddCard(allCards[i]);
-
+                    UpdatePlayerStacks();
                     break;
                 }
             }
@@ -39,8 +45,34 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddCard(CardSO newCard) 
     {
-        playerCardsInventory.Add(newCard);
-        currentCards++;
+        if(currentCards > 0) 
+        {
+            for (int i = 0; i < playerCardsInventory.Count; i++)
+            {
+                if (newCard == playerCardsInventory[i])
+                {
+                    cardsCounter[i].SetCurrentCardsInSlot(1);
+
+                    break;
+                }
+
+                else if (cardsCounter[i + 1].GetCurrentCardsInSlot() == 0) 
+                {
+                    playerCardsInventory.Add(newCard);
+                    cardsCounter[currentCards].SetCurrentCardsInSlot(1);
+                    currentCards++;
+
+                    break;
+                }
+            }
+        }
+
+        else 
+        {
+            playerCardsInventory.Add(newCard);
+            cardsCounter[currentCards].SetCurrentCardsInSlot(1);
+            currentCards++;
+        }
     }
 
     public void RemoveCard(int cardID) 
@@ -69,6 +101,43 @@ public class PlayerInventory : MonoBehaviour
         return playerCardsInventory[0];
     }
 
+    public void UpdatePlayerStacks()
+    {
+        newHealth = player.GetHealth();
+        newDamage = player.GetDamage();
+
+        if (currentCards > 0) 
+        {
+            for (int i = 0; i < playerCardsInventory.Count; i++)
+            {
+                if (cardsCounter[i].GetCurrentCardsInSlot() >= 0 && cardsCounter[i].GetCurrentCardsInSlot() < 2)
+                {
+                    newHealth += playerCardsInventory[i].helath;
+                    newDamage += playerCardsInventory[i].damage;
+                }
+
+                if (cardsCounter[i].GetCurrentCardsInSlot() == 2) 
+                {
+                    aux = 2;
+
+                    newHealth += playerCardsInventory[i].helath * aux;
+                    newDamage += playerCardsInventory[i].damage * aux;
+                }
+
+                if (cardsCounter[i].GetCurrentCardsInSlot() == 3)
+                {
+                    aux = 3;
+
+                    newHealth += playerCardsInventory[i].helath * aux;
+                    newDamage += playerCardsInventory[i].damage * aux;
+                }
+            }
+        }
+
+        player.SetHealth(newHealth);
+        player.SetDamage(newDamage);
+    }
+
     public int GetMaxCards() 
     {
         return maxCards;
@@ -83,5 +152,15 @@ public class PlayerInventory : MonoBehaviour
     public int GetCurrentCards() 
     {
         return currentCards;
+    }
+
+    public List<CardsCounter> GetCardsCounterList() 
+    {
+        return cardsCounter;
+    }
+
+    public List<CardSO> GetAllCardsList() 
+    {
+        return allCards;
     }
 }
