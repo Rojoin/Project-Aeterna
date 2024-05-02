@@ -19,6 +19,11 @@ public class BasicInputs : MonoBehaviour
     {
         playerHud.ShowHud();
 
+        for (int i = 0; i < cardsCounter.Count; i++)
+        {
+            cardsCounter[i].ShowCardsStacksUI();
+        }
+
         if (Input.GetKeyDown(KeyCode.E) && playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
         {
             selectCardMenu.ShowSelectCardMenu(true);
@@ -29,11 +34,6 @@ public class BasicInputs : MonoBehaviour
             selectCardMenu.SetIsCardSelected(false);
             playerInventory.PickUpCard(selectCardMenu.GetCardSelected());
             playerHud.ShowCardsHud(selectCardMenu.GetCardSelected());
-
-            for (int i = 0; i < cardsCounter.Count; i++)
-            {
-                cardsCounter[i].ShowCardsStacksUI();
-            }
 
             selectCardMenu.RefreshCardsSelectedList();
         }
