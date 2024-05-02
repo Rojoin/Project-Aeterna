@@ -41,7 +41,7 @@ public class SelectCardMenu : MonoBehaviour
 
     public CardSO GetRandomCard() 
     {
-        CardSO card = new CardSO();
+        CardSO card = ScriptableObject.CreateInstance<CardSO>();
 
         card.ID = Random.Range(0, playerInventory.GetMaxCards());
 
@@ -78,7 +78,7 @@ public class SelectCardMenu : MonoBehaviour
 
     public int GetCardSelected() 
     {
-        CardSO card = new CardSO();
+        CardSO card = ScriptableObject.CreateInstance<CardSO>();
 
         switch (cardToSelect) 
         {

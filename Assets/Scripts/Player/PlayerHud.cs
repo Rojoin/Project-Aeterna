@@ -26,7 +26,7 @@ public class PlayerHud : MonoBehaviour
 
     void Start()
     {
-        card = new CardSO();
+        card = ScriptableObject.CreateInstance<CardSO>();
 
         for (int i = 0; i < cardGO.Count; i++)
         {
