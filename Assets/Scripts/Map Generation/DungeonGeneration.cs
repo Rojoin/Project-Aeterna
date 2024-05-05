@@ -32,6 +32,8 @@ public class DungeonGeneration : MonoBehaviour
     private List<DungeonRoom> dungeonRooms = new List<DungeonRoom>();
     private List<GameObject> dungeonRoomInstances = new List<GameObject>();
 
+    private DungeonRoom ActualPlayerRoom;
+
     private class DungeonRoom
     {
         public int xPosition;
@@ -58,6 +60,16 @@ public class DungeonGeneration : MonoBehaviour
                     return true;
             }
             return false;
+        }
+
+        public DungeonRoom GetNeighbourDirection(RoomDirection direction)
+        {
+            foreach (Tuple<RoomDirection, DungeonRoom> n in _neighbours)
+            {
+                if (n.Item1 == direction)
+                    return n.Item2;
+            }
+            return null;
         }
 
         public void AddNeighbourInDirection(DungeonRoom room, RoomDirection direction)
@@ -110,6 +122,8 @@ public class DungeonGeneration : MonoBehaviour
                 }
             }
         }
+
+        ActualPlayerRoom = startRoom;
 
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
     }
@@ -178,7 +192,7 @@ public class DungeonGeneration : MonoBehaviour
 
             if (room.type == RoomTypes.START)
             {
-                GameObject player = Instantiate(PlayerPrefab, new Vector3(room.xPosition * gapBetweenRooms.x, 1, room.zPosition * gapBetweenRooms.y), Quaternion.identity);
+                PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 1, room.zPosition * gapBetweenRooms.y);
             }
 
             dungeonRoomInstances.Add(roomInstance);
@@ -310,6 +324,25 @@ public class DungeonGeneration : MonoBehaviour
 
     private void TpPlayer(RoomDirection roomDirection)
     {
+        if (ActualPlayerRoom.HasNeighbourInDirection(roomDirection))
+        {
+            ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(roomDirection);
+            
+            switch (roomDirection) 
+            {
+                case RoomDirection.UP:
+                    PlayerPrefab.transform.position = new Vector3();
+                    break;
 
+                case RoomDirection.DOWN:
+                    break;
+
+                case RoomDirection.RIGHT:
+                    break;
+
+                case RoomDirection.LEFT:
+                    break;
+            }
+        }
     }
 }
