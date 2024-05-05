@@ -52,6 +52,11 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        ExitAttack();
+    }
+
     public bool ExitAttack()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f &&

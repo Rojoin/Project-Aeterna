@@ -9,6 +9,8 @@ namespace InputControls
         [SerializeField] private Vector2ChannelSO OnMoveChannel;
         [SerializeField] private Vector2ChannelSO OnCameraMoveChannel;
         [SerializeField] private VoidChannelSO OnAttackChannel;
+        [SerializeField] private VoidChannelSO OnInteractChannel;
+        [SerializeField] private VoidChannelSO OnChangeCameraChannel;
         [SerializeField] private VoidChannelSO OnTargetLockChannel;
         [SerializeField] private VoidChannelSO OnBackInteractChannel;
         [SerializeField] private IntChannelSO OnControlSchemeChange;
@@ -57,6 +59,20 @@ namespace InputControls
             if (ctx.performed)
             {
                 OnTargetLockChannel.RaiseEvent();
+            }
+        }
+        public void OnChangeCamera(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+                OnChangeCameraChannel.RaiseEvent();
+            }
+        } 
+        public void OnInteract(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+                OnInteractChannel.RaiseEvent();
             }
         }
 
