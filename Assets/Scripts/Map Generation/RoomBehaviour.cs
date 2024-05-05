@@ -1,14 +1,35 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoomBehaviour : MonoBehaviour
 {
-    public GameObject[] doors;  // 0 Up / 1 Down / 2 Right / 3 Left
+    public GameObject doorsUp;
+    public GameObject doorsDown;
+    public GameObject doorsRight;
+    public GameObject doorsLeft;
 
-    public void UpdateRoom(bool[] status)
+    public UnityEvent<RoomDirection> OnInteractDoor;
+
+    private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < status.Length; i++)
+        if (other.gameObject == doorsUp)
         {
-            doors[i].SetActive(status[i]);
+            OnInteractDoor.Invoke(RoomDirection.UP);
+        }
+        else if (other.gameObject == doorsDown)
+        {
+            OnInteractDoor.Invoke(RoomDirection.DOWN);
+
+        }
+        else if (other.gameObject == doorsRight)
+        {
+            OnInteractDoor.Invoke(RoomDirection.RIGHT);
+
+        }
+        else if (other.gameObject == doorsLeft)
+        {
+            OnInteractDoor.Invoke(RoomDirection.LEFT);
         }
     }
 }

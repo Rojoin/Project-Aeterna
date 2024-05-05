@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3493086920442892804}
   - component: {fileID: 7530813336021028996}
   m_Layer: 0
-  m_Name: Basic Chamber
+  m_Name: Basic Chambe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doors:
-  - {fileID: 3537165282768142571}
-  - {fileID: 437399653284855554}
-  - {fileID: 954348293679204078}
-  - {fileID: 5339266507924073847}
+  doorsUp: {fileID: 3537165282768142571}
+  doorsDown: {fileID: 437399653284855554}
+  doorsRight: {fileID: 954348293679204078}
+  doorsLeft: {fileID: 5339266507924073847}
+  OnInteractDoor:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &437399653284855554
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +70,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5822984310260224001
 Transform:
   m_ObjectHideFlags: 0
@@ -149,7 +151,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -274,12 +276,12 @@ GameObject:
   - component: {fileID: 6342524378546775588}
   - component: {fileID: 3519673689722376447}
   m_Layer: 0
-  m_Name: left door
+  m_Name: right door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3580133284163106770
 Transform:
   m_ObjectHideFlags: 0
@@ -360,7 +362,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -717,7 +719,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -736,12 +738,12 @@ GameObject:
   - component: {fileID: 230168860890683871}
   - component: {fileID: 520531471342712011}
   m_Layer: 0
-  m_Name: right door
+  m_Name: left door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5746309576024099742
 Transform:
   m_ObjectHideFlags: 0
@@ -822,7 +824,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
