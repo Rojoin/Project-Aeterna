@@ -34,6 +34,7 @@ public class DungeonGeneration : MonoBehaviour
 
     private DungeonRoom ActualPlayerRoom;
 
+    [Serializable]
     private class DungeonRoom
     {
         public int xPosition;
@@ -196,11 +197,6 @@ public class DungeonGeneration : MonoBehaviour
             }
 
             dungeonRoomInstances.Add(roomInstance);
-
-            foreach (var instanceRoom in dungeonRoomInstances) 
-            {
-                instanceRoom.GetComponent<RoomBehaviour>().OnInteractDoor.AddListener(TpPlayer);
-            }
         }
     }
 
@@ -320,29 +316,5 @@ public class DungeonGeneration : MonoBehaviour
             return RoomTypes.ENEMIES;
         else
             return RoomTypes.EMPTY;
-    }
-
-    private void TpPlayer(RoomDirection roomDirection)
-    {
-        if (ActualPlayerRoom.HasNeighbourInDirection(roomDirection))
-        {
-            ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(roomDirection);
-            
-            switch (roomDirection) 
-            {
-                case RoomDirection.UP:
-                    PlayerPrefab.transform.position = new Vector3();
-                    break;
-
-                case RoomDirection.DOWN:
-                    break;
-
-                case RoomDirection.RIGHT:
-                    break;
-
-                case RoomDirection.LEFT:
-                    break;
-            }
-        }
     }
 }

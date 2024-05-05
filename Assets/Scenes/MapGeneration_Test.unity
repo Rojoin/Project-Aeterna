@@ -697,7 +697,10 @@ PrefabInstance:
     - {fileID: 3640548403081274128, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3246746235361737532, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1617105153}
   m_SourcePrefab: {fileID: 100100000, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
 --- !u!95 &1377692076 stripped
 Animator:
@@ -709,6 +712,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3246746235361737532, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
   m_PrefabInstance: {fileID: 1377692075}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1617105153
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617105148}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1681417376
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +775,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1706562005}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 4.3
@@ -781,6 +811,11 @@ Transform:
   - {fileID: 300975057}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 27.9, y: -45, z: 0}
+--- !u!4 &1706562005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 534080415524845009, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+  m_PrefabInstance: {fileID: 1377692075}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1808721093
 GameObject:
   m_ObjectHideFlags: 0
