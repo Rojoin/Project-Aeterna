@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class MapGrid : MonoBehaviour
 {
+    [Header("Rooms Prefabs")]
     [SerializeField] private Room[] rooms;
-    public int gridWidth = 5;
-    public int gridHeight = 5;
-    public float spacing = 1f;
-    public float gap = 0.1f;
+
+    [Header("Grid Settings")]
+    public int gridWidth;
+    public int gridHeight;
+    public float spacing;
+    public float gap;
     public GridZone[,] gridZones;
 
     private void Start()
@@ -37,20 +40,16 @@ public class MapGrid : MonoBehaviour
 
     private void GenerateDungeon()
     {
-        Instantiate(rooms[4].prefabRoom, gridZones[gridWidth/2, gridHeight/2].position, Quaternion.identity, gameObject.transform);
-        gridZones[gridWidth / 2, gridHeight / 2].type = rooms[4].type;
+        Vector2 centerZone = new Vector2(gridWidth / 2, gridHeight / 2);
+        ApplyNewRoom(rooms[4], centerZone);
 
-        for (int x = 0; x < gridWidth; x++)
-        {
-            for (int y = 0; y < gridHeight; y++)
-            {
-                if (gridZones[x, y].type == RoomType.Nothing)
-                {
-                    Instantiate(rooms[2].prefabRoom, gridZones[x, y].position, Quaternion.identity, gameObject.transform);
-                    gridZones[x, y].type = rooms[2].type;
-                }
-            }
-        }
+
+    }
+
+    private void ApplyNewRoom(Room room, Vector2 position)
+    {
+        Instantiate(room.prefabRoom, gridZones[(int)position.x, (int)position.y].position , Quaternion.identity, gameObject.transform);
+        gridZones[(int)position.x, (int)position.y].type = room.type;
     }
 
     private void OnDrawGizmos()
@@ -62,9 +61,16 @@ public class MapGrid : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                if (gridZones[x, y].type == RoomType.Nothing)
+                if (Application.isPlaying)
                 {
-                    Gizmos.color = Color.red;
+                    if (gridZones[x, y].type == RoomType.Nothing)
+                    {
+                        Gizmos.color = Color.red;
+                    }
+                    else
+                    {
+                        Gizmos.color = Color.white;
+                    }
                 }
                 else
                 {
@@ -75,7 +81,10 @@ public class MapGrid : MonoBehaviour
 
                 Gizmos.DrawWireCube(currentPos, new Vector3(spacing, 0, spacing));
 
-                Handles.Label(currentPos, gridZones[x, y].type.ToString());
+                if (Application.isPlaying)
+                {
+                    Handles.Label(currentPos, gridZones[x, y].type.ToString());
+                }
 
             }
         }
@@ -85,10 +94,12 @@ public class MapGrid : MonoBehaviour
 
 public enum RoomType
 {
-    I,
-    L,
-    X,
-    T,
+    TB,
+    TR,
+    TL,
+    LR,
+    LB,
+    RB,
     End,
     Start,
     Nothing,
