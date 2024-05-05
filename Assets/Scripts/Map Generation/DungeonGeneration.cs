@@ -193,7 +193,7 @@ public class DungeonGeneration : MonoBehaviour
 
             if (room.type == RoomTypes.START)
             {
-                PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 1, room.zPosition * gapBetweenRooms.y);
+                PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 0.2f, room.zPosition * gapBetweenRooms.y);
             }
 
             dungeonRoomInstances.Add(roomInstance);
