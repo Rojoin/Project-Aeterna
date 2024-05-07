@@ -17,7 +17,7 @@ public class SelectCardMenu : MonoBehaviour
     public List<CardSO> allCards = new List<CardSO>();
 
     public List<CardDisplay> cardsDisplays = new List<CardDisplay>();
-
+    public bool isCardActivated = false;
     void Start()
     {
         allCards = playerInventory.GetAllCardsList();
@@ -29,7 +29,7 @@ public class SelectCardMenu : MonoBehaviour
     public void ShowSelectCardMenu(bool value) 
     {
         SelectCardUI.SetActive(value);
-
+        isCardActivated = value;
         if (value == true) 
         {
             for (int i = 0; i < cardsDisplays.Count; i++)

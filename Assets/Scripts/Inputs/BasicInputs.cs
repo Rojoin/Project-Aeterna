@@ -33,7 +33,8 @@ public class BasicInputs : MonoBehaviour
     {
         if (playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
         {
-            activeCardSystem = !activeCardSystem;
+            selectCardMenu.isCardActivated = !selectCardMenu.isCardActivated;
+            activeCardSystem = selectCardMenu.isCardActivated;
             selectCardMenu.ShowSelectCardMenu(activeCardSystem);
         }
     }
