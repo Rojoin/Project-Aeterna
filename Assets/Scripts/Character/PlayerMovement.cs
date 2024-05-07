@@ -12,8 +12,9 @@ namespace Character
         [SerializeField] private Animator _playerAnimatorController;
         [SerializeField] private Vector2ChannelSO OnMoveChannel;
         [SerializeField] public UnityEvent<Vector2> OnMovement;
-        [SerializeField] private float speed;
         [SerializeField] private float rotationSpeed = 10f;
+        [SerializeField] private EntitySO player;
+
         private CharacterController _characterController;
         private Coroutine movement;
 
@@ -57,7 +58,7 @@ namespace Character
                 float time = Time.deltaTime;
                 Rotation(moveDir);
 
-                _characterController.Move(moveDir * (time * speed));
+                _characterController.Move(moveDir * (time * player.speed));
                 //transform.position += moveDir * (time * speed);
 
 
@@ -114,7 +115,7 @@ namespace Character
         {
             var position = transform.position;
             return Physics.CapsuleCast(position, position + Vector3.up * _characterController.height,
-                _characterController.radius, moveDir, speed * time);
+                _characterController.radius, moveDir, player.speed * time);
         }
 
         private void Rotation(Vector3 moveDir)

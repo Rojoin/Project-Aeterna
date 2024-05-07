@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
     [Header("Data")]
-    [SerializeField]private EntitySO entity;
+    [SerializeField]private EntitySO player;
 
     private float currentHealth;
     private float maxHealth;
@@ -14,24 +14,24 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
     private void Start()
     {
-        maxHealth = entity.health;
+        maxHealth = player.health;
         currentHealth = maxHealth;
-        damage = entity.damage;
-        speed = entity.speed;
+        damage = player.damage;
+        speed = player.speed;
     }
 
     public void SetHealth(float newHealth) 
     {
-        currentHealth = newHealth;
+        player.health = newHealth;
     }
     public float GetHealth() 
     {
-        return currentHealth;
+        return player.health;
     }
 
     public void SetMaxHealigh(float newMaxHealth) 
     {
-        maxHealth = newMaxHealth;
+        player.health = newMaxHealth;
     }
 
     public void ReceiveDamage(float damage) 
@@ -49,20 +49,20 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
     public void SetDamage(float newDamage) 
     {
-        damage = newDamage;
+        player.damage = newDamage;
     }
     public float GetDamage() 
     {
-        return damage;
+        return player.damage;
     }
 
     public void SetSpeed(float newSpeed)
     {
-        speed = newSpeed;
+        player.speed = newSpeed;
     }
     public float GetSpeed()
     {
-        return speed;
+        return player.speed;
     }
 
     public bool IsDead() 
@@ -76,5 +76,10 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             return false; 
         }
+    }
+
+    private void OnDisable()
+    {
+        player.ResetStacks();
     }
 }

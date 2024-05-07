@@ -9,46 +9,56 @@ public class BasicInputs : MonoBehaviour
     [SerializeField] private PlayerHud playerHud;
     [SerializeField] private SelectCardMenu selectCardMenu;
     [SerializeField] private List<CardsCounter> cardsCounter;
+    [SerializeField] private VoidChannelSO OnInteraction;
+
 
     [Header("Card System")]
-    [SerializeField] private bool ActiveCardSystem;
+    [SerializeField] private bool activeCardSystem;
 
     private void Start()
     {
         cardsCounter = playerInventory.GetCardsCounterList();
+        OnInteraction.Subscribe(ToggleStore);
     }
 
     void Update()
     {
-        if (ActiveCardSystem) 
+        if (activeCardSystem) 
         {
-            playerHud.ShowHud();
-
-            for (int i = 0; i < cardsCounter.Count; i++)
-            {
-                cardsCounter[i].ShowCardsStacksUI();
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) && playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
-            {
-                selectCardMenu.ShowSelectCardMenu(true);
-            }
-
-            if (selectCardMenu.GetIsCardSelected())
-            {
-                selectCardMenu.SetIsCardSelected(false);
-                playerInventory.PickUpCard(selectCardMenu.GetCardSelected());
-                playerHud.ShowCardsHud(selectCardMenu.GetCardSelected());
-
-                selectCardMenu.RefreshCardsSelectedList();
-            }
-
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                playerInventory.RemoveAllCards();
-                playerHud.DesactiveCardsGO();
-            }
+            CardSystem();
         }
+    }
+
+    public void ToggleStore() 
+    {
+        if (playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
+        {
+            activeCardSystem = !activeCardSystem;
+            selectCardMenu.ShowSelectCardMenu(activeCardSystem);
+        }
+    }
+
+    public void CardSystem()
+    {
+        playerHud.ShowHud();
+
+        for (int i = 0; i < cardsCounter.Count; i++)
+        {
+            cardsCounter[i].ShowCardsStacksUI();
+        }
+
+        if (selectCardMenu.GetIsCardSelected())
+        {
+            selectCardMenu.SetIsCardSelected(false);
+            playerInventory.PickUpCard(selectCardMenu.GetCardSelected());
+            playerHud.ShowCardsHud(selectCardMenu.GetCardSelected());
+
+            selectCardMenu.RefreshCardsSelectedList();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        OnInteraction.Unsubscribe(ToggleStore);
     }
 }

@@ -161,12 +161,6 @@ public class PlayerInventory : MonoBehaviour
         return maxCards;
     }
 
-    public void RemoveAllCards()
-    {
-        currentCards = 0;
-        playerCardsInventory.Clear();
-    }
-
     public int GetCurrentCards() 
     {
         return currentCards;
@@ -180,5 +174,12 @@ public class PlayerInventory : MonoBehaviour
     public List<CardSO> GetAllCardsList() 
     {
         return allCards;
+    }
+
+    private void OnDestroy()
+    {
+        currentCards = 0;
+        playerCardsInventory.Clear();
+        
     }
 }
