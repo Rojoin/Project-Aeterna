@@ -20,4 +20,6 @@ public class CardSO : ScriptableObject
     public float damage;
 
     public float helath;
+
+    public float speed;
 }

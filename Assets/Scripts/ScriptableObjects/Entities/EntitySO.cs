@@ -11,5 +11,7 @@ public class EntitySO : ScriptableObject
 
     public float damage;
 
+    public float speed;
+
     public bool isDead;
 }

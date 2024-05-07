@@ -10,6 +10,9 @@ public class BasicInputs : MonoBehaviour
     [SerializeField] private SelectCardMenu selectCardMenu;
     [SerializeField] private List<CardsCounter> cardsCounter;
 
+    [Header("Card System")]
+    [SerializeField] private bool ActiveCardSystem;
+
     private void Start()
     {
         cardsCounter = playerInventory.GetCardsCounterList();
@@ -17,32 +20,35 @@ public class BasicInputs : MonoBehaviour
 
     void Update()
     {
-        playerHud.ShowHud();
-
-        for (int i = 0; i < cardsCounter.Count; i++)
+        if (ActiveCardSystem) 
         {
-            cardsCounter[i].ShowCardsStacksUI();
-        }
+            playerHud.ShowHud();
 
-        if (Input.GetKeyDown(KeyCode.E) && playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
-        {
-            selectCardMenu.ShowSelectCardMenu(true);
-        }
+            for (int i = 0; i < cardsCounter.Count; i++)
+            {
+                cardsCounter[i].ShowCardsStacksUI();
+            }
 
-        if (selectCardMenu.GetIsCardSelected())
-        {
-            selectCardMenu.SetIsCardSelected(false);
-            playerInventory.PickUpCard(selectCardMenu.GetCardSelected());
-            playerHud.ShowCardsHud(selectCardMenu.GetCardSelected());
+            if (Input.GetKeyDown(KeyCode.E) && playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
+            {
+                selectCardMenu.ShowSelectCardMenu(true);
+            }
 
-            selectCardMenu.RefreshCardsSelectedList();
-        }
+            if (selectCardMenu.GetIsCardSelected())
+            {
+                selectCardMenu.SetIsCardSelected(false);
+                playerInventory.PickUpCard(selectCardMenu.GetCardSelected());
+                playerHud.ShowCardsHud(selectCardMenu.GetCardSelected());
+
+                selectCardMenu.RefreshCardsSelectedList();
+            }
 
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            playerInventory.RemoveAllCards();
-            playerHud.DesactiveCardsGO();
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                playerInventory.RemoveAllCards();
+                playerHud.DesactiveCardsGO();
+            }
         }
     }
 }

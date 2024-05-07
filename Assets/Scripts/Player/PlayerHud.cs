@@ -15,6 +15,7 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI health;
     [SerializeField] private TextMeshProUGUI damage;
+    [SerializeField] private TextMeshProUGUI speed;
 
     [SerializeField] private List<CardDisplay> cardDisplay;
 
@@ -57,6 +58,7 @@ public class PlayerHud : MonoBehaviour
     {
         health.text = "Health: " + playerHealth.GetHealth().ToString();
         damage.text = "Damage: " + playerHealth.GetDamage().ToString();
+        speed.text = "Speed: " + playerHealth.GetSpeed().ToString();
     }
 
     public void DesactiveCardsGO() 

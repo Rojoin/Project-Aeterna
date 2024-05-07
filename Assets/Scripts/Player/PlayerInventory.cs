@@ -20,6 +20,7 @@ public class PlayerInventory : MonoBehaviour
     private float aux = 0;
     private float newHealth = 0;
     private float newDamage = 0;
+    private float newSpeed = 0;
 
     void Start()
     {
@@ -105,6 +106,9 @@ public class PlayerInventory : MonoBehaviour
     {
         newHealth = player.GetHealth();
         newDamage = player.GetDamage();
+        newSpeed = player.GetSpeed();
+
+        int limitSpeed = 10;
 
         if (currentCards > 0) 
         {
@@ -114,6 +118,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     newHealth += playerCardsInventory[i].helath;
                     newDamage += playerCardsInventory[i].damage;
+                    newSpeed += playerCardsInventory[i].speed;
                 }
 
                 if (cardsCounter[i].GetCurrentCardsInSlot() == 2) 
@@ -122,6 +127,7 @@ public class PlayerInventory : MonoBehaviour
 
                     newHealth += playerCardsInventory[i].helath * aux;
                     newDamage += playerCardsInventory[i].damage * aux;
+                    newSpeed += playerCardsInventory[i].speed * aux;
                 }
 
                 if (cardsCounter[i].GetCurrentCardsInSlot() == 3)
@@ -130,12 +136,24 @@ public class PlayerInventory : MonoBehaviour
 
                     newHealth += playerCardsInventory[i].helath * aux;
                     newDamage += playerCardsInventory[i].damage * aux;
+                    newSpeed += playerCardsInventory[i].speed * aux;
                 }
             }
         }
 
         player.SetHealth(newHealth);
         player.SetDamage(newDamage);
+
+        if (newSpeed <= limitSpeed) 
+        {
+            player.SetSpeed(newSpeed);
+
+        }
+
+        else 
+        {
+            player.SetSpeed(limitSpeed);
+        }
     }
 
     public int GetMaxCards() 
