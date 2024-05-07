@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace InputControls
 {
@@ -11,7 +12,7 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnAttackChannel;
         [SerializeField] private VoidChannelSO OnInteractChannel;
         [SerializeField] private VoidChannelSO OnChangeCameraChannel;
-        [SerializeField] private VoidChannelSO OnTargetLockChannel;
+     [SerializeField] private VoidChannelSO OnResetLevel;
         [SerializeField] private VoidChannelSO OnBackInteractChannel;
         [SerializeField] private IntChannelSO OnControlSchemeChange;
         private const int keyboardSchemeValue = 0;
@@ -58,7 +59,7 @@ namespace InputControls
         {
             if (ctx.performed)
             {
-                OnTargetLockChannel.RaiseEvent();
+                OnResetLevel.RaiseEvent();
             }
         }
         public void OnChangeCamera(InputAction.CallbackContext ctx)
