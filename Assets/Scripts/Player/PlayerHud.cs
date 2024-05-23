@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 using UnityEngine.UI;
 
 public class PlayerHud : MonoBehaviour
@@ -18,6 +20,11 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private TextMeshProUGUI speed;
 
     [SerializeField] private List<CardDisplay> cardDisplay;
+
+    [SerializeField] private Animator hudAnimation;
+
+    [Header("Setup")]
+    [SerializeField] private float animationSpeed;
 
     public List<GameObject> cardGO;
 
@@ -70,4 +77,22 @@ public class PlayerHud : MonoBehaviour
 
         cardIndex = 0;
     } 
+
+    public void ActiveAnimationHud() 
+    {
+        string showAnimation = "ShowHud";
+        string hideAnimation = "HideHud";
+
+        hudAnimation.SetBool(hideAnimation, true);
+        hudAnimation.SetBool(showAnimation, true);
+    }
+
+    public void DesactiveAnimationHud() 
+    {
+        string showAnimation = "ShowHud";
+        string hideAnimation = "HideHud";
+
+        hudAnimation.SetBool(hideAnimation, true);
+        hudAnimation.SetBool(showAnimation, true);
+    }
 }
