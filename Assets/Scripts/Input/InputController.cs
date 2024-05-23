@@ -12,7 +12,7 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnAttackChannel;
         [SerializeField] private VoidChannelSO OnInteractChannel;
         [SerializeField] private VoidChannelSO OnChangeCameraChannel;
-     [SerializeField] private VoidChannelSO OnResetLevel;
+        [SerializeField] private VoidChannelSO OnResetLevel;
         [SerializeField] private VoidChannelSO OnBackInteractChannel;
         [SerializeField] private IntChannelSO OnControlSchemeChange;
         private const int keyboardSchemeValue = 0;

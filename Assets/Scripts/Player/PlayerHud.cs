@@ -21,16 +21,21 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private List<CardDisplay> cardDisplay;
 
-    [SerializeField] private Animator hudAnimation;
+    [SerializeField] private RectTransform hudTransform;
 
     [Header("Setup")]
-    [SerializeField] private float animationSpeed;
+    [SerializeField] private Vector3 initialPosition;
+    [SerializeField] private Vector3 endPosition;
 
-    public List<GameObject> cardGO;
+    [SerializeField] private float hudMovementSpeed;
 
     private CardSO card;
 
     private int cardIndex;
+
+    public List<GameObject> cardGO;
+
+
 
     void Start()
     {
@@ -78,21 +83,13 @@ public class PlayerHud : MonoBehaviour
         cardIndex = 0;
     } 
 
-    public void ActiveAnimationHud() 
+    public void ActiveHud() 
     {
-        string showAnimation = "ShowHud";
-        string hideAnimation = "HideHud";
-
-        hudAnimation.SetBool(hideAnimation, true);
-        hudAnimation.SetBool(showAnimation, true);
+        hudTransform.anchoredPosition = Vector2.MoveTowards(hudTransform.anchoredPosition, initialPosition, hudMovementSpeed * Time.deltaTime);
     }
 
-    public void DesactiveAnimationHud() 
+    public void DesactiveHud() 
     {
-        string showAnimation = "ShowHud";
-        string hideAnimation = "HideHud";
-
-        hudAnimation.SetBool(hideAnimation, true);
-        hudAnimation.SetBool(showAnimation, true);
+        hudTransform.anchoredPosition = Vector2.MoveTowards(hudTransform.anchoredPosition, endPosition, hudMovementSpeed * Time.deltaTime);
     }
 }

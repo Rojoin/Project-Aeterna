@@ -2956,8 +2956,10 @@ MonoBehaviour:
   - {fileID: 1900331761}
   - {fileID: 1417272208}
   - {fileID: 1829659667}
-  hudAnimation: {fileID: 1279293298}
-  animationSpeed: 0
+  hudTransform: {fileID: 1279293295}
+  initialPosition: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: -224, z: 0}
+  hudMovementSpeed: 250
   cardGO:
   - {fileID: 1647918110}
   - {fileID: 824635775}
@@ -3093,7 +3095,6 @@ GameObject:
   - component: {fileID: 1279293295}
   - component: {fileID: 1279293297}
   - component: {fileID: 1279293296}
-  - component: {fileID: 1279293298}
   m_Layer: 5
   m_Name: HudDisplay
   m_TagString: Untagged
@@ -3165,27 +3166,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279293294}
   m_CullTransparentMesh: 1
---- !u!95 &1279293298
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279293294}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b035accd356193641a50dad4628675aa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1343385902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3903,6 +3883,7 @@ MonoBehaviour:
   - {fileID: 535571169}
   OnInteraction: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
   activeCardSystem: 0
+  activeHud: 0
 --- !u!114 &1617105159
 MonoBehaviour:
   m_ObjectHideFlags: 0
