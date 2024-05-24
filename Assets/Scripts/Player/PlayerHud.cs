@@ -24,14 +24,18 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private RectTransform hudTransform;
 
     [Header("Setup")]
-    [SerializeField] private Vector3 initialPosition;
-    [SerializeField] private Vector3 endPosition;
+    [SerializeField] private Vector3 closeHudPosition;
+    [SerializeField] private Vector3 openHudPosition;
 
-    [SerializeField] private float hudMovementSpeed;
+    [SerializeField] private float hudInteractionTimer;
 
     private CardSO card;
 
     private int cardIndex;
+
+    private Coroutine lerpHudAnimation;
+
+    private bool isHudOpen = false;
 
     public List<GameObject> cardGO;
 
@@ -83,13 +87,32 @@ public class PlayerHud : MonoBehaviour
         cardIndex = 0;
     } 
 
-    public void ActiveHud() 
+    public void ToggleHud() 
     {
-        hudTransform.anchoredPosition = Vector2.MoveTowards(hudTransform.anchoredPosition, initialPosition, hudMovementSpeed * Time.deltaTime);
+        isHudOpen = !isHudOpen;
+
+        if (lerpHudAnimation != null) 
+        {
+            StopCoroutine(lerpHudAnimation);
+        }
+
+        lerpHudAnimation = StartCoroutine(ToggleHudVisibility(isHudOpen));
     }
 
-    public void DesactiveHud() 
+    private IEnumerator ToggleHudVisibility(bool state) 
     {
-        hudTransform.anchoredPosition = Vector2.MoveTowards(hudTransform.anchoredPosition, endPosition, hudMovementSpeed * Time.deltaTime);
+        Vector2 initLerpPosition = hudTransform.anchoredPosition;
+        Vector2 endLerpPosition = state ? openHudPosition : closeHudPosition;
+
+        float timer = 0;
+
+        while (timer <= hudInteractionTimer) 
+        {
+            timer += Time.deltaTime;
+
+            hudTransform.anchoredPosition = Vector2.Lerp(initLerpPosition, endLerpPosition, timer / hudInteractionTimer);
+
+            yield return null;
+        }
     }
 }

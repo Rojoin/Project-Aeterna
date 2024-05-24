@@ -806,6 +806,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
     - target: {fileID: 5116400276696402719, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: OnHudToggleChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
+    - target: {fileID: 5116400276696402719, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: OnBackInteractChannel
       value: 
       objectReference: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
@@ -854,6 +858,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_ActionId
+      value: 41850591-c88a-47b0-9278-75c885a384fa
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_ActionName
+      value: Player/OpenHud[/Keyboard/tab]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -871,6 +887,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[24].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
@@ -894,6 +914,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 210268630}
@@ -914,6 +938,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 210268630}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 210268630}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -927,6 +955,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
@@ -950,6 +982,10 @@ PrefabInstance:
       value: OnChangeCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnHud
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: InputControls.InputController, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -970,6 +1006,10 @@ PrefabInstance:
       value: InputControls.InputController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputControls.InputController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -987,6 +1027,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[24].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: m_ActionEvents.Array.data[25].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2957,9 +3001,9 @@ MonoBehaviour:
   - {fileID: 1417272208}
   - {fileID: 1829659667}
   hudTransform: {fileID: 1279293295}
-  initialPosition: {x: 0, y: 0, z: 0}
-  endPosition: {x: 0, y: -224, z: 0}
-  hudMovementSpeed: 250
+  closeHudPosition: {x: 0, y: -224, z: 0}
+  openHudPosition: {x: 0, y: 0, z: 0}
+  hudInteractionTimer: 1
   cardGO:
   - {fileID: 1647918110}
   - {fileID: 824635775}
@@ -3882,8 +3926,8 @@ MonoBehaviour:
   - {fileID: 1886386334}
   - {fileID: 535571169}
   OnInteraction: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
+  OnHudToggle: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
   activeCardSystem: 0
-  activeHud: 0
 --- !u!114 &1617105159
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,7 +14,10 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnChangeCameraChannel;
         [SerializeField] private VoidChannelSO OnResetLevel;
         [SerializeField] private VoidChannelSO OnBackInteractChannel;
+        [SerializeField] private VoidChannelSO OnHudToggleChannel;
         [SerializeField] private IntChannelSO OnControlSchemeChange;
+        
+
         private const int keyboardSchemeValue = 0;
         private const int gamepadSchemeValue = 1;
 
@@ -74,6 +77,14 @@ namespace InputControls
             if (ctx.performed)
             {
                 OnInteractChannel.RaiseEvent();
+            }
+        }
+
+        public void OnHud(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+               OnHudToggleChannel.RaiseEvent();
             }
         }
 

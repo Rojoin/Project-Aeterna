@@ -11,16 +11,17 @@ public class BasicInputs : MonoBehaviour
     [SerializeField] private List<CardsCounter> cardsCounter;
     [SerializeField] private VoidChannelSO OnInteraction;
 
+    [SerializeField] private VoidChannelSO OnHudToggle;
+
 
     [Header("Card System")]
     [SerializeField] private bool activeCardSystem;
-
-    [SerializeField] private bool activeHud;
 
     private void Start()
     {
         cardsCounter = playerInventory.GetCardsCounterList();
         OnInteraction.Subscribe(ToggleStore);
+        OnHudToggle.Subscribe(playerHud.ToggleHud);
     }
 
     void Update()
@@ -28,22 +29,6 @@ public class BasicInputs : MonoBehaviour
         if (activeCardSystem) 
         {
             CardSystem();
-        }
-
-        if (activeHud) 
-        {
-            playerHud.ActiveHud();
-        }
-
-        else 
-        {
-            playerHud.DesactiveHud();
-        }
-        
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            playerHud.DesactiveHud();
         }
     }
 
@@ -79,5 +64,6 @@ public class BasicInputs : MonoBehaviour
     private void OnDestroy()
     {
         OnInteraction.Unsubscribe(ToggleStore);
+        OnHudToggle.Unsubscribe(playerHud.ToggleHud);
     }
 }
