@@ -10,6 +10,7 @@ public class PlayerCombatController : MonoBehaviour
     public VoidChannelSO AttackChannel;
     public Animator animator;
     public List<AttackSO> combo;
+    [SerializeField] private AttackCollision _attackCollider;
     public float timeBetweenCombo = 0.2f;
     public float timeBetweenComboEnd = 0.5f;
     private float lastClickedTime = 0;
@@ -19,17 +20,18 @@ public class PlayerCombatController : MonoBehaviour
     private void OnEnable()
     {
         AttackChannel.Subscribe(Attack);
+        _attackCollider.OnTriggerEnterObject.AddListener(OnAttackEnter);
+        _attackCollider.OnTriggerExitObject.AddListener(OnAttackExit);
     }
+
 
     private void OnDisable()
     {
         AttackChannel.Unsubscribe(Attack);
+        _attackCollider.OnTriggerEnterObject.RemoveListener(OnAttackEnter);
+        _attackCollider.OnTriggerExitObject.RemoveListener(OnAttackExit);
     }
 
-    private IEnumerator a()
-    {
-        yield return null;
-    }
 
     public void Attack()
     {
@@ -40,7 +42,7 @@ public class PlayerCombatController : MonoBehaviour
             if (Time.time - lastClickedTime >= timeBetweenCombo)
             {
                 animator.runtimeAnimatorController = combo[comboCounter].overrideController;
-
+                _attackCollider.ActivateCollider(combo[comboCounter]);
                 animator.Play("Attack", 0, 0);
                 comboCounter++;
                 lastClickedTime = Time.time;
@@ -59,7 +61,7 @@ public class PlayerCombatController : MonoBehaviour
 
     public bool ExitAttack()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f &&
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f && 
             animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
             Invoke(nameof(EndCombo), 1);
@@ -71,7 +73,34 @@ public class PlayerCombatController : MonoBehaviour
 
     void EndCombo()
     {
+        _attackCollider.StopAttack();
         comboCounter = 0;
         lastComboEnd = Time.time;
+    }
+
+    private void OnAttackExit(GameObject other)
+    {
+        if (!other.CompareTag("Player") && other.TryGetComponent<IHealthSystem>(out var healthSystem))
+        {
+            Debug.Log("Exit attack.");
+        }
+    }
+
+    private void OnAttackEnter(GameObject other)
+    {
+        if (!other.CompareTag("Player") && other.TryGetComponent<IHealthSystem>(out var healthSystem))
+        {
+            Debug.Log("Enter attack.");
+            healthSystem.ReceiveDamage(combo[comboCounter].damage);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if ( combo[comboCounter])
+        {
+          //  Gizmos.DrawCube(_attackCollider.transform.position + combo[comboCounter].colliderCenter,
+          //      combo[comboCounter].colliderSize);
+        }
     }
 }
