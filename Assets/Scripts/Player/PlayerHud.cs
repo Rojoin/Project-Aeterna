@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 using UnityEngine.UI;
 
 public class PlayerHud : MonoBehaviour
@@ -19,11 +21,25 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private List<CardDisplay> cardDisplay;
 
-    public List<GameObject> cardGO;
+    [SerializeField] private RectTransform hudTransform;
+
+    [Header("Setup")]
+    [SerializeField] private Vector3 closeHudPosition;
+    [SerializeField] private Vector3 openHudPosition;
+
+    [SerializeField] private float hudInteractionTimer;
 
     private CardSO card;
 
     private int cardIndex;
+
+    private Coroutine lerpHudAnimation;
+
+    private bool isHudOpen = false;
+
+    public List<GameObject> cardGO;
+
+
 
     void Start()
     {
@@ -70,4 +86,33 @@ public class PlayerHud : MonoBehaviour
 
         cardIndex = 0;
     } 
+
+    public void ToggleHud() 
+    {
+        isHudOpen = !isHudOpen;
+
+        if (lerpHudAnimation != null) 
+        {
+            StopCoroutine(lerpHudAnimation);
+        }
+
+        lerpHudAnimation = StartCoroutine(ToggleHudVisibility(isHudOpen));
+    }
+
+    private IEnumerator ToggleHudVisibility(bool state) 
+    {
+        Vector2 initLerpPosition = hudTransform.anchoredPosition;
+        Vector2 endLerpPosition = state ? openHudPosition : closeHudPosition;
+
+        float timer = 0;
+
+        while (timer <= hudInteractionTimer) 
+        {
+            timer += Time.deltaTime;
+
+            hudTransform.anchoredPosition = Vector2.Lerp(initLerpPosition, endLerpPosition, timer / hudInteractionTimer);
+
+            yield return null;
+        }
+    }
 }

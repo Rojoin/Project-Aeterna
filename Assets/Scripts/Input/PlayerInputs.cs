@@ -161,6 +161,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenHud"",
+                    ""type"": ""Button"",
+                    ""id"": ""41850591-c88a-47b0-9278-75c885a384fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -801,6 +810,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b5367ec-fd16-4c67-95e7-aaaa9b5b3a34"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenHud"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1760a779-1228-42ce-9c24-e92f7db79607"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenHud"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1379,6 +1410,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Player_CheatTimeSpeed = m_Player.FindAction("CheatTimeSpeed", throwIfNotFound: true);
         m_Player_SetCheatsState = m_Player.FindAction("SetCheatsState", throwIfNotFound: true);
         m_Player_CheatShowConsole = m_Player.FindAction("CheatShowConsole", throwIfNotFound: true);
+        m_Player_OpenHud = m_Player.FindAction("OpenHud", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1467,6 +1499,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CheatTimeSpeed;
     private readonly InputAction m_Player_SetCheatsState;
     private readonly InputAction m_Player_CheatShowConsole;
+    private readonly InputAction m_Player_OpenHud;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -1486,6 +1519,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         public InputAction @CheatTimeSpeed => m_Wrapper.m_Player_CheatTimeSpeed;
         public InputAction @SetCheatsState => m_Wrapper.m_Player_SetCheatsState;
         public InputAction @CheatShowConsole => m_Wrapper.m_Player_CheatShowConsole;
+        public InputAction @OpenHud => m_Wrapper.m_Player_OpenHud;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1540,6 +1574,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @CheatShowConsole.started += instance.OnCheatShowConsole;
             @CheatShowConsole.performed += instance.OnCheatShowConsole;
             @CheatShowConsole.canceled += instance.OnCheatShowConsole;
+            @OpenHud.started += instance.OnOpenHud;
+            @OpenHud.performed += instance.OnOpenHud;
+            @OpenHud.canceled += instance.OnOpenHud;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1589,6 +1626,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @CheatShowConsole.started -= instance.OnCheatShowConsole;
             @CheatShowConsole.performed -= instance.OnCheatShowConsole;
             @CheatShowConsole.canceled -= instance.OnCheatShowConsole;
+            @OpenHud.started -= instance.OnOpenHud;
+            @OpenHud.performed -= instance.OnOpenHud;
+            @OpenHud.canceled -= instance.OnOpenHud;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1759,6 +1799,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         void OnCheatTimeSpeed(InputAction.CallbackContext context);
         void OnSetCheatsState(InputAction.CallbackContext context);
         void OnCheatShowConsole(InputAction.CallbackContext context);
+        void OnOpenHud(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
