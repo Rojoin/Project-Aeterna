@@ -16,7 +16,7 @@ public class PlayerCombatController : MonoBehaviour
     private float lastClickedTime = 0;
     private float lastComboEnd = 0;
     private int comboCounter = 0;
-
+    private float attackTimer;
     private void OnEnable()
     {
         AttackChannel.Subscribe(Attack);
@@ -58,13 +58,13 @@ public class PlayerCombatController : MonoBehaviour
     {
         ExitAttack();
     }
-
+//Todo: Make a way to stop attack
     public bool ExitAttack()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f && 
+        if ( Time.time -lastClickedTime >= combo[comboCounter].attackTime&& 
             animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            Invoke(nameof(EndCombo), 1);
+            Invoke(nameof(EndCombo), 0.5f);
             return true;
         }
 
