@@ -122,5 +122,9 @@ namespace Character
         {
             transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotationSpeed);
         }
+        public void Rotate(Vector3 newDirection)
+        {
+            transform.forward = Vector3.Slerp(transform.forward, newDirection, 1);
+        }
     }
 }

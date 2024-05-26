@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using ScriptableObjects;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class PlayerCombatController : MonoBehaviour
     private float lastComboEnd = 0;
     private int comboCounter = 0;
     private float attackTimer;
+    [SerializeField] private float attackRadius = 5.0f;
+    private GameObject currentTarget;
+
     private void OnEnable()
     {
         AttackChannel.Subscribe(Attack);
@@ -45,6 +49,7 @@ public class PlayerCombatController : MonoBehaviour
                 _attackCollider.ActivateCollider(combo[comboCounter]);
                 animator.Play("Attack", 0, 0);
                 comboCounter++;
+                CheckTarget();
                 lastClickedTime = Time.time;
                 if (comboCounter >= combo.Count)
                 {
@@ -54,14 +59,48 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
+    private void CheckTarget()
+    {
+        Collider[] possibleTargets =
+            Physics.OverlapSphere(transform.position, attackRadius, LayerMask.GetMask($"Target"));
+        Vector3 direction;
+        if (possibleTargets.Length > 0)
+        {
+            foreach (Collider target in possibleTargets)
+            {
+                if (target.gameObject == currentTarget)
+                {
+                    //Todo: Change to Event or channel
+                    direction = (target.transform.position-transform.position ).normalized;
+                    direction = new Vector3(direction.x, 0, direction.z);
+                    GetComponent<PlayerMovement>().Rotate(direction);
+                    break;
+                }
+            }
+
+            currentTarget = possibleTargets[0].gameObject;
+            direction = (possibleTargets[0].transform.position-transform.position ).normalized;
+            direction = new Vector3(direction.x, 0, direction.z);
+            GetComponent<PlayerMovement>().Rotate(direction);
+        }
+        else
+        {
+            currentTarget = null;
+            Debug.Log("No target in the area.");
+        }
+
+    }
+
+
     private void Update()
     {
         ExitAttack();
     }
+
 //Todo: Make a way to stop attack
     public bool ExitAttack()
     {
-        if ( Time.time -lastClickedTime >= combo[comboCounter].attackTime&& 
+        if (Time.time - lastClickedTime >= combo[comboCounter].attackTime &&
             animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
             Invoke(nameof(EndCombo), 0.5f);
@@ -97,10 +136,12 @@ public class PlayerCombatController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if ( combo[comboCounter])
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, attackRadius);
+        if (combo[comboCounter])
         {
-          //  Gizmos.DrawCube(_attackCollider.transform.position + combo[comboCounter].colliderCenter,
-          //      combo[comboCounter].colliderSize);
+            //  Gizmos.DrawCube(_attackCollider.transform.position + combo[comboCounter].colliderCenter,
+            //      combo[comboCounter].colliderSize);
         }
     }
 }
