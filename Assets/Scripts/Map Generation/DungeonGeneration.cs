@@ -32,6 +32,9 @@ public class DungeonGeneration : MonoBehaviour
     private List<DungeonRoom> dungeonRooms = new List<DungeonRoom>();
     private List<GameObject> dungeonRoomInstances = new List<GameObject>();
 
+    private DungeonRoom ActualPlayerRoom;
+
+    [Serializable]
     private class DungeonRoom
     {
         public int xPosition;
@@ -58,6 +61,16 @@ public class DungeonGeneration : MonoBehaviour
                     return true;
             }
             return false;
+        }
+
+        public DungeonRoom GetNeighbourDirection(RoomDirection direction)
+        {
+            foreach (Tuple<RoomDirection, DungeonRoom> n in _neighbours)
+            {
+                if (n.Item1 == direction)
+                    return n.Item2;
+            }
+            return null;
         }
 
         public void AddNeighbourInDirection(DungeonRoom room, RoomDirection direction)
@@ -110,6 +123,8 @@ public class DungeonGeneration : MonoBehaviour
                 }
             }
         }
+
+        ActualPlayerRoom = startRoom;
 
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
     }
@@ -178,15 +193,10 @@ public class DungeonGeneration : MonoBehaviour
 
             if (room.type == RoomTypes.START)
             {
-                GameObject player = Instantiate(PlayerPrefab, new Vector3(room.xPosition * gapBetweenRooms.x, 1, room.zPosition * gapBetweenRooms.y), Quaternion.identity);
+                PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 0.2f, room.zPosition * gapBetweenRooms.y);
             }
 
             dungeonRoomInstances.Add(roomInstance);
-
-            foreach (var instanceRoom in dungeonRoomInstances) 
-            {
-                instanceRoom.GetComponent<RoomBehaviour>().OnInteractDoor.AddListener(TpPlayer);
-            }
         }
     }
 
@@ -306,10 +316,5 @@ public class DungeonGeneration : MonoBehaviour
             return RoomTypes.ENEMIES;
         else
             return RoomTypes.EMPTY;
-    }
-
-    private void TpPlayer(RoomDirection roomDirection)
-    {
-
     }
 }
