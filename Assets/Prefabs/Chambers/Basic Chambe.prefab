@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3493086920442892804}
   - component: {fileID: 7530813336021028996}
+  - component: {fileID: 117553562713644782}
   m_Layer: 0
   m_Name: Basic Chambe
   m_TagString: Untagged
@@ -52,6 +53,25 @@ MonoBehaviour:
   OnInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &117553562713644782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203743812469221639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGrid: 1
+  roomSize: {x: 20, y: 20}
+  cellSize: {x: 1, y: 1}
+  ObjectRoom:
+  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
+  totalObjects: 5
+  wallSize: 2
 --- !u!1 &437399653284855554
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6829875110572785915
 Transform:
   m_ObjectHideFlags: 0
@@ -743,7 +763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5746309576024099742
 Transform:
   m_ObjectHideFlags: 0
