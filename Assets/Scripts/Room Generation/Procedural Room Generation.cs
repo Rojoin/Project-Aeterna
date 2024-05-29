@@ -10,6 +10,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
     [SerializeField] private bool showGrid;
 
     [SerializeField] private Vector2 roomSize;
+    [SerializeField] private Vector2 doorSize;
     [SerializeField] private Vector2 cellSize;
 
     [SerializeField] private ObjectRoomSO[] ObjectRoom;
@@ -80,7 +81,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
                         }
 
                         Vector3 position = startCell.position;
-                        position.y = 0 + roomObject.prefabObject.transform.localScale.y/2;
+                        position.y = 0 + roomObject.prefabObject.transform.localScale.y / 2;
                         Instantiate(roomObject.prefabObject, position, Quaternion.identity, transform);
                         placed = true;
                     }
