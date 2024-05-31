@@ -908,6 +908,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2077532266}
     - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: maxCards
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 1617105163}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1617105165}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: cardsSlots.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: cardsSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2026847408}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: cardsSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 2043038991}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: cardsSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 245798314}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: cardsSlots.Array.data[3]
+      value: 
+      objectReference: {fileID: 1886386334}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: cardsSlots.Array.data[4]
+      value: 
+      objectReference: {fileID: 535571169}
+    - target: {fileID: 3238264069818391299, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
       propertyPath: cardsCounter.Array.data[0]
       value: 
       objectReference: {fileID: 2026847408}
@@ -975,6 +1011,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 11400000, guid: c7c53cfd57bda8841ac95c28e12d88ee, type: 2}
+    - target: {fileID: 5588344295775920293, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8883696657724981518, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
       propertyPath: animator
       value: 
@@ -1049,6 +1089,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 038369a7c04b808488dc155b5d04bdc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1617105165 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5588344295775920293, guid: ad1c341cb082b2742bec47a974861d53, type: 3}
+  m_PrefabInstance: {fileID: 1377692075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617105148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1d00725f8b4324b76d7671e78626f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1676159086
@@ -1596,6 +1647,10 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1617105162}
+    - target: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: maxCardsToSelect
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5579994857006716957, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_Pivot.x
       value: 0

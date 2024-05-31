@@ -18,6 +18,7 @@ namespace Character
         private CharacterController _characterController;
         private Coroutine movement;
 
+        public float maxSpeed;
 
         private void OnEnable()
         {

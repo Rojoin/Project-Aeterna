@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CardsCounter : MonoBehaviour
+public class CardsSlots : MonoBehaviour
 {
     [SerializeField] private int currentCardsInSlot;
 
     [SerializeField] private int maxCardsInSlot;
 
     [SerializeField] private TextMeshProUGUI stacksTexts;
-
 
     private void Start()
     {
@@ -40,5 +39,4 @@ public class CardsCounter : MonoBehaviour
     {
         return currentCardsInSlot;
     }
-
 }

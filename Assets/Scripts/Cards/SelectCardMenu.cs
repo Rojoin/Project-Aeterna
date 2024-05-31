@@ -14,10 +14,15 @@ public class SelectCardMenu : MonoBehaviour
 
     private int cardToSelect;
 
+    [Header("Setup")]
+    [SerializeField] private int maxCardsToSelect = 6;
+
     public List<CardSO> allCards = new List<CardSO>();
 
     public List<CardDisplay> cardsDisplays = new List<CardDisplay>();
+
     public bool isCardActivated = false;
+
     void Start()
     {
         allCards = playerInventory.GetAllCardsList();
@@ -43,7 +48,7 @@ public class SelectCardMenu : MonoBehaviour
     {
         CardSO card = ScriptableObject.CreateInstance<CardSO>();
 
-        card.ID = Random.Range(0, playerInventory.GetMaxCards());
+        card.ID = Random.Range(0, maxCardsToSelect);
 
         for (int i = 0; i < allCards.Count; i++)
         {
