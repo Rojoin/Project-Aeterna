@@ -22,6 +22,7 @@ public class CardSO : ScriptableObject
 
     public int ID;
 
+    private int m_cardsOnSlot;
     public int cardsOnSlot;
 
     public bool isSelected;
@@ -33,4 +34,17 @@ public class CardSO : ScriptableObject
     public float health;
 
     public float speed;
+
+    public void ResetStacks()
+    {
+        cardsOnSlot = m_cardsOnSlot;
+    }
+
+    private void OnEnable()
+    {
+        cardsOnSlot = m_cardsOnSlot;
+
+        Debug.Log(nameof(CardSO) + "enable");
+
+    }
 }
