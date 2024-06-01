@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Enemy
 {
@@ -7,6 +8,7 @@ namespace Enemy
     {
         [SerializeField] private EntitySO enemy;
         [SerializeField] private CustomSlider healthBar;
+        [SerializeField] private UnityEvent OnHit;
         private float currentHealth;
         private float maxHealth;
 
@@ -40,6 +42,7 @@ namespace Enemy
             else
             {
                 currentHealth -= damage;
+                OnHit.Invoke();
             }
 
             healthBar.FillAmount = currentHealth / maxHealth;
