@@ -18,6 +18,7 @@ namespace Character
         private CharacterController _characterController;
         private Coroutine movement;
         private const float angle = -45;
+        private Vector3 rotatedMoveDir;
 
 
         private void OnEnable()
@@ -57,7 +58,7 @@ namespace Character
             {
                 Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
                 float time = Time.deltaTime;
-                var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+                rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
                 Rotation(rotatedMoveDir);
 
                 _characterController.Move(rotatedMoveDir * (time * player.speed));
@@ -70,6 +71,7 @@ namespace Character
             }
 
             _playerAnimatorController.SetFloat("Blend", 0);
+            rotatedMoveDir = Vector3.zero;
         }
 
         /// <summary>
@@ -129,5 +131,7 @@ namespace Character
         {
             transform.forward = Vector3.Slerp(transform.forward, newDirection, 1);
         }
+
+        public Vector3 GetRotatedMoveDir() => rotatedMoveDir;
     }
 }
