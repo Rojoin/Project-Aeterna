@@ -43,8 +43,5 @@ public class CardSO : ScriptableObject
     private void OnEnable()
     {
         cardsOnSlot = m_cardsOnSlot;
-
-        Debug.Log(nameof(CardSO) + "enable");
-
     }
 }
