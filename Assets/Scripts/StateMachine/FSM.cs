@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace StateMachine
 {
-
-
     public sealed class FSM
     {
         protected List<BaseStateFSM> states;
