@@ -79,7 +79,7 @@ public class PlayerCombatController : MonoBehaviour
             Vector3 mouseScreenPosition = Input.mousePosition;
             
             Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
-            Plane plane = new Plane(Vector3.up, characterPosition); // Plane at character height
+            Plane plane = new Plane(Vector3.up, characterPosition);
             if (plane.Raycast(ray, out float distance))
             {
                 Vector3 mouseWorldPosition = ray.GetPoint(distance);
@@ -115,7 +115,6 @@ public class PlayerCombatController : MonoBehaviour
             }
             else
             {
-                previousTarget = null;
                 Debug.Log("No target in the area.");
             }
         }
@@ -194,10 +193,10 @@ public class PlayerCombatController : MonoBehaviour
     {
         // Gizmos.color = Color.red;
         // Gizmos.DrawSphere(transform.position, attackRadius);
-        // if (combo[comboCounter])
+        // if (comboList[comboCounter])
         {
-            //  Gizmos.DrawCube(_attackCollider.transform.position + combo[comboCounter].colliderCenter,
-            //      combo[comboCounter].colliderSize);
+            //  Gizmos.DrawCube(_attackCollider.transform.position + comboList[comboCounter].colliderCenter,
+            //      comboList[comboCounter].colliderSize);
         }
     }
 }
