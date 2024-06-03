@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3493086920442892804}
   - component: {fileID: 7530813336021028996}
+  - component: {fileID: 6609680635174012541}
   m_Layer: 0
   m_Name: Basic Chamber
   m_TagString: Untagged
@@ -49,6 +50,27 @@ MonoBehaviour:
   doorsDown: {fileID: 437399653284855554}
   doorsRight: {fileID: 954348293679204078}
   doorsLeft: {fileID: 5339266507924073847}
+--- !u!114 &6609680635174012541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203743812469221639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGrid: 1
+  roomSize: {x: 20, y: 20}
+  doorSize: {x: 2, y: 2}
+  cellSize: {x: 1, y: 1}
+  ObjectRoom:
+  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
+  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
+  totalObjects: 10
+  wallSize: 1
 --- !u!1 &437399653284855554
 GameObject:
   m_ObjectHideFlags: 0
