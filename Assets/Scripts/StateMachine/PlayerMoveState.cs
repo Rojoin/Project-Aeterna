@@ -10,7 +10,7 @@ namespace StateMachine
 
        public PlayerMoveState(params object[] data) : base(data)
         {
-            
+             
         }
         public override void OnEnter()
         {
