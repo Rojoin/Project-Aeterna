@@ -81,7 +81,7 @@ public class SelectCardMenu : MonoBehaviour
         return isCardSelected;
     }
 
-    public int GetCardSelected() 
+    public CardSO GetCardSelected() 
     {
         CardSO card = ScriptableObject.CreateInstance<CardSO>();
 
@@ -106,7 +106,7 @@ public class SelectCardMenu : MonoBehaviour
             break;
         }
 
-        return card.ID;
+        return card;
     }
 
     public void RefreshCardsSelectedList() 

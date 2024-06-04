@@ -25,19 +25,13 @@ public class PlayerInventory : MonoBehaviour
     private float newDamage = 0;
     private float newSpeed = 0;
 
-    void Start()
-    {
-        currentCards = 0;
-        maxCards = 5;
-    }
-
-    public void PickUpCard(int cardID)
+    public void PickUpCard(CardSO card)
     {
         if (maxCards > currentCards)
         {
             for (int i = 0; i < allCards.Count; i++)
             {
-                if (allCards[i].ID == cardID)
+                if (allCards[i].ID == card.ID)
                 {
                     AddCard(allCards[i]);
 
@@ -64,14 +58,23 @@ public class PlayerInventory : MonoBehaviour
                 {
                     cardsSlots[i].SetCurrentCardsInSlot(1);
 
+                    if (playerCardsInventory[i].cardsOnSlot < 3)
+                    {
+                        currentCards++;
+                    }
+
                     break;
                 }
 
                 else if (cardsSlots[i + 1].GetCurrentCardsInSlot() == 0)
                 {
                     playerCardsInventory.Add(newCard);
-                    cardsSlots[currentCards].SetCurrentCardsInSlot(1);
-                    currentCards++;
+                    cardsSlots[i + 1].SetCurrentCardsInSlot(1);
+
+                    if (playerCardsInventory[i].cardsOnSlot < 3)
+                    {
+                        currentCards++;
+                    }
 
                     break;
                 }
@@ -123,11 +126,11 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public CardSO GetCardOnInventory(int cardID)
+    public CardSO GetCardOnInventory(CardSO card)
     {
         for (int i = 0; i < playerCardsInventory.Count; i++)
         {
-            if (playerCardsInventory[i].ID == cardID)
+            if (playerCardsInventory[i].ID == card.ID)
             {
                 return playerCardsInventory[i];
             }
@@ -197,6 +200,11 @@ public class PlayerInventory : MonoBehaviour
     public List<CardSO> GetAllCardsList()
     {
         return allCards;
+    }
+
+    public List<CardSO> GetPlayerCardsInventoryList() 
+    {
+        return playerCardsInventory;
     }
 
     private void OnDestroy()

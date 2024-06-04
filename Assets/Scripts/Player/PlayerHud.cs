@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerHud : MonoBehaviour
 {
@@ -31,11 +32,13 @@ public class PlayerHud : MonoBehaviour
 
     private CardSO card;
 
-    private int cardIndex;
+    private int slotIndex;
 
     private Coroutine lerpHudAnimation;
 
     public bool isHudOpen = false;
+
+    private List<CardSO> invetory;
 
     public List<GameObject> cardGO;
 
@@ -51,22 +54,28 @@ public class PlayerHud : MonoBehaviour
         }
     }
 
-    public void ShowCardsHud(int cardSelected) 
+    public void ShowCardsHud(CardSO cardSelected) 
     {
-        if (playerInventory.GetCurrentCards() <= playerInventory.GetMaxCards()) 
+        invetory = playerInventory.GetPlayerCardsInventoryList();
+
+        for (int i = slotIndex; i < playerInventory.GetCurrentCards();)
         {
-            for (int i = cardIndex; cardIndex < playerInventory.GetCurrentCards();)
+            for (int j = 0; j < invetory.Count; j++) 
             {
-                card = playerInventory.GetCardOnInventory(cardSelected);
-
-                cardDisplay[i].ShowCard(card);
-
-                cardGO[i].SetActive(true);
-
-                cardIndex++;
-
-                break;
+                if (cardSelected.ID != invetory[j].ID)
+                {
+                    slotIndex += 1;
+                    break;
+                }
             }
+            break;
+        }
+
+        for (int i = 0; i < invetory.Count; i++)
+        {
+            cardDisplay[i].ShowCard(invetory[i]);
+
+            cardGO[i].SetActive(true);
         }
     }
 
@@ -84,7 +93,7 @@ public class PlayerHud : MonoBehaviour
             cardGO[i].SetActive(false);
         }
 
-        cardIndex = 0;
+        slotIndex = 0;
     } 
 
     public void ToggleHud() 
