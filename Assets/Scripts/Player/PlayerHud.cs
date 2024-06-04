@@ -35,7 +35,7 @@ public class PlayerHud : MonoBehaviour
 
     private Coroutine lerpHudAnimation;
 
-    private bool isHudOpen = false;
+    public bool isHudOpen = false;
 
     public List<GameObject> cardGO;
 

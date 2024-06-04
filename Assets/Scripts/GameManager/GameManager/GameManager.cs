@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject firsButtonSelected;
 
+    [SerializeField] private PlayerHud playerHud;
+
     private PlayerMovement playerMovement;
     private PlayerCombatController playerCombarController;
-
-    public bool paused = false;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (paused) 
+        if (playerHud.isHudOpen) 
         {
             playerMovement.enabled = false;
             playerCombarController.enabled = false;
