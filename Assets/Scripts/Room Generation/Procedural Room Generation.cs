@@ -42,7 +42,67 @@ public class ProceduralRoomGeneration : MonoBehaviour
             }
         }
 
+        AddDoorPositions();
+
         CreateObjects();
+    }
+
+    private void AddDoorPositions()
+    {
+        int midX = Mathf.FloorToInt(roomSize.x / 2);
+        int midY = Mathf.FloorToInt(roomSize.y / 2);
+
+        // Agregar puerta en el centro de la pared norte
+        int northY = (int)roomSize.y - 1;
+        for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
+        {
+            for (int y = northY - Mathf.FloorToInt(doorSize.y / 2); y <= northY; y++)
+            {
+                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                {
+                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                }
+            }
+        }
+
+        // Agregar puerta en el centro de la pared sur
+        int southY = 0;
+        for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
+        {
+            for (int y = southY; y <= southY + Mathf.FloorToInt(doorSize.y / 2); y++)
+            {
+                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                {
+                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                }
+            }
+        }
+
+        // Agregar puerta en el centro de la pared este
+        int eastX = (int)roomSize.x - 1;
+        for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
+        {
+            for (int x = eastX - Mathf.FloorToInt(doorSize.x / 2); x <= eastX; x++)
+            {
+                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                {
+                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                }
+            }
+        }
+
+        // Agregar puerta en el centro de la pared oeste
+        int westX = 0;
+        for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
+        {
+            for (int x = westX; x <= westX + Mathf.FloorToInt(doorSize.x / 2); x++)
+            {
+                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                {
+                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                }
+            }
+        }
     }
 
     private CellTag DetermineCellTag(int x, int y)
