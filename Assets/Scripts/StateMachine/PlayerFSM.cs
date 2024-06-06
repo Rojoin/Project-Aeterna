@@ -58,6 +58,7 @@ namespace StateMachine
         }
         private void OnDisable()
         {
+            playerFsm.OnDestroy();
             AttackChannel.Unsubscribe(ChangeFromAttack);
         }
     }

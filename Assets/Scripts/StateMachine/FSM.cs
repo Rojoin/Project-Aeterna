@@ -60,5 +60,12 @@ namespace StateMachine
         {
             currentState.OnTick();
         }
+        public void OnDestroy()
+        {
+            foreach (BaseStateFSM baseState in states)
+            {
+                baseState.OnDestroy();
+            }
+        }
     }
 }

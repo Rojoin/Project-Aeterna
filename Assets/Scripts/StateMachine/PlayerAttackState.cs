@@ -31,7 +31,7 @@ namespace StateMachine
         private Coroutine _attacking;
         private float timeUntilAttackEnds;
         private float timeUntilStart;
-      
+
 
         public PlayerAttackState(Action onAttackEnd, params object[] data) : base(data)
         {
@@ -81,6 +81,7 @@ namespace StateMachine
                     {
                         CheckTarget();
                     }
+
                     lastClickedTime = Time.time;
                     Debug.Log($"Current clicked time is {lastClickedTime}");
                     if (comboCounter >= comboList.Count)
@@ -175,7 +176,7 @@ namespace StateMachine
             var timeAfterComboEnds = comboList[comboCounter].timeUntilEnd;
             timeUntilAttackEnds = comboList[comboCounter].attackTime - timeUntilStart - timeAfterComboEnds;
             yield return new WaitForSeconds(timeUntilStart);
-           // OnAttack.Invoke();
+            // OnAttack.Invoke();
             _attackCollider.ToggleCollider(true);
             yield return new WaitForSeconds(timeUntilAttackEnds);
             _attackCollider.ToggleCollider(false);
@@ -194,6 +195,7 @@ namespace StateMachine
                 _characterController.Move(rotatedMoveDir * (time * player.speed));
                 yield return null;
             }
+
             rotatedMoveDir = Vector2.zero;
         }
 
