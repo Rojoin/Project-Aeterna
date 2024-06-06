@@ -20,6 +20,7 @@ namespace Character
         private const float angle = -45;
         private Vector3 rotatedMoveDir;
 
+        public float maxSpeed;
 
         private void OnEnable()
         {

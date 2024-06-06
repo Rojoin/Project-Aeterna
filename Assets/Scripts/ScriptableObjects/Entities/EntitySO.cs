@@ -33,6 +33,6 @@ public class EntitySO : ScriptableObject
         m_speed = speed;
         isDead = false;
 
-        Debug.Log("enable");
+        Debug.Log(nameof(EntitySO) + "enable");
     }
 }

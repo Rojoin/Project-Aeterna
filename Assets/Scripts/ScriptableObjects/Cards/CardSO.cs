@@ -7,6 +7,13 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class CardSO : ScriptableObject
 {
+    public enum CardType
+    {
+        Attack,
+        Health,
+        Speed
+    }
+
     public new string name;
 
     public string description;
@@ -15,11 +22,26 @@ public class CardSO : ScriptableObject
 
     public int ID;
 
+    private int m_cardsOnSlot;
+    public int cardsOnSlot;
+
     public bool isSelected;
+
+    public CardType cardType;
 
     public float damage;
 
-    public float helath;
+    public float health;
 
     public float speed;
+
+    public void ResetStacks()
+    {
+        cardsOnSlot = m_cardsOnSlot;
+    }
+
+    private void OnEnable()
+    {
+        cardsOnSlot = m_cardsOnSlot;
+    }
 }

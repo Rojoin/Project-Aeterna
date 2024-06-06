@@ -8,7 +8,7 @@ public class BasicInputs : MonoBehaviour
     [SerializeField] private PlayerInventory playerInventory;
     [SerializeField] private PlayerHud playerHud;
     [SerializeField] private SelectCardMenu selectCardMenu;
-    [SerializeField] private List<CardsCounter> cardsCounter;
+    [SerializeField] private List<CardsSlots> cardsCounter;
     [SerializeField] private VoidChannelSO OnInteraction;
 
     [SerializeField] private VoidChannelSO OnHudToggle;
