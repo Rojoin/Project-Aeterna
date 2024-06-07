@@ -16,7 +16,7 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnResetLevel;
         [SerializeField] private VoidChannelSO OnBackInteractChannel;
         [SerializeField] private VoidChannelSO OnHudToggleChannel;
-        // [SerializeField] private IntChannelSO OnControlSchemeChange;
+        [SerializeField] private BoolChannelSO OnControlSchemeChange;
         [SerializeField] private GameSettings gameSettings;
 
 
@@ -32,13 +32,13 @@ namespace InputControls
             string inputCurrentControlScheme = input.currentControlScheme;
             if (inputCurrentControlScheme.Equals("Gamepad"))
             {
-                //OnControlSchemeChange.RaiseEvent(gamepadSchemeValue);
+                OnControlSchemeChange.RaiseEvent(true);
                 Debug.Log("Using Gamepad:" + inputCurrentControlScheme);
                 gameSettings.isUsingController = true;
             }
             else
             {
-                //OnControlSchemeChange.RaiseEvent(keyboardSchemeValue);
+                OnControlSchemeChange.RaiseEvent(false);
                 gameSettings.isUsingController = false;
                 Debug.Log("Using Mouse & Keywoard");
             }

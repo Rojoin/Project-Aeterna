@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: OnChangeCameraChannel
       value: 
       objectReference: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
+    - target: {fileID: 5116400276696402719, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
+      propertyPath: OnControlSchemeChange
+      value: 
+      objectReference: {fileID: 11400000, guid: 31cb41d326db3c84586e863551aec40b, type: 2}
     - target: {fileID: 6180893564099561983, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1459,6 +1463,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1312863825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1319664054442216602, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+  m_PrefabInstance: {fileID: 5693371484574524226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1552293559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,6 +1522,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1557904433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8587051116987540109, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+  m_PrefabInstance: {fileID: 5693371484574524226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1557904437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557904433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ec66458ad00e24184a4ac937e62b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnControllersChange: {fileID: 11400000, guid: 31cb41d326db3c84586e863551aec40b, type: 2}
+  textContainer: {fileID: 1312863825}
+  controllerText: 'Move: LeftStick ENTEROpen Store: WestButtonENTERPlayerInventory:
+    Select ENTERReset: EastButton  ENTERAttack: RightTrigger  ENTERMove Camera: NorthButton 
+    ENTERExit: Start'
+  keyboardText: 'Move: WASDENTEROpen Store: E ENTER PlayerInventory: Tab ENTER Reset:
+    Q ENTER Attack: Left Click ENTER Move Camera: R ENTER Exit: ESC'
 --- !u!114 &1606856841 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5895702023835965208, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -2440,7 +2479,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8587051116987540109, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1557904437}
   m_SourcePrefab: {fileID: 100100000, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
 --- !u!1 &5693371484574524227 stripped
 GameObject:
