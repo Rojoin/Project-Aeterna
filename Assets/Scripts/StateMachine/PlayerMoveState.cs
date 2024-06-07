@@ -8,10 +8,10 @@ namespace StateMachine
         private const float angle = -45;
         private float rotationSpeed = 10f;
 
-       public PlayerMoveState(params object[] data) : base(data)
+        public PlayerMoveState(params object[] data) : base(data)
         {
-             
         }
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -28,16 +28,19 @@ namespace StateMachine
         {
             while (dir != Vector2.zero)
             {
-                Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
-                float time = Time.deltaTime;
-                var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-                Rotate(rotatedMoveDir);
+                if (!isPause)
+                {
+                    Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
+                    float time = Time.deltaTime;
+                    var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+                    Rotate(rotatedMoveDir);
 
-                _characterController.Move(rotatedMoveDir * (time * player.speed));
-                //transform.position += moveDir * (time * speed);
+                    _characterController.Move(rotatedMoveDir * (time * player.speed));
+                    //transform.position += moveDir * (time * speed);
 
 
-                _playerAnimatorController.SetFloat("Blend", dir.magnitude);
+                    _playerAnimatorController.SetFloat("Blend", dir.magnitude);
+                }
 
                 yield return null;
             }
@@ -54,6 +57,12 @@ namespace StateMachine
         public override void OnExit()
         {
             base.OnExit();
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+            base.OnDestroy();
         }
     }
 }

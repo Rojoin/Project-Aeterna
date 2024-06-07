@@ -3,11 +3,13 @@ using ScriptableObjects;
 using UnityEngine;
 
 namespace StateMachine
-{    public enum PlayerFlags
+{
+    public enum PlayerFlags
     {
         Move,
         Attack,
-        EndAttack
+        EndAttack,
+        Pause
     }
 
     public class PlayerFSM : MonoBehaviour
@@ -16,49 +18,61 @@ namespace StateMachine
         [SerializeField] protected CharacterController _characterController;
         [SerializeField] protected Vector2ChannelSO OnMoveChannel;
         [SerializeField] protected VoidChannelSO AttackChannel;
+        [SerializeField] protected GameSettings gameSettings;
         [SerializeField] protected EntitySO player;
         [SerializeField] private List<AttackSO> comboList;
         [SerializeField] private AttackCollision _attackCollider;
         protected float speed;
-        private FSM playerFsm;
+        private FSM fsm;
         private Vector2 moveDir;
 
         private void OnEnable()
         {
             speed = player.speed;
-            playerFsm = new(2, 3);
-            int idleState = playerFsm.AddNewState(new PlayerMoveState(this.gameObject, _playerAnimatorController,
-                _characterController, OnMoveChannel, speed, player));
-            int attackState = playerFsm.AddNewState(new PlayerAttackState(ChangeFromEndAttack,this.gameObject, _playerAnimatorController,
-                _characterController, OnMoveChannel, speed, player, comboList, _attackCollider,AttackChannel));
+            fsm = new(2, 3);
+            int idleState = fsm.AddNewState(new PlayerMoveState(this.gameObject, _playerAnimatorController,
+                _characterController, OnMoveChannel, player));
+            int attackState = fsm.AddNewState(new PlayerAttackState(ChangeFromEndAttack, this.gameObject,
+                _playerAnimatorController,
+                _characterController, OnMoveChannel, player, comboList, _attackCollider, AttackChannel, gameSettings));
 
-            playerFsm.SetTranstions(idleState, PlayerFlags.Attack, attackState);
-            playerFsm.SetTranstions(attackState, PlayerFlags.EndAttack, idleState);
+            fsm.SetTranstions(idleState, PlayerFlags.Attack, attackState);
+            fsm.SetTranstions(attackState, PlayerFlags.EndAttack, idleState);
             AttackChannel.Subscribe(ChangeFromAttack);
-            playerFsm.SetDefaultState(idleState);
-            AttackChannel.Subscribe(ChangeFromAttack);
+            fsm.SetDefaultState(idleState);
         }
 
         private void Update()
         {
-            playerFsm.Update();
+            fsm.Update();
         }
+
         private void ChangeFromAttack()
         {
-            playerFsm.OnTriggerState(PlayerFlags.Attack);
+            fsm.OnTriggerState(PlayerFlags.Attack);
         }
+
         private void ChangeFromEndAttack()
         {
-            playerFsm.OnTriggerState(PlayerFlags.EndAttack);
+            fsm.OnTriggerState(PlayerFlags.EndAttack);
+        }
+
+        public void ChangeFromPause(bool value)
+        {
+            PlayerBaseState.isPause = value;
+            PlayerBaseState.inputDirection = Vector2.zero;
+            _playerAnimatorController.speed = value ? 0 : 1;
+            ChangeFromEndAttack();
         }
 
         private void MoveDirection(Vector2 newMoveDir)
         {
             moveDir = newMoveDir;
         }
+
         private void OnDisable()
         {
-            playerFsm.OnDestroy();
+            fsm.OnDestroy();
             AttackChannel.Unsubscribe(ChangeFromAttack);
         }
     }

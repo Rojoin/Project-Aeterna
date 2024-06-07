@@ -7,8 +7,7 @@ public class PlayerInventory : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerHealth playerHealth;
-
-    [SerializeField] private PlayerMovement playerMovement;
+    
 
     [SerializeField] private List<CardsSlots> cardsSlots;
 
@@ -163,9 +162,9 @@ public class PlayerInventory : MonoBehaviour
 
                 case CardSO.CardType.Speed:
 
-                    if (newSpeed >= playerMovement.maxSpeed)
+                    if (newSpeed >=playerHealth.GetMaxSpeed())
                     {
-                        newSpeed = playerMovement.maxSpeed;
+                        newSpeed =  playerHealth.GetMaxSpeed();
                     }
 
                     else

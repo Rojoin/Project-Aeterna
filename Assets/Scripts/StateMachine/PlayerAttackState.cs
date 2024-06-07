@@ -31,13 +31,15 @@ namespace StateMachine
         private Coroutine _attacking;
         private float timeUntilAttackEnds;
         private float timeUntilStart;
+        private GameSettings gameSettings;
 
 
         public PlayerAttackState(Action onAttackEnd, params object[] data) : base(data)
         {
-            comboList = data[6] as List<AttackSO>;
-            _attackCollider = data[7] as AttackCollision;
-            AttackChannel = data[8] as VoidChannelSO;
+            comboList = data[5] as List<AttackSO>;
+            _attackCollider = data[6] as AttackCollision;
+            AttackChannel = data[7] as VoidChannelSO;
+            gameSettings = data[8] as GameSettings;
             OnAttackEnd += onAttackEnd;
             isMouseActive = true;
             lastComboEnd = timeBetweenComboEnd;
@@ -69,6 +71,8 @@ namespace StateMachine
 
         private void Attack()
         {
+            if (isPause)
+                return;
             if (Time.time - lastComboEnd > timeBetweenComboEnd && comboCounter <= comboList.Count)
             {
                 Debug.Log($"The last clicked time was {lastClickedTime}");
@@ -77,10 +81,9 @@ namespace StateMachine
                     ActivateCollider(comboList[comboCounter]);
                     _playerAnimatorController.CrossFade(comboList[comboCounter].animationName, 0.25f, 0, 0);
                     comboCounter++;
-                    if (GetRotatedMoveDir().magnitude <= 0.1f)
-                    {
-                        CheckTarget();
-                    }
+
+                    CheckTarget();
+
 
                     lastClickedTime = Time.time;
                     Debug.Log($"Current clicked time is {lastClickedTime}");
@@ -104,7 +107,7 @@ namespace StateMachine
 
         private void CheckTarget()
         {
-            if (isMouseActive)
+            if (!gameSettings.isUsingController)
             {
                 Vector3 characterPosition = owner.transform.position;
                 Vector3 mouseScreenPosition = Input.mousePosition;
@@ -120,7 +123,7 @@ namespace StateMachine
                     Rotate(direction);
                 }
             }
-            else
+            else if (GetRotatedMoveDir().magnitude <= 0.1f)
             {
                 Collider[] possibleTargets =
                     Physics.OverlapSphere(owner.transform.position, attackRadius, LayerMask.GetMask($"Target"));
@@ -138,11 +141,11 @@ namespace StateMachine
                         {
                             currentTarget = target.gameObject;
                         }
-
-                        direction = (currentTarget.transform.position - owner.transform.position).normalized;
-                        direction = new Vector3(direction.x, 0, direction.z);
-                        Rotate(direction);
                     }
+
+                    direction = (currentTarget.transform.position - owner.transform.position).normalized;
+                    direction = new Vector3(direction.x, 0, direction.z);
+                    Rotate(direction);
                 }
                 else
                 {
@@ -170,13 +173,14 @@ namespace StateMachine
             _attackCollider.ToggleCollider(false);
         }
 
+//Todo: Change all corroutines to update or action methods.
         private IEnumerator AttackCorroutine()
         {
             timeUntilStart = comboList[comboCounter].timeUntilStart;
             var timeAfterComboEnds = comboList[comboCounter].timeUntilEnd;
             timeUntilAttackEnds = comboList[comboCounter].attackTime - timeUntilStart - timeAfterComboEnds;
             yield return new WaitForSeconds(timeUntilStart);
-            // OnAttack.Invoke();
+            //OnAttack.Invoke();
             _attackCollider.ToggleCollider(true);
             yield return new WaitForSeconds(timeUntilAttackEnds);
             _attackCollider.ToggleCollider(false);
@@ -189,10 +193,14 @@ namespace StateMachine
         {
             while (dir != Vector2.zero)
             {
-                Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
-                float time = Time.deltaTime;
-                rotatedMoveDir = Quaternion.AngleAxis(-45, Vector3.up) * moveDir;
-                _characterController.Move(rotatedMoveDir * (time * player.speed));
+                if (!isPause)
+                {
+                    Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
+                    float time = Time.deltaTime;
+                    rotatedMoveDir = Quaternion.AngleAxis(-45, Vector3.up) * moveDir;
+                    _characterController.Move(rotatedMoveDir * (time * player.speed));
+                }
+
                 yield return null;
             }
 
@@ -220,6 +228,7 @@ namespace StateMachine
         {
             base.OnDestroy();
             OnAttackEnd = null;
+            AttackChannel.Unsubscribe(Attack);
         }
     }
 }

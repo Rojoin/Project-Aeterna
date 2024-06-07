@@ -10,29 +10,31 @@ namespace StateMachine
         protected Vector2ChannelSO OnMoveChannel;
         protected VoidChannelSO AttackChannel;
         protected EntitySO player;
-        protected float speed;
         protected Coroutine movement;
         protected Vector3 rotatedMoveDir;
-        static protected Vector2 inputDirection;
+        static public Vector2 inputDirection;
+        static public bool isPause = false;
 
         public PlayerBaseState(params object[] data) : base(data)
         {
             _playerAnimatorController = data[1] as Animator;
             _characterController = data[2] as CharacterController;
             OnMoveChannel = data[3] as Vector2ChannelSO;
-            speed = (float)data[4];
-            player = data[5] as EntitySO;
+            player = data[4] as EntitySO;
         }
 
         protected void Move(Vector2 dir)
         {
+            if (isPause)
+                return;
+
             inputDirection = dir;
             if (movement != null)
             {
                 owner.GetComponent<MonoBehaviour>().StopCoroutine(movement);
             }
 
-            movement = owner.GetComponent<MonoBehaviour>().StartCoroutine(Movement(dir));
+            movement = owner.GetComponent<MonoBehaviour>().StartCoroutine(Movement(inputDirection));
         }
 
         public override void OnEnter()
@@ -59,6 +61,8 @@ namespace StateMachine
 
         public override void OnDestroy()
         {
+            owner.GetComponent<MonoBehaviour>().StopAllCoroutines();
+            OnMoveChannel.Unsubscribe(Move);
         }
 
         public virtual void Rotate(Vector3 newDirection)
@@ -70,16 +74,19 @@ namespace StateMachine
         {
             while (dir != Vector2.zero)
             {
-                Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
-                float time = Time.deltaTime;
-                rotatedMoveDir = Quaternion.AngleAxis(-45, Vector3.up) * moveDir;
-                Rotate(rotatedMoveDir);
+                if (!isPause)
+                {
+                    Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
+                    float time = Time.deltaTime;
+                    rotatedMoveDir = Quaternion.AngleAxis(-45, Vector3.up) * moveDir;
+                    Rotate(rotatedMoveDir);
 
-                _characterController.Move(rotatedMoveDir * (time * player.speed));
-                //transform.position += moveDir * (time * speed);
+                    _characterController.Move(rotatedMoveDir * (time * player.speed));
+                    //transform.position += moveDir * (time * speed);
 
 
-                _playerAnimatorController.SetFloat("Blend", dir.magnitude);
+                    _playerAnimatorController.SetFloat("Blend", dir.magnitude);
+                }
 
                 yield return null;
             }
@@ -89,5 +96,6 @@ namespace StateMachine
         }
 
         protected Vector3 GetRotatedMoveDir() => rotatedMoveDir;
+        
     }
 }

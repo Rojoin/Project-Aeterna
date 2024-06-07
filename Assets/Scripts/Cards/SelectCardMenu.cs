@@ -7,7 +7,7 @@ public class SelectCardMenu : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject SelectCardUI;
     [SerializeField] private PlayerInventory playerInventory;
-
+    [SerializeField] private BoolChannelSO TogglePause;
     private List<CardSO> cardsSelected = new List<CardSO>();
 
     private bool isCardSelected;
@@ -35,6 +35,7 @@ public class SelectCardMenu : MonoBehaviour
     {
         SelectCardUI.SetActive(value);
         isCardActivated = value;
+        TogglePause.RaiseEvent(value);
         if (value == true) 
         {
             for (int i = 0; i < cardsDisplays.Count; i++)
@@ -66,7 +67,7 @@ public class SelectCardMenu : MonoBehaviour
     public void SetCardSelected(int value) 
     {
         cardToSelect = value;
-
+Debug.Log("Card has been Selected");
         isCardSelected = true;
         ShowSelectCardMenu(false);
     }

@@ -37,5 +37,6 @@ public class ChangeCurentCamera : MonoBehaviour
     }  private void Exit()
     {
        Application.Quit();
+       Debug.Log($"Close Application");
     }
 }

@@ -60,6 +60,7 @@ namespace StateMachine
         {
             currentState.OnTick();
         }
+
         public void OnDestroy()
         {
             foreach (BaseStateFSM baseState in states)
@@ -67,5 +68,7 @@ namespace StateMachine
                 baseState.OnDestroy();
             }
         }
+
+    
     }
 }

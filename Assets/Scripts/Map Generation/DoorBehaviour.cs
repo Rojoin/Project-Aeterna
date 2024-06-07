@@ -10,10 +10,12 @@ public class DoorBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<CharacterController>().enabled = false;
-        other.transform.position += transform.forward * 12;
-        other.GetComponent<CharacterController>().enabled = true;
-
-        Debug.Log("On player interact door");
+        if (other.TryGetComponent<CharacterController>(out var ch))
+        {
+            ch.enabled = false;
+            other.transform.position += transform.forward * 12;
+            ch.enabled = true;
+            Debug.Log("On player interact door");
+        }
     }
 }
