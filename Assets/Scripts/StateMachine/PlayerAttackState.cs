@@ -42,7 +42,7 @@ namespace StateMachine
             gameSettings = data[8] as GameSettings;
             OnAttackEnd += onAttackEnd;
             isMouseActive = true;
-            lastComboEnd = timeBetweenComboEnd;
+            lastComboEnd = -timeBetweenComboEnd;
             lastClickedTime = -timeBetweenCombo;
         }
 
