@@ -15,7 +15,7 @@ public class EntitySO : ScriptableObject
 
     private float m_speed;
     public float speed;
-
+    public float masSpeed;
     public bool isDead;
 
     public void ResetStacks() 
@@ -33,6 +33,6 @@ public class EntitySO : ScriptableObject
         m_speed = speed;
         isDead = false;
 
-        Debug.Log("enable");
+        Debug.Log(nameof(EntitySO) + "enable");
     }
 }

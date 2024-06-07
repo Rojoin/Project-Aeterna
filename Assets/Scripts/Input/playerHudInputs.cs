@@ -8,7 +8,7 @@ public class BasicInputs : MonoBehaviour
     [SerializeField] private PlayerInventory playerInventory;
     [SerializeField] private PlayerHud playerHud;
     [SerializeField] private SelectCardMenu selectCardMenu;
-    [SerializeField] private List<CardsCounter> cardsCounter;
+    [SerializeField] private List<CardsSlots> cardsCounter;
     [SerializeField] private VoidChannelSO OnInteraction;
 
     [SerializeField] private VoidChannelSO OnHudToggle;
@@ -36,6 +36,7 @@ public class BasicInputs : MonoBehaviour
     {
         if (playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
         {
+            selectCardMenu.RefreshCardsSelectedList();
             selectCardMenu.isCardActivated = !selectCardMenu.isCardActivated;
             activeCardSystem = selectCardMenu.isCardActivated;
             selectCardMenu.ShowSelectCardMenu(activeCardSystem);

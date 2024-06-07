@@ -1,4 +1,5 @@
 ﻿using System;
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -15,15 +16,15 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnResetLevel;
         [SerializeField] private VoidChannelSO OnBackInteractChannel;
         [SerializeField] private VoidChannelSO OnHudToggleChannel;
-        [SerializeField] private IntChannelSO OnControlSchemeChange;
-        
+        [SerializeField] private BoolChannelSO OnControlSchemeChange;
+        [SerializeField] private GameSettings gameSettings;
+
 
         private const int keyboardSchemeValue = 0;
         private const int gamepadSchemeValue = 1;
 
         private void OnEnable()
         {
-            
         }
 
         public void OnChangeInput(PlayerInput input)
@@ -31,26 +32,28 @@ namespace InputControls
             string inputCurrentControlScheme = input.currentControlScheme;
             if (inputCurrentControlScheme.Equals("Gamepad"))
             {
-                OnControlSchemeChange.RaiseEvent(gamepadSchemeValue);
+                OnControlSchemeChange.RaiseEvent(true);
                 Debug.Log("Using Gamepad:" + inputCurrentControlScheme);
-               // _playerStats.ChangeControllerInput(gamepadSchemeValue);
+                gameSettings.isUsingController = true;
             }
             else
             {
-                OnControlSchemeChange.RaiseEvent(keyboardSchemeValue);
-              //  _playerStats.ChangeControllerInput(keyboardSchemeValue);
+                OnControlSchemeChange.RaiseEvent(false);
+                gameSettings.isUsingController = false;
                 Debug.Log("Using Mouse & Keywoard");
             }
         }
-        
+
         public void OnMove(InputAction.CallbackContext ctx)
         {
             OnMoveChannel.RaiseEvent(ctx.ReadValue<Vector2>());
-        }  public void OnCameraMove(InputAction.CallbackContext ctx)
+        }
+
+        public void OnCameraMove(InputAction.CallbackContext ctx)
         {
             OnCameraMoveChannel.RaiseEvent(ctx.ReadValue<Vector2>());
         }
-        
+
         public void OnAttack(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
@@ -58,6 +61,7 @@ namespace InputControls
                 OnAttackChannel.RaiseEvent();
             }
         }
+
         public void OnTargetLock(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
@@ -65,13 +69,15 @@ namespace InputControls
                 OnResetLevel.RaiseEvent();
             }
         }
+
         public void OnChangeCamera(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
             {
                 OnChangeCameraChannel.RaiseEvent();
             }
-        } 
+        }
+
         public void OnInteract(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
@@ -84,9 +90,8 @@ namespace InputControls
         {
             if (ctx.performed)
             {
-               OnHudToggleChannel.RaiseEvent();
+                OnHudToggleChannel.RaiseEvent();
             }
         }
-
     }
 }

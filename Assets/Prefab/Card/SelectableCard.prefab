@@ -219,8 +219,8 @@ GameObject:
   m_Component:
   - component: {fileID: 65978931477481288}
   - component: {fileID: 3691180333427367968}
-  - component: {fileID: 7314227309157781187}
   - component: {fileID: 1358808807097613661}
+  - component: {fileID: 7314227309157781187}
   m_Layer: 5
   m_Name: SelectableCard
   m_TagString: Untagged
@@ -263,6 +263,34 @@ MonoBehaviour:
   name: {fileID: 3490409390347194973}
   description: {fileID: 9175505316915563862}
   artImage: {fileID: 4679547471380988472}
+--- !u!114 &1358808807097613661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901669882535980892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifyHitBox: 0
+  alphaRayCast: 0.1
+  scaleSpeed: 3
+  scaleLimit: 1.2
+  modifyImage: 0
+  baseImageIsTransparent: 0
+  imageDefault: {fileID: 0}
+  imageHighlighted: {fileID: 0}
+  currentImage: {fileID: 0}
+  textHighlight: 0
+  textToHighlight: {fileID: 0}
+  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
+  enableObject: 0
+  objectToEnable: {fileID: 0}
+  objectToRotate: {fileID: 0}
+  rotateSpeed: 0
 --- !u!114 &7314227309157781187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,34 +335,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1358808807097613661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901669882535980892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modifyHitBox: 0
-  alphaRayCast: 0.1
-  scaleSpeed: 3
-  scaleLimit: 1.2
-  modifyImage: 0
-  baseImageIsTransparent: 0
-  imageDefault: {fileID: 0}
-  imageHighlighted: {fileID: 0}
-  currentImage: {fileID: 0}
-  textHighlight: 0
-  textToHighlight: {fileID: 0}
-  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
-  enableObject: 0
-  objectToEnable: {fileID: 0}
-  objectToRotate: {fileID: 0}
-  rotateSpeed: 0
 --- !u!1 &6434525054306222474
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,9 +9,7 @@ public class AttackCollision : MonoBehaviour
     [SerializeField] private BoxCollider _attackCollider;
     public UnityEvent<GameObject> OnTriggerEnterObject = new UnityEvent<GameObject>();
     public UnityEvent<GameObject> OnTriggerExitObject = new UnityEvent<GameObject>();
-    private Coroutine _attacking;
-    private float timeUntilAttackEnds;
-     private float timeUntilStart;
+
 
     private void Awake()
     {
@@ -22,35 +20,18 @@ public class AttackCollision : MonoBehaviour
         }
     }
 
-    public void ActivateCollider(AttackSO attacksParams)
-    {
-        StopAttack();
-        _attackCollider.center = attacksParams.colliderCenter;
-        _attackCollider.size = attacksParams.colliderSize;
-        timeUntilStart = attacksParams.timeUntilStart;
-        timeUntilAttackEnds = attacksParams.attackTime - timeUntilStart;
 
-        _attacking = StartCoroutine(AttackCorroutine());
+    public void ToggleCollider(bool state)
+    {
+        _attackCollider.enabled = state;
     }
 
-    private IEnumerator AttackCorroutine()
+    public void SetColliderParams(Vector3 colliderCenter, Vector3 colliderSize)
     {
-        yield return new WaitForSeconds(timeUntilStart);
-        _attackCollider.enabled = true;
-        yield return new WaitForSeconds(timeUntilAttackEnds);
-        _attackCollider.enabled = false;
-        yield break;
+        _attackCollider.center = colliderCenter;
+        _attackCollider.size = colliderSize;
     }
 
-    public void StopAttack()
-    {
-        if (_attacking != null)
-        {
-            StopCoroutine(_attacking);
-        }
-
-        _attackCollider.enabled = false;
-    }
 
     public void OnTriggerEnter(Collider other)
     {
