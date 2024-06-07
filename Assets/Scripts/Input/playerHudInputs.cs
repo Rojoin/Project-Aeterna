@@ -36,6 +36,7 @@ public class BasicInputs : MonoBehaviour
     {
         if (playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
         {
+            selectCardMenu.RefreshCardsSelectedList();
             selectCardMenu.isCardActivated = !selectCardMenu.isCardActivated;
             activeCardSystem = selectCardMenu.isCardActivated;
             selectCardMenu.ShowSelectCardMenu(activeCardSystem);

@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class PlayerHud : MonoBehaviour
 {
