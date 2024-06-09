@@ -83,7 +83,7 @@ public class DungeonGeneration : MonoBehaviour
     {
         GenerateDungeon();
     }
-
+[ContextMenu("Generate Dungeon")]
     public void GenerateDungeon()
     {
         GenerateDungeonLayout();
