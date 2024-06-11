@@ -123,36 +123,45 @@ namespace StateMachine
                     Rotate(direction);
                 }
             }
-            else if (GetRotatedMoveDir().magnitude <= 0.1f)
+
+            else if (gameSettings.isUsingController)
             {
-                Collider[] possibleTargets =
-                    Physics.OverlapSphere(owner.transform.position, attackRadius, LayerMask.GetMask($"Target"));
-                Vector3 direction;
-                if (possibleTargets.Length > 0)
+                if (GetRotatedMoveDir().magnitude > 0.1f)
                 {
-                    GameObject currentTarget = null;
-                    float minDistance = 999;
-                    currentTarget = possibleTargets[0].gameObject;
-
-                    foreach (Collider target in possibleTargets)
-                    {
-                        float distanceToTarget = Vector3.Distance(target.transform.position, owner.transform.position);
-                        if (distanceToTarget < minDistance)
-                        {
-                            currentTarget = target.gameObject;
-                        }
-                    }
-
-                    direction = (currentTarget.transform.position - owner.transform.position).normalized;
-                    direction = new Vector3(direction.x, 0, direction.z);
-                    Rotate(direction);
+                    Rotate(GetRotatedMoveDir());
                 }
-                else
+                else if (GetRotatedMoveDir().magnitude <= 0.1f)
                 {
-                    Debug.Log("No target in the area.");
+                    Collider[] possibleTargets =
+                        Physics.OverlapSphere(owner.transform.position, attackRadius, LayerMask.GetMask($"Target"));
+                    Vector3 direction;
+                    if (possibleTargets.Length > 0)
+                    {
+                        GameObject currentTarget = null;
+                        float minDistance = 999;
+                        currentTarget = possibleTargets[0].gameObject;
+
+                        foreach (Collider target in possibleTargets)
+                        {
+                            float distanceToTarget = Vector3.Distance(target.transform.position, owner.transform.position);
+                            if (distanceToTarget < minDistance)
+                            {
+                                currentTarget = target.gameObject;
+                            }
+                        }
+
+                        direction = (currentTarget.transform.position - owner.transform.position).normalized;
+                        direction = new Vector3(direction.x, 0, direction.z);
+                        Rotate(direction);
+                    }
+                    else
+                    {
+                        Debug.Log("No target in the area.");
+                    }
                 }
             }
-        }
+            }
+            
 
         void EndCombo()
         {

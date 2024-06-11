@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace StateMachine
 {
+    //Todo: Change vairables of FSM to be more generic
     public sealed class FSM
     {
         protected List<BaseStateFSM> states;
