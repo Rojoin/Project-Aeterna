@@ -1,25 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class LookAtMouse : MonoBehaviour
+public class LookAtMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private RectTransform canvasRectTransform;
 
     private float targetAngle;
 
-    [Header("Set Up")]
+    [Header("Setup")]
     [SerializeField] private float minRotation;
     [SerializeField] private float maxRotation;
 
     [SerializeField] private float rotationSpeed;
+
+    public bool canMove = true;
 
     void Start()
     {
         canvasRectTransform = GetComponent<RectTransform>();
     }
 
-    void Update()
+    private void Update()
+    {
+        if (canMove)
+        SelectableCardMovement();
+    }
+
+    public void SelectableCardMovement() 
     {
         Vector3 mousePos = Input.mousePosition;
 
@@ -39,10 +48,30 @@ public class LookAtMouse : MonoBehaviour
 
         if (Mathf.Abs(angleDifference) > rotationAmount)
             currentAngle += Mathf.Sign(angleDifference) * rotationAmount;
-        
+
         else
             currentAngle = targetAngle;
-        
+
         transform.rotation = Quaternion.Euler(10, currentAngle, 0);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        canMove = false;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        canMove = true;
+    }
+
+    private void OnDisable()
+    {
+        EventTrigger trigger = GetComponent<EventTrigger>();
+        if (trigger != null)
+        {
+            trigger.triggers.RemoveAll(t => t.eventID == EventTriggerType.PointerEnter);
+            trigger.triggers.RemoveAll(t => t.eventID == EventTriggerType.PointerExit);
+        }
     }
 }

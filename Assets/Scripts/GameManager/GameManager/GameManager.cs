@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BoolChannelSO TogglePause;
 
     [SerializeField] private PlayerHud playerHud;
-    
 
     private void Start()
     {

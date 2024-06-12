@@ -142,7 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRotation: -25
   maxRotation: 25
-  rotationSpeed: 60
+  rotationSpeed: 40
+  canMove: 1
 --- !u!1001 &210268629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1756,7 +1757,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRotation: -25
   maxRotation: 25
-  rotationSpeed: 60
+  rotationSpeed: 40
+  canMove: 1
 --- !u!1 &1808721093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2096,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRotation: -25
   maxRotation: 25
-  rotationSpeed: 60
+  rotationSpeed: 40
+  canMove: 1
 --- !u!114 &1886386334 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 172124198402650181, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -2184,6 +2187,22 @@ PrefabInstance:
       propertyPath: selectCardMenu
       value: 
       objectReference: {fileID: 2077532266}
+    - target: {fileID: 2419694579521688218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: selectableCard.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419694579521688218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: selectableCard.Array.data[0]
+      value: 
+      objectReference: {fileID: 1880750448}
+    - target: {fileID: 2419694579521688218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: selectableCard.Array.data[1]
+      value: 
+      objectReference: {fileID: 1758745940}
+    - target: {fileID: 2419694579521688218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: selectableCard.Array.data[2]
+      value: 
+      objectReference: {fileID: 158640228}
     - target: {fileID: 2756004234598643174, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_Enabled
       value: 0
