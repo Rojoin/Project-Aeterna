@@ -15,6 +15,8 @@ public class LookAtMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     [SerializeField] private float rotationSpeed;
 
+    [SerializeField] private float xCardRotation;
+
     public bool canMove = true;
 
     void Start()
@@ -52,13 +54,13 @@ public class LookAtMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         else
             currentAngle = targetAngle;
 
-        transform.rotation = Quaternion.Euler(10, currentAngle, 0);
+        transform.rotation = Quaternion.Euler(xCardRotation, currentAngle, 0);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         canMove = false;
-        transform.rotation = Quaternion.Euler(10, 0, 0);
+        transform.rotation = Quaternion.Euler(xCardRotation, 0, 0);
     }
 
     public void OnPointerExit(PointerEventData eventData)
