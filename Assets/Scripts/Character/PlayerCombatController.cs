@@ -26,6 +26,7 @@ public class PlayerCombatController : MonoBehaviour
     private float timeUntilAttackEnds;
     private float timeUntilStart;
     public bool isMouseActive;
+        bool isAttacking;
 
     private void OnEnable()
     {
@@ -131,6 +132,8 @@ public class PlayerCombatController : MonoBehaviour
 
     public void StopAttack()
     {
+        isAttacking = false;
+
         if (_attacking != null)
         {
             StopCoroutine(_attacking);

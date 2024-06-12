@@ -9,8 +9,12 @@ namespace Enemy
         [SerializeField] private EntitySO enemy;
         [SerializeField] private CustomSlider healthBar;
         [SerializeField] private UnityEvent OnHit;
+        [SerializeField] private Animator enemyAnimator;
         private float currentHealth;
         private float maxHealth;
+        private static readonly int Hurt = Animator.StringToHash("isHurt");
+        private static readonly int Dead = Animator.StringToHash("isDead");
+        const float timeAfterDeactivate = 0.30f;
 
         private void Start()
         {
@@ -33,14 +37,16 @@ namespace Enemy
 
         public void ReceiveDamage(float damage)
         {
-            if (currentHealth <= 0 && currentHealth <= damage)
+            if (currentHealth <= 0 || currentHealth <= damage)
             {
+                enemyAnimator.SetTrigger(Dead);
                 currentHealth = 0;
-                this.gameObject.SetActive(false);
+                OnHit.Invoke();
+                Invoke(nameof(DeactivateObject), timeAfterDeactivate);
             }
-
             else
             {
+                enemyAnimator.SetTrigger(Hurt);
                 currentHealth -= damage;
                 OnHit.Invoke();
             }
@@ -51,6 +57,11 @@ namespace Enemy
         public bool IsDead()
         {
             return currentHealth <= 0;
+        }
+
+        void DeactivateObject()
+        {
+            this.gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter(Collider other)
