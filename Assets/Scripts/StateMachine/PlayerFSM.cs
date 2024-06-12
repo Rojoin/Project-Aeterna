@@ -44,7 +44,7 @@ namespace StateMachine
 
         private void Update()
         {
-            fsm.Update();
+            fsm.Update(Time.deltaTime);
         }
 
         private void ChangeFromAttack()

@@ -57,9 +57,9 @@ namespace StateMachine
             return states.IndexOf(newBaseState);
         }
 
-        public void Update()
+        public void Update(params object[] data)
         {
-            currentState.OnTick();
+            currentState.OnTick(data);
         }
 
         public void OnDestroy()

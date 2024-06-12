@@ -23,6 +23,24 @@ namespace StateMachine
             base.OnTick(data);
         }
 
+        protected override void Move(float deltaTime)
+        {
+            if (inputDirection != Vector2.zero)
+            {
+                if (!isPause)
+                {
+                    Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+                    var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+                    Rotate(rotatedMoveDir);
+                    _characterController.Move(rotatedMoveDir * (deltaTime * player.speed));
+                    _playerAnimatorController.SetFloat("Blend", inputDirection.magnitude);
+                }
+            }
+            else
+            {
+                _playerAnimatorController.SetFloat("Blend", 0);
+            }
+        }
 
         public override IEnumerator Movement(Vector2 dir)
         {
@@ -36,7 +54,6 @@ namespace StateMachine
                     Rotate(rotatedMoveDir);
 
                     _characterController.Move(rotatedMoveDir * (time * player.speed));
-                    //transform.position += moveDir * (time * speed);
 
 
                     _playerAnimatorController.SetFloat("Blend", dir.magnitude);
@@ -61,7 +78,6 @@ namespace StateMachine
 
         public override void OnDestroy()
         {
-            base.OnDestroy();
             base.OnDestroy();
         }
     }

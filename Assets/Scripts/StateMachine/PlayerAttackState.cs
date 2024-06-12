@@ -24,15 +24,16 @@ namespace StateMachine
         private float lastClickedTime = 0;
         private float lastComboEnd = 0;
         private int comboCounter = 0;
-        private float attackTimer;
         private float attackRadius = 5.0f;
         public bool isMouseActive;
+        private bool isAttacking;
         private GameObject currentTarget;
         private Coroutine _attacking;
         private float timeUntilAttackEnds;
         private float timeUntilStart;
+        private float timeAfterComboEnds;
         private GameSettings gameSettings;
-
+        private float attackTimer = 0.0f;
 
         public PlayerAttackState(Action onAttackEnd, params object[] data) : base(data)
         {
@@ -44,6 +45,7 @@ namespace StateMachine
             isMouseActive = true;
             lastComboEnd = -timeBetweenComboEnd;
             lastClickedTime = -timeBetweenCombo;
+            attackTimer = 0.0f;
         }
 
         public override void OnEnter()
@@ -81,10 +83,7 @@ namespace StateMachine
                     ActivateCollider(comboList[comboCounter]);
                     _playerAnimatorController.CrossFade(comboList[comboCounter].animationName, 0.25f, 0, 0);
                     comboCounter++;
-
                     CheckTarget();
-
-
                     lastClickedTime = Time.time;
                     Debug.Log($"Current clicked time is {lastClickedTime}");
                     if (comboCounter >= comboList.Count)
@@ -99,10 +98,11 @@ namespace StateMachine
         {
             StopAttack();
             _attackCollider.SetColliderParams(attacksParams.colliderCenter, attacksParams.colliderSize);
-            timeUntilStart = attacksParams.timeUntilStart;
-            timeUntilAttackEnds = attacksParams.attackTime - timeUntilStart;
 
-            _attacking = owner.GetComponent<MonoBehaviour>().StartCoroutine(AttackCorroutine());
+            timeUntilStart = comboList[comboCounter].timeUntilStart;
+            timeUntilAttackEnds = comboList[comboCounter].attackTime + timeUntilStart;
+            timeAfterComboEnds = comboList[comboCounter].timeUntilEnd + timeUntilAttackEnds;
+            isAttacking = true;
         }
 
         private void CheckTarget()
@@ -143,7 +143,8 @@ namespace StateMachine
 
                         foreach (Collider target in possibleTargets)
                         {
-                            float distanceToTarget = Vector3.Distance(target.transform.position, owner.transform.position);
+                            float distanceToTarget =
+                                Vector3.Distance(target.transform.position, owner.transform.position);
                             if (distanceToTarget < minDistance)
                             {
                                 currentTarget = target.gameObject;
@@ -160,8 +161,25 @@ namespace StateMachine
                     }
                 }
             }
+        }
+
+        protected override void Move(float deltaTime)
+        {
+            if (inputDirection != Vector2.zero)
+            {
+                if (!isPause)
+                {
+                    Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+                    float time = Time.deltaTime;
+                    rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+                    _characterController.Move(rotatedMoveDir * (time * player.speed));
+                }
             }
-            
+            else
+            {
+                rotatedMoveDir = Vector2.zero;
+            }
+        }
 
         void EndCombo()
         {
@@ -174,28 +192,37 @@ namespace StateMachine
 
         public void StopAttack()
         {
-            if (_attacking != null)
-            {
-                owner.GetComponent<MonoBehaviour>().StopCoroutine(_attacking);
-            }
-
+            isAttacking = false;
+            attackTimer = 0.0f;
             _attackCollider.ToggleCollider(false);
         }
-
-//Todo: Change all corroutines to update or action methods.
-        private IEnumerator AttackCorroutine()
+        
+        private void AttackSequence(float deltaTime)
         {
-            timeUntilStart = comboList[comboCounter].timeUntilStart;
-            var timeAfterComboEnds = comboList[comboCounter].timeUntilEnd;
-            timeUntilAttackEnds = comboList[comboCounter].attackTime - timeUntilStart - timeAfterComboEnds;
-            yield return new WaitForSeconds(timeUntilStart);
-            //OnAttack.Invoke();
-            _attackCollider.ToggleCollider(true);
-            yield return new WaitForSeconds(timeUntilAttackEnds);
-            _attackCollider.ToggleCollider(false);
-            yield return new WaitForSeconds(timeAfterComboEnds);
-            EndCombo();
-            yield break;
+            if (isAttacking)
+            {
+                attackTimer += deltaTime;
+                if (attackTimer >= timeAfterComboEnds)
+                {
+                    EndCombo();
+                    Debug.Log("FinishCombo");
+                }
+                else if (attackTimer >= timeUntilAttackEnds)
+                {
+                    _attackCollider.ToggleCollider(false);
+                }
+                else if (attackTimer >= timeUntilStart)
+                {
+                    _attackCollider.ToggleCollider(true);
+                }
+            }
+        }
+
+        public override void OnTick(params object[] data)
+        {
+            base.OnTick(data);
+            float deltaTime = (float)data[0];
+            AttackSequence(deltaTime);
         }
 
         public override IEnumerator Movement(Vector2 dir)

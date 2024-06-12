@@ -14,6 +14,7 @@ namespace StateMachine
         protected Vector3 rotatedMoveDir;
         static public Vector2 inputDirection;
         static public bool isPause = false;
+        protected const float angle = -45;
 
         public PlayerBaseState(params object[] data) : base(data)
         {
@@ -23,46 +24,53 @@ namespace StateMachine
             player = data[4] as EntitySO;
         }
 
-        protected void Move(Vector2 dir)
+        protected virtual void Move(float deltaTime)
         {
             if (isPause)
                 return;
-
-            inputDirection = dir;
-            if (movement != null)
+            
+            if (inputDirection != Vector2.zero)
             {
-                owner.GetComponent<MonoBehaviour>().StopCoroutine(movement);
-            }
+                Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+                rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+                Rotate(rotatedMoveDir);
 
-            movement = owner.GetComponent<MonoBehaviour>().StartCoroutine(Movement(inputDirection));
+                _characterController.Move(rotatedMoveDir * (deltaTime * player.speed));
+                //transform.position += moveDir * (time * speed);
+                _playerAnimatorController.SetFloat("Blend", inputDirection.magnitude);
+            }
+            else
+            {
+                rotatedMoveDir = Vector2.zero;
+                _playerAnimatorController.SetFloat("Blend", 0);
+            }
         }
 
         public override void OnEnter()
         {
-            OnMoveChannel.Subscribe(Move);
-            if (inputDirection != Vector2.zero)
-            {
-                Move(inputDirection);
-            }
+            OnMoveChannel.Subscribe(ChangeInputDirection);
+        }
+
+        private void ChangeInputDirection(Vector2 obj)
+        {
+            inputDirection = obj;
         }
 
         public override void OnTick(params object[] data)
         {
+            float deltaTime = (float)data[0];
+            Move(deltaTime);
         }
 
         public override void OnExit()
         {
-            OnMoveChannel.Unsubscribe(Move);
-            if (movement != null)
-            {
-                owner.GetComponent<MonoBehaviour>().StopCoroutine(movement);
-            }
+            OnMoveChannel.Unsubscribe(ChangeInputDirection);
         }
 
         public override void OnDestroy()
         {
             owner.GetComponent<MonoBehaviour>().StopAllCoroutines();
-            OnMoveChannel.Unsubscribe(Move);
+            OnMoveChannel.Unsubscribe(ChangeInputDirection);
         }
 
         public virtual void Rotate(Vector3 newDirection)
@@ -96,6 +104,5 @@ namespace StateMachine
         }
 
         protected Vector3 GetRotatedMoveDir() => rotatedMoveDir;
-        
     }
 }
