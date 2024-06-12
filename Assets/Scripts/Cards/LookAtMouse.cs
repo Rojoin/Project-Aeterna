@@ -58,6 +58,7 @@ public class LookAtMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         canMove = false;
+        transform.rotation = Quaternion.Euler(10, 0, 0);
     }
 
     public void OnPointerExit(PointerEventData eventData)
