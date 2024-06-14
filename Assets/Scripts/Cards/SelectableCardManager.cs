@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class SelectableCardManager : MonoBehaviour
 {
-    [SerializeField] private List<LookAtMouse> lookAtMouseList;
+    [SerializeField] private List<SelectableCardMovement> lookAtMouseList;
 
     public bool isOnPC = true;
 

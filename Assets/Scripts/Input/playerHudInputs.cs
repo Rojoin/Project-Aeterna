@@ -11,7 +11,6 @@ public class PlayerHudInputs : MonoBehaviour
     [SerializeField] private PlayerHud playerHud;
     [SerializeField] private SelectCardMenu selectCardMenu;
     [SerializeField] private List<CardsSlots> cardsCounter;
-    [SerializeField] private List<LookAtMouse> selectableCard;
     [SerializeField] private VoidChannelSO OnInteraction;
 
     [SerializeField] private VoidChannelSO OnHudToggle;
