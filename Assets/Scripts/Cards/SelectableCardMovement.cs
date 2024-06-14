@@ -62,7 +62,7 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void SelectableCardMovementWithGamepad()
     {
-        rotationSpeed = 1;
+        rotationSpeed = 2;
 
         if (!IsButtonSelected(button))
         {
