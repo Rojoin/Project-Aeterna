@@ -123,6 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &76005159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8381634620664140129, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+  m_PrefabInstance: {fileID: 5693371484574524226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &76005161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76005159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377e2a70df31c7b41ade392d9dcaebe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtMouseList:
+  - {fileID: 1880750448}
+  - {fileID: 1758745940}
+  - {fileID: 158640228}
+  isOnPC: 0
 --- !u!1 &158640223 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2162268213477037813, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -140,11 +162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fe4f96a587a4145b00a1f942a68ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRotation: -25
-  maxRotation: 25
+  gameManager: {fileID: 1552293560}
+  minRotation: -20
+  maxRotation: 20
   rotationSpeed: 40
   xCardRotation: 10
-  canMove: 1
+  button: {fileID: 692045055}
 --- !u!1001 &210268629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1526,9 +1549,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1166619366}
-  firsButtonSelected: {fileID: 5693371484574524227}
   TogglePause: {fileID: 11400000, guid: 1b2954b00e4549e4a8245a0eafdebf2e, type: 2}
   playerHud: {fileID: 1231999819}
+  firsButtonSelected: {fileID: 5693371484574524227}
 --- !u!4 &1552293561
 Transform:
   m_ObjectHideFlags: 0
@@ -1756,11 +1779,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fe4f96a587a4145b00a1f942a68ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRotation: -25
-  maxRotation: 25
+  gameManager: {fileID: 1552293560}
+  minRotation: -20
+  maxRotation: 20
   rotationSpeed: 40
   xCardRotation: 10
-  canMove: 1
+  button: {fileID: 1606856841}
 --- !u!1 &1808721093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,11 +2120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fe4f96a587a4145b00a1f942a68ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRotation: -25
-  maxRotation: 25
+  gameManager: {fileID: 1552293560}
+  minRotation: -20
+  maxRotation: 20
   rotationSpeed: 40
   xCardRotation: 10
-  canMove: 1
+  button: {fileID: 428495605}
 --- !u!114 &1886386334 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 172124198402650181, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -2398,6 +2423,10 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1166619369}
+    - target: {fileID: 3989612232092245799, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_Name
+      value: SelectableCard1
+      objectReference: {fileID: 0}
     - target: {fileID: 4024197920519421618, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9961947
@@ -2417,6 +2446,10 @@ PrefabInstance:
     - target: {fileID: 4024197920519421618, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024197920519421618, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4199421325273960296, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2441,6 +2474,10 @@ PrefabInstance:
     - target: {fileID: 4218420525194753324, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_Name
       value: InGameCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234077363318697725, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_Name
+      value: SelectableCard3
       objectReference: {fileID: 0}
     - target: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: TogglePause
@@ -2594,6 +2631,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8094901422472918663, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_Name
+      value: SelectableCard2
+      objectReference: {fileID: 0}
     - target: {fileID: 8130119290591958802, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9961947
@@ -2666,6 +2707,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8381634620664140129, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 76005161}
     - targetCorrespondingSourceObject: {fileID: 1413689077112350511, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1880750448}

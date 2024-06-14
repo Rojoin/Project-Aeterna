@@ -67,7 +67,6 @@ public class SelectCardMenu : MonoBehaviour
     public void SetCardSelected(int value) 
     {
         cardToSelect = value;
-Debug.Log("Card has been Selected");
         isCardSelected = true;
         ShowSelectCardMenu(false);
     }
