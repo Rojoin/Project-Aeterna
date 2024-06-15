@@ -14,6 +14,7 @@ namespace Enemy
         private float maxHealth;
         private static readonly int Hurt = Animator.StringToHash("isHurt");
         private static readonly int Dead = Animator.StringToHash("isDead");
+        private static readonly int Damage = Animator.StringToHash("Damage");
         const float timeAfterDeactivate = 0.30f;
 
         private void Start()
@@ -21,6 +22,7 @@ namespace Enemy
             maxHealth = enemy.health;
             currentHealth = maxHealth;
             healthBar.FillAmount = 1.0f;
+            enemyAnimator.SetFloat(Damage,1.0f);
         }
 
         public void SetHealth(float newHealth)
@@ -51,7 +53,9 @@ namespace Enemy
                 OnHit.Invoke();
             }
 
-            healthBar.FillAmount = currentHealth / maxHealth;
+            float healthNormalize = currentHealth / maxHealth;
+            healthBar.FillAmount = healthNormalize;
+            enemyAnimator.SetFloat(Damage,healthNormalize);
         }
 
         public bool IsDead()
