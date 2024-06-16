@@ -9,15 +9,16 @@ namespace Enemy
         [SerializeField] private EntitySO enemy;
         [SerializeField] private CustomSlider healthBar;
         [SerializeField] private UnityEvent OnHit;
+        [SerializeField] private UnityEvent OnDeath;
         [SerializeField] private Animator enemyAnimator;
         private float currentHealth;
         private float maxHealth;
         private static readonly int Hurt = Animator.StringToHash("isHurt");
         private static readonly int Dead = Animator.StringToHash("isDead");
         private static readonly int Damage = Animator.StringToHash("Damage");
-        const float timeAfterDeactivate = 0.30f;
+        [SerializeField] float timeAfterDeactivate = 0.50f;
 
-        private void Start()
+        private void OnEnable()
         {
             maxHealth = enemy.health;
             currentHealth = maxHealth;
@@ -44,6 +45,7 @@ namespace Enemy
                 enemyAnimator.SetTrigger(Dead);
                 currentHealth = 0;
                 OnHit.Invoke();
+                OnDeath.Invoke();
                 Invoke(nameof(DeactivateObject), timeAfterDeactivate);
             }
             else
