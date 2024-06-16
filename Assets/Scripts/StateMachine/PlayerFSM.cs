@@ -19,7 +19,7 @@ namespace StateMachine
         [SerializeField] protected Vector2ChannelSO OnMoveChannel;
         [SerializeField] protected VoidChannelSO AttackChannel;
         [SerializeField] protected GameSettings gameSettings;
-        [SerializeField] protected EntitySO player;
+        [SerializeField] protected PlayerEntitySO player;
         [SerializeField] private List<AttackSO> comboList;
         [SerializeField] private AttackCollision _attackCollider;
         protected float speed;

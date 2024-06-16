@@ -5,15 +5,11 @@ using UnityEngine;
 namespace StateMachine
 {
     //Todo: Change vairables of FSM to be more generic
-    public sealed class FSM
+    public class FSM
     {
         protected List<BaseStateFSM> states;
         protected BaseStateFSM currentState;
         protected int[,] transitions;
-
-        private Animator _playerAnimatorController;
-        private CharacterController _characterController;
-        private Vector2ChannelSO OnMoveChannel;
 
         public FSM(int posibleStates, int flagsQty)
         {
@@ -72,4 +68,5 @@ namespace StateMachine
 
     
     }
+    
 }

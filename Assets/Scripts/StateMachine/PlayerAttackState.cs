@@ -15,6 +15,7 @@ namespace StateMachine
         public List<AttackSO> comboList;
         private AttackCollision _attackCollider;
         public UnityEvent OnAttack;
+        private GameSettings gameSettings;
         public event Action OnAttackEnd;
 
         #endregion
@@ -25,15 +26,12 @@ namespace StateMachine
         private float lastComboEnd = 0;
         private int comboCounter = 0;
         private float attackRadius = 5.0f;
-        public bool isMouseActive;
         private bool isAttacking;
-        private GameObject currentTarget;
-        private Coroutine _attacking;
         private float timeUntilAttackEnds;
         private float timeUntilStart;
         private float timeAfterComboEnds;
-        private GameSettings gameSettings;
         private float attackTimer = 0.0f;
+        private List<IHealthSystem> currentlyHitted = new List<IHealthSystem>();
 
         public PlayerAttackState(Action onAttackEnd, params object[] data) : base(data)
         {
@@ -42,15 +40,16 @@ namespace StateMachine
             AttackChannel = data[7] as VoidChannelSO;
             gameSettings = data[8] as GameSettings;
             OnAttackEnd += onAttackEnd;
-            isMouseActive = true;
             lastComboEnd = -timeBetweenComboEnd;
             lastClickedTime = -timeBetweenCombo;
             attackTimer = 0.0f;
+            currentlyHitted.Clear();
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
+            currentlyHitted.Clear();
             lastComboEnd = timeBetweenComboEnd;
             AttackChannel.Subscribe(Attack);
             Attack();
@@ -61,14 +60,12 @@ namespace StateMachine
         public override void OnExit()
         {
             base.OnExit();
-            // StopAttack();
-            // comboCounter = 0;
-            // lastComboEnd = Time.time;
-            // _playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
+   
             lastComboEnd = Time.time;
             AttackChannel.Unsubscribe(Attack);
             _attackCollider.OnTriggerEnterObject.RemoveListener(OnAttackEnter);
             _attackCollider.OnTriggerExitObject.RemoveListener(OnAttackExit);
+            currentlyHitted.Clear();
         }
 
         private void Attack()
@@ -172,7 +169,7 @@ namespace StateMachine
                     Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
                     float time = Time.deltaTime;
                     rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-                    _characterController.Move(rotatedMoveDir * (time * player.speed));
+                    _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
                 }
             }
             else
@@ -194,9 +191,10 @@ namespace StateMachine
         {
             isAttacking = false;
             attackTimer = 0.0f;
+            currentlyHitted.Clear();
             _attackCollider.ToggleCollider(false);
         }
-        
+
         private void AttackSequence(float deltaTime)
         {
             if (isAttacking)
@@ -224,25 +222,7 @@ namespace StateMachine
             float deltaTime = (float)data[0];
             AttackSequence(deltaTime);
         }
-
-        public override IEnumerator Movement(Vector2 dir)
-        {
-            while (dir != Vector2.zero)
-            {
-                if (!isPause)
-                {
-                    Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
-                    float time = Time.deltaTime;
-                    rotatedMoveDir = Quaternion.AngleAxis(-45, Vector3.up) * moveDir;
-                    _characterController.Move(rotatedMoveDir * (time * player.speed));
-                }
-
-                yield return null;
-            }
-
-            rotatedMoveDir = Vector2.zero;
-        }
-
+        
         private void OnAttackExit(GameObject other)
         {
             if (!other.CompareTag("Player") && other.TryGetComponent<IHealthSystem>(out var healthSystem))
@@ -255,8 +235,16 @@ namespace StateMachine
         {
             if (!other.CompareTag("Player") && other.TryGetComponent<IHealthSystem>(out var healthSystem))
             {
-                Debug.Log("Enter attack.");
-                healthSystem.ReceiveDamage(comboList[comboCounter].damage);
+                if (!currentlyHitted.Contains(healthSystem))
+                {
+                    Debug.Log("Enter attack.");
+                    healthSystem.ReceiveDamage(comboList[comboCounter].damage);
+                    currentlyHitted.Add(healthSystem);
+                }
+                else
+                {
+                    Debug.Log("AttackMissed");
+                }
             }
         }
 

@@ -277,6 +277,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2658723375847233737}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   enemyAnimator: {fileID: 3186729395415073752}
 --- !u!1 &3861195938695300874
 GameObject:
@@ -414,6 +429,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5191031799692572741}
     m_Modifications:
+    - target: {fileID: 196413138473561480, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 196413138473561480, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9157105887693424661, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -422,13 +445,29 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9157105887693468085, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157105887693468085, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157105887693468087, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157105887693468087, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9157105887711818997, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9157105887711818997, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.605
       objectReference: {fileID: 0}
     - target: {fileID: 9157105887711818997, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -478,6 +517,11 @@ PrefabInstance:
 --- !u!4 &2658723375828884873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9157105887711818997, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
+  m_PrefabInstance: {fileID: 6625144263640197500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2658723375847233737 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9157105887693468085, guid: 14d65e995bfbbdc4481fb8377e0486c2, type: 3}
   m_PrefabInstance: {fileID: 6625144263640197500}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7568650876876911016

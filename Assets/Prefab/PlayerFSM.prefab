@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038369a7c04b808488dc155b5d04bdc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: c7c53cfd57bda8841ac95c28e12d88ee, type: 2}
+  player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
 --- !u!114 &5135478775610306301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,22 +164,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a5ec9d7f454b4fb469dd33a489b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3502469410240450855}
-  cardsCounter:
+  playerHealth: {fileID: 3502469410240450855}
+  cardsSlots:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  maxCards: 5
-  currentCards: 0
-  playerCardsInventory: []
   allCards:
   - {fileID: 11400000, guid: 2cc15799823eda0468f5f84e3d63864e, type: 2}
   - {fileID: 11400000, guid: ddbe288127bc8c44c83befb24bcaf30f, type: 2}
   - {fileID: 11400000, guid: aeb25e97ef497aa46ad626cd84696c59, type: 2}
   - {fileID: 11400000, guid: b79125d7bcba9904c9a4ec8b4d38dd54, type: 2}
   - {fileID: 11400000, guid: c31746079293e55428c16c4e2eab09fc, type: 2}
+  playerCardsInventory: []
+  maxCards: 15
+  currentCards: 0
 --- !u!114 &2419694579521688218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +247,8 @@ MonoBehaviour:
   _characterController: {fileID: 6572671916540871610}
   OnMoveChannel: {fileID: 11400000, guid: 2bd7e0755fcc8014bb81d352bf091fec, type: 2}
   AttackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
-  player: {fileID: 11400000, guid: c7c53cfd57bda8841ac95c28e12d88ee, type: 2}
+  gameSettings: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}
+  player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
   comboList:
   - {fileID: 11400000, guid: 6035da61ecfe4264d8df90e2c1734a00, type: 2}
   - {fileID: 11400000, guid: 7c95df3b3eca2b1468d82933f7c363a3, type: 2}
@@ -262,6 +263,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 98365337757529717}
     m_Modifications:
+    - target: {fileID: 1010469353794949300, guid: 60d310309985b9d4e9917e6e851e63c9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1010469353794949300, guid: 60d310309985b9d4e9917e6e851e63c9, type: 3}
       propertyPath: m_LightProbeUsage
       value: 0
@@ -381,6 +386,10 @@ PrefabInstance:
     - target: {fileID: 6445826192643391251, guid: 60d310309985b9d4e9917e6e851e63c9, type: 3}
       propertyPath: m_Name
       value: white-red bolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445826192643391251, guid: 60d310309985b9d4e9917e6e851e63c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
