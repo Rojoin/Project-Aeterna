@@ -13,6 +13,8 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID DUMMY_DEAD = 2103557112U;
+        static const AkUniqueID DUMMY_HIT = 2333910817U;
         static const AkUniqueID EVENT_TEST = 1618187162U;
     } // namespace EVENTS
 

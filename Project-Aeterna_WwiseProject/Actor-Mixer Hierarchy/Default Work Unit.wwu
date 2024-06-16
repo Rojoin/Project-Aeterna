@@ -25,6 +25,271 @@
 						<ActiveSource Name="many_coins_12" ID="{38F31D26-F8B9-4936-BFB5-0A3D61B5496A}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Folder Name="Dummy" ID="{E53B5823-42AC-487B-9D88-5DC65F7E28AD}" ShortID="374571619">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<RandomSequenceContainer Name="Dummy_Hit" ID="{D94D8FBD-BA4B-4019-94C5-8A1CE3541AF5}" ShortID="94931982">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Enojado_recibe daño 1" ID="{90DEBA7F-EC61-4D85-A7AE-BAFD0DFC06F7}" ShortID="377949999">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>35</Value>
+											</ValueList>
+										</Property>
+										<Property Name="OverrideEffect" Type="bool" Value="True"/>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-180</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_recibe daño 1" ID="{64996D33-1797-410D-97D9-A0CBA1DC230C}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_recibe daño 1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="66558520"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_recibe daño 1" ID="{64996D33-1797-410D-97D9-A0CBA1DC230C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Enojado_recibe daño 2" ID="{CBE55457-4A37-4A65-86BB-B583F31FC579}" ShortID="501601774">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_recibe daño 2" ID="{2269EA96-031E-43E2-B8B5-02FB1F4DF21F}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_recibe daño 2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="367883601"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_recibe daño 2" ID="{2269EA96-031E-43E2-B8B5-02FB1F4DF21F}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Enojado_recibe daño 3" ID="{A9F4CB71-78CB-47A3-B46A-1E384FEB595B}" ShortID="917577342">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_recibe daño 3" ID="{A2A64CB0-2B52-4BD2-9A88-17B8ECE30760}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_recibe daño 3.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="530278819"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_recibe daño 3" ID="{A2A64CB0-2B52-4BD2-9A88-17B8ECE30760}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Enojado_recibe daño 4" ID="{78649B3B-9EA5-45D6-8BEB-E193DF217512}" ShortID="302316099">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_recibe daño 4" ID="{73F6CAE0-1299-4744-BFD9-613472D2FA92}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_recibe daño 4.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="33000159"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_recibe daño 4" ID="{73F6CAE0-1299-4744-BFD9-613472D2FA92}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Enojado_recibe daño 5" ID="{A7B15BC9-56AB-4591-81B6-4A94B1B501E1}" ShortID="242927503">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_recibe daño 5" ID="{87A985C2-921C-45AA-A115-8664348F31C2}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_recibe daño 5.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1005063272"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_recibe daño 5" ID="{87A985C2-921C-45AA-A115-8664348F31C2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Enojado_recibe daño 6" ID="{7625FEC9-8CF1-442C-9DD5-FF981F0222E7}" ShortID="583112665">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_recibe daño 6" ID="{A474C71B-A5BD-4B50-A8FC-470318D20AAA}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_recibe daño 6.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="992192530"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_recibe daño 6" ID="{A474C71B-A5BD-4B50-A8FC-470318D20AAA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Dummy_Dead" ID="{42C55D9E-16AB-4038-8010-9B9CCF312E70}" ShortID="246399875">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Enojado_muierte 1" ID="{3CF0D315-4A54-4142-9828-900061580F4B}" ShortID="137333324">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_muierte 1" ID="{862078D9-7680-44C5-9F30-9B347CB3C46A}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_muierte 1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="531096102"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_muierte 1" ID="{862078D9-7680-44C5-9F30-9B347CB3C46A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Enojado_muierte 2" ID="{06ACBA2B-D015-445D-95AD-65F6ACB6EBDA}" ShortID="363178332">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_muierte 2" ID="{74532380-62E9-4955-9EC6-7A7C7E06D803}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_muierte 2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="472879366"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_muierte 2" ID="{74532380-62E9-4955-9EC6-7A7C7E06D803}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Enojado_muierte 3" ID="{1A5CB4A9-0AF4-4152-A1D8-5AC0DD8BF6E7}" ShortID="560040658">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_muierte 3" ID="{CA3E78BD-3F79-431A-BD22-D035C4DCB1D0}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_muierte 3.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="419712923"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_muierte 3" ID="{CA3E78BD-3F79-431A-BD22-D035C4DCB1D0}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Enojado_muierte 4" ID="{C7A633DD-CBDC-4CC2-AA8F-388F5CC0DD68}" ShortID="716449142">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Enojado_muierte 4" ID="{E84A7284-3AEE-4820-98B1-1763EA5FC0B8}">
+											<Language>SFX</Language>
+											<AudioFile>Enojado_muierte 4.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="858051376"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Enojado_muierte 4" ID="{E84A7284-3AEE-4820-98B1-1763EA5FC0B8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -9,16 +9,74 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{BFA25B24-7013-9B25-693D-F8C7B0EEB035}">
+		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{73E8F1CC-6561-A616-4D4F-964BAF3B42EB}">
 			<ShortName>BaseSoundBank</ShortName>
 			<Path>BaseSoundBank.bnk</Path>
 			<Media>
+				<File Id="33000159" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_recibe daño 4.wav</ShortName>
+					<CachePath>SFX/Enojado_recibe daño 4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="66558520" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_recibe daño 1.wav</ShortName>
+					<CachePath>SFX/Enojado_recibe daño 1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="367883601" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_recibe daño 2.wav</ShortName>
+					<CachePath>SFX/Enojado_recibe daño 2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="419712923" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_muierte 3.wav</ShortName>
+					<CachePath>SFX/Enojado_muierte 3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="472879366" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_muierte 2.wav</ShortName>
+					<CachePath>SFX/Enojado_muierte 2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="530278819" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_recibe daño 3.wav</ShortName>
+					<CachePath>SFX/Enojado_recibe daño 3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="531096102" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_muierte 1.wav</ShortName>
+					<CachePath>SFX/Enojado_muierte 1_818F3B66.wem</CachePath>
+				</File>
 				<File Id="781684899" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>many_coins_12.wav</ShortName>
 					<CachePath>SFX/many_coins_12_818F3B66.wem</CachePath>
 				</File>
+				<File Id="858051376" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_muierte 4.wav</ShortName>
+					<CachePath>SFX/Enojado_muierte 4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="992192530" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_recibe daño 6.wav</ShortName>
+					<CachePath>SFX/Enojado_recibe daño 6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1005063272" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enojado_recibe daño 5.wav</ShortName>
+					<CachePath>SFX/Enojado_recibe daño 5_818F3B66.wem</CachePath>
+				</File>
 			</Media>
 			<Events>
+				<Event Id="2103557112" Name="Dummy_Dead" DurationType="OneShot" DurationMin="0.62322915" DurationMax="1.1215625">
+					<MediaRefs>
+						<MediaRef Id="419712923"/>
+						<MediaRef Id="472879366"/>
+						<MediaRef Id="531096102"/>
+						<MediaRef Id="858051376"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2333910817" Name="Dummy_Hit" DurationType="OneShot" DurationMin="0.30479166" DurationMax="0.60251933">
+					<MediaRefs>
+						<MediaRef Id="33000159"/>
+						<MediaRef Id="66558520"/>
+						<MediaRef Id="367883601"/>
+						<MediaRef Id="530278819"/>
+						<MediaRef Id="992192530"/>
+						<MediaRef Id="1005063272"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1618187162" Name="Event_Test" DurationType="OneShot" DurationMin="0.5" DurationMax="0.5">
 					<MediaRefs>
 						<MediaRef Id="781684899"/>
@@ -40,5 +98,5 @@
 			</Busses>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{99651C65-8EA4-38ED-D910-07835DA86F68}</FileHash>
+	<FileHash>{AB5E8F04-7136-C3C7-520E-CC0895ABEC5F}</FileHash>
 </SoundBanksInfo>

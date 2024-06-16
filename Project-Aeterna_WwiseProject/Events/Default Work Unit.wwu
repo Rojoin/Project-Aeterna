@@ -14,6 +14,32 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Folder Name="Dummy" ID="{F0681A5A-8FFC-41F1-A6AC-EF03ADA56DC4}" ShortID="691757352">
+					<ChildrenList>
+						<Event Name="Dummy_Hit" ID="{9553BD6F-AAA8-4A8E-B679-5F717BDBEA58}">
+							<ChildrenList>
+								<Action Name="" ID="{B8A53CDF-C765-4D35-AFDF-B0BBA05D279A}" ShortID="885548226">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Dummy_Hit" ID="{D94D8FBD-BA4B-4019-94C5-8A1CE3541AF5}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Dummy_Dead" ID="{11816771-F83E-41AA-86EE-8246493AC591}">
+							<ChildrenList>
+								<Action Name="" ID="{8FEA6DC0-9059-4A2E-9E3D-FD7012BF64EE}" ShortID="797136730">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Dummy_Dead" ID="{42C55D9E-16AB-4038-8010-9B9CCF312E70}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
