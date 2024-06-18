@@ -9,6 +9,8 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
     [Header("References")]
     [SerializeField] private GameManager gameManager;
 
+    [SerializeField] private GameObject cardInformation;
+
     [Header("Setup")]
     [SerializeField] private float minRotation;
     [SerializeField] private float maxRotation;
@@ -18,6 +20,8 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] private float xCardRotation;
 
     [SerializeField] private Button button;
+
+    [SerializeField] private bool isSelected = false;
 
     private RectTransform rectTransform;
 
@@ -66,6 +70,8 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
 
         if (!IsButtonSelected(button))
         {
+            isSelected = false;
+
             Vector3 targetPosition = EventSystem.current.currentSelectedGameObject.transform.position;
 
             Vector3 direction = rectTransform.position - targetPosition;
@@ -78,7 +84,9 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
         }
 
         else 
-        {
+        { 
+            isSelected = true;
+
             transform.rotation = Quaternion.Euler(xCardRotation, 0, 0);
         }
     }
@@ -86,12 +94,16 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         canMove = false;
+        isSelected = true;
+        cardInformation.SetActive(true);
         transform.rotation = Quaternion.Euler(xCardRotation, 0, 0);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         canMove = true;
+        isSelected = false;
+        cardInformation.SetActive(false);
     }
 
     private void OnDisable()
@@ -114,5 +126,18 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
         }
 
         return false;
+    }
+
+    public bool IsSelected() 
+    {
+        if (isSelected) 
+        {
+            return true;
+        }
+
+        else 
+        {
+            return false;
+        }
     }
 }

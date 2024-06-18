@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class SelectableCardManager : MonoBehaviour
 {
-    [SerializeField] private List<SelectableCardMovement> lookAtMouseList;
+    [SerializeField] private List<SelectableCardMovement> selectableCardList;
 
     [SerializeField] private GameSettings gameSettings;
 
@@ -15,17 +15,17 @@ public class SelectableCardManager : MonoBehaviour
     {
         if (!gameSettings.isUsingController) 
         {
-            for (int i = 0; i < lookAtMouseList.Count; i++)
+            for (int i = 0; i < selectableCardList.Count; i++)
             {
-                lookAtMouseList[i].SelectableCardMovementWithMouse();
+                selectableCardList[i].SelectableCardMovementWithMouse();
             }
         }
 
         else 
         {
-            for (int i = 0; i < lookAtMouseList.Count; i++)
+            for (int i = 0; i < selectableCardList.Count; i++)
             {
-                lookAtMouseList[i].SelectableCardMovementWithGamepad();
+                selectableCardList[i].SelectableCardMovementWithGamepad();
             }
         }
     }
