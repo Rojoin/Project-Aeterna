@@ -14,19 +14,12 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Folder Name="Dummy" ID="{F0681A5A-8FFC-41F1-A6AC-EF03ADA56DC4}" ShortID="691757352">
+				<Folder Name="Dummy" ID="{FE1A87B4-3C97-48F8-A05C-34D8BBC429C0}" ShortID="58906333">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="10"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
-						<Event Name="Dummy_Hit" ID="{9553BD6F-AAA8-4A8E-B679-5F717BDBEA58}">
-							<ChildrenList>
-								<Action Name="" ID="{B8A53CDF-C765-4D35-AFDF-B0BBA05D279A}" ShortID="885548226">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Dummy_Hit" ID="{D94D8FBD-BA4B-4019-94C5-8A1CE3541AF5}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
 						<Event Name="Dummy_Dead" ID="{11816771-F83E-41AA-86EE-8246493AC591}">
 							<ChildrenList>
 								<Action Name="" ID="{8FEA6DC0-9059-4A2E-9E3D-FD7012BF64EE}" ShortID="797136730">
@@ -38,6 +31,107 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Dummy_Hit" ID="{9553BD6F-AAA8-4A8E-B679-5F717BDBEA58}">
+							<ChildrenList>
+								<Action Name="" ID="{B8A53CDF-C765-4D35-AFDF-B0BBA05D279A}" ShortID="885548226">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Dummy_Hit" ID="{D94D8FBD-BA4B-4019-94C5-8A1CE3541AF5}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Player" ID="{D7389E69-1599-44A1-91BA-5A463B83D310}" ShortID="883869945">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="1"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="Player_Attack_Sword" ID="{0ECF8177-8C7C-4CF7-9FC5-59BE4277FA1B}">
+							<ChildrenList>
+								<Action Name="" ID="{3C56F373-466B-4F38-8330-6675050268A8}" ShortID="39954311">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Attack_Sword" ID="{6FE141E3-3BF8-4A80-9BB7-3C8343C50A81}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Player_RecieveDamage" ID="{9698F5D5-BF10-4584-A6A6-8806B27779A4}">
+							<ChildrenList>
+								<Action Name="" ID="{76A24207-6B24-4474-B788-D6ED552C4F21}" ShortID="312328945">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Player_Hit" ID="{F673E62A-8F4D-4C0F-ABA9-93491E6E4987}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Player_Death" ID="{B5144AA4-D332-4A34-B320-978E21B5DCAF}">
+							<ChildrenList>
+								<Action Name="" ID="{1D4D0EED-289B-4A24-B242-A2C6C3B876D1}" ShortID="810934919">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Death" ID="{E0F0060A-14E9-4FA9-8BB7-725EF976757C}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="Player_Walk" ID="{9C5A6B7A-66D3-413C-97C5-9320725F9E9D}" ShortID="334955001">
+							<ChildrenList>
+								<Event Name="Player_Walk_Level1" ID="{8BF62A8A-0ABE-4781-81BC-153F7DE8290C}">
+									<ChildrenList>
+										<Action Name="" ID="{3F1E4F0F-D9F2-4637-9F10-7E7BBE3C27F6}" ShortID="495343259">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="FootSteps_Level1" ID="{B274DAEA-3844-4667-AA7D-DDF549A9E1DF}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Enviroment" ID="{1F209F26-2FF7-487D-9848-1A4B857F00FA}" ShortID="463920395">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="4"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Folder Name="Door" ID="{D1441589-411B-4A97-AD49-3175ED2911F6}" ShortID="751583516">
+							<ChildrenList>
+								<Event Name="Door_Open" ID="{D02CD833-48E6-484D-B424-D0F5F9631639}">
+									<ChildrenList>
+										<Action Name="" ID="{D3A2F655-002C-4794-B24F-04B711974504}" ShortID="124730988">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Drs_Open_Drawer_01" ID="{460C6579-EDA9-44E9-AD5B-E60E2070BB2E}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Door_Close" ID="{EC8930CE-24AF-403C-BB03-8F511BE502B7}">
+									<ChildrenList>
+										<Action Name="" ID="{24FF5C6B-AB84-4F31-8A9C-64D649ABF444}" ShortID="309327603">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Drs_Table_Close_01" ID="{9C7EC5BB-3018-4B85-917C-4653CDED85D6}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
