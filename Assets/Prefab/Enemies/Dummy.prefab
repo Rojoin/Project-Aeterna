@@ -200,7 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5191031799692572741}
   - component: {fileID: 4528484972123530283}
-  - component: {fileID: 4883870716672330109}
+  - component: {fileID: 5334585770487896076}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -248,7 +248,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.6857152, z: 1}
   m_Center: {x: 0, y: 0.51, z: 0}
---- !u!114 &4883870716672330109
+--- !u!114 &5334585770487896076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2987170732086015747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe0184c2e7004e65846a6f03d036bb0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ffe99b2086f40aab0901dfee3501ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: bf5f6e7e0f2f5ef4f97b9d5a0a3819ac, type: 2}
@@ -292,7 +292,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDeathRemove:
+    m_PersistentCalls:
+      m_Calls: []
   enemyAnimator: {fileID: 3186729395415073752}
+  timeAfterDeactivate: 0.5
 --- !u!1 &3861195938695300874
 GameObject:
   m_ObjectHideFlags: 0
