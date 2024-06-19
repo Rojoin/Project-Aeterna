@@ -1,18 +1,21 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Enemy
 {
-    public class BasicEnemy : MonoBehaviour, IHealthSystem
+    public abstract class BaseEnemy : MonoBehaviour, IHealthSystem
     {
         [SerializeField] private EntitySO enemy;
         [SerializeField] private CustomSlider healthBar;
-        [SerializeField] private UnityEvent OnHit;
-        [SerializeField] private UnityEvent OnDeath;
+        [SerializeField] public UnityEvent OnHit;
+        [SerializeField] public UnityEvent OnDeath;
+        [FormerlySerializedAs("OnDeathDissapear")] [SerializeField] public UnityEvent<BaseEnemy> OnDeathRemove;
         [SerializeField] private Animator enemyAnimator;
         private float currentHealth;
         private float maxHealth;
+        private static readonly int IsIdle = Animator.StringToHash("isIdle");
         private static readonly int Hurt = Animator.StringToHash("isHurt");
         private static readonly int Dead = Animator.StringToHash("isDead");
         private static readonly int Damage = Animator.StringToHash("Damage");
@@ -24,6 +27,7 @@ namespace Enemy
             currentHealth = maxHealth;
             healthBar.FillAmount = 1.0f;
             enemyAnimator.SetFloat(Damage,1.0f);
+            enemyAnimator.SetTrigger(IsIdle);
         }
 
         public void SetHealth(float newHealth)
@@ -38,7 +42,7 @@ namespace Enemy
             enemy.health = newMaxHealth;
         }
 
-        public void ReceiveDamage(float damage)
+        public virtual void ReceiveDamage(float damage)
         {
             if (currentHealth <= 0 || currentHealth <= damage)
             {
