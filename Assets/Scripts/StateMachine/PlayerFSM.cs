@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace StateMachine
 {
@@ -22,6 +23,7 @@ namespace StateMachine
         [SerializeField] protected PlayerEntitySO player;
         [SerializeField] private List<AttackSO> comboList;
         [SerializeField] private AttackCollision _attackCollider;
+        [SerializeField] private UnityEvent onMove;
         protected float speed;
         private FSM fsm;
         private Vector2 moveDir;
@@ -30,9 +32,11 @@ namespace StateMachine
         {
             speed = player.speed;
             fsm = new(2, 3);
-            int idleState = fsm.AddNewState(new PlayerMoveState(this.gameObject, _playerAnimatorController,
+            int idleState = fsm.AddNewState(new PlayerMoveState(ActivateOnMoveEffects, this.gameObject,
+                _playerAnimatorController,
                 _characterController, OnMoveChannel, player));
-            int attackState = fsm.AddNewState(new PlayerAttackState(ChangeFromEndAttack, this.gameObject,
+            int attackState = fsm.AddNewState(new PlayerAttackState(ChangeFromEndAttack,ActivateOnMoveEffects ,
+                this.gameObject,
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player, comboList, _attackCollider, AttackChannel, gameSettings));
 
@@ -55,6 +59,11 @@ namespace StateMachine
         private void ChangeFromEndAttack()
         {
             fsm.OnTriggerState(PlayerFlags.EndAttack);
+        }
+
+        private void ActivateOnMoveEffects()
+        {
+            onMove.Invoke();
         }
 
         public void ChangeFromPause(bool value)

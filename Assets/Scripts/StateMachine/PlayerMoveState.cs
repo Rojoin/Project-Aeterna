@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace StateMachine
@@ -7,16 +8,16 @@ namespace StateMachine
     {
         private const float angle = -45;
         private float rotationSpeed = 10f;
+        private static readonly int Blend = Animator.StringToHash("Blend");
 
-        public PlayerMoveState(params object[] data) : base(data)
+        public PlayerMoveState(Action onMove, params object[] data) : base(onMove, data)
         {
-            
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            _playerAnimatorController.SetFloat("Blend", 0);
+            _playerAnimatorController.SetFloat(Blend, 0);
         }
 
         public override void OnTick(params object[] data)
@@ -34,15 +35,16 @@ namespace StateMachine
                     var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
                     Rotate(rotatedMoveDir);
                     _characterController.Move(rotatedMoveDir * (deltaTime * player.speed));
-                    _playerAnimatorController.SetFloat("Blend", inputDirection.magnitude);
+                    _playerAnimatorController.SetFloat(Blend, inputDirection.magnitude);
+                    onMove.Invoke();
                 }
             }
             else
             {
-                _playerAnimatorController.SetFloat("Blend", 0);
+                _playerAnimatorController.SetFloat(Blend, 0);
             }
         }
-        
+
 
         public override void Rotate(Vector3 newDirection)
         {

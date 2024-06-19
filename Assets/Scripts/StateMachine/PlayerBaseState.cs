@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace StateMachine
@@ -11,16 +12,18 @@ namespace StateMachine
         protected VoidChannelSO AttackChannel;
         protected PlayerEntitySO player;
         protected Vector3 rotatedMoveDir;
+        protected Action onMove;
         static public Vector2 inputDirection;
         static public bool isPause = false;
         protected const float angle = -45;
 
-        public PlayerBaseState(params object[] data) : base(data)
+        public PlayerBaseState(Action onMove,params object[] data) : base(data)
         {
             _playerAnimatorController = data[1] as Animator;
             _characterController = data[2] as CharacterController;
             OnMoveChannel = data[3] as Vector2ChannelSO;
             player = data[4] as PlayerEntitySO;
+            this.onMove = onMove;
         }
 
         protected virtual void Move(float deltaTime)
@@ -70,6 +73,7 @@ namespace StateMachine
         {
             owner.GetComponent<MonoBehaviour>().StopAllCoroutines();
             OnMoveChannel.Unsubscribe(ChangeInputDirection);
+            onMove = null;
         }
 
         public virtual void Rotate(Vector3 newDirection)

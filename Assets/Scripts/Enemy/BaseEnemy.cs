@@ -11,7 +11,7 @@ namespace Enemy
         [SerializeField] private CustomSlider healthBar;
         [SerializeField] public UnityEvent OnHit;
         [SerializeField] public UnityEvent OnDeath;
-        [FormerlySerializedAs("OnDeathDissapear")] [SerializeField] public UnityEvent<BaseEnemy> OnDeathRemove;
+        [SerializeField] public UnityEvent<BaseEnemy> OnDeathRemove;
         [SerializeField] private Animator enemyAnimator;
         private float currentHealth;
         private float maxHealth;

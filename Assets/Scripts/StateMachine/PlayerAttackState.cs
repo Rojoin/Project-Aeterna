@@ -33,7 +33,7 @@ namespace StateMachine
         private float attackTimer = 0.0f;
         private List<IHealthSystem> currentlyHitted = new List<IHealthSystem>();
 
-        public PlayerAttackState(Action onAttackEnd, params object[] data) : base(data)
+        public PlayerAttackState(Action onAttackEnd, Action onMove, params object[] data) : base(onMove, data)
         {
             comboList = data[5] as List<AttackSO>;
             _attackCollider = data[6] as AttackCollision;
@@ -60,7 +60,7 @@ namespace StateMachine
         public override void OnExit()
         {
             base.OnExit();
-   
+
             lastComboEnd = Time.time;
             AttackChannel.Unsubscribe(Attack);
             _attackCollider.OnTriggerEnterObject.RemoveListener(OnAttackEnter);
@@ -170,6 +170,7 @@ namespace StateMachine
                     float time = Time.deltaTime;
                     rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
                     _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
+                    onMove.Invoke();
                 }
             }
             else
@@ -222,7 +223,7 @@ namespace StateMachine
             float deltaTime = (float)data[0];
             AttackSequence(deltaTime);
         }
-        
+
         private void OnAttackExit(GameObject other)
         {
             if (!other.CompareTag("Player") && other.TryGetComponent<IHealthSystem>(out var healthSystem))
