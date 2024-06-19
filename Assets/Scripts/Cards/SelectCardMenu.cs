@@ -17,9 +17,13 @@ public class SelectCardMenu : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private int maxCardsToSelect = 6;
 
+    private List<CardSO> cardList = new List<CardSO>();
+
     public List<CardSO> allCards = new List<CardSO>();
 
-    public List<CardDisplay> cardsDisplays = new List<CardDisplay>();
+    public List<SelectableCardDisplay> seletableCardsDisplays = new List<SelectableCardDisplay>();
+
+    public List<SelectableCardMovement> selectableCardMovements = new List<SelectableCardMovement>();
 
     public bool isCardActivated = false;
 
@@ -31,16 +35,37 @@ public class SelectCardMenu : MonoBehaviour
         isCardSelected = false;
     }
 
+    private void Update()
+    {
+        if (isCardActivated) 
+        {
+            for (int i = 0; i < selectableCardMovements.Count; i++)
+            {
+                if (selectableCardMovements[i].IsSelected())
+                {
+                    seletableCardsDisplays[i].ShowCardDescription(cardList[i]);
+                }
+            }
+        }
+    }
+
     public void ShowSelectCardMenu(bool value) 
     {
         SelectCardUI.SetActive(value);
         isCardActivated = value;
         TogglePause.RaiseEvent(value);
+
         if (value == true) 
         {
-            for (int i = 0; i < cardsDisplays.Count; i++)
+            cardList.Clear();
+
+            for (int i = 0; i < seletableCardsDisplays.Count; i++)
             {
-                cardsDisplays[i].ShowCard(GetRandomCard());
+                CardSO card = GetRandomCard();
+
+                cardList.Add(card);
+
+                seletableCardsDisplays[i].ShowCardImage(card);
             }
         }
     }
@@ -67,7 +92,6 @@ public class SelectCardMenu : MonoBehaviour
     public void SetCardSelected(int value) 
     {
         cardToSelect = value;
-Debug.Log("Card has been Selected");
         isCardSelected = true;
         ShowSelectCardMenu(false);
     }
