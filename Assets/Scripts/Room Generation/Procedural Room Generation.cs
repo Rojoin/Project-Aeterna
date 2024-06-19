@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,88 +18,87 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
     private List<Cell> grid;
 
-    private void OnEnable()
-    {
-        CreateGrid();
-    }
-
     public void CreateGrid()
     {
         grid = new List<Cell>();
-        Vector2 roomDimensions = roomSize * cellSize;
-        Vector2 centerPosition = new Vector2(gameObject.transform.position.x - roomSize.x / 2 + 0.5f, gameObject.transform.position.z - roomSize.y / 2 + 0.5f);
+        Vector2 centerPosition = new Vector2(gameObject.transform.position.x - roomSize.x / 2 + 0.5f,
+            gameObject.transform.position.z - roomSize.y / 2 + 0.5f);
 
         for (int x = 0; x < roomSize.x; x++)
         {
             for (int y = 0; y < roomSize.y; y++)
             {
-                Vector3 cellPosition = new Vector3(centerPosition.x + x * cellSize.x, 0, centerPosition.y + y * cellSize.y);
+                Vector3 cellPosition =
+                    new Vector3(centerPosition.x + x * cellSize.x, 0, centerPosition.y + y * cellSize.y);
                 CellTag cellTag = DetermineCellTag(x, y);
                 Cell cell = new Cell(cellPosition, cellTag);
                 grid.Add(cell);
             }
         }
-
-        AddDoorPositions();
-
-        CreateObjects();
     }
 
-    private void AddDoorPositions()
+    public void SetDoorState(RoomDirection direction)
     {
         int midX = Mathf.FloorToInt(roomSize.x / 2);
         int midY = Mathf.FloorToInt(roomSize.y / 2);
 
-        // Agregar puerta en el centro de la pared norte
-        int northY = (int)roomSize.y - 1;
-        for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
+        switch (direction)
         {
-            for (int y = northY - Mathf.FloorToInt(doorSize.y / 2); y <= northY; y++)
-            {
-                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+            case RoomDirection.UP:
+                int northY = (int)roomSize.y - 1;
+                for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
                 {
-                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                    for (int y = northY - Mathf.FloorToInt(doorSize.y / 2); y <= northY; y++)
+                    {
+                        if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                        {
+                            grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                        }
+                    }
                 }
-            }
-        }
-
-        // Agregar puerta en el centro de la pared sur
-        int southY = 0;
-        for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
-        {
-            for (int y = southY; y <= southY + Mathf.FloorToInt(doorSize.y / 2); y++)
-            {
-                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                break;
+            
+            case RoomDirection.LEFT:
+                int westX = 0;
+                for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
                 {
-                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                    for (int x = westX; x <= westX + Mathf.FloorToInt(doorSize.x / 2); x++)
+                    {
+                        if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                        {
+                            grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                        }
+                    }
                 }
-            }
-        }
-
-        // Agregar puerta en el centro de la pared este
-        int eastX = (int)roomSize.x - 1;
-        for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
-        {
-            for (int x = eastX - Mathf.FloorToInt(doorSize.x / 2); x <= eastX; x++)
-            {
-                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                break;
+            
+            case RoomDirection.DOWN:
+                int southY = 0;
+                for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
                 {
-                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                    for (int y = southY; y <= southY + Mathf.FloorToInt(doorSize.y / 2); y++)
+                    {
+                        if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                        {
+                            grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                        }
+                    }
                 }
-            }
-        }
-
-        // Agregar puerta en el centro de la pared oeste
-        int westX = 0;
-        for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
-        {
-            for (int x = westX; x <= westX + Mathf.FloorToInt(doorSize.x / 2); x++)
-            {
-                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                break;
+            
+            case RoomDirection.RIGHT:
+                int eastX = (int)roomSize.x - 1;
+                for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
                 {
-                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                    for (int x = eastX - Mathf.FloorToInt(doorSize.x / 2); x <= eastX; x++)
+                    {
+                        if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                        {
+                            grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                        }
+                    }
                 }
-            }
+                break;
         }
     }
 
@@ -117,7 +114,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
         }
     }
 
-    private void CreateObjects()
+    public void CreateObjects()
     {
         for (int i = 0; i < totalObjects; i++)
         {
@@ -164,6 +161,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
         {
             return taggedCells[UnityEngine.Random.Range(0, taggedCells.Count)];
         }
+
         return null;
     }
 
@@ -236,11 +234,11 @@ public class ProceduralRoomGeneration : MonoBehaviour
                     default:
                         break;
                 }
+
                 Gizmos.DrawWireCube(cell.position, new Vector3(cellSize.x, 0.1f, cellSize.y));
             }
         }
     }
-
 }
 
 [Serializable]

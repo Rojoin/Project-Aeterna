@@ -3,24 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum RoomTypes
-{
-    START = 0,
-    EMPTY,
-    ENEMIES,
-    TREASURE,
-    BOSS,
-    INVALID
-}
-public enum RoomDirection
-{
-    UP = 0,
-    RIGHT,
-    DOWN,
-    LEFT
-
-}
-
 public class DungeonGeneration : MonoBehaviour
 {
     [SerializeField] private LevelRoomsSO levelRoom;
@@ -39,10 +21,18 @@ public class DungeonGeneration : MonoBehaviour
     {
         public int xPosition;
         public int zPosition;
-        public int NeighboursCount { get { return _neighbours.Count; } }
+
+        public int NeighboursCount
+        {
+            get { return _neighbours.Count; }
+        }
 
         private List<Tuple<RoomDirection, DungeonRoom>> _neighbours;
-        public List<Tuple<RoomDirection, DungeonRoom>> Neighbours { get { return _neighbours; } }
+
+        public List<Tuple<RoomDirection, DungeonRoom>> Neighbours
+        {
+            get { return _neighbours; }
+        }
 
         public RoomTypes type = RoomTypes.INVALID;
 
@@ -60,6 +50,7 @@ public class DungeonGeneration : MonoBehaviour
                 if (n.Item1 == direction)
                     return true;
             }
+
             return false;
         }
 
@@ -70,6 +61,7 @@ public class DungeonGeneration : MonoBehaviour
                 if (n.Item1 == direction)
                     return n.Item2;
             }
+
             return null;
         }
 
@@ -105,7 +97,9 @@ public class DungeonGeneration : MonoBehaviour
             nCurrentRooms++;
             DungeonRoom currentRoom = pendingRooms.Dequeue();
 
-            int nNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms) ? UnityEngine.Random.Range(1, 4) : 0;
+            int nNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms)
+                ? UnityEngine.Random.Range(1, 4)
+                : 0;
             for (int i = 0; i < nNeighbours; ++i)
             {
                 if (currentRoom.NeighboursCount < 4)
@@ -154,6 +148,7 @@ public class DungeonGeneration : MonoBehaviour
                 return dungeonRooms[i];
             }
         }
+
         return null;
     }
 
@@ -187,13 +182,19 @@ public class DungeonGeneration : MonoBehaviour
                     break;
             }
 
-            RotateRoom(room, CurrentRoom);
 
-            GameObject roomInstance = Instantiate(CurrentRoom, new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y), Quaternion.identity, gameObject.transform);
-
+            GameObject roomInstance = Instantiate(CurrentRoom,
+                new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
+                Quaternion.identity, gameObject.transform);
+            
+            roomInstance.GetComponent<ProceduralRoomGeneration>().CreateGrid();
+            RotateRoom(room, roomInstance);
+            roomInstance.GetComponent<ProceduralRoomGeneration>().CreateObjects();
+            
             if (room.type == RoomTypes.START)
             {
-                PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 0.2f, room.zPosition * gapBetweenRooms.y);
+                PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 0.2f,
+                    room.zPosition * gapBetweenRooms.y);
             }
 
             dungeonRoomInstances.Add(roomInstance);
@@ -202,33 +203,36 @@ public class DungeonGeneration : MonoBehaviour
 
     private void RotateRoom(DungeonRoom room, GameObject newRoom)
     {
-        newRoom.GetComponent<RoomBehaviour>().doorsUp.SetActive(false);
-        newRoom.GetComponent<RoomBehaviour>().doorsDown.SetActive(false);
-        newRoom.GetComponent<RoomBehaviour>().doorsRight.SetActive(false);
-        newRoom.GetComponent<RoomBehaviour>().doorsLeft.SetActive(false);
+        RoomBehaviour roomBehaviour = newRoom.GetComponent<RoomBehaviour>();
+        ProceduralRoomGeneration proceduralRoomGeneration = newRoom.GetComponent<ProceduralRoomGeneration>();
+        roomBehaviour.StartDictionary();
+        roomBehaviour.SetDoorDirection(RoomDirection.UP, false);
+        roomBehaviour.SetDoorDirection(RoomDirection.DOWN, false);
+        roomBehaviour.SetDoorDirection(RoomDirection.LEFT, false);
+        roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, false);
 
         if (room.HasNeighbourInDirection(RoomDirection.UP))
         {
-            newRoom.GetComponent<RoomBehaviour>().doorsUp.SetActive(true);
-
+            roomBehaviour.SetDoorDirection(RoomDirection.UP, true);
+            proceduralRoomGeneration.SetDoorState(RoomDirection.UP);
         }
 
         if (room.HasNeighbourInDirection(RoomDirection.DOWN))
         {
-            newRoom.GetComponent<RoomBehaviour>().doorsDown.SetActive(true);
-
+            roomBehaviour.SetDoorDirection(RoomDirection.DOWN, true);
+            proceduralRoomGeneration.SetDoorState(RoomDirection.DOWN);
         }
 
         if (room.HasNeighbourInDirection(RoomDirection.LEFT))
         {
-            newRoom.GetComponent<RoomBehaviour>().doorsLeft.SetActive(true);
-
+            roomBehaviour.SetDoorDirection(RoomDirection.LEFT, true);            
+            proceduralRoomGeneration.SetDoorState(RoomDirection.LEFT);
         }
 
         if (room.HasNeighbourInDirection(RoomDirection.RIGHT))
         {
-            newRoom.GetComponent<RoomBehaviour>().doorsRight.SetActive(true);
-
+            roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, true);
+            proceduralRoomGeneration.SetDoorState(RoomDirection.RIGHT);
         }
     }
 
@@ -242,6 +246,7 @@ public class DungeonGeneration : MonoBehaviour
             if (!currentRoom.HasNeighbourInDirection(direction))
                 found = true;
         }
+
         return direction;
     }
 
@@ -256,12 +261,12 @@ public class DungeonGeneration : MonoBehaviour
         DungeonRoom result;
         bool roomCreated = false;
         (int, int)[] newRoomPositions =
-            {
-                (currentRoom.xPosition, currentRoom.zPosition + 1),
-                (currentRoom.xPosition + 1, currentRoom.zPosition),
-                (currentRoom.xPosition, currentRoom.zPosition - 1),
-                (currentRoom.xPosition - 1, currentRoom.zPosition)
-            };
+        {
+            (currentRoom.xPosition, currentRoom.zPosition + 1),
+            (currentRoom.xPosition + 1, currentRoom.zPosition),
+            (currentRoom.xPosition, currentRoom.zPosition - 1),
+            (currentRoom.xPosition - 1, currentRoom.zPosition)
+        };
 
         (int, int) newPosition = newRoomPositions[(int)direction];
         if (IsThereRoomInPosition(newPosition.Item1, newPosition.Item2))
@@ -271,6 +276,7 @@ public class DungeonGeneration : MonoBehaviour
             result = new DungeonRoom(newPosition.Item1, newPosition.Item2);
             roomCreated = true;
         }
+
         RoomDirection oppositeDirection = (RoomDirection)(((int)direction + 2) % 4);
 
         result.AddNeighbourInDirection(currentRoom, oppositeDirection);

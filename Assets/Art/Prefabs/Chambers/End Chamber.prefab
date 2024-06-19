@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3493086920442892804}
   - component: {fileID: 7530813336021028996}
+  - component: {fileID: 3077810568752361229}
   m_Layer: 0
   m_Name: End Chamber
   m_TagString: Untagged
@@ -46,10 +47,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 3537165282768142571}
-  doorsDown: {fileID: 437399653284855554}
-  doorsRight: {fileID: 954348293679204078}
-  doorsLeft: {fileID: 5339266507924073847}
+  roomType: 4
+  doorsGameobject:
+  - {fileID: 3537165282768142571}
+  - {fileID: 437399653284855554}
+  - {fileID: 5339266507924073847}
+  - {fileID: 954348293679204078}
+  doorCollider: []
+--- !u!114 &3077810568752361229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203743812469221639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGrid: 1
+  roomSize: {x: 20, y: 20}
+  doorSize: {x: 4, y: 4}
+  cellSize: {x: 1, y: 1}
+  ObjectRoom: []
+  totalObjects: 0
+  wallSize: 1
 --- !u!1 &437399653284855554
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +194,7 @@ MonoBehaviour:
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  roomDirection: 2
 --- !u!1 &561256668619895192
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3580133284163106770
 Transform:
   m_ObjectHideFlags: 0
@@ -398,6 +422,7 @@ MonoBehaviour:
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  roomDirection: 1
 --- !u!1 &1909308230252255905
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6829875110572785915
 Transform:
   m_ObjectHideFlags: 0
@@ -771,6 +796,7 @@ MonoBehaviour:
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  roomDirection: 0
 --- !u!1 &5339266507924073847
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,7 +816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5746309576024099742
 Transform:
   m_ObjectHideFlags: 0
@@ -892,6 +918,7 @@ MonoBehaviour:
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  roomDirection: 3
 --- !u!1 &5393798717836491763
 GameObject:
   m_ObjectHideFlags: 0
