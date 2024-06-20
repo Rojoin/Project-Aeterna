@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum RoomTypes
 {
@@ -30,6 +30,8 @@ public class RoomBehaviour : MonoBehaviour
     [SerializeField] private DoorBehaviour[] doorCollider;
 
     private Dictionary<RoomDirection, GameObject> doors = new();
+    
+    public UnityEvent<RoomDirection> PlayerInteractNewDoor;
 
     private void OnEnable()
     {
@@ -41,12 +43,15 @@ public class RoomBehaviour : MonoBehaviour
 
     private void OnDisable()
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < 4; i++)
+        {
+            doorCollider[i].OnPlayerInteractDoor.RemoveListener(PlayerInteractDoor);
+        }
     }
 
     private void PlayerInteractDoor(RoomDirection direction)
     {
-           
+        PlayerInteractNewDoor.Invoke(direction);
     }
 
     public void StartDictionary()
@@ -70,5 +75,10 @@ public class RoomBehaviour : MonoBehaviour
         {
             doors[direction].SetActive(false);
         }
+    }
+
+    public GameObject GetDoorDirection(RoomDirection direction)
+    {
+        return doors[direction];
     }
 }

@@ -8,7 +8,9 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private LevelRoomsSO levelRoom;
     [SerializeField] private Vector2 gapBetweenRooms;
     [SerializeField] private GameObject PlayerPrefab;
+    [SerializeField] private CharacterController player;
     private int nCurrentRooms;
+    
 
     private Queue<DungeonRoom> pendingRooms = new Queue<DungeonRoom>();
     private List<DungeonRoom> dungeonRooms = new List<DungeonRoom>();
@@ -21,6 +23,7 @@ public class DungeonGeneration : MonoBehaviour
     {
         public int xPosition;
         public int zPosition;
+        public RoomBehaviour roomBehaviour;
 
         public int NeighboursCount
         {
@@ -76,6 +79,14 @@ public class DungeonGeneration : MonoBehaviour
         GenerateDungeon();
     }
 
+    private void OnDisable()
+    {
+        foreach (DungeonRoom dungeon in dungeonRooms)
+        {
+            dungeon.roomBehaviour.PlayerInteractNewDoor.RemoveListener(TranslatePlayerToNewRoom);
+        }
+    }
+
     public void GenerateDungeon()
     {
         GenerateDungeonLayout();
@@ -121,6 +132,35 @@ public class DungeonGeneration : MonoBehaviour
         ActualPlayerRoom = startRoom;
 
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
+    }
+
+    private void TranslatePlayerToNewRoom(RoomDirection direction)
+    {
+        ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
+        player.enabled = false;
+        RoomDirection opositeDirection;
+        switch (direction)
+        {
+            case RoomDirection.UP:
+                opositeDirection = RoomDirection.DOWN;
+                break;
+            case RoomDirection.RIGHT:
+                opositeDirection = RoomDirection.LEFT;
+                break;
+            case RoomDirection.DOWN:
+                opositeDirection = RoomDirection.UP;
+                break;
+            case RoomDirection.LEFT:
+                opositeDirection = RoomDirection.RIGHT;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+        }
+
+        Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection).transform;
+        
+        player.transform.position = nextDoorPosition.position + (nextDoorPosition.forward * 2) + (nextDoorPosition.up * -nextDoorPosition.localScale.y/2);
+        player.enabled = true;
     }
 
     private bool IsThereRoomInPosition(int x, int z)
@@ -186,11 +226,13 @@ public class DungeonGeneration : MonoBehaviour
             GameObject roomInstance = Instantiate(CurrentRoom,
                 new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
                 Quaternion.identity, gameObject.transform);
-            
+
             roomInstance.GetComponent<ProceduralRoomGeneration>().CreateGrid();
             RotateRoom(room, roomInstance);
             roomInstance.GetComponent<ProceduralRoomGeneration>().CreateObjects();
-            
+
+            room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
+
             if (room.type == RoomTypes.START)
             {
                 PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 0.2f,
@@ -198,6 +240,8 @@ public class DungeonGeneration : MonoBehaviour
             }
 
             dungeonRoomInstances.Add(roomInstance);
+            room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
+
         }
     }
 
@@ -225,7 +269,7 @@ public class DungeonGeneration : MonoBehaviour
 
         if (room.HasNeighbourInDirection(RoomDirection.LEFT))
         {
-            roomBehaviour.SetDoorDirection(RoomDirection.LEFT, true);            
+            roomBehaviour.SetDoorDirection(RoomDirection.LEFT, true);
             proceduralRoomGeneration.SetDoorState(RoomDirection.LEFT);
         }
 
