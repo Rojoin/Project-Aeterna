@@ -24,13 +24,13 @@ public enum RoomDirection
 public class RoomBehaviour : MonoBehaviour
 {
     public RoomTypes roomType;
-    private bool doorsOpened;
+    public bool doorsOpened;
 
     [SerializeField] private GameObject[] doorsGameobject;
     [SerializeField] private DoorBehaviour[] doorCollider;
 
     private Dictionary<RoomDirection, GameObject> doors = new();
-    
+
     public UnityEvent<RoomDirection> PlayerInteractNewDoor;
 
     private void OnEnable()
@@ -51,7 +51,10 @@ public class RoomBehaviour : MonoBehaviour
 
     private void PlayerInteractDoor(RoomDirection direction)
     {
-        PlayerInteractNewDoor.Invoke(direction);
+        if (doorsOpened)
+        {
+            PlayerInteractNewDoor.Invoke(direction);
+        }
     }
 
     public void StartDictionary()
