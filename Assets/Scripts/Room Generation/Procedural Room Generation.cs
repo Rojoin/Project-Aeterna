@@ -16,11 +16,11 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
     [SerializeField] private int wallSize;
 
-    private List<Cell> grid;
+    private Cell[,] grid;
 
     public void CreateGrid()
     {
-        grid = new List<Cell>();
+        grid = new Cell[(int)roomSize.x, (int)roomSize.y];
         Vector2 centerPosition = new Vector2(gameObject.transform.position.x - roomSize.x / 2 + 0.5f,
             gameObject.transform.position.z - roomSize.y / 2 + 0.5f);
 
@@ -32,70 +32,72 @@ public class ProceduralRoomGeneration : MonoBehaviour
                     new Vector3(centerPosition.x + x * cellSize.x, 0, centerPosition.y + y * cellSize.y);
                 CellTag cellTag = DetermineCellTag(x, y);
                 Cell cell = new Cell(cellPosition, cellTag);
-                grid.Add(cell);
+                grid[x, y] = cell;
             }
         }
     }
 
     public void SetDoorState(RoomDirection direction)
     {
-        int midX = Mathf.FloorToInt(roomSize.x / 2);
-        int midY = Mathf.FloorToInt(roomSize.y / 2);
+        int midRoomX = Mathf.FloorToInt(roomSize.x / 2);
+        int midRoomY = Mathf.FloorToInt(roomSize.y / 2);
+
+        int midDoorX = Mathf.FloorToInt(doorSize.x / 2);
+
+        Vector2 startPosition;
 
         switch (direction)
         {
             case RoomDirection.UP:
-                int northY = (int)roomSize.y - 1;
-                for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
+                startPosition = new Vector2(midRoomX - midDoorX, (int)roomSize.y - 1);
+
+                for (int x = 0; x < doorSize.x; x++)
                 {
-                    for (int y = northY - Mathf.FloorToInt(doorSize.y / 2); y <= northY; y++)
+                    for (int y = 0; y < doorSize.y; y++)
                     {
-                        if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
-                        {
-                            grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
-                        }
+                        grid[(int)startPosition.x + x, (int)startPosition.y - y].zone = CellTag.occupied;
                     }
                 }
+
                 break;
-            
+
             case RoomDirection.LEFT:
-                int westX = 0;
-                for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
+                //grid[0, midRoomY].zone = CellTag.occupied;
+                startPosition = new Vector2(0, midRoomY - midDoorX);
+
+                for (int y = 0; y < doorSize.x; y++)
                 {
-                    for (int x = westX; x <= westX + Mathf.FloorToInt(doorSize.x / 2); x++)
+                    for (int x = 0; x < doorSize.y; x++)
                     {
-                        if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
-                        {
-                            grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
-                        }
+                        grid[(int)startPosition.x + x, (int)startPosition.y + y].zone = CellTag.occupied;
                     }
                 }
+
                 break;
-            
+
             case RoomDirection.DOWN:
-                int southY = 0;
-                for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
+                //grid[midRoomX, 0].zone = CellTag.occupied;
+                startPosition = new Vector2(midRoomX - midDoorX, 0);
+
+                for (int x = 0; x < doorSize.x; x++)
                 {
-                    for (int y = southY; y <= southY + Mathf.FloorToInt(doorSize.y / 2); y++)
+                    for (int y = 0; y < doorSize.y; y++)
                     {
-                        if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
-                        {
-                            grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
-                        }
+                        grid[(int)startPosition.x + x, (int)startPosition.y + y].zone = CellTag.occupied;
                     }
                 }
+
                 break;
-            
+
             case RoomDirection.RIGHT:
-                int eastX = (int)roomSize.x - 1;
-                for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
+                //grid[(int)roomSize.x-1, midRoomY].zone = CellTag.occupied;
+                startPosition = new Vector2((int)roomSize.x-1, midRoomY - midDoorX);
+
+                for (int y = 0; y < doorSize.x; y++)
                 {
-                    for (int x = eastX - Mathf.FloorToInt(doorSize.x / 2); x <= eastX; x++)
+                    for (int x = 0; x < doorSize.y; x++)
                     {
-                        if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
-                        {
-                            grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
-                        }
+                        grid[(int)startPosition.x - x, (int)startPosition.y + y].zone = CellTag.occupied;
                     }
                 }
                 break;
@@ -156,7 +158,18 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
     private Cell GetRandomCell(CellTag tag)
     {
-        List<Cell> taggedCells = grid.FindAll(cell => cell.zone == tag);
+        List<Cell> taggedCells = new List<Cell>();
+        for (int x = 0; x < roomSize.x; x++)
+        {
+            for (int y = 0; y < roomSize.y; y++)
+            {
+                if (grid[x, y].zone == tag)
+                {
+                    taggedCells.Add(grid[x, y]);
+                }
+            }
+        }
+
         if (taggedCells.Count > 0)
         {
             return taggedCells[UnityEngine.Random.Range(0, taggedCells.Count)];
@@ -181,12 +194,11 @@ public class ProceduralRoomGeneration : MonoBehaviour
             {
                 if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
                 {
-                    int index = x * (int)roomSize.y + y;
-                    cellsInArea.Add(grid[index]);
+                    cellsInArea.Add(grid[x, y]);
                 }
                 else
                 {
-                    return null; // Out of bounds
+                    return null; // Fuera de los límites
                 }
             }
         }
@@ -215,27 +227,31 @@ public class ProceduralRoomGeneration : MonoBehaviour
     {
         if (grid != null && showGrid)
         {
-            foreach (var cell in grid)
+            for (int x = 0; x < roomSize.x; x++)
             {
-                switch (cell.zone)
+                for (int y = 0; y < roomSize.y; y++)
                 {
-                    case CellTag.none:
-                        Gizmos.color = Color.gray;
-                        break;
-                    case CellTag.inside:
-                        Gizmos.color = Color.green;
-                        break;
-                    case CellTag.walls:
-                        Gizmos.color = Color.blue;
-                        break;
-                    case CellTag.occupied:
-                        Gizmos.color = Color.red;
-                        break;
-                    default:
-                        break;
-                }
+                    var cell = grid[x, y];
+                    switch (cell.zone)
+                    {
+                        case CellTag.none:
+                            Gizmos.color = Color.gray;
+                            break;
+                        case CellTag.inside:
+                            Gizmos.color = Color.green;
+                            break;
+                        case CellTag.walls:
+                            Gizmos.color = Color.blue;
+                            break;
+                        case CellTag.occupied:
+                            Gizmos.color = Color.red;
+                            break;
+                        default:
+                            break;
+                    }
 
-                Gizmos.DrawWireCube(cell.position, new Vector3(cellSize.x, 0.1f, cellSize.y));
+                    Gizmos.DrawWireCube(cell.position, new Vector3(cellSize.x, 0.1f, cellSize.y));
+                }
             }
         }
     }

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 4
+  doorsOpened: 0
   doorsGameobject:
   - {fileID: 3537165282768142571}
   - {fileID: 437399653284855554}
@@ -58,6 +59,9 @@ MonoBehaviour:
   - {fileID: 8394745087986190816}
   - {fileID: 306267042033644835}
   - {fileID: 443136902223061284}
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3077810568752361229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,8 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
+  roomSize: {x: 19, y: 19}
+  doorSize: {x: 5, y: 3}
   cellSize: {x: 1, y: 1}
   ObjectRoom: []
   totalObjects: 0
