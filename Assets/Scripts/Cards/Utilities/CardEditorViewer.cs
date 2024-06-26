@@ -51,6 +51,10 @@ public class CardEditor : EditorWindow
             LoadPrefab();
         }
 
+        if (canvas == null)
+        {
+            return;
+        }
         if (cardData != null)
         {
             EditorGUILayout.Space();
