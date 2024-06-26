@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,7 +17,23 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
     [SerializeField] private int wallSize;
 
+    private Vector3 playerLastPosition;
+
     private Cell[,] grid;
+
+    //TODO:Sacar esto cuando haya un enemy manager
+    public float playerD;
+    private List<Cell> EnemyCells = new List<Cell>();
+
+    private void OnEnable()
+    {
+        DungeonGeneration.OnProvidePosition += HandlePlayerPosition;
+    }
+
+    private void OnDisable()
+    {
+        DungeonGeneration.OnProvidePosition -= HandlePlayerPosition;
+    }
 
     public void CreateGrid()
     {
@@ -91,7 +108,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
             case RoomDirection.RIGHT:
                 //grid[(int)roomSize.x-1, midRoomY].zone = CellTag.occupied;
-                startPosition = new Vector2((int)roomSize.x-1, midRoomY - midDoorX);
+                startPosition = new Vector2((int)roomSize.x - 1, midRoomY - midDoorX);
 
                 for (int y = 0; y < doorSize.x; y++)
                 {
@@ -100,6 +117,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
                         grid[(int)startPosition.x - x, (int)startPosition.y + y].zone = CellTag.occupied;
                     }
                 }
+
                 break;
         }
     }
@@ -127,7 +145,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
             while (attempts > 0 && !placed)
             {
-                Cell startCell = GetRandomCell(roomObject.zone);
+                Cell startCell = GetRandomCellByType(roomObject.zone);
                 if (startCell != null)
                 {
                     List<Cell> occupiedCells = GetCellsInArea(startCell, roomObject.Area);
@@ -156,7 +174,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
         }
     }
 
-    private Cell GetRandomCell(CellTag tag)
+    public Cell GetRandomCellByType(CellTag tag)
     {
         List<Cell> taggedCells = new List<Cell>();
         for (int x = 0; x < roomSize.x; x++)
@@ -176,6 +194,60 @@ public class ProceduralRoomGeneration : MonoBehaviour
         }
 
         return null;
+    }
+
+    [ContextMenu("spawn enemy")]
+    //Este metodo solo sirver para provar el rango de distancia del player
+    private void SpawnRandom()
+    {
+        foreach (var enemyCell in EnemyCells)
+        {
+            enemyCell.zone = CellTag.inside;
+        }
+        
+        EnemyCells.Clear();
+        
+        Cell currentcell = GetRandomCellByType(CellTag.inside, playerD);
+        while (currentcell != null)
+        {
+            currentcell.zone = CellTag.EnemySpawn;
+            EnemyCells.Add(currentcell);
+            currentcell = GetRandomCellByType(CellTag.inside, playerD);
+        }
+    }
+
+    public Cell GetRandomCellByType(CellTag tag, float playerDistance)
+    {
+        List<Cell> taggedCells = new List<Cell>();
+        for (int x = 0; x < roomSize.x; x++)
+        {
+            for (int y = 0; y < roomSize.y; y++)
+            {
+                if (grid[x, y].zone == tag)
+                {
+                    DungeonGeneration.RequestPosition();
+                    if (Vector3.Distance(grid[x, y].position, playerLastPosition) > playerDistance)
+                    {
+                        taggedCells.Add(grid[x, y]);
+                    }
+                }
+            }
+        }
+
+        if (taggedCells.Count > 0)
+        {
+            return taggedCells[UnityEngine.Random.Range(0, taggedCells.Count)];
+        }
+        else
+        {
+            Debug.Log(gameObject.name + " Dont found a cell");
+            return null;
+        }
+    }
+
+    public void HandlePlayerPosition(Vector3 position)
+    {
+        playerLastPosition = position;
     }
 
     private List<Cell> GetCellsInArea(Cell startCell, Vector2 area)
@@ -243,6 +315,9 @@ public class ProceduralRoomGeneration : MonoBehaviour
                         case CellTag.walls:
                             Gizmos.color = Color.blue;
                             break;
+                        case CellTag.EnemySpawn:
+                            Gizmos.color = Color.cyan;
+                            break;
                         case CellTag.occupied:
                             Gizmos.color = Color.red;
                             break;
@@ -276,5 +351,6 @@ public enum CellTag
     none = 0,
     inside,
     walls,
+    EnemySpawn,
     occupied,
 }

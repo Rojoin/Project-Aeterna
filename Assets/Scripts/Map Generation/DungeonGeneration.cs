@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DungeonGeneration : MonoBehaviour
 {
@@ -10,11 +10,13 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private GameObject PlayerPrefab;
     [SerializeField] private CharacterController player;
     private int nCurrentRooms;
-    
 
     private Queue<DungeonRoom> pendingRooms = new Queue<DungeonRoom>();
     private List<DungeonRoom> dungeonRooms = new List<DungeonRoom>();
     private List<GameObject> dungeonRoomInstances = new List<GameObject>();
+
+    public static Action OnRequestPosition;
+    public static Action<Vector3> OnProvidePosition;
 
     private DungeonRoom ActualPlayerRoom;
 
@@ -24,6 +26,7 @@ public class DungeonGeneration : MonoBehaviour
         public int xPosition;
         public int zPosition;
         public RoomBehaviour roomBehaviour;
+        public ProceduralRoomGeneration proceduralRoomGeneration;
 
         public int NeighboursCount
         {
@@ -79,8 +82,15 @@ public class DungeonGeneration : MonoBehaviour
         GenerateDungeon();
     }
 
+    private void OnEnable()
+    {
+        OnRequestPosition += ProvidePosition;
+    }
+
     private void OnDisable()
     {
+        OnRequestPosition -= ProvidePosition;
+
         foreach (DungeonRoom dungeon in dungeonRooms)
         {
             dungeon.roomBehaviour.PlayerInteractNewDoor.RemoveListener(TranslatePlayerToNewRoom);
@@ -158,8 +168,9 @@ public class DungeonGeneration : MonoBehaviour
         }
 
         Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection).transform;
-        
-        player.transform.position = nextDoorPosition.position + (nextDoorPosition.forward * 2) + (nextDoorPosition.up * -nextDoorPosition.localScale.y/2);
+
+        player.transform.position = nextDoorPosition.position + (nextDoorPosition.forward * 2) +
+                                    (nextDoorPosition.up * -nextDoorPosition.localScale.y / 2);
         player.enabled = true;
     }
 
@@ -227,11 +238,13 @@ public class DungeonGeneration : MonoBehaviour
                 new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
                 Quaternion.identity, gameObject.transform);
 
-            roomInstance.GetComponent<ProceduralRoomGeneration>().CreateGrid();
-            RotateRoom(room, roomInstance);
-            roomInstance.GetComponent<ProceduralRoomGeneration>().CreateObjects();
-
             room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
+            room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
+
+            room.proceduralRoomGeneration.CreateGrid();
+            RotateRoom(room, roomInstance);
+            room.proceduralRoomGeneration.CreateObjects();
+
 
             if (room.type == RoomTypes.START)
             {
@@ -241,7 +254,6 @@ public class DungeonGeneration : MonoBehaviour
 
             dungeonRoomInstances.Add(roomInstance);
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
-
         }
     }
 
@@ -366,5 +378,15 @@ public class DungeonGeneration : MonoBehaviour
             return RoomTypes.ENEMIES;
         else
             return RoomTypes.EMPTY;
+    }
+
+    public static void RequestPosition()
+    {
+        OnRequestPosition?.Invoke();
+    }
+
+    private void ProvidePosition()
+    {
+        OnProvidePosition?.Invoke(player.transform.position);
     }
 }
