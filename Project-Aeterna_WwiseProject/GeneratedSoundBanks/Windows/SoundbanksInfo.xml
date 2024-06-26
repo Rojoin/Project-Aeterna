@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{9B983A2D-2FA6-CDCA-3824-C5FAB48B0B0A}">
+		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{EEE91A38-BA76-2CD7-F7F4-2C801B721B6D}">
 			<ShortName>BaseSoundBank</ShortName>
 			<Path>BaseSoundBank.bnk</Path>
 			<Media>
@@ -20,6 +20,10 @@
 				<File Id="40101356" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Voice_Female_V2_Attack_Mono_03.wav</ShortName>
 					<CachePath>SFX/Voice_Female_V2_Attack_Mono_03_818F3B66.wem</CachePath>
+				</File>
+				<File Id="53258193" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>main music_aeterna_V1.wav</ShortName>
+					<CachePath>SFX/main music_aeterna_V1_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="66558520" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enojado_recibe daño 1.wav</ShortName>
@@ -168,6 +172,11 @@
 						<MediaRef Id="781684899"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1857418338" Name="Play_DefaultMusic" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="53258193"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="4161660071" Name="Player_Attack_Sword" DurationType="OneShot" DurationMin="1.3304651" DurationMax="1.6859915">
 					<MediaRefs>
 						<MediaRef Id="40101356"/>
@@ -201,6 +210,7 @@
 						<MediaRef Id="849380902"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="502652540" Name="Stop_DefaultMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 		</SoundBank>
 		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{B6CBD692-12EC-CDBA-0932-48F63C40C91F}">
@@ -217,5 +227,5 @@
 			</Busses>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{5B84D5FE-5D8B-CB0B-9911-BFA88EC5D44F}</FileHash>
+	<FileHash>{B245EEB6-8671-E543-0746-50A7F48CDD0D}</FileHash>
 </SoundBanksInfo>
