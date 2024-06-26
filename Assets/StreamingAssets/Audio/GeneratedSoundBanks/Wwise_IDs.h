@@ -19,7 +19,8 @@ namespace AK
         static const AkUniqueID DUMMY_HIT = 2333910817U;
         static const AkUniqueID EVENT_TEST = 1618187162U;
         static const AkUniqueID PLAY_DEFAULTMUSIC = 1857418338U;
-        static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
+        static const AkUniqueID PLAYER_ATTACK_SOWRD_IMPACT = 2682457292U;
+        static const AkUniqueID PLAYER_ATTACK_SWORD_SWING = 1206975656U;
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
         static const AkUniqueID PLAYER_RECIEVEDAMAGE = 1990870923U;
         static const AkUniqueID PLAYER_WALK_LEVEL1 = 3808387538U;

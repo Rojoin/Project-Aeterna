@@ -15,4 +15,10 @@ public class SwBasic : MonoBehaviour
         Debug.Log("Play Audio");
         AkSoundEngine.PostEvent(eventName, gameObject);
     }
+    
+    public void OnPlayAudio(string EventName)
+    {
+        Debug.Log("Play Audio");
+        AkSoundEngine.PostEvent(EventName, gameObject);
+    }
 }
