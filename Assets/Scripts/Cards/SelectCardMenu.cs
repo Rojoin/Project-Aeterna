@@ -15,7 +15,7 @@ public class SelectCardMenu : MonoBehaviour
     private int cardToSelect;
 
     [Header("Setup")]
-    [SerializeField] private int maxCardsToSelect = 6;
+    [SerializeField] private int maxCardsToSelect = 3;
 
     private List<CardSO> cardList = new List<CardSO>();
 
