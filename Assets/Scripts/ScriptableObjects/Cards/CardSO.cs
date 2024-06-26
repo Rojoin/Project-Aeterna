@@ -16,6 +16,8 @@ public class CardSO : ScriptableObject
 
     public string description;
 
+    public Sprite allCardSprite;
+
     public Sprite artMidground_1;
     public Vector3 newPosition1 = new Vector3(0, 0, 75);
     public Vector2 newSizeDelta1 = new Vector2(500, 500);
