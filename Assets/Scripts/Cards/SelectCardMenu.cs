@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SelectCardMenu : MonoBehaviour
@@ -26,6 +27,10 @@ public class SelectCardMenu : MonoBehaviour
     public List<SelectableCardMovement> selectableCardMovements = new List<SelectableCardMovement>();
 
     public bool isCardActivated = false;
+
+    public new TextMeshProUGUI name;
+
+    public TextMeshProUGUI description;
 
     void Start()
     {
@@ -93,6 +98,16 @@ public class SelectCardMenu : MonoBehaviour
     {
         cardToSelect = value;
         isCardSelected = true;
+
+        for (int i = 0; i < selectableCardMovements.Count; i++)
+        {
+            selectableCardMovements[i].isSelected = false;
+            selectableCardMovements[i].canMove = true;
+        }
+
+        name.text = "";
+        description.text = "";
+
         ShowSelectCardMenu(false);
     }
 
