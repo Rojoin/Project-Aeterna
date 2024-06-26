@@ -66,7 +66,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     }
     public float GetMaxSpeed()
     {
-        return player.masSpeed;
+        return player.maxSpeed;
     }
 
     public bool IsDead() 

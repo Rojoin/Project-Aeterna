@@ -10,11 +10,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerFSM player;
 
-    [SerializeField] private GameObject firsButtonSelected;
     [SerializeField] private BoolChannelSO TogglePause;
 
     [SerializeField] private PlayerHud playerHud;
-    
+
+    [SerializeField] private GameObject firsButtonSelected;
+
 
     private void Start()
     {
@@ -31,5 +32,9 @@ public class GameManager : MonoBehaviour
     {
         player.ChangeFromPause(value);
     }
-    
+
+    public GameObject GetSelectedButton()
+    {
+        return EventSystem.current.currentSelectedGameObject;
+    }
 }

@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class BasicInputs : MonoBehaviour
+public class PlayerHudInputs : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;
@@ -12,7 +14,6 @@ public class BasicInputs : MonoBehaviour
     [SerializeField] private VoidChannelSO OnInteraction;
 
     [SerializeField] private VoidChannelSO OnHudToggle;
-
 
     [Header("Card System")]
     [SerializeField] private bool activeCardSystem;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace StateMachine
@@ -7,15 +8,16 @@ namespace StateMachine
     {
         private const float angle = -45;
         private float rotationSpeed = 10f;
+        private static readonly int Blend = Animator.StringToHash("Blend");
 
-        public PlayerMoveState(params object[] data) : base(data)
+        public PlayerMoveState(Action onMove, params object[] data) : base(onMove, data)
         {
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            _playerAnimatorController.SetFloat("Blend", 0);
+            _playerAnimatorController.SetFloat(Blend, 0);
         }
 
         public override void OnTick(params object[] data)
@@ -23,30 +25,26 @@ namespace StateMachine
             base.OnTick(data);
         }
 
-
-        public override IEnumerator Movement(Vector2 dir)
+        protected override void Move(float deltaTime)
         {
-            while (dir != Vector2.zero)
+            if (inputDirection != Vector2.zero)
             {
                 if (!isPause)
                 {
-                    Vector3 moveDir = new Vector3(dir.x, 0, dir.y);
-                    float time = Time.deltaTime;
+                    Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
                     var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
                     Rotate(rotatedMoveDir);
-
-                    _characterController.Move(rotatedMoveDir * (time * player.speed));
-                    //transform.position += moveDir * (time * speed);
-
-
-                    _playerAnimatorController.SetFloat("Blend", dir.magnitude);
+                    _characterController.Move(rotatedMoveDir * (deltaTime * player.speed));
+                    _playerAnimatorController.SetFloat(Blend, inputDirection.magnitude);
+                    onMove.Invoke();
                 }
-
-                yield return null;
             }
-
-            _playerAnimatorController.SetFloat("Blend", 0);
+            else
+            {
+                _playerAnimatorController.SetFloat(Blend, 0);
+            }
         }
+
 
         public override void Rotate(Vector3 newDirection)
         {
@@ -61,7 +59,6 @@ namespace StateMachine
 
         public override void OnDestroy()
         {
-            base.OnDestroy();
             base.OnDestroy();
         }
     }

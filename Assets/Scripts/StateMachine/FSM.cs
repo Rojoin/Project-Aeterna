@@ -4,15 +4,12 @@ using UnityEngine;
 
 namespace StateMachine
 {
-    public sealed class FSM
+    //Todo: Change vairables of FSM to be more generic
+    public class FSM
     {
         protected List<BaseStateFSM> states;
         protected BaseStateFSM currentState;
         protected int[,] transitions;
-
-        private Animator _playerAnimatorController;
-        private CharacterController _characterController;
-        private Vector2ChannelSO OnMoveChannel;
 
         public FSM(int posibleStates, int flagsQty)
         {
@@ -56,9 +53,9 @@ namespace StateMachine
             return states.IndexOf(newBaseState);
         }
 
-        public void Update()
+        public void Update(params object[] data)
         {
-            currentState.OnTick();
+            currentState.OnTick(data);
         }
 
         public void OnDestroy()
@@ -71,4 +68,5 @@ namespace StateMachine
 
     
     }
+    
 }
