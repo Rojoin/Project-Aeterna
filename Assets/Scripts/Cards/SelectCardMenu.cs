@@ -28,8 +28,6 @@ public class SelectCardMenu : MonoBehaviour
 
     public bool isCardActivated = false;
 
-    public new TextMeshProUGUI name;
-
     public TextMeshProUGUI description;
 
     void Start()
@@ -105,7 +103,6 @@ public class SelectCardMenu : MonoBehaviour
             selectableCardMovements[i].canMove = true;
         }
 
-        name.text = "";
         description.text = "";
 
         ShowSelectCardMenu(false);

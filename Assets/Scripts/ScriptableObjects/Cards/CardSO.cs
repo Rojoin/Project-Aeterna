@@ -14,7 +14,6 @@ public class CardSO : ScriptableObject
         Speed
     }
 
-    public new string name;
     public string description;
 
     public Sprite artMidground_1;

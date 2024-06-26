@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class SelectableCardDisplay : MonoBehaviour
 {
-    public new TextMeshProUGUI name;
     public TextMeshProUGUI description;
 
     public Image artMidground_1;
@@ -32,7 +31,6 @@ public class SelectableCardDisplay : MonoBehaviour
 
     public void ShowCardDescription(CardSO card)
     {
-        name.text = card.name;
         description.text = card.description;
     }
 }
