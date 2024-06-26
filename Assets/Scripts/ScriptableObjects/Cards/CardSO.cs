@@ -15,10 +15,12 @@ public class CardSO : ScriptableObject
     }
 
     public new string name;
-
     public string description;
 
-    public Sprite cardSprite;
+    public Sprite artMidground_1;
+    public Sprite artMidground_2;
+    public Sprite artMidground_3;
+    public Sprite artFrame;
 
     public int ID;
 
