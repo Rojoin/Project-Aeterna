@@ -14,7 +14,7 @@ public class SelectableCardDisplay : MonoBehaviour
 
     public void ShowCardImage(CardSO card)
     {
-        artImage.sprite = card.cardSprite;
+      //  artImage.sprite = card.cardSprite;
     }
 
     public void ShowCardDescription(CardSO card)
