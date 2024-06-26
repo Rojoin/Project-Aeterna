@@ -20,6 +20,11 @@ public class CardSO : ScriptableObject
 
     public Sprite cardSprite;
 
+    public Sprite artMidground_1;
+    public Sprite artMidground_2;
+    public Sprite artMidground_3;
+    public Sprite artFrame;
+
     public int ID;
 
     private int m_cardsOnSlot;
