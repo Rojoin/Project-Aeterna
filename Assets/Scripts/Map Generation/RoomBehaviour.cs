@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public enum RoomTypes
 {
@@ -25,6 +26,7 @@ public class RoomBehaviour : MonoBehaviour
 {
     public RoomTypes roomType;
     public bool doorsOpened;
+    public BoxCollider roomConfiner;
 
     [SerializeField] private GameObject[] doorsGameobject;
     [SerializeField] private DoorBehaviour[] doorCollider;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,7 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private Vector2 gapBetweenRooms;
     [SerializeField] private GameObject PlayerPrefab;
     [SerializeField] private CharacterController player;
+    [SerializeField] private CinemachineConfiner cameraConfiner;
     private int nCurrentRooms;
 
     private Queue<DungeonRoom> pendingRooms = new Queue<DungeonRoom>();
@@ -139,15 +141,14 @@ public class DungeonGeneration : MonoBehaviour
             }
         }
 
-        ActualPlayerRoom = startRoom;
-
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
     }
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)
     {
         ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
-        player.enabled = false;
+        cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
+        
         RoomDirection opositeDirection;
         switch (direction)
         {
@@ -169,6 +170,7 @@ public class DungeonGeneration : MonoBehaviour
 
         Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection).transform;
 
+        player.enabled = false;
         player.transform.position = nextDoorPosition.position + (nextDoorPosition.forward * 2) +
                                     (nextDoorPosition.up * -nextDoorPosition.localScale.y / 2);
         player.enabled = true;
@@ -250,6 +252,9 @@ public class DungeonGeneration : MonoBehaviour
             {
                 PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 0.2f,
                     room.zPosition * gapBetweenRooms.y);
+                
+                ActualPlayerRoom = room;
+                cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
             }
 
             dungeonRoomInstances.Add(roomInstance);
