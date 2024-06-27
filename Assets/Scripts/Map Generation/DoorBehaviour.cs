@@ -6,7 +6,18 @@ using UnityEngine.Events;
 
 public class DoorBehaviour : MonoBehaviour
 {
+    private PlayerHudInputs playerHudInputs;
+
+    public int timer = 2;
+
     public UnityEvent<Transform> OnPlayerInteractDoor;
+
+
+
+    private void Start()
+    {
+        playerHudInputs = FindObjectOfType<PlayerHudInputs>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +26,15 @@ public class DoorBehaviour : MonoBehaviour
             ch.enabled = false;
             other.transform.position += transform.forward * 12;
             ch.enabled = true;
+            StartCoroutine(ShowMenu());
             Debug.Log("On player interact door");
         }
+    }
+
+    private IEnumerator ShowMenu() 
+    {
+        yield return new WaitForSeconds(timer);
+
+        playerHudInputs.ShowSelectableCardMenu();
     }
 }
