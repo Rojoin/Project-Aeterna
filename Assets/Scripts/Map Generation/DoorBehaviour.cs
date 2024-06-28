@@ -11,9 +11,6 @@ public class DoorBehaviour : MonoBehaviour
     public int timer = 2;
 
     public UnityEvent<Transform> OnPlayerInteractDoor;
-
-
-
     private void Start()
     {
         playerHudInputs = FindObjectOfType<PlayerHudInputs>();
