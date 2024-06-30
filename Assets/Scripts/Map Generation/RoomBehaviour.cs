@@ -22,34 +22,86 @@ public enum RoomDirection
     LEFT
 }
 
+[Serializable]
+public class DoorColecction
+{
+    private bool doorState;
+
+    public bool DoorState
+    {
+        get { return doorState; }
+        set
+        {
+            SetDoorState(value);
+
+            doorState = value;
+
+            void SetDoorState(bool value)
+            {
+                foreach (GameObject o in doorsGameobject)
+                {
+                    o.SetActive(value);
+                }
+
+                foreach (GameObject o in noDoorsGameobject)
+                {
+                    o.SetActive(!value);
+                }
+
+                doorCollider.enabled = value;
+            }
+        }
+    }
+
+    public RoomDirection doorDirection;
+
+    public Transform spawnPosition;
+
+    public List<GameObject> doorsGameobject;
+    public List<GameObject> noDoorsGameobject;
+
+    public DoorBehaviour doorBehaviour;
+    public BoxCollider doorCollider;
+    public GameObject particleDoorsGameobject;
+}
+
 public class RoomBehaviour : MonoBehaviour
 {
     public RoomTypes roomType;
     public BoxCollider roomConfiner;
 
-    [SerializeField]private bool doorsOpened;
-    [SerializeField] private GameObject[] doorsGameobject;
-    [SerializeField] private GameObject[] particleDoorsGameobject;
-    [SerializeField] private DoorBehaviour[] doorCollider;
+    [SerializeField] private bool doorsOpened;
 
-    private Dictionary<RoomDirection, GameObject> doors = new();
+    [SerializeField] private DoorColecction[] doorColecctions;
 
     public UnityEvent<RoomDirection> PlayerInteractNewDoor;
 
     private void OnEnable()
     {
-        SetRoomDoorState(doorsOpened);
-        for (int i = 0; i < 4; i++)
+        foreach (DoorColecction d in doorColecctions)
         {
-            doorCollider[i].OnPlayerInteractDoor.AddListener(PlayerInteractDoor);
+            d.doorBehaviour.OnPlayerInteractDoor.AddListener(PlayerInteractDoor);
         }
+    }
+
+    public void StartRoom()
+    {
+        SetRoomDoorState(doorsOpened);
+
+        foreach (DoorColecction d in doorColecctions)
+        {
+            d.DoorState = false;
+            d.doorBehaviour.doorDirection = d.doorDirection;
+        }
+
+        StartDictionary();
     }
 
     private void OnDisable()
     {
-        for (int i = 0; i < 4; i++)
+        foreach (DoorColecction d in doorColecctions)
         {
-            doorCollider[i].OnPlayerInteractDoor.RemoveListener(PlayerInteractDoor);
+            d.doorBehaviour.OnPlayerInteractDoor.RemoveListener(PlayerInteractDoor);
         }
     }
 
@@ -70,46 +122,53 @@ public class RoomBehaviour : MonoBehaviour
     public void SetRoomDoorState(bool doorIsOpen)
     {
         doorsOpened = doorIsOpen;
-        foreach (var pd in particleDoorsGameobject)
+        foreach (var pd in doorColecctions)
         {
             if (doorIsOpen)
             {
-                pd.SetActive(false);
-                pd.GetComponent<ParticleSystem>().Stop();
+                pd.particleDoorsGameobject.SetActive(false);
+                pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Stop();
             }
             else
             {
-                pd.SetActive(true);
-                pd.GetComponent<ParticleSystem>().Play();
+                pd.particleDoorsGameobject.SetActive(true);
+                pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Play();
             }
         }
     }
 
-    public void StartDictionary()
+    private void StartDictionary()
     {
-        doors = new Dictionary<RoomDirection, GameObject>
-        {
-            { RoomDirection.UP, doorsGameobject[0] },
-            { RoomDirection.DOWN, doorsGameobject[1] },
-            { RoomDirection.LEFT, doorsGameobject[2] },
-            { RoomDirection.RIGHT, doorsGameobject[3] }
-        };
-    }
+        RoomDirection setDirection = RoomDirection.UP;
 
-    public void SetDoorDirection(RoomDirection direction, bool addDoor)
-    {
-        if (addDoor)
+        for (int i = 0; i < doorColecctions.Length; i++)
         {
-            doors[direction].SetActive(true);
-        }
-        else
-        {
-            doors[direction].SetActive(false);
+            doorColecctions[i].doorDirection = setDirection;
+            setDirection++;
         }
     }
 
-    public GameObject GetDoorDirection(RoomDirection direction)
+    public void SetDoorDirection(RoomDirection direction, bool doorState)
     {
-        return doors[direction];
+        foreach (DoorColecction d in doorColecctions)
+        {
+            if (d.doorDirection == direction)
+            {
+                d.DoorState = doorState;
+            }
+        }
+    }
+
+    public Transform GetDoorDirection(RoomDirection direction)
+    {
+        foreach (DoorColecction d in doorColecctions)
+        {
+            if (d.doorDirection == direction)
+            {
+                return d.spawnPosition;
+            }
+        }
+
+        return transform;
     }
 }

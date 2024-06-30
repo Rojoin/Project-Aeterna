@@ -189,12 +189,10 @@ public class ProceduralRoomGeneration : MonoBehaviour
         if (x == 0)
         {
             result = Quaternion.Euler(0, 180, 0);
-            Debug.Log("up");
         }
         else if (y == roomSize.y - 1)
         {
             result = Quaternion.Euler(0, -90, 0);
-            Debug.Log("right");
         }
 
         return result;

@@ -172,7 +172,7 @@ public class DungeonGeneration : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
         }
 
-        Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection).transform;
+        Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection);
 
         player.enabled = false;
         player.transform.position = nextDoorPosition.position + (nextDoorPosition.forward * 2) +
@@ -257,6 +257,8 @@ public class DungeonGeneration : MonoBehaviour
             room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
             room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
 
+            room.roomBehaviour.StartRoom();
+                
             room.proceduralRoomGeneration.CreateGrid();
             RotateRoom(room, roomInstance);
             room.proceduralRoomGeneration.CreateObjects();
@@ -280,11 +282,6 @@ public class DungeonGeneration : MonoBehaviour
     {
         RoomBehaviour roomBehaviour = newRoom.GetComponent<RoomBehaviour>();
         ProceduralRoomGeneration proceduralRoomGeneration = newRoom.GetComponent<ProceduralRoomGeneration>();
-        roomBehaviour.StartDictionary();
-        roomBehaviour.SetDoorDirection(RoomDirection.UP, false);
-        roomBehaviour.SetDoorDirection(RoomDirection.DOWN, false);
-        roomBehaviour.SetDoorDirection(RoomDirection.LEFT, false);
-        roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, false);
 
         if (room.HasNeighbourInDirection(RoomDirection.UP))
         {
