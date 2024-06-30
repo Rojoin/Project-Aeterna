@@ -25,10 +25,11 @@ public enum RoomDirection
 public class RoomBehaviour : MonoBehaviour
 {
     public RoomTypes roomType;
-    public bool doorsOpened;
     public BoxCollider roomConfiner;
 
+    [SerializeField]private bool doorsOpened;
     [SerializeField] private GameObject[] doorsGameobject;
+    [SerializeField] private GameObject[] particleDoorsGameobject;
     [SerializeField] private DoorBehaviour[] doorCollider;
 
     private Dictionary<RoomDirection, GameObject> doors = new();
@@ -37,6 +38,7 @@ public class RoomBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
+        SetRoomDoorState(doorsOpened);
         for (int i = 0; i < 4; i++)
         {
             doorCollider[i].OnPlayerInteractDoor.AddListener(PlayerInteractDoor);
@@ -56,6 +58,30 @@ public class RoomBehaviour : MonoBehaviour
         if (doorsOpened)
         {
             PlayerInteractNewDoor.Invoke(direction);
+        }
+    }
+
+    [ContextMenu("Open/Close Doors")]
+    public void Test()
+    {
+        SetRoomDoorState(!doorsOpened);
+    }
+
+    public void SetRoomDoorState(bool doorIsOpen)
+    {
+        doorsOpened = doorIsOpen;
+        foreach (var pd in particleDoorsGameobject)
+        {
+            if (doorIsOpen)
+            {
+                pd.SetActive(false);
+                pd.GetComponent<ParticleSystem>().Stop();
+            }
+            else
+            {
+                pd.SetActive(true);
+                pd.GetComponent<ParticleSystem>().Play();
+            }
         }
     }
 

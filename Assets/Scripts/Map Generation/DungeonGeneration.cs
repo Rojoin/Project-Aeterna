@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class DungeonGeneration : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private GameObject PlayerPrefab;
     [SerializeField] private CharacterController player;
     [SerializeField] private CinemachineConfiner cameraConfiner;
+    [SerializeField] private float playerTpPositionY;
     private int nCurrentRooms;
 
     private Queue<DungeonRoom> pendingRooms = new Queue<DungeonRoom>();
     private List<DungeonRoom> dungeonRooms = new List<DungeonRoom>();
-    private List<GameObject> dungeonRoomInstances = new List<GameObject>();
 
     public static Action OnRequestPosition;
     public static Action<Vector3> OnProvidePosition;
@@ -29,6 +30,7 @@ public class DungeonGeneration : MonoBehaviour
         public int zPosition;
         public RoomBehaviour roomBehaviour;
         public ProceduralRoomGeneration proceduralRoomGeneration;
+        public GameObject dungeonRoomInstance;
 
         public int NeighboursCount
         {
@@ -106,6 +108,10 @@ public class DungeonGeneration : MonoBehaviour
         GenerateSpecialRooms();
 
         InstantiateDungeon();
+
+        SetVisibleRooms();
+        
+        Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
     }
 
     private void GenerateDungeonLayout()
@@ -140,8 +146,6 @@ public class DungeonGeneration : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
     }
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)
@@ -172,8 +176,18 @@ public class DungeonGeneration : MonoBehaviour
 
         player.enabled = false;
         player.transform.position = nextDoorPosition.position + (nextDoorPosition.forward * 2) +
-                                    (nextDoorPosition.up * -nextDoorPosition.localScale.y / 2);
+                                    (nextDoorPosition.up * playerTpPositionY);
         player.enabled = true;
+
+        SetVisibleRooms();
+    }
+
+    private void SetVisibleRooms()
+    {
+        foreach (DungeonRoom d in dungeonRooms)
+        {
+            d.dungeonRoomInstance.SetActive(d == ActualPlayerRoom);
+        }
     }
 
     private bool IsThereRoomInPosition(int x, int z)
@@ -256,8 +270,8 @@ public class DungeonGeneration : MonoBehaviour
                 ActualPlayerRoom = room;
                 cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
             }
-
-            dungeonRoomInstances.Add(roomInstance);
+            
+            room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
         }
     }

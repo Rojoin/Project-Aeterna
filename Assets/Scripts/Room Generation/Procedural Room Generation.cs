@@ -124,9 +124,13 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
     private CellTag DetermineCellTag(int x, int y)
     {
-        if (x < wallSize || y < wallSize || x >= roomSize.x - wallSize || y >= roomSize.y - wallSize)
+        if (x < wallSize || y >= roomSize.y - wallSize)
         {
             return CellTag.walls;
+        }
+        else if (x >= roomSize.x - wallSize || y < wallSize)
+        {
+            return CellTag.occupied;
         }
         else
         {
@@ -159,7 +163,11 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
                         Vector3 position = startCell.position;
                         position.y = 0 + roomObject.prefabObject.transform.localScale.y / 2;
-                        Instantiate(roomObject.prefabObject, position, Quaternion.identity, transform);
+
+                        Instantiate(roomObject.prefabObject, position,
+                            GetRotationObject(GetGridPosition(startCell).Item1, GetGridPosition(startCell).Item2),
+                            transform);
+
                         placed = true;
                     }
                 }
@@ -172,6 +180,40 @@ public class ProceduralRoomGeneration : MonoBehaviour
                 Debug.LogWarning($"Failed to place object {roomObject.name}");
             }
         }
+    }
+
+    private Quaternion GetRotationObject(float x, float y)
+    {
+        Quaternion result = Quaternion.identity;
+
+        if (x == 0)
+        {
+            result = Quaternion.Euler(0, 180, 0);
+            Debug.Log("up");
+        }
+        else if (y == roomSize.y - 1)
+        {
+            result = Quaternion.Euler(0, -90, 0);
+            Debug.Log("right");
+        }
+
+        return result;
+    }
+
+    private (int, int) GetGridPosition(Cell cell)
+    {
+        for (int y = 0; y < roomSize.y; y++)
+        {
+            for (int x = 0; x < roomSize.x; x++)
+            {
+                if (grid[x, y].position == cell.position)
+                {
+                    return (x, y);
+                }
+            }
+        }
+
+        return (0, 0);
     }
 
     public Cell GetRandomCellByType(CellTag tag)
@@ -204,9 +246,9 @@ public class ProceduralRoomGeneration : MonoBehaviour
         {
             enemyCell.zone = CellTag.inside;
         }
-        
+
         EnemyCells.Clear();
-        
+
         Cell currentcell = GetRandomCellByType(CellTag.inside, playerD);
         while (currentcell != null)
         {
