@@ -21,13 +21,12 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
 
     [SerializeField] private Button button;
 
-    [SerializeField] private bool isSelected = false;
-
     private RectTransform rectTransform;
 
     private float targetAngle;
 
-    private bool canMove = true;
+    public bool canMove = true;
+    public bool isSelected = false;
 
     void Start()
     {
