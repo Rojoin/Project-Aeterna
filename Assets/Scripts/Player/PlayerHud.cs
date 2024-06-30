@@ -18,21 +18,9 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private List<CardDisplay> cardDisplay;
 
-    [SerializeField] private RectTransform hudTransform;
-
-    [Header("Setup")]
-    [SerializeField] private Vector3 closeHudPosition;
-    [SerializeField] private Vector3 openHudPosition;
-
-    [SerializeField] private float hudInteractionTimer;
-
     private CardSO card;
 
     private int slotIndex;
-
-    private Coroutine lerpHudAnimation;
-
-    public bool isHudOpen = false;
 
     private List<CardSO> invetory;
 
@@ -91,33 +79,4 @@ public class PlayerHud : MonoBehaviour
 
         slotIndex = 0;
     } 
-
-    public void ToggleHud() 
-    {
-        isHudOpen = !isHudOpen;
-
-        if (lerpHudAnimation != null) 
-        {
-            StopCoroutine(lerpHudAnimation);
-        }
-
-        lerpHudAnimation = StartCoroutine(ToggleHudVisibility(isHudOpen));
-    }
-
-    private IEnumerator ToggleHudVisibility(bool state) 
-    {
-        Vector2 initLerpPosition = hudTransform.anchoredPosition;
-        Vector2 endLerpPosition = state ? openHudPosition : closeHudPosition;
-
-        float timer = 0;
-
-        while (timer <= hudInteractionTimer) 
-        {
-            timer += Time.deltaTime;
-
-            hudTransform.anchoredPosition = Vector2.Lerp(initLerpPosition, endLerpPosition, timer / hudInteractionTimer);
-
-            yield return null;
-        }
-    }
 }

@@ -21,7 +21,6 @@ public class PlayerHudInputs : MonoBehaviour
     private void Start()
     {
         cardsCounter = playerInventory.GetCardsCounterList();
-        OnHudToggle.Subscribe(playerHud.ToggleHud);
     }
 
     void Update()
@@ -60,10 +59,5 @@ public class PlayerHudInputs : MonoBehaviour
 
             selectCardMenu.RefreshCardsSelectedList();
         }
-    }
-
-    private void OnDestroy()
-    {
-        OnHudToggle.Unsubscribe(playerHud.ToggleHud);
     }
 }
