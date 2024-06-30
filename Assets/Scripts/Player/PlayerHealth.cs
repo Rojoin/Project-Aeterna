@@ -6,11 +6,13 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
     [Header("Data")]
     [SerializeField]private EntitySO player;
+    [SerializeField]private Animator animator;
 
     private float currentHealth;
     private float maxHealth;
     private float damage;
     private float speed;
+    private static readonly int IsHurt = Animator.StringToHash("isHurt");
 
     private void Start()
     {
@@ -45,6 +47,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             currentHealth -= damage;
         }
+        animator.SetTrigger(IsHurt);
     }
 
     public void SetDamage(float newDamage) 
