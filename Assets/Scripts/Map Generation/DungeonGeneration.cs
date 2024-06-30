@@ -110,7 +110,7 @@ public class DungeonGeneration : MonoBehaviour
         InstantiateDungeon();
 
         SetVisibleRooms();
-        
+
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
     }
 
@@ -152,7 +152,7 @@ public class DungeonGeneration : MonoBehaviour
     {
         ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
         cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
-        
+
         RoomDirection opositeDirection;
         switch (direction)
         {
@@ -175,8 +175,7 @@ public class DungeonGeneration : MonoBehaviour
         Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection);
 
         player.enabled = false;
-        player.transform.position = nextDoorPosition.position + (nextDoorPosition.forward * 2) +
-                                    (nextDoorPosition.up * playerTpPositionY);
+        player.transform.position = nextDoorPosition.position + (nextDoorPosition.up * playerTpPositionY);
         player.enabled = true;
 
         SetVisibleRooms();
@@ -258,7 +257,7 @@ public class DungeonGeneration : MonoBehaviour
             room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
 
             room.roomBehaviour.StartRoom();
-                
+
             room.proceduralRoomGeneration.CreateGrid();
             RotateRoom(room, roomInstance);
             room.proceduralRoomGeneration.CreateObjects();
@@ -268,11 +267,11 @@ public class DungeonGeneration : MonoBehaviour
             {
                 PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 0.2f,
                     room.zPosition * gapBetweenRooms.y);
-                
+
                 ActualPlayerRoom = room;
                 cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
             }
-            
+
             room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
         }
