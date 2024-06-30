@@ -21,7 +21,6 @@ public class PlayerHudInputs : MonoBehaviour
     private void Start()
     {
         cardsCounter = playerInventory.GetCardsCounterList();
-        OnInteraction.Subscribe(ToggleStore);
         OnHudToggle.Subscribe(playerHud.ToggleHud);
     }
 
@@ -33,7 +32,7 @@ public class PlayerHudInputs : MonoBehaviour
         }
     }
 
-    public void ToggleStore() 
+    public void ShowSelectableCardMenu() 
     {
         if (playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
         {
@@ -65,7 +64,6 @@ public class PlayerHudInputs : MonoBehaviour
 
     private void OnDestroy()
     {
-        OnInteraction.Unsubscribe(ToggleStore);
         OnHudToggle.Unsubscribe(playerHud.ToggleHud);
     }
 }

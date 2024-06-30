@@ -14,8 +14,9 @@ public class CardSO : ScriptableObject
         Speed
     }
 
-    public new string name;
     public string description;
+
+    public Sprite allCardSprite;
 
     public Sprite artMidground_1;
     public Vector3 newPosition1 = new Vector3(0, 0, 75);
