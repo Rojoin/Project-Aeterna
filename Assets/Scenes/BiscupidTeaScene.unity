@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8ccbc094f29d5ea41af52c2aad5a39ec, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.55789137, g: 0.31603986, b: 0.11592272, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -910,17 +910,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &535571169 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8663465839136103079, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e543c1975234df458d785604b2b7e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &858618166
@@ -1968,17 +1957,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!114 &1886386334 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 172124198402650181, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e543c1975234df458d785604b2b7e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2026847408 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7934158526880610219, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -2496,11 +2474,11 @@ PrefabInstance:
     - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: cardsSlots.Array.data[3]
       value: 
-      objectReference: {fileID: 1886386334}
+      objectReference: {fileID: 0}
     - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: cardsSlots.Array.data[4]
       value: 
-      objectReference: {fileID: 535571169}
+      objectReference: {fileID: 0}
     - target: {fileID: 5460293534165014975, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9694205

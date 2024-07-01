@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cinemachine;
+using Enemy;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -30,6 +31,7 @@ public class DungeonGeneration : MonoBehaviour
         public int zPosition;
         public RoomBehaviour roomBehaviour;
         public ProceduralRoomGeneration proceduralRoomGeneration;
+        public EnemyManager enemyManager;
         public GameObject dungeonRoomInstance;
 
         public int NeighboursCount
@@ -98,6 +100,10 @@ public class DungeonGeneration : MonoBehaviour
         foreach (DungeonRoom dungeon in dungeonRooms)
         {
             dungeon.roomBehaviour.PlayerInteractNewDoor.RemoveListener(TranslatePlayerToNewRoom);
+            if (dungeon.enemyManager)
+            {
+                dungeon.enemyManager.OnLastEnemyKilled.RemoveListener(OpenDungeonRoom);
+            }
         }
     }
 
@@ -148,6 +154,11 @@ public class DungeonGeneration : MonoBehaviour
         }
     }
 
+    private void OpenDungeonRoom()
+    {
+        ActualPlayerRoom.roomBehaviour.SetRoomDoorState(true);
+    }
+
     private void TranslatePlayerToNewRoom(RoomDirection direction)
     {
         ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
@@ -173,6 +184,8 @@ public class DungeonGeneration : MonoBehaviour
         }
 
         Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection);
+
+        ActualPlayerRoom.enemyManager.OnEnterNewRoom();
 
         player.enabled = false;
         player.transform.position = nextDoorPosition.position + (nextDoorPosition.up * playerTpPositionY);
@@ -256,24 +269,33 @@ public class DungeonGeneration : MonoBehaviour
             room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
             room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
 
+            if (roomInstance.GetComponent<EnemyManager>())
+            {
+                room.enemyManager = roomInstance.GetComponent<EnemyManager>();
+                room.enemyManager.proceduralRoomGeneration = room.proceduralRoomGeneration;
+                room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
+                room.roomBehaviour.SetRoomDoorState(false);
+            }
+            else
+            {
+                room.roomBehaviour.SetRoomDoorState(true);
+            }
+
             room.roomBehaviour.StartRoom();
 
             room.proceduralRoomGeneration.CreateGrid();
             RotateRoom(room, roomInstance);
             room.proceduralRoomGeneration.CreateObjects();
-
-
-            if (room.type == RoomTypes.START)
-            {
-                PlayerPrefab.transform.position = new Vector3(room.xPosition * gapBetweenRooms.x, 0.2f,
-                    room.zPosition * gapBetweenRooms.y);
-
-                ActualPlayerRoom = room;
-                cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
-            }
-
+            
             room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
+            
+            if (room.type == RoomTypes.START)
+            {
+                ActualPlayerRoom = room;
+                cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
+                room.enemyManager.CallEndRoom();
+            }
         }
     }
 

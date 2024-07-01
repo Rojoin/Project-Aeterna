@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3493086920442892804}
   - component: {fileID: 7530813336021028996}
   - component: {fileID: 6609680635174012541}
+  - component: {fileID: -22964642545148674}
   m_Layer: 0
   m_Name: Basic Chamber
   m_TagString: Untagged
@@ -49,13 +50,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomType: 0
   roomConfiner: {fileID: 964989995003520003}
-  doorsOpened: 1
+  doorsOpened: 0
   doorColecctions:
   - doorDirection: 0
     spawnPosition: {fileID: 2303624844680062274}
     doorsGameobject:
     - {fileID: 1719906787451114097}
     - {fileID: 291855218508207929}
+    - {fileID: 6388872660871522421}
     noDoorsGameobject:
     - {fileID: 8800713194449399022}
     - {fileID: 579146322909108612}
@@ -67,6 +69,7 @@ MonoBehaviour:
     spawnPosition: {fileID: 2570668328356603856}
     doorsGameobject:
     - {fileID: 2998506500457795096}
+    - {fileID: 3584324329883111927}
     noDoorsGameobject: []
     doorBehaviour: {fileID: 1489559164828275812}
     doorCollider: {fileID: 5084941519742621522}
@@ -75,6 +78,7 @@ MonoBehaviour:
     spawnPosition: {fileID: 5771358110640981992}
     doorsGameobject:
     - {fileID: 2820432203175101385}
+    - {fileID: 6388872660871522421}
     noDoorsGameobject: []
     doorBehaviour: {fileID: 8658292525310050946}
     doorCollider: {fileID: 7716580645503128891}
@@ -84,6 +88,7 @@ MonoBehaviour:
     doorsGameobject:
     - {fileID: 2931341148507210931}
     - {fileID: 780700629380147689}
+    - {fileID: 7509385816058497284}
     noDoorsGameobject:
     - {fileID: 4553565779244072519}
     doorBehaviour: {fileID: 8701516635094417388}
@@ -117,6 +122,27 @@ MonoBehaviour:
   totalObjects: 10
   wallSize: 1
   playerD: 0
+--- !u!114 &-22964642545148674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203743812469221639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5069a9e51594596b204ecb5f777c494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomClear: 0
+  OnLastEnemyKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  proceduralRoomGeneration: {fileID: 0}
+  enemyPrefab: {fileID: 2987170732086015747, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
+  minNumberEnemies: 5
+  maxNumberEnemies: 7
+  enemyMinSpawnDistance: 4
 --- !u!1001 &2575069338340890274
 PrefabInstance:
   m_ObjectHideFlags: 0
