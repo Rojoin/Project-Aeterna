@@ -38,8 +38,8 @@ namespace Enemy
                 Cell spawnPositionCell =
                     proceduralRoomGeneration.GetRandomCellByType(CellTag.inside, enemyMinSpawnDistance);
                 GameObject newEnemy =
-                    Instantiate(enemyPrefab, spawnPositionCell.position + (enemyPrefab.transform.up * enemyPrefab
-                        .transform.localScale.y / 2), quaternion.identity, transform);
+                    Instantiate(enemyPrefab, spawnPositionCell.position + (enemyPrefab.transform.up * ((enemyPrefab
+                        .transform.localScale.y / 2) + 0.3f)), quaternion.identity, transform);
 
                 Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
             }
