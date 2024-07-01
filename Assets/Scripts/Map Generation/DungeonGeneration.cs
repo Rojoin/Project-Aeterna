@@ -24,6 +24,8 @@ public class DungeonGeneration : MonoBehaviour
 
     private DungeonRoom ActualPlayerRoom;
 
+    [SerializeField] private PlayerHudInputs selectCardMenu;
+
     [Serializable]
     private class DungeonRoom
     {
@@ -157,6 +159,7 @@ public class DungeonGeneration : MonoBehaviour
     private void OpenDungeonRoom()
     {
         ActualPlayerRoom.roomBehaviour.SetRoomDoorState(true);
+        StartCoroutine(selectCardMenu.ShowSelectableCardMenu());
     }
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)

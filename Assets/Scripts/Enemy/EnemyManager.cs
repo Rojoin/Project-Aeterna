@@ -67,6 +67,7 @@ namespace Enemy
         public void CallEndRoom()
         {
             OnLastEnemyKilled.Invoke();
+
             roomClear = true;
         }
 
