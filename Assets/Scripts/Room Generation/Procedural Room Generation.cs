@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,98 +17,120 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
     [SerializeField] private int wallSize;
 
-    private List<Cell> grid;
+    private Vector3 playerLastPosition;
+
+    private Cell[,] grid;
+
+    //TODO:Sacar esto cuando haya un enemy manager
+    public float playerD;
+    private List<Cell> EnemyCells = new List<Cell>();
 
     private void OnEnable()
     {
-        CreateGrid();
+        DungeonGeneration.OnProvidePosition += HandlePlayerPosition;
+    }
+
+    private void OnDisable()
+    {
+        DungeonGeneration.OnProvidePosition -= HandlePlayerPosition;
     }
 
     public void CreateGrid()
     {
-        grid = new List<Cell>();
-        Vector2 roomDimensions = roomSize * cellSize;
-        Vector2 centerPosition = new Vector2(gameObject.transform.position.x - roomSize.x / 2 + 0.5f, gameObject.transform.position.z - roomSize.y / 2 + 0.5f);
+        grid = new Cell[(int)roomSize.x, (int)roomSize.y];
+        Vector2 centerPosition = new Vector2(gameObject.transform.position.x - roomSize.x / 2 + 0.5f,
+            gameObject.transform.position.z - roomSize.y / 2 + 0.5f);
 
         for (int x = 0; x < roomSize.x; x++)
         {
             for (int y = 0; y < roomSize.y; y++)
             {
-                Vector3 cellPosition = new Vector3(centerPosition.x + x * cellSize.x, 0, centerPosition.y + y * cellSize.y);
+                Vector3 cellPosition =
+                    new Vector3(centerPosition.x + x * cellSize.x, 0, centerPosition.y + y * cellSize.y);
                 CellTag cellTag = DetermineCellTag(x, y);
                 Cell cell = new Cell(cellPosition, cellTag);
-                grid.Add(cell);
+                grid[x, y] = cell;
             }
         }
-
-        AddDoorPositions();
-
-        CreateObjects();
     }
 
-    private void AddDoorPositions()
+    public void SetDoorState(RoomDirection direction)
     {
-        int midX = Mathf.FloorToInt(roomSize.x / 2);
-        int midY = Mathf.FloorToInt(roomSize.y / 2);
+        int midRoomX = Mathf.FloorToInt(roomSize.x / 2);
+        int midRoomY = Mathf.FloorToInt(roomSize.y / 2);
 
-        // Agregar puerta en el centro de la pared norte
-        int northY = (int)roomSize.y - 1;
-        for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
-        {
-            for (int y = northY - Mathf.FloorToInt(doorSize.y / 2); y <= northY; y++)
-            {
-                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
-                {
-                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
-                }
-            }
-        }
+        int midDoorX = Mathf.FloorToInt(doorSize.x / 2);
 
-        // Agregar puerta en el centro de la pared sur
-        int southY = 0;
-        for (int x = midX - Mathf.FloorToInt(doorSize.x / 2); x < midX + Mathf.CeilToInt(doorSize.x / 2); x++)
-        {
-            for (int y = southY; y <= southY + Mathf.FloorToInt(doorSize.y / 2); y++)
-            {
-                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
-                {
-                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
-                }
-            }
-        }
+        Vector2 startPosition;
 
-        // Agregar puerta en el centro de la pared este
-        int eastX = (int)roomSize.x - 1;
-        for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
+        switch (direction)
         {
-            for (int x = eastX - Mathf.FloorToInt(doorSize.x / 2); x <= eastX; x++)
-            {
-                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
-                {
-                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
-                }
-            }
-        }
+            case RoomDirection.UP:
+                startPosition = new Vector2(midRoomX - midDoorX, (int)roomSize.y - 1);
 
-        // Agregar puerta en el centro de la pared oeste
-        int westX = 0;
-        for (int y = midY - Mathf.FloorToInt(doorSize.y / 2); y < midY + Mathf.CeilToInt(doorSize.y / 2); y++)
-        {
-            for (int x = westX; x <= westX + Mathf.FloorToInt(doorSize.x / 2); x++)
-            {
-                if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
+                for (int x = 0; x < doorSize.x; x++)
                 {
-                    grid[x * (int)roomSize.y + y].zone = CellTag.occupied;
+                    for (int y = 0; y < doorSize.y; y++)
+                    {
+                        grid[(int)startPosition.x + x, (int)startPosition.y - y].zone = CellTag.occupied;
+                    }
                 }
-            }
+
+                break;
+
+            case RoomDirection.LEFT:
+                //grid[0, midRoomY].zone = CellTag.occupied;
+                startPosition = new Vector2(0, midRoomY - midDoorX);
+
+                for (int y = 0; y < doorSize.x; y++)
+                {
+                    for (int x = 0; x < doorSize.y; x++)
+                    {
+                        grid[(int)startPosition.x + x, (int)startPosition.y + y].zone = CellTag.occupied;
+                    }
+                }
+
+                break;
+
+            case RoomDirection.DOWN:
+                //grid[midRoomX, 0].zone = CellTag.occupied;
+                startPosition = new Vector2(midRoomX - midDoorX, 0);
+
+                for (int x = 0; x < doorSize.x; x++)
+                {
+                    for (int y = 0; y < doorSize.y; y++)
+                    {
+                        grid[(int)startPosition.x + x, (int)startPosition.y + y].zone = CellTag.occupied;
+                    }
+                }
+
+                break;
+
+            case RoomDirection.RIGHT:
+                //grid[(int)roomSize.x-1, midRoomY].zone = CellTag.occupied;
+                startPosition = new Vector2((int)roomSize.x - 1, midRoomY - midDoorX);
+
+                for (int y = 0; y < doorSize.x; y++)
+                {
+                    for (int x = 0; x < doorSize.y; x++)
+                    {
+                        grid[(int)startPosition.x - x, (int)startPosition.y + y].zone = CellTag.occupied;
+                    }
+                }
+
+                break;
         }
     }
 
     private CellTag DetermineCellTag(int x, int y)
     {
-        if (x < wallSize || y < wallSize || x >= roomSize.x - wallSize || y >= roomSize.y - wallSize)
+        if (x < wallSize || y >= roomSize.y - wallSize)
         {
             return CellTag.walls;
+        }
+        else if (x >= roomSize.x - wallSize || y < wallSize)
+        {
+            return CellTag.occupied;
         }
         else
         {
@@ -117,7 +138,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
         }
     }
 
-    private void CreateObjects()
+    public void CreateObjects()
     {
         for (int i = 0; i < totalObjects; i++)
         {
@@ -128,7 +149,7 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
             while (attempts > 0 && !placed)
             {
-                Cell startCell = GetRandomCell(roomObject.zone);
+                Cell startCell = GetRandomCellByType(roomObject.zone);
                 if (startCell != null)
                 {
                     List<Cell> occupiedCells = GetCellsInArea(startCell, roomObject.Area);
@@ -142,7 +163,11 @@ public class ProceduralRoomGeneration : MonoBehaviour
 
                         Vector3 position = startCell.position;
                         position.y = 0 + roomObject.prefabObject.transform.localScale.y / 2;
-                        Instantiate(roomObject.prefabObject, position, Quaternion.identity, transform);
+
+                        Instantiate(roomObject.prefabObject, position,
+                            GetRotationObject(GetGridPosition(startCell).Item1, GetGridPosition(startCell).Item2),
+                            transform);
+
                         placed = true;
                     }
                 }
@@ -157,14 +182,112 @@ public class ProceduralRoomGeneration : MonoBehaviour
         }
     }
 
-    private Cell GetRandomCell(CellTag tag)
+    private Quaternion GetRotationObject(float x, float y)
     {
-        List<Cell> taggedCells = grid.FindAll(cell => cell.zone == tag);
+        Quaternion result = Quaternion.identity;
+
+        if (x == 0)
+        {
+            result = Quaternion.Euler(0, 180, 0);
+        }
+        else if (y == roomSize.y - 1)
+        {
+            result = Quaternion.Euler(0, -90, 0);
+        }
+
+        return result;
+    }
+
+    private (int, int) GetGridPosition(Cell cell)
+    {
+        for (int y = 0; y < roomSize.y; y++)
+        {
+            for (int x = 0; x < roomSize.x; x++)
+            {
+                if (grid[x, y].position == cell.position)
+                {
+                    return (x, y);
+                }
+            }
+        }
+
+        return (0, 0);
+    }
+
+    public Cell GetRandomCellByType(CellTag tag)
+    {
+        List<Cell> taggedCells = new List<Cell>();
+        for (int x = 0; x < roomSize.x; x++)
+        {
+            for (int y = 0; y < roomSize.y; y++)
+            {
+                if (grid[x, y].zone == tag)
+                {
+                    taggedCells.Add(grid[x, y]);
+                }
+            }
+        }
+
         if (taggedCells.Count > 0)
         {
             return taggedCells[UnityEngine.Random.Range(0, taggedCells.Count)];
         }
+
         return null;
+    }
+
+    [ContextMenu("spawn enemy")]
+    //Este metodo solo sirver para provar el rango de distancia del player
+    private void SpawnRandom()
+    {
+        foreach (var enemyCell in EnemyCells)
+        {
+            enemyCell.zone = CellTag.inside;
+        }
+
+        EnemyCells.Clear();
+
+        Cell currentcell = GetRandomCellByType(CellTag.inside, playerD);
+        while (currentcell != null)
+        {
+            currentcell.zone = CellTag.EnemySpawn;
+            EnemyCells.Add(currentcell);
+            currentcell = GetRandomCellByType(CellTag.inside, playerD);
+        }
+    }
+
+    public Cell GetRandomCellByType(CellTag tag, float playerDistance)
+    {
+        List<Cell> taggedCells = new List<Cell>();
+        for (int x = 0; x < roomSize.x; x++)
+        {
+            for (int y = 0; y < roomSize.y; y++)
+            {
+                if (grid[x, y].zone == tag)
+                {
+                    DungeonGeneration.RequestPosition();
+                    if (Vector3.Distance(grid[x, y].position, playerLastPosition) > playerDistance)
+                    {
+                        taggedCells.Add(grid[x, y]);
+                    }
+                }
+            }
+        }
+
+        if (taggedCells.Count > 0)
+        {
+            return taggedCells[UnityEngine.Random.Range(0, taggedCells.Count)];
+        }
+        else
+        {
+            Debug.Log(gameObject.name + " Dont found a cell");
+            return null;
+        }
+    }
+
+    public void HandlePlayerPosition(Vector3 position)
+    {
+        playerLastPosition = position;
     }
 
     private List<Cell> GetCellsInArea(Cell startCell, Vector2 area)
@@ -183,12 +306,11 @@ public class ProceduralRoomGeneration : MonoBehaviour
             {
                 if (x >= 0 && x < roomSize.x && y >= 0 && y < roomSize.y)
                 {
-                    int index = x * (int)roomSize.y + y;
-                    cellsInArea.Add(grid[index]);
+                    cellsInArea.Add(grid[x, y]);
                 }
                 else
                 {
-                    return null; // Out of bounds
+                    return null; // Fuera de los límites
                 }
             }
         }
@@ -217,30 +339,37 @@ public class ProceduralRoomGeneration : MonoBehaviour
     {
         if (grid != null && showGrid)
         {
-            foreach (var cell in grid)
+            for (int x = 0; x < roomSize.x; x++)
             {
-                switch (cell.zone)
+                for (int y = 0; y < roomSize.y; y++)
                 {
-                    case CellTag.none:
-                        Gizmos.color = Color.gray;
-                        break;
-                    case CellTag.inside:
-                        Gizmos.color = Color.green;
-                        break;
-                    case CellTag.walls:
-                        Gizmos.color = Color.blue;
-                        break;
-                    case CellTag.occupied:
-                        Gizmos.color = Color.red;
-                        break;
-                    default:
-                        break;
+                    var cell = grid[x, y];
+                    switch (cell.zone)
+                    {
+                        case CellTag.none:
+                            Gizmos.color = Color.gray;
+                            break;
+                        case CellTag.inside:
+                            Gizmos.color = Color.green;
+                            break;
+                        case CellTag.walls:
+                            Gizmos.color = Color.blue;
+                            break;
+                        case CellTag.EnemySpawn:
+                            Gizmos.color = Color.cyan;
+                            break;
+                        case CellTag.occupied:
+                            Gizmos.color = Color.red;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    Gizmos.DrawWireCube(cell.position, new Vector3(cellSize.x, 0.1f, cellSize.y));
                 }
-                Gizmos.DrawWireCube(cell.position, new Vector3(cellSize.x, 0.1f, cellSize.y));
             }
         }
     }
-
 }
 
 [Serializable]
@@ -262,5 +391,6 @@ public enum CellTag
     none = 0,
     inside,
     walls,
+    EnemySpawn,
     occupied,
 }

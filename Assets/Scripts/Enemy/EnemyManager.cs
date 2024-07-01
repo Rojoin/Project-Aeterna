@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -9,67 +9,73 @@ namespace Enemy
 {
     public class EnemyManager : MonoBehaviour
     {
-        public List<EnemyWave> possibleWaves;
-        private EnemyWave currentWave;
-        public UnityEvent OnWaveFinished;
+        public bool roomClear = false;
         public UnityEvent OnLastEnemyKilled;
+        public ProceduralRoomGeneration proceduralRoomGeneration;
+
         public GameObject enemyPrefab;
-        //Todo: make method that recieves the on kill event and when thelist its empty send a message to RoomManager(wait for wnzo to create  irt)
-        private List<BaseEnemy> currentEnemies;
-        private Room currentRoom;
-        private int numberOfEnemies;
+        private int totalEnemies = 0;
+        private List<BaseEnemy> Enemies = new List<BaseEnemy>();
+        [SerializeField] private int minNumberEnemies;
+        [SerializeField] private int maxNumberEnemies;
+        [SerializeField] private float enemyMinSpawnDistance;
 
-        private void OnEnable()
+        public void OnEnterNewRoom()
         {
-            OnWaveFinished.AddListener(FinishCurrentWave);
-        }
-
-        private void OnDisable()
-        {
-            OnWaveFinished.RemoveAllListeners();
-        }
-
-        public void OnEnterNewRoom(Room currentRoom)
-        {
-            this.currentRoom = currentRoom;
-            currentWave = possibleWaves[Random.Range(0, possibleWaves.Count)];
-            numberOfEnemies = currentWave.numberOfEnemies;
-            
-        }
-
-        // public IEnumerator SpawnEnemies()
-        // {
-        //     
-        //     while (expression)
-        //     {
-        //         var enemy = Instantiate(currentEnemies);
-        //         currentEnemies.Add(enemy.GetComponent<BaseEnemy>());
-        //         enemy.GetComponent<BaseEnemy>().OnDeathRemove.AddListener(DeleteFromCurrentEnemies);
-        //     }
-        // }
-        // public void SpawnEnemies()
-        // {
-        //     var enemy = Instantiate(enemyPrefab);
-        //     currentEnemies.Add(enemy.GetComponent<BaseEnemy>());
-        //     enemy.GetComponent<BaseEnemy>().OnDeathRemove.AddListener(DeleteFromCurrentEnemies);
-        // }
-
-        private void DeleteFromCurrentEnemies(BaseEnemy enemy)
-        {
-            enemy.OnDeathRemove.RemoveListener(DeleteFromCurrentEnemies);
-            if (currentEnemies.Remove(enemy))
+            if (!roomClear)
             {
-                Debug.Log($"Deleted enemy {enemy.name}:{enemy.gameObject.GetInstanceID()}");
-            }
-
-            if (currentEnemies.Count <= 0)
-            {
-                OnWaveFinished.Invoke();
+                SpawnEnemies();
             }
         }
 
-        private void FinishCurrentWave()
+        private void SpawnEnemies()
         {
+            int NewEnemyCuantity = Random.Range(minNumberEnemies, maxNumberEnemies);
+            totalEnemies = NewEnemyCuantity;
+
+            for (int i = 0; i < NewEnemyCuantity; i++)
+            {
+                Cell spawnPositionCell =
+                    proceduralRoomGeneration.GetRandomCellByType(CellTag.inside, enemyMinSpawnDistance);
+                GameObject newEnemy =
+                    Instantiate(enemyPrefab, spawnPositionCell.position + (enemyPrefab.transform.up * enemyPrefab
+                        .transform.localScale.y / 2), quaternion.identity, transform);
+
+                Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
+            }
+
+            foreach (BaseEnemy e in Enemies)
+            {
+                e.OnDeath.AddListener(DeletePlayer);
+            }
+        }
+
+        private void DeletePlayer()
+        {
+            totalEnemies--;
+            if (totalEnemies <= 0)
+            {
+                foreach (BaseEnemy e in Enemies)
+                {
+                    e.OnDeath.RemoveListener(DeletePlayer);
+                }
+
+                CallEndRoom();
+            }
+        }
+
+        public void CallEndRoom()
+        {
+            OnLastEnemyKilled.Invoke();
+            roomClear = true;
+        }
+
+        private void OnDestroy()
+        {
+            foreach (BaseEnemy e in Enemies)
+            {
+                e.OnDeath.RemoveListener(DeletePlayer);
+            }
         }
     }
 }

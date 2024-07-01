@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 5191031799692572741}
   - component: {fileID: 4528484972123530283}
   - component: {fileID: 5334585770487896076}
+  - component: {fileID: 6392193112911887958}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -277,6 +278,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -297,6 +310,22 @@ MonoBehaviour:
       m_Calls: []
   enemyAnimator: {fileID: 3186729395415073752}
   timeAfterDeactivate: 0.5
+--- !u!114 &6392193112911887958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987170732086015747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: Dummy_Hit
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3861195938695300874
 GameObject:
   m_ObjectHideFlags: 0
