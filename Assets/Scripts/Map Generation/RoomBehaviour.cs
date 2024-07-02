@@ -124,15 +124,16 @@ public class RoomBehaviour : MonoBehaviour
         doorsOpened = doorIsOpen;
         foreach (var pd in doorColecctions)
         {
+            ParticleSystem ps = pd.particleDoorsGameobject.GetComponent<ParticleSystem>();
+            pd.particleDoorsGameobject.SetActive(doorIsOpen);
+            
             if (doorIsOpen)
             {
-                pd.particleDoorsGameobject.SetActive(false);
-                pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Stop();
+                ps.Stop();
             }
             else
             {
-                pd.particleDoorsGameobject.SetActive(true);
-                pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Play();
+                ps.Play();
             }
         }
     }

@@ -26,17 +26,6 @@
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ChildrenList>
-								<Event Name="Player_Attack_Sword" ID="{0ECF8177-8C7C-4CF7-9FC5-59BE4277FA1B}">
-									<ChildrenList>
-										<Action Name="" ID="{3C56F373-466B-4F38-8330-6675050268A8}" ShortID="39954311">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Attack_Sword" ID="{6FE141E3-3BF8-4A80-9BB7-3C8343C50A81}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
 								<Event Name="Player_RecieveDamage" ID="{9698F5D5-BF10-4584-A6A6-8806B27779A4}">
 									<ChildrenList>
 										<Action Name="" ID="{76A24207-6B24-4474-B788-D6ED552C4F21}" ShortID="312328945">
@@ -74,6 +63,17 @@
 										</Event>
 									</ChildrenList>
 								</Folder>
+								<Event Name="Player_Attack_Sword" ID="{5EB471F3-F959-4BC0-98BA-96FB33AE00B2}">
+									<ChildrenList>
+										<Action Name="" ID="{1A695455-9AC7-4A11-8DD8-F27E0C4F47D1}" ShortID="419760576">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Attack_Sword" ID="{6FE141E3-3BF8-4A80-9BB7-3C8343C50A81}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Dummy" ID="{FE1A87B4-3C97-48F8-A05C-34D8BBC429C0}" ShortID="58906333">
