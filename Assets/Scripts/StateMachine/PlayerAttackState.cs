@@ -20,8 +20,8 @@ namespace StateMachine
 
         #endregion
 
-        public float timeBetweenCombo = 1.0f;
-        public float timeBetweenComboEnd = 0.5f;
+        public float timeBetweenCombo = 0.4f;
+        public float timeBetweenComboEnd = 1.5f;
         private float lastClickedTime = 0;
         private float lastComboEnd = 0;
         private int comboCounter = 0;
@@ -31,6 +31,7 @@ namespace StateMachine
         private float timeUntilStart;
         private float timeAfterComboEnds;
         private float attackTimer = 0.0f;
+        private float timer = 0.0f;
         private List<IHealthSystem> currentlyHitted = new List<IHealthSystem>();
 
         public PlayerAttackState(Action onAttackEnd, Action onMove, params object[] data) : base(onMove, data)
@@ -40,8 +41,8 @@ namespace StateMachine
             AttackChannel = data[7] as VoidChannelSO;
             gameSettings = data[8] as GameSettings;
             OnAttackEnd += onAttackEnd;
-            lastComboEnd = -timeBetweenComboEnd;
-            lastClickedTime = -timeBetweenCombo;
+            lastComboEnd = -timeBetweenComboEnd*5;
+            lastClickedTime = -timeBetweenCombo*5;
             attackTimer = 0.0f;
             currentlyHitted.Clear();
         }
@@ -86,6 +87,7 @@ namespace StateMachine
                     if (comboCounter >= comboList.Count)
                     {
                         comboCounter = 0;
+                        lastComboEnd = Time.time;
                     }
                 }
             }
@@ -200,19 +202,12 @@ namespace StateMachine
         {
             if (isAttacking)
             {
+                timer += deltaTime;
                 attackTimer += deltaTime;
                 if (attackTimer >= timeAfterComboEnds)
                 {
                     EndCombo();
                     Debug.Log("FinishCombo");
-                }
-                else if (attackTimer >= timeUntilAttackEnds)
-                {
-                    _attackCollider.ToggleCollider(false);
-                }
-                else if (attackTimer >= timeUntilStart)
-                {
-                    _attackCollider.ToggleCollider(true);
                 }
             }
         }
