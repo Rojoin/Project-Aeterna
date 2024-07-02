@@ -203,6 +203,7 @@ MonoBehaviour:
   OnInteraction: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
   OnHudToggle: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
   activeCardSystem: 0
+  timeToSpawnShop: 0
 --- !u!54 &424831013041824585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -251,6 +252,7 @@ MonoBehaviour:
   comboList:
   - {fileID: 11400000, guid: 6035da61ecfe4264d8df90e2c1734a00, type: 2}
   - {fileID: 11400000, guid: 7c95df3b3eca2b1468d82933f7c363a3, type: 2}
+  - {fileID: 11400000, guid: 287c39144bb0b0842a45dd4e357d8666, type: 2}
   _attackCollider: {fileID: 5988611204825936752}
   onMove:
     m_PersistentCalls:
@@ -573,6 +575,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9079201566075216794, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104496750157086188, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: stopAction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104496750157086188, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: useUnscaledTime
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
