@@ -35,10 +35,11 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         return player.health;
     }
 
-    public void SetMaxHealigh(float newMaxHealth) 
+    public void SetMaxHealigh(float newMaxHealth)
     {
+        maxHealth += newMaxHealth;
+        currentHealth += newMaxHealth;
         healthBar.FillAmount = currentHealth / maxHealth;
-       maxHealth = newMaxHealth;
     }
 
     public void ReceiveDamage(float damage) 

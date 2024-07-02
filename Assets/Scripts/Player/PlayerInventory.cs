@@ -150,13 +150,13 @@ public class PlayerInventory : MonoBehaviour
             {
                 case CardSO.CardType.Attack:
 
-                    newDamage += newCard.damage;
+                    playerHealth.SetDamage(newCard.damage);
 
                     break;
 
                 case CardSO.CardType.Health:
 
-                    newHealth += newCard.health;
+                    playerHealth.SetMaxHealigh(newCard.health);
 
                     break;
 
@@ -176,8 +176,6 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        playerHealth.SetHealth(newHealth);
-        playerHealth.SetDamage(newDamage);
         playerHealth.SetSpeed(newSpeed);
     }
 
