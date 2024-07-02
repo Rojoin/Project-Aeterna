@@ -237,7 +237,7 @@ namespace StateMachine
                 if (!currentlyHitted.Contains(healthSystem))
                 {
                     Debug.Log("Enter attack.");
-                    healthSystem.ReceiveDamage(comboList[comboCounter].damage);
+                    healthSystem.ReceiveDamage(comboList[comboCounter].damage +player.damage);
                     currentlyHitted.Add(healthSystem);
                 }
                 else
