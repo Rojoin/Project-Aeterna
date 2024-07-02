@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using static System.TimeZoneInfo;
 
 public class DoorBehaviour : MonoBehaviour
 {

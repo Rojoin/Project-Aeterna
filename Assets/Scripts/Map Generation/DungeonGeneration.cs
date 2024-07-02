@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Enemy;
@@ -25,6 +26,8 @@ public class DungeonGeneration : MonoBehaviour
     private DungeonRoom ActualPlayerRoom;
 
     [SerializeField] private PlayerHudInputs selectCardMenu;
+
+    public GameObject transitionGO;
 
     [Serializable]
     private class DungeonRoom
@@ -164,6 +167,9 @@ public class DungeonGeneration : MonoBehaviour
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)
     {
+        transitionGO.SetActive(true);
+        StartCoroutine(DisableTransition());
+
         ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
         cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
 
@@ -195,6 +201,12 @@ public class DungeonGeneration : MonoBehaviour
         player.enabled = true;
 
         SetVisibleRooms();
+    }
+
+    private IEnumerator DisableTransition() 
+    {
+        yield return new WaitForSeconds(2);
+        transitionGO.SetActive(false);
     }
 
     private void SetVisibleRooms()

@@ -21,8 +21,6 @@ namespace Enemy
         [SerializeField] private int maxNumberEnemies;
         [SerializeField] private float enemyMinSpawnDistance;
 
-        [SerializeField] private TransitionPlayer transitionPlayer;
-
         public void OnEnterNewRoom()
         {
             if (!roomClear)
@@ -70,7 +68,6 @@ namespace Enemy
         public void CallEndRoom()
         {
             OnLastEnemyKilled.Invoke();
-            StartCoroutine(transitionPlayer.StartTransition());
             roomClear = true;
         }
 
