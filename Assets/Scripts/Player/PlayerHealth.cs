@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [Header("Data")]
     [SerializeField]private EntitySO player;
     [SerializeField]private Animator animator;
+    [SerializeField]private VoidChannelSO MoveCamera;
      [SerializeField] private CustomSlider healthBar;
     private float currentHealth;
     private float maxHealth;
@@ -43,9 +44,11 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
     public void ReceiveDamage(float damage) 
     {
-        if (currentHealth <= 0 && currentHealth <= damage) 
+        if (currentHealth <= 0 || currentHealth <= damage) 
         {
             currentHealth = 0;
+            MoveCamera.RaiseEvent();
+            gameObject.SetActive(false);
         }
         else
         {

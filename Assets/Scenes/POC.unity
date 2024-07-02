@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12635525, g: 0.07183733, b: 0.03775313, a: 1}
+  m_IndirectSpecularColor: {r: 0.111086205, g: 0.063144036, b: 0.032515854, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1163,7 +1163,7 @@ PrefabInstance:
     - target: {fileID: 5334585770487896076, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
       propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1972756163}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1287,6 +1287,17 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &1025194290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7157839541361306205, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+  m_PrefabInstance: {fileID: 5693371484574524226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9db088da38bf144bad33b276d3682e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1090447491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,17 +2131,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!114 &1972756163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6392193112911887958, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
-  m_PrefabInstance: {fileID: 858618166}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2026847408 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7934158526880610219, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -2209,6 +2209,10 @@ PrefabInstance:
       propertyPath: selectCardMenu
       value: 
       objectReference: {fileID: 2077532266}
+    - target: {fileID: 3502469410240450855, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1025194290}
     - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: cardsSlots.Array.data[0]
       value: 

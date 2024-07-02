@@ -14,7 +14,7 @@ namespace Enemy
         public UnityEvent OnLastEnemyKilled;
         public ProceduralRoomGeneration proceduralRoomGeneration;
 
-        public GameObject enemyPrefab;
+        public List<GameObject> enemyPrefab;
         private int totalEnemies = 0;
         private List<BaseEnemy> Enemies = new List<BaseEnemy>();
         [SerializeField] private int minNumberEnemies;
@@ -38,10 +38,13 @@ namespace Enemy
             {
                 Cell spawnPositionCell =
                     proceduralRoomGeneration.GetRandomCellByType(CellTag.inside, enemyMinSpawnDistance);
+                GameObject enemyToInvoke = enemyPrefab[Random.Range(0, enemyPrefab.Count)];
                 GameObject newEnemy =
-                    Instantiate(enemyPrefab, spawnPositionCell.position + (enemyPrefab.transform.up * ((enemyPrefab
-                        .transform.localScale.y / 2) + 0.3f)), quaternion.identity, transform);
-
+                    Instantiate(enemyToInvoke, spawnPositionCell.position + (enemyToInvoke.transform.up *
+                                                                             ((enemyToInvoke
+                                                                                 .transform.localScale.y / 2) + 0.3f)),
+                        quaternion.identity, transform);
+                newEnemy.transform.Rotate(Vector3.up, 180);
                 Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
             }
 
