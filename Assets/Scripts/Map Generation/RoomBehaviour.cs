@@ -122,6 +122,7 @@ public class RoomBehaviour : MonoBehaviour
     public void SetRoomDoorState(bool doorIsOpen)
     {
         doorsOpened = doorIsOpen;
+
         foreach (var pd in doorColecctions)
         {
             ParticleSystem ps = pd.particleDoorsGameobject.GetComponent<ParticleSystem>();
