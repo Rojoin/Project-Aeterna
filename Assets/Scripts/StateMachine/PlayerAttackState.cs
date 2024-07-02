@@ -72,7 +72,10 @@ namespace StateMachine
         private void Attack()
         {
             if (isPause)
+            {
+                Debug.Log("Returned");
                 return;
+            }
             if (Time.time - lastComboEnd > timeBetweenComboEnd && comboCounter <= comboList.Count)
             {
                 Debug.Log($"The last clicked time was {lastClickedTime}");
