@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7530813336021028996}
   - component: {fileID: 5934957807960439712}
   - component: {fileID: 4072384107739271724}
+  - component: {fileID: 2413435602680500474}
   m_Layer: 0
   m_Name: End Chamber
   m_TagString: Untagged
@@ -97,7 +98,6 @@ MonoBehaviour:
   PlayerInteractNewDoor:
     m_PersistentCalls:
       m_Calls: []
-  doorAnimation: {fileID: 4072384107739271724}
 --- !u!114 &5934957807960439712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +139,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2413435602680500474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203743812469221639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5069a9e51594596b204ecb5f777c494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomClear: 1
+  OnLastEnemyKilled:
+    m_PersistentCalls:
+      m_Calls: []
+  proceduralRoomGeneration: {fileID: 0}
+  enemyPrefab: []
+  minNumberEnemies: 0
+  maxNumberEnemies: 0
+  enemyMinSpawnDistance: 0
 --- !u!1001 &3751200389667719876
 PrefabInstance:
   m_ObjectHideFlags: 0

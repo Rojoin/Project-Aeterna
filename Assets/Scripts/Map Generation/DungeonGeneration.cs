@@ -13,6 +13,7 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private GameObject PlayerPrefab;
     [SerializeField] private CharacterController player;
     [SerializeField] private CinemachineConfiner cameraConfiner;
+    [SerializeField] private VoidChannelSO OnEnd;
     [SerializeField] private float playerTpPositionY;
     private int nCurrentRooms;
 
@@ -195,6 +196,15 @@ public class DungeonGeneration : MonoBehaviour
         player.enabled = true;
 
         SetVisibleRooms();
+        if (ActualPlayerRoom.type == RoomTypes.BOSS)
+        {
+            foreach (DungeonRoom d in dungeonRooms)
+            {
+                d.dungeonRoomInstance.SetActive(true);
+            }
+            OnEnd.RaiseEvent();
+            player.gameObject.SetActive(false);
+        }
     }
 
     private void SetVisibleRooms()
@@ -289,10 +299,10 @@ public class DungeonGeneration : MonoBehaviour
             room.proceduralRoomGeneration.CreateGrid();
             RotateRoom(room, roomInstance);
             room.proceduralRoomGeneration.CreateObjects();
-            
+
             room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
-            
+
             if (room.type == RoomTypes.START)
             {
                 ActualPlayerRoom = room;

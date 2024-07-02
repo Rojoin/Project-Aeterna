@@ -41,7 +41,11 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         healthBar.FillAmount = currentHealth / maxHealth;
        maxHealth = newMaxHealth;
     }
-
+[ContextMenu("KillPlayer")]
+private void KillPlayer()
+{
+    ReceiveDamage(1000000);
+}
     public void ReceiveDamage(float damage) 
     {
         if (currentHealth <= 0 || currentHealth <= damage) 

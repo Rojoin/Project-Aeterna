@@ -143,7 +143,7 @@ PrefabInstance:
     - target: {fileID: 5116400276696402719, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: OnResetLevel
       value: 
-      objectReference: {fileID: 11400000, guid: fdf873835f0c8644fa75bc9a213b7046, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5116400276696402719, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: gameSettings
       value: 
@@ -171,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 5116400276696402719, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: OnChangeCameraChannel
       value: 
-      objectReference: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5116400276696402719, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: OnControlSchemeChange
       value: 
@@ -446,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6319277443713214167, guid: 62a0b8f37f4ca50459b2695aa1060f81, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
@@ -1839,6 +1839,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 1166619365}
   player: {fileID: 1166619375}
   cameraConfiner: {fileID: 1681417379}
+  OnEnd: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   playerTpPositionY: -1.75
   selectCardMenu: {fileID: 1166619377}
 --- !u!1 &1844124701
@@ -2213,6 +2214,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1025194290}
+    - target: {fileID: 3502469410240450855, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: MoveCamera
+      value: 
+      objectReference: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
     - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: cardsSlots.Array.data[0]
       value: 
@@ -2253,6 +2258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 816650882897271340, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1663965587844793375, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: gameManager
       value: 
@@ -2270,9 +2279,17 @@ PrefabInstance:
       value: InGameCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: moveCamera
+      value: 
+      objectReference: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
+    - target: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1166619369}
+    - target: {fileID: 5250553791646526628, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5579994857006716957, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_Pivot.x
       value: 0
