@@ -7,12 +7,12 @@ namespace Enemy
 {
     public abstract class BaseEnemy : MonoBehaviour, IHealthSystem
     {
-        [SerializeField] private EntitySO enemy;
+        [SerializeField] protected DummySO enemy;
         [SerializeField] private CustomSlider healthBar;
         [SerializeField] public UnityEvent OnHit;
         [SerializeField] public UnityEvent OnDeath;
         [SerializeField] public UnityEvent<BaseEnemy> OnDeathRemove;
-        [SerializeField] private Animator enemyAnimator;
+        [SerializeField] public Animator animator;
         private float currentHealth;
         private float maxHealth;
         private static readonly int IsIdle = Animator.StringToHash("isIdle");
@@ -23,11 +23,16 @@ namespace Enemy
 
         private void OnEnable()
         {
+            Init();
+        }
+
+        protected virtual void Init()
+        {
             maxHealth = enemy.health;
             currentHealth = maxHealth;
             healthBar.FillAmount = 1.0f;
-            enemyAnimator.SetFloat(Damage,1.0f);
-            enemyAnimator.SetTrigger(IsIdle);
+            animator.SetFloat(Damage, 1.0f);
+            animator.SetTrigger(IsIdle);
         }
 
         public void SetHealth(float newHealth)
@@ -46,7 +51,7 @@ namespace Enemy
         {
             if (currentHealth <= 0 || currentHealth <= damage)
             {
-                enemyAnimator.SetTrigger(Dead);
+                animator.SetTrigger(Dead);
                 currentHealth = 0;
                 OnHit.Invoke();
                 OnDeath.Invoke();
@@ -54,20 +59,17 @@ namespace Enemy
             }
             else
             {
-                enemyAnimator.SetTrigger(Hurt);
+                animator.SetTrigger(Hurt);
                 currentHealth -= damage;
                 OnHit.Invoke();
             }
 
             float healthNormalize = currentHealth / maxHealth;
             healthBar.FillAmount = healthNormalize;
-            enemyAnimator.SetFloat(Damage,healthNormalize);
+            animator.SetFloat(Damage, healthNormalize);
         }
 
-        public bool IsDead()
-        {
-            return currentHealth <= 0;
-        }
+        public bool IsDead() => currentHealth <= 0;
 
         void DeactivateObject()
         {

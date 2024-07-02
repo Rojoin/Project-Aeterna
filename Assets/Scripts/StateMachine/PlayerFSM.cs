@@ -31,6 +31,7 @@ namespace StateMachine
         private void OnEnable()
         {
             speed = player.speed;
+            PlayerBaseState.isPause = false;
             fsm = new(2, 3);
             int idleState = fsm.AddNewState(new PlayerMoveState(ActivateOnMoveEffects, this.gameObject,
                 _playerAnimatorController,

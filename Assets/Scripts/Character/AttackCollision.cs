@@ -37,6 +37,10 @@ public class AttackCollision : MonoBehaviour
     {
         OnTriggerEnterObject.Invoke(other.gameObject);
     }
+    public bool OnEndAttack()
+    {
+        return false;
+    }
 
     public void OnTriggerExit(Collider other)
     {
