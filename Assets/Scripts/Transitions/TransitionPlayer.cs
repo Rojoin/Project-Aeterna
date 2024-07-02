@@ -7,7 +7,7 @@ public class TransitionPlayer : MonoBehaviour
     [SerializeField] private Animator transitionAnimator;
 
     [SerializeField] private float transitionTime;
-    IEnumerator StartTransition()
+    public IEnumerator StartTransition()
     {
         transitionAnimator.SetTrigger("Start");
 
