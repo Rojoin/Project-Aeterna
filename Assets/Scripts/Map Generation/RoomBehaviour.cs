@@ -76,6 +76,8 @@ public class RoomBehaviour : MonoBehaviour
 
     public UnityEvent<RoomDirection> PlayerInteractNewDoor;
 
+    public Animator doorAnimation;
+
     private void OnEnable()
     {
         foreach (DoorColecction d in doorColecctions)
@@ -128,6 +130,7 @@ public class RoomBehaviour : MonoBehaviour
             {
                 pd.particleDoorsGameobject.SetActive(false);
                 pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Stop();
+                doorAnimation.SetTrigger("OpenDoor");
             }
             else
             {

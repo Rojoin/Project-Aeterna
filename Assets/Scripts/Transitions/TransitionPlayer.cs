@@ -12,7 +12,5 @@ public class TransitionPlayer : MonoBehaviour
         transitionAnimator.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
-
-        transitionAnimator.SetTrigger("End");
     }
 }

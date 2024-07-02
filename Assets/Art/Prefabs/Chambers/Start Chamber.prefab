@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7530813336021028996}
   - component: {fileID: 1865549448686559011}
   - component: {fileID: 6370926596203227773}
+  - component: {fileID: 6439635897196479889}
   m_Layer: 0
   m_Name: Start Chamber
   m_TagString: Untagged
@@ -62,6 +63,7 @@ MonoBehaviour:
     - {fileID: 3744694564553318167}
     - {fileID: 5014123932554577972}
     - {fileID: 4016753058988178782}
+    - {fileID: 2697849191355019686}
     doorBehaviour: {fileID: 8831995838797810832}
     doorCollider: {fileID: 897782229220542965}
     particleDoorsGameobject: {fileID: 6716791038216301876}
@@ -97,6 +99,7 @@ MonoBehaviour:
   PlayerInteractNewDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorAnimation: {fileID: 6439635897196479889}
 --- !u!114 &1865549448686559011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +141,27 @@ MonoBehaviour:
   minNumberEnemies: 0
   maxNumberEnemies: 0
   enemyMinSpawnDistance: 0
+--- !u!95 &6439635897196479889
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203743812469221639}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 839d4e1b17e418847bd0b0a3f45c0448, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &150120211434815148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -261,6 +285,18 @@ PrefabInstance:
       propertyPath: roomDirection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3895275404115981161, guid: 6033c1f2971fb934caad1588a89fcf21, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895275404115981161, guid: 6033c1f2971fb934caad1588a89fcf21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095944180449152441, guid: 6033c1f2971fb934caad1588a89fcf21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.39
+      objectReference: {fileID: 0}
     - target: {fileID: 5715482082067791830, guid: 6033c1f2971fb934caad1588a89fcf21, type: 3}
       propertyPath: roomDirection
       value: 3
@@ -321,6 +357,11 @@ Transform:
 --- !u!4 &2328303508147126680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2911745909683234168, guid: 6033c1f2971fb934caad1588a89fcf21, type: 3}
+  m_PrefabInstance: {fileID: 587529321694520544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2697849191355019686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3267358530007471430, guid: 6033c1f2971fb934caad1588a89fcf21, type: 3}
   m_PrefabInstance: {fileID: 587529321694520544}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2912002942393530027 stripped
