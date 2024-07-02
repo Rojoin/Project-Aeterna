@@ -203,6 +203,7 @@ MonoBehaviour:
   OnInteraction: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
   OnHudToggle: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
   activeCardSystem: 0
+  timeToSpawnShop: 0
 --- !u!54 &424831013041824585
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -578,7 +579,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2814897110738796106, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2841203996178643889}
   m_SourcePrefab: {fileID: 100100000, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
 --- !u!4 &980067415721566176 stripped
 Transform:
@@ -599,5 +603,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0ee7145ccdf4f08bdbead1c194a8681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6302415654222447152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2814897110738796106, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+  m_PrefabInstance: {fileID: 8099208977273961594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2841203996178643889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302415654222447152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea1bf9a6562fe224d9c30bec6e56d107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

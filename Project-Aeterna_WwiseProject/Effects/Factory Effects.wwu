@@ -1952,6 +1952,51 @@
 										<Property Name="DryLevel" Type="Real32" Value="0"/>
 										<Property Name="Pitch" Type="Real32" Value="1200"/>
 									</PropertyList>
+									<ObjectLists>
+										<ObjectList Name="RTPC">
+											<Reference>
+												<Local>
+													<RTPC Name="" ID="{6713CB85-DA0E-4208-8E70-6481F96E186A}" ShortID="1021188076">
+														<PropertyList>
+															<Property Name="PropertyName" Type="string" Value="Pitch"/>
+														</PropertyList>
+														<ReferenceList>
+															<Reference Name="ControlInput">
+																<Custom>
+																	<ModulatorTime Name="Modulator Time (Custom)" ID="{67593523-D20F-4C77-82D5-9B5A51092FF0}" ShortID="546050227">
+																		<PropertyList>
+																			<Property Name="TimeModDuration" Type="Real64" Value="2"/>
+																		</PropertyList>
+																	</ModulatorTime>
+																</Custom>
+															</Reference>
+															<Reference Name="Curve">
+																<Custom>
+																	<Curve Name="" ID="{84BDABDE-EA94-4520-B9B1-D92D7DA58456}">
+																		<PropertyList>
+																			<Property Name="Flags" Type="int32" Value="1"/>
+																		</PropertyList>
+																		<PointList>
+																			<Point>
+																				<XPos>0</XPos>
+																				<YPos>0</YPos>
+																				<Flags>5</Flags>
+																			</Point>
+																			<Point>
+																				<XPos>2</XPos>
+																				<YPos>-0</YPos>
+																				<Flags>37</Flags>
+																			</Point>
+																		</PointList>
+																	</Curve>
+																</Custom>
+															</Reference>
+														</ReferenceList>
+													</RTPC>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
 								</Effect>
 								<Effect Name="Octave_Down" ID="{062EC4B1-5372-4D1E-917B-C757293F2B42}" PluginName="Wwise Pitch Shifter" CompanyID="0" PluginID="136" PluginType="3">
 									<PropertyList>
