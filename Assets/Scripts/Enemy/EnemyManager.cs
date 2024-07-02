@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -19,6 +20,8 @@ namespace Enemy
         [SerializeField] private int minNumberEnemies;
         [SerializeField] private int maxNumberEnemies;
         [SerializeField] private float enemyMinSpawnDistance;
+
+        [SerializeField] private TransitionPlayer transitionPlayer;
 
         public void OnEnterNewRoom()
         {
@@ -67,7 +70,7 @@ namespace Enemy
         public void CallEndRoom()
         {
             OnLastEnemyKilled.Invoke();
-
+            StartCoroutine(transitionPlayer.StartTransition());
             roomClear = true;
         }
 
