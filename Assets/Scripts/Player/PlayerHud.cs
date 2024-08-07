@@ -11,7 +11,6 @@ public class PlayerHud : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
 
     [SerializeField] private SelectCardMenu selectCardMenu;
-
     
     [SerializeField] private List<CardDisplay> cardDisplay;
 
@@ -22,8 +21,6 @@ public class PlayerHud : MonoBehaviour
     private List<CardSO> invetory;
 
     public List<GameObject> cardGO;
-
-
 
     void Start()
     {
@@ -37,7 +34,7 @@ public class PlayerHud : MonoBehaviour
 
     public void ShowCardsHud(CardSO cardSelected) 
     {
-        invetory = playerInventory.GetPlayerCardsInventoryList();
+        invetory = playerInventory.GetInventory();
 
         for (int i = slotIndex; i < playerInventory.GetCurrentCards();)
         {
