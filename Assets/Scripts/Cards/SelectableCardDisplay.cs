@@ -10,9 +10,9 @@ public class SelectableCardDisplay : MonoBehaviour
     public TextMeshProUGUI description;
 
     public Image artMidground_1;
-
     public Image artMidground_2;
     public Image artMidground_3;
+
     public Image artFrame;
 
     public void ShowCardImage(CardSO card)

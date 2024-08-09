@@ -9,6 +9,8 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] private int maxCards;
 
+    [SerializeField] private int maxCardsOnSlot;
+
     [SerializeField] private int currentCards;
 
     [SerializeField] private List<CardSO> playerCardsInventory;
@@ -45,6 +47,18 @@ public class PlayerInventory : MonoBehaviour
         currentCards = num;
     }
 
+    public void SetCardsOnSlot(CardSO newCard) 
+    {
+        for (int i = 0; i < currentCards; i++)
+        {
+            if (newCard.ID == playerCardsInventory[i].ID && playerCardsInventory[i].cardsOnSlot < maxCardsOnSlot) 
+            {
+                playerCardsInventory[i].cardsOnSlot++;
+                break;
+            }
+        }
+    }
+
     public List<CardSO> GetAllCard() 
     {
         return allCards;
@@ -53,6 +67,7 @@ public class PlayerInventory : MonoBehaviour
     public void AddCard(CardSO newCard) 
     {
         playerCardsInventory.Add(newCard);
+        currentCards++;
     }
 
     public void RemoveCard(CardSO newCard) 

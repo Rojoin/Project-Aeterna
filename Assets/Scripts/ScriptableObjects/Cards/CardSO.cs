@@ -48,10 +48,16 @@ public class CardSO : ScriptableObject
     public void ResetStacks()
     {
         cardsOnSlot = m_cardsOnSlot;
+        slotIndex = -1;
     }
 
     private void OnEnable()
     {
         cardsOnSlot = m_cardsOnSlot;
+    }
+
+    private void OnDisable()
+    {
+        ResetStacks();
     }
 }

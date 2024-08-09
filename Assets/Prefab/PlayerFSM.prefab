@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
   animator: {fileID: 4241493471790223710}
+  MoveCamera: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   healthBar: {fileID: 0}
   OnPlayerHurt:
     m_PersistentCalls:
@@ -163,6 +164,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4544806065991443501}
         m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CameraShake, Assembly-CSharp
+        m_MethodName: ShakeCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -184,18 +197,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9a5ec9d7f454b4fb469dd33a489b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 3502469410240450855}
-  cardsSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  maxCards: 3
+  maxCardsOnSlot: 3
+  currentCards: 0
+  playerCardsInventory: []
   allCards:
   - {fileID: 11400000, guid: 2cc15799823eda0468f5f84e3d63864e, type: 2}
   - {fileID: 11400000, guid: ddbe288127bc8c44c83befb24bcaf30f, type: 2}
-  - {fileID: 11400000, guid: aeb25e97ef497aa46ad626cd84696c59, type: 2}
-  playerCardsInventory: []
-  maxCards: 9
-  currentCards: 0
+  - {fileID: 11400000, guid: b79125d7bcba9904c9a4ec8b4d38dd54, type: 2}
 --- !u!114 &2419694579521688218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,13 +220,9 @@ MonoBehaviour:
   playerInventory: {fileID: 5135478775610306301}
   playerHud: {fileID: 0}
   selectCardMenu: {fileID: 0}
-  cardsCounter:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   OnInteraction: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
   OnHudToggle: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
-  activeCardSystem: 0
+  activeCardSystem: 1
   timeToSpawnShop: 0
 --- !u!54 &424831013041824585
 Rigidbody:

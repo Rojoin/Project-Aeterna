@@ -102,12 +102,47 @@ public class SelectCardMenu : MonoBehaviour
     {
         if (cardsToShow.Count == 0)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < maxCardsToSelect; i++)
             {
                 cardsToShow.Add(GetRandomCard());
 
                 cardsDisplay[i].ShowCardImage(cardsToShow[i]);
             }
         }
+    }
+
+    private void SetCardSelected(int cardSelected) 
+    {
+        List<CardSO> inventory = playerInventory.GetInventory();
+        bool isOnInvetory = false;
+
+        for (int i = 0; i < playerInventory.GetCurrentCards(); i++)
+        {
+            if (inventory[i] == cardsToShow[cardSelected])
+            {
+                isOnInvetory = true;
+
+                break;
+            }
+        }
+
+        if (!isOnInvetory && inventory.Count > 0)
+        {
+            playerInventory.AddCard(cardsToShow[cardSelected]);
+            playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+        }
+
+        if (inventory.Count == 0) 
+        {
+            playerInventory.AddCard(cardsToShow[cardSelected]);
+            playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+        }
+
+        else
+        {
+            playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+        }
+
+        ShowSelectCardMenu(false);
     }
 }

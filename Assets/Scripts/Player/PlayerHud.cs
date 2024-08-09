@@ -28,30 +28,6 @@ public class PlayerHud : MonoBehaviour
         {
             cardGO[i].SetActive(true);
         }
-
-
-
-        //invetory = playerInventory.GetInventory();
-
-        //for (int i = slotIndex; i < playerInventory.GetCurrentCards();)
-        //{
-        //    for (int j = 0; j < invetory.Count; j++) 
-        //    {
-        //        if (cardSelected.ID != invetory[j].ID)
-        //        {
-        //            slotIndex += 1;
-        //            break;
-        //        }
-        //    }
-        //    break;
-        //}
-
-        //for (int i = 0; i < invetory.Count; i++)
-        //{
-        //    cardDisplay[i].ShowCard(invetory[i]);
-
-        //    cardGO[i].SetActive(true);
-        //}
     }
 
     public void DesactiveCardsGO() 
