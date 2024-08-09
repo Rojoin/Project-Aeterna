@@ -13,10 +13,7 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] private List<CardSO> playerCardsInventory;
 
-    private void Start()
-    {
-        playerCardsInventory = new List<CardSO>(new CardSO[maxCards]);
-    }
+    [SerializeField] private List<CardSO> allCards;
 
     public List<CardSO> GetInventory() 
     {
@@ -46,6 +43,11 @@ public class PlayerInventory : MonoBehaviour
     public void SetCurrentCards(int num) 
     {
         currentCards = num;
+    }
+
+    public List<CardSO> GetAllCard() 
+    {
+        return allCards;
     }
 
     public void AddCard(CardSO newCard) 

@@ -1,3 +1,4 @@
+using ScriptableObjects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] private GameManager gameManager;
 
     [SerializeField] private GameObject cardInformation;
+
+    [SerializeField] private GameSettings gameSettings;
 
     [Header("Setup")]
     [SerializeField] private float minRotation;
@@ -31,6 +34,19 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+    }
+
+    private void Update()
+    {
+        if (!gameSettings.isUsingController)
+        {
+            SelectableCardMovementWithMouse();
+        }
+
+        else
+        {
+            SelectableCardMovementWithGamepad();   
+        }
     }
 
     public void SelectableCardMovementWithMouse()
@@ -82,8 +98,8 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
             rectTransform.rotation = Quaternion.Slerp(rectTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        else 
-        { 
+        else
+        {
             isSelected = true;
 
             transform.rotation = Quaternion.Euler(xCardRotation, 0, 0);
@@ -127,14 +143,14 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
         return false;
     }
 
-    public bool IsSelected() 
+    public bool IsSelected()
     {
-        if (isSelected) 
+        if (isSelected)
         {
             return true;
         }
 
-        else 
+        else
         {
             return false;
         }

@@ -7,45 +7,43 @@ using Random = UnityEngine.Random;
 
 public class SelectCardMenu : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Reference: UI")]
     [SerializeField] private GameObject SelectCardUI;
+
+    private bool showCardMenu = false;
+
+    [Header("Reference: PlayerInventory")]
     [SerializeField] private PlayerInventory playerInventory;
+
+    private List<CardSO> allCards;
+
     [SerializeField] private BoolChannelSO TogglePause;
     [SerializeField] private VoidChannelSO moveCamera;
     [SerializeField] private GameObject gameOverScreen;
-    private List<CardSO> cardsSelected = new List<CardSO>();
 
-    private bool isCardSelected;
+    [Header("Reference: SelectableCards")]
+    [SerializeField] private List<SelectableCardMovement> cardsMovements;
+    [SerializeField] private List<SelectableCardDisplay> cardsDisplay;
 
-    private int cardToSelect;
+    public List<CardSO> cardsToShow;
 
-    [Header("Setup")]
+    [Header("Setup: Cards")]
     [SerializeField] private int maxCardsToSelect = 3;
-
-    private List<CardSO> cardList = new List<CardSO>();
-
-    public List<CardSO> allCards = new List<CardSO>();
-
-    public List<SelectableCardDisplay> seletableCardsDisplays = new List<SelectableCardDisplay>();
-
-    public List<SelectableCardMovement> selectableCardMovements = new List<SelectableCardMovement>();
-
-    public bool isCardActivated = false;
 
     public TextMeshProUGUI description;
 
     void Start()
     {
-        //allCards = playerInventory.GetAllCardsList();
-
         ShowSelectCardMenu(false);
-        isCardSelected = false;
+        allCards = playerInventory.GetAllCard();
     }
 
     private void OnEnable()
     {
         moveCamera.Subscribe(TurnGameOver);
-    }    private void OnDisable()
+    }
+
+    private void OnDisable()
     {
         moveCamera.Unsubscribe(TurnGameOver);
     }
@@ -57,40 +55,33 @@ public class SelectCardMenu : MonoBehaviour
 
     private void Update()
     {
-        if (isCardActivated) 
+        PickCardsToShow();
+
+        if (showCardMenu)
         {
-            for (int i = 0; i < selectableCardMovements.Count; i++)
+            for (int i = 0; i < cardsMovements.Count; i++)
             {
-                if (selectableCardMovements[i].IsSelected())
+                if (cardsMovements[i].IsSelected())
                 {
-                    seletableCardsDisplays[i].ShowCardDescription(cardList[i]);
+                    cardsDisplay[i].ShowCardDescription(cardsToShow[i]);
                 }
             }
         }
-    }
 
-    public void ShowSelectCardMenu(bool value) 
-    {
-        SelectCardUI.SetActive(value);
-        isCardActivated = value;
-        TogglePause.RaiseEvent(value);
-
-        if (value == true) 
+        else
         {
-            cardList.Clear();
-
-            for (int i = 0; i < seletableCardsDisplays.Count; i++)
-            {
-                CardSO card = GetRandomCard();
-
-                cardList.Add(card);
-
-                seletableCardsDisplays[i].ShowCardImage(card);
-            }
+            cardsToShow.Clear();
         }
     }
 
-    public CardSO GetRandomCard() 
+    public void ShowSelectCardMenu(bool value)
+    {
+        showCardMenu = value;
+        SelectCardUI.SetActive(value);
+        TogglePause.RaiseEvent(value);
+    }
+
+    public CardSO GetRandomCard()
     {
         CardSO card = ScriptableObject.CreateInstance<CardSO>();
 
@@ -101,70 +92,22 @@ public class SelectCardMenu : MonoBehaviour
             if (allCards[i].ID == card.ID)
             {
                 card = allCards[i];
-
-                cardsSelected.Add(card);
             }
         }
 
         return card;
     }
 
-    public void SetCardSelected(int value) 
+    private void PickCardsToShow()
     {
-        cardToSelect = value;
-        isCardSelected = true;
-
-        for (int i = 0; i < selectableCardMovements.Count; i++)
+        if (cardsToShow.Count == 0)
         {
-            selectableCardMovements[i].isSelected = false;
-            selectableCardMovements[i].canMove = true;
+            for (int i = 0; i < 3; i++)
+            {
+                cardsToShow.Add(GetRandomCard());
+
+                cardsDisplay[i].ShowCardImage(cardsToShow[i]);
+            }
         }
-
-        description.text = "";
-
-        ShowSelectCardMenu(false);
-    }
-
-    public void SetIsCardSelected(bool value) 
-    {
-        isCardSelected = value;
-    }
-
-    public bool GetIsCardSelected() 
-    {
-        return isCardSelected;
-    }
-
-    public CardSO GetCardSelected() 
-    {
-        CardSO card = ScriptableObject.CreateInstance<CardSO>();
-
-        switch (cardToSelect) 
-        {
-            case 0:
-
-                card = cardsSelected[0];
-
-            break;
-
-            case 1:
-
-                card = cardsSelected[1];
-
-            break;
-
-            case 2:
-
-                card = cardsSelected[2];
-
-            break;
-        }
-
-        return card;
-    }
-
-    public void RefreshCardsSelectedList() 
-    {
-        cardsSelected.Clear();
     }
 }

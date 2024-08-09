@@ -30,6 +30,7 @@ public class CardSO : ScriptableObject
     public Sprite artFrame;
 
     public int ID;
+    public int slotIndex = -1;
 
     private int m_cardsOnSlot;
     public int cardsOnSlot;

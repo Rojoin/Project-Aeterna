@@ -8,23 +8,13 @@ public class PlayerHud : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;
 
-    [SerializeField] private PlayerHealth playerHealth;
-
-    [SerializeField] private SelectCardMenu selectCardMenu;
-    
-    [SerializeField] private List<CardDisplay> cardDisplay;
-
-    private CardSO card;
-
-    private int slotIndex;
+    [SerializeField] private List<GameObject> cardGO;
 
     private List<CardSO> invetory;
 
-    public List<GameObject> cardGO;
-
     void Start()
     {
-        card = ScriptableObject.CreateInstance<CardSO>();
+        invetory = playerInventory.GetInventory();
 
         for (int i = 0; i < cardGO.Count; i++)
         {
@@ -32,34 +22,36 @@ public class PlayerHud : MonoBehaviour
         }
     }
 
-    public void ShowCardsHud(CardSO cardSelected) 
+    public void ShowCardsHud() 
     {
-        invetory = playerInventory.GetInventory();
-
-        for (int i = slotIndex; i < playerInventory.GetCurrentCards();)
+        for (int i = 0; i < playerInventory.GetCurrentCards(); i++) 
         {
-            for (int j = 0; j < invetory.Count; j++) 
-            {
-                if (cardSelected.ID != invetory[j].ID)
-                {
-                    slotIndex += 1;
-                    break;
-                }
-            }
-            break;
-        }
-
-        for (int i = 0; i < invetory.Count; i++)
-        {
-            cardDisplay[i].ShowCard(invetory[i]);
-
             cardGO[i].SetActive(true);
         }
-    }
 
-    public void ShowHud() 
-    {
 
+
+        //invetory = playerInventory.GetInventory();
+
+        //for (int i = slotIndex; i < playerInventory.GetCurrentCards();)
+        //{
+        //    for (int j = 0; j < invetory.Count; j++) 
+        //    {
+        //        if (cardSelected.ID != invetory[j].ID)
+        //        {
+        //            slotIndex += 1;
+        //            break;
+        //        }
+        //    }
+        //    break;
+        //}
+
+        //for (int i = 0; i < invetory.Count; i++)
+        //{
+        //    cardDisplay[i].ShowCard(invetory[i]);
+
+        //    cardGO[i].SetActive(true);
+        //}
     }
 
     public void DesactiveCardsGO() 
@@ -69,6 +61,6 @@ public class PlayerHud : MonoBehaviour
             cardGO[i].SetActive(false);
         }
 
-        slotIndex = 0;
+        //slotIndex = 0;
     } 
 }
