@@ -7,21 +7,21 @@ using Random = UnityEngine.Random;
 
 public class SelectCardMenu : MonoBehaviour
 {
+    [SerializeField] private BoolChannelSO TogglePause;
+    [SerializeField] private VoidChannelSO moveCamera;
+    [SerializeField] private GameObject gameOverScreen;
+
     [Header("Reference: UI")]
     [SerializeField] private GameObject SelectCardUI;
 
     private bool showCardMenu = false;
 
-    [Header("Reference: PlayerInventory")]
+    [Header("Reference: Player Inventory")]
     [SerializeField] private PlayerInventory playerInventory;
 
     private List<CardSO> allCards;
 
-    [SerializeField] private BoolChannelSO TogglePause;
-    [SerializeField] private VoidChannelSO moveCamera;
-    [SerializeField] private GameObject gameOverScreen;
-
-    [Header("Reference: SelectableCards")]
+    [Header("Reference: Selectable Cards")]
     [SerializeField] private List<SelectableCardMovement> cardsMovements;
     [SerializeField] private List<SelectableCardDisplay> cardsDisplay;
 
