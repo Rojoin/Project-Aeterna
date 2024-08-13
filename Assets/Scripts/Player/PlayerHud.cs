@@ -10,6 +10,8 @@ public class PlayerHud : MonoBehaviour
 
     [SerializeField] private List<GameObject> cardGO;
 
+    [SerializeField] private List<CardDisplay> cardDisplay;
+
     private List<CardSO> invetory;
 
     void Start()
@@ -26,6 +28,7 @@ public class PlayerHud : MonoBehaviour
     {
         for (int i = 0; i < playerInventory.GetCurrentCards(); i++) 
         {
+            cardDisplay[i].ShowCard(invetory[i]);
             cardGO[i].SetActive(true);
         }
     }
@@ -36,7 +39,5 @@ public class PlayerHud : MonoBehaviour
         {
             cardGO[i].SetActive(false);
         }
-
-        //slotIndex = 0;
     } 
 }
