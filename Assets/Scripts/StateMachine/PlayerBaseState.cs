@@ -14,7 +14,6 @@ namespace StateMachine
         protected Vector3 rotatedMoveDir;
         protected Action onMove;
         static public Vector2 inputDirection;
-        static public bool isPause = false;
         protected const float angle = -45;
 
         public PlayerBaseState(Action onMove,params object[] data) : base(data)
@@ -28,8 +27,6 @@ namespace StateMachine
 
         protected virtual void Move(float deltaTime)
         {
-            if (isPause)
-                return;
             
             if (inputDirection != Vector2.zero)
             {

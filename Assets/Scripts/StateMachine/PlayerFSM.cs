@@ -31,7 +31,6 @@ namespace StateMachine
         private void OnEnable()
         {
             speed = player.speed;
-            PlayerBaseState.isPause = false;
             fsm = new(2, 3);
             int idleState = fsm.AddNewState(new PlayerMoveState(ActivateOnMoveEffects, this.gameObject,
                 _playerAnimatorController,
@@ -69,7 +68,6 @@ namespace StateMachine
 
         public void ChangeFromPause(bool value)
         {
-            PlayerBaseState.isPause = value;
             PlayerBaseState.inputDirection = Vector2.zero;
             _playerAnimatorController.speed = value ? 0 : 1;
             ChangeFromEndAttack();

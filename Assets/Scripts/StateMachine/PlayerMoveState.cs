@@ -29,15 +29,12 @@ namespace StateMachine
         {
             if (inputDirection != Vector2.zero)
             {
-                if (!isPause)
-                {
-                    Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
-                    var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-                    Rotate(rotatedMoveDir);
-                    _characterController.Move(rotatedMoveDir * (deltaTime * player.speed));
-                    _playerAnimatorController.SetFloat(Blend, inputDirection.magnitude);
-                    onMove.Invoke();
-                }
+                Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+                var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+                Rotate(rotatedMoveDir);
+                _characterController.Move(rotatedMoveDir * (deltaTime * player.speed));
+                _playerAnimatorController.SetFloat(Blend, inputDirection.magnitude);
+                onMove.Invoke();
             }
             else
             {
