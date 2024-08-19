@@ -169,7 +169,12 @@ public class DungeonGeneration : MonoBehaviour
     private void TranslatePlayerToNewRoom(RoomDirection direction)
     {
         transitionGO.SetActive(true);
-        StartCoroutine(DisableTransition());
+        StartCoroutine(PlayLogicTransition(direction));
+    }
+
+    private IEnumerator PlayLogicTransition(RoomDirection direction) 
+    {
+        yield return new WaitForSeconds(1);
 
         ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
         cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
@@ -211,15 +216,18 @@ public class DungeonGeneration : MonoBehaviour
             OnEnd.RaiseEvent();
             player.gameObject.SetActive(false);
         }
+
+        StartCoroutine(DisableTransition());
     }
 
-    private IEnumerator DisableTransition() 
+    private IEnumerator DisableTransition()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
+
         transitionGO.SetActive(false);
     }
 
-    private void SetVisibleRooms()
+        private void SetVisibleRooms()
     {
         foreach (DungeonRoom d in dungeonRooms)
         {
