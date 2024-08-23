@@ -4,24 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public enum RoomTypes
-{
-    START = 0,
-    EMPTY,
-    ENEMIES,
-    TREASURE,
-    BOSS,
-    INVALID
-}
-
-public enum RoomDirection
-{
-    UP = 0,
-    RIGHT,
-    DOWN,
-    LEFT
-}
-
 [Serializable]
 public class DoorColecction
 {
@@ -42,12 +24,6 @@ public class DoorColecction
                 {
                     o.SetActive(value);
                 }
-
-                foreach (GameObject o in noDoorsGameobject)
-                {
-                    o.SetActive(!value);
-                }
-
                 doorCollider.enabled = value;
             }
         }
@@ -58,11 +34,16 @@ public class DoorColecction
     public Transform spawnPosition;
 
     public List<GameObject> doorsGameobject;
-    public List<GameObject> noDoorsGameobject;
+    public List<GameObject> wallGameobject;
 
     public DoorBehaviour doorBehaviour;
     public BoxCollider doorCollider;
     public GameObject particleDoorsGameobject;
+
+    public void HideWall()
+    {
+        
+    }
 }
 
 public class RoomBehaviour : MonoBehaviour
