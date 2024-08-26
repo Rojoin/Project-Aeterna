@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: -6477870836206383874}
   - component: {fileID: 4953835598123119160}
   - component: {fileID: 1414829265744180361}
+  - component: {fileID: 8706191008783224614}
   m_Layer: 5
   m_Name: SelectableCardWithSprites
   m_TagString: Untagged
@@ -436,7 +437,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef579e1414938419b8e2961fc16565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: {fileID: 0}
   description: {fileID: 0}
   artMidground_1: {fileID: 926378263073478866}
   artMidground_2: {fileID: 4126584862761290245}
@@ -514,6 +514,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &8706191008783224614
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282461721496081479}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7363115344857273651
 GameObject:
   m_ObjectHideFlags: 0
