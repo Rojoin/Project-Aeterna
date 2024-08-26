@@ -25,10 +25,14 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private List<SelectableCardMovement> cardsMovements;
     [SerializeField] private List<SelectableCardDisplay> cardsDisplay;
 
+    [Header("Animations")]
+    [SerializeField] private List<Animator> cardsAnimator;
+    [SerializeField] private Animator invertedCardAnimator;
+
     public List<CardSO> cardsToShow;
 
     [Header("Setup: Cards")]
-    [SerializeField] private int maxCardsToSelect = 3;
+    public int maxCardsToSelect = 3;
 
     public TextMeshProUGUI description;
 
@@ -66,6 +70,16 @@ public class SelectCardMenu : MonoBehaviour
                     cardsDisplay[i].ShowCardDescription(cardsToShow[i]);
                 }
             }
+
+            for (int i = 0; i < cardsToShow.Count; i++)
+            {
+                if (cardsToShow[i].isInverted == true)
+                {
+                    PlayInvertedCardAnimation(cardsToShow[i].slotIndex);
+
+                    return;
+                }
+            }
         }
 
         else
@@ -85,7 +99,9 @@ public class SelectCardMenu : MonoBehaviour
     {
         CardSO card = ScriptableObject.CreateInstance<CardSO>();
 
-        card.ID = Random.Range(0, maxCardsToSelect);
+        card.ID = Random.Range(0, playerInventory.GetMaxCards());
+
+        card.isInverted = IsCardInverted();
 
         for (int i = 0; i < allCards.Count; i++)
         {
@@ -107,8 +123,42 @@ public class SelectCardMenu : MonoBehaviour
                 cardsToShow.Add(GetRandomCard());
 
                 cardsDisplay[i].ShowCardImage(cardsToShow[i]);
+
+                cardsToShow[i].slotIndex = i;
             }
         }
+    }
+
+    public bool IsCardInverted() 
+    {
+        int maxPercentage = 100;
+        int isInverted = 30;
+
+        int cardInvertedChanse = Random.Range(0, maxPercentage);
+
+        if (cardInvertedChanse <= isInverted)
+        {
+            return true;
+        }
+
+        else 
+        {
+            return false;
+        }
+    }
+
+    public void PlayInvertedCardAnimation(int slotIndex) 
+    {
+        cardsAnimator[slotIndex].runtimeAnimatorController = invertedCardAnimator.runtimeAnimatorController;
+
+        StartCoroutine(ChangeInvertCardAnimation(slotIndex));
+    }
+
+    public IEnumerator ChangeInvertCardAnimation(int slotIndex) 
+    {
+        yield return new WaitForSeconds(2);
+
+        cardsAnimator[slotIndex].SetBool("IsPresentationEnd", true);
     }
 
     private void SetCardSelected(int cardSelected) 

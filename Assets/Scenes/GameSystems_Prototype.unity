@@ -2158,6 +2158,18 @@ PrefabInstance:
       propertyPath: OnPlayerHurt.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1681417380}
+    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: maxCards
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: allCards.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: allCards.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: a8e347455cce29447b564a30bb70f720, type: 2}
     - target: {fileID: 6277302197274292131, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_Name
       value: PlayerFSM
@@ -2186,38 +2198,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 76553405426737609, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ec706172645d1454abdfa1eb4adca73a, type: 2}
-    - target: {fileID: 1226190607385703422, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 1fcdecfc8e2d1fc4f9dd0a30fa793780, type: 2}
     - target: {fileID: 1663965587844793375, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1552293560}
-    - target: {fileID: 1663965587844793375, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: maxRotation
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1663965587844793375, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: minRotation
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1663965587844793375, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: rotationSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2484874690972814955, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1166619369}
-    - target: {fileID: 3340365335795236736, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ec706172645d1454abdfa1eb4adca73a, type: 2}
     - target: {fileID: 4218420525194753324, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_Name
       value: InGameCanvas
@@ -2310,40 +2298,11 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1552293560}
-    - target: {fileID: 6819846225387646069, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: maxRotation
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6819846225387646069, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: minRotation
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6819846225387646069, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: rotationSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7820443509826022403, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1552293560}
-    - target: {fileID: 7820443509826022403, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: maxRotation
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7820443509826022403, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: minRotation
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7820443509826022403, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: rotationSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8381634620664140129, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7934158526880610219, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

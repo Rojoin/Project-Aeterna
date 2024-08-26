@@ -37,6 +37,8 @@ public class CardSO : ScriptableObject
 
     public bool isSelected;
 
+    public bool isInverted;
+
     public CardType cardType;
 
     public float damage;
