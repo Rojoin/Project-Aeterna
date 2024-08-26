@@ -27,9 +27,10 @@ public class SelectCardMenu : MonoBehaviour
 
     [Header("Animations")]
     [SerializeField] private List<Animator> cardsAnimator;
-    [SerializeField] private Animator invertedCardAnimator;
 
     public List<CardSO> cardsToShow;
+
+    [SerializeField] private Animator invertedCardAnimator;
 
     [Header("Setup: Cards")]
     public int maxCardsToSelect = 3;
