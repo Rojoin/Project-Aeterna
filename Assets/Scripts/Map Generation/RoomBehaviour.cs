@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 [Serializable]
 public class DoorColecction
 {
+    private bool showWalls;
     private bool doorState;
 
     public bool DoorState
@@ -20,11 +21,31 @@ public class DoorColecction
 
             void SetDoorState(bool value)
             {
-                foreach (GameObject o in doorsGameobject)
+                foreach (GameObject o in doorGameObjects)
                 {
                     o.SetActive(value);
                 }
+                
                 doorCollider.enabled = value;
+            }
+        }
+    }
+    
+    public bool ShowWalls
+    {
+        get { return showWalls; }
+        set
+        {
+            SetWallState(value);
+
+            showWalls = value;
+
+            void SetWallState(bool value)
+            {
+                foreach (GameObject o in wallGameObjects)
+                {
+                    o.SetActive(value);
+                }
             }
         }
     }
@@ -33,17 +54,12 @@ public class DoorColecction
 
     public Transform spawnPosition;
 
-    public List<GameObject> doorsGameobject;
-    public List<GameObject> wallGameobject;
+    public List<GameObject> doorGameObjects;
+    public List<GameObject> wallGameObjects;
 
     public DoorBehaviour doorBehaviour;
     public BoxCollider doorCollider;
     public GameObject particleDoorsGameobject;
-
-    public void HideWall()
-    {
-        
-    }
 }
 
 public class RoomBehaviour : MonoBehaviour
@@ -76,8 +92,6 @@ public class RoomBehaviour : MonoBehaviour
             d.DoorState = false;
             d.doorBehaviour.doorDirection = d.doorDirection;
         }
-
-        StartDictionary();
     }
 
     private void OnDisable()
@@ -122,28 +136,6 @@ public class RoomBehaviour : MonoBehaviour
         }
     }
 
-    private void StartDictionary()
-    {
-        RoomDirection setDirection = RoomDirection.UP;
-
-        for (int i = 0; i < doorColecctions.Length; i++)
-        {
-            doorColecctions[i].doorDirection = setDirection;
-            setDirection++;
-        }
-    }
-
-    public void SetDoorDirection(RoomDirection direction, bool doorState)
-    {
-        foreach (DoorColecction d in doorColecctions)
-        {
-            if (d.doorDirection == direction)
-            {
-                d.DoorState = doorState;
-            }
-        }
-    }
-
     public Transform GetDoorDirection(RoomDirection direction)
     {
         foreach (DoorColecction d in doorColecctions)
@@ -154,6 +146,11 @@ public class RoomBehaviour : MonoBehaviour
             }
         }
 
-        return transform;
+        return null;
+    }
+
+    public float GetRotaionWithNeighbour()
+    {
+        
     }
 }

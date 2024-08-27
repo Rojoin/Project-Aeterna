@@ -388,17 +388,11 @@ public class DungeonGeneration : MonoBehaviour
                 room.enemyManager = roomInstance.GetComponent<EnemyManager>();
                 room.enemyManager.proceduralRoomGeneration = room.proceduralRoomGeneration;
                 room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
-                //room.roomBehaviour.SetRoomDoorState(false);
-            }
-            else
-            {
             }
 
             room.roomBehaviour.StartRoom();
 
-            room.proceduralRoomGeneration.CreateGrid();
-            //RotateRoom(room, roomInstance);
-            room.roomBehaviour.SetRoomDoorState(true);
+            roomInstance.transform.Rotate(0,0,0);
 
             room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
@@ -411,32 +405,6 @@ public class DungeonGeneration : MonoBehaviour
             }
         }
     }
-
-    // private void RotateRoom(DungeonRoom room, GameObject newRoom)
-    // {
-    //     RoomBehaviour roomBehaviour = newRoom.GetComponent<RoomBehaviour>();
-    //     ProceduralRoomGeneration proceduralRoomGeneration = newRoom.GetComponent<ProceduralRoomGeneration>();
-    //
-    //     if (room.HasNeighbourInDirection(RoomDirection.UP))
-    //     {
-    //         roomBehaviour.SetDoorDirection(RoomDirection.UP, true);
-    //     }
-    //
-    //     if (room.HasNeighbourInDirection(RoomDirection.DOWN))
-    //     {
-    //         roomBehaviour.SetDoorDirection(RoomDirection.DOWN, true);
-    //     }
-    //
-    //     if (room.HasNeighbourInDirection(RoomDirection.LEFT))
-    //     {
-    //         roomBehaviour.SetDoorDirection(RoomDirection.LEFT, true);
-    //     }
-    //
-    //     if (room.HasNeighbourInDirection(RoomDirection.RIGHT))
-    //     {
-    //         roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, true);
-    //     }
-    // }
 
     private RoomDirection GetRandomNeighbourDirection(DungeonRoom currentRoom)
     {

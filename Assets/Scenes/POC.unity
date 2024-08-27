@@ -1552,6 +1552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1166619366}
+  _inputController: {fileID: 0}
   TogglePause: {fileID: 11400000, guid: 1b2954b00e4549e4a8245a0eafdebf2e, type: 2}
   playerHud: {fileID: 1231999819}
   firsButtonSelected: {fileID: 106016992}
@@ -1564,7 +1565,7 @@ Transform:
   m_GameObject: {fileID: 1552293559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 690, y: 388, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1725,7 +1726,7 @@ Transform:
   m_GameObject: {fileID: 1681417376}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22272427, y: -0.37139675, z: 0.09225541, w: 0.8966311}
-  m_LocalPosition: {x: 8.159167, y: 4.7992973, z: -6.249167}
+  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.249167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1806,7 +1807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelRoom: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
-  gapBetweenRooms: {x: 30, y: 30}
+  gapBetweenRooms: {x: 40, y: 40}
   PlayerPrefab: {fileID: 1166619365}
   player: {fileID: 1166619375}
   playerTpPositionY: -1.75
@@ -2046,7 +2047,7 @@ Transform:
   m_GameObject: {fileID: 1852679709}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22272427, y: -0.37139675, z: 0.09225541, w: 0.8966311}
-  m_LocalPosition: {x: 8.159167, y: 4.7992973, z: -6.249167}
+  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.249167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2140,7 +2141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalPosition.z

@@ -11,6 +11,7 @@ public class DoorBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         OnPlayerInteractDoor.Invoke(doorDirection);
     }
 }
