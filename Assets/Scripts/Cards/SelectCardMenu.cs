@@ -172,7 +172,7 @@ public class SelectCardMenu : MonoBehaviour
 
     public IEnumerator ChangeInvertCardAnimation(int slotIndex) 
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         cardsAnimator[slotIndex].SetBool("IsPresentationEnd", true);
     }
