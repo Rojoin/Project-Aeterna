@@ -18,6 +18,12 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnHudToggleChannel;
         [SerializeField] private BoolChannelSO OnControlSchemeChange;
         [SerializeField] private GameSettings gameSettings;
+        private bool _isGamePaused = false;
+        public bool IsGamePaused
+        {
+            get => _isGamePaused;
+            set => _isGamePaused = value;
+        }
 
 
         private const int keyboardSchemeValue = 0;
@@ -56,7 +62,7 @@ namespace InputControls
 
         public void OnAttack(InputAction.CallbackContext ctx)
         {
-            if (ctx.performed)
+            if (ctx.performed && !IsGamePaused)
             {
                 OnAttackChannel.RaiseEvent();
             }
@@ -72,7 +78,7 @@ namespace InputControls
 
         public void OnChangeCamera(InputAction.CallbackContext ctx)
         {
-            if (ctx.performed)
+            if (ctx.performed && !IsGamePaused)
             {
                 OnChangeCameraChannel.RaiseEvent();
             }

@@ -4,4 +4,5 @@
 public class PlayerEntitySO : EntitySO
 {
     public float movementSpeedDuringAttack;
+    public float timeBetweenComboEnd = 2.0f;
 }

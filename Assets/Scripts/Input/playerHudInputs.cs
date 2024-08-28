@@ -18,10 +18,11 @@ public class PlayerHudInputs : MonoBehaviour
     [Header("Card System")]
     [SerializeField] private bool activeCardSystem;
 
+    [SerializeField] private int timeToSpawnShop;
+
     private void Start()
     {
         cardsCounter = playerInventory.GetCardsCounterList();
-        OnHudToggle.Subscribe(playerHud.ToggleHud);
     }
 
     void Update()
@@ -32,8 +33,10 @@ public class PlayerHudInputs : MonoBehaviour
         }
     }
 
-    public void ShowSelectableCardMenu() 
+    public IEnumerator ShowSelectableCardMenu() 
     {
+        yield return new WaitForSeconds(timeToSpawnShop);
+
         if (playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
         {
             selectCardMenu.RefreshCardsSelectedList();
@@ -60,10 +63,5 @@ public class PlayerHudInputs : MonoBehaviour
 
             selectCardMenu.RefreshCardsSelectedList();
         }
-    }
-
-    private void OnDestroy()
-    {
-        OnHudToggle.Unsubscribe(playerHud.ToggleHud);
     }
 }

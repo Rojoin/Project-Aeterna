@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SelectCardMenu : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private GameObject SelectCardUI;
     [SerializeField] private PlayerInventory playerInventory;
     [SerializeField] private BoolChannelSO TogglePause;
+    [SerializeField] private VoidChannelSO moveCamera;
+    [SerializeField] private GameObject gameOverScreen;
     private List<CardSO> cardsSelected = new List<CardSO>();
 
     private bool isCardSelected;
@@ -36,6 +40,19 @@ public class SelectCardMenu : MonoBehaviour
 
         ShowSelectCardMenu(false);
         isCardSelected = false;
+    }
+
+    private void OnEnable()
+    {
+        moveCamera.Subscribe(TurnGameOver);
+    }    private void OnDisable()
+    {
+        moveCamera.Unsubscribe(TurnGameOver);
+    }
+
+    private void TurnGameOver()
+    {
+        gameOverScreen.SetActive(true);
     }
 
     private void Update()

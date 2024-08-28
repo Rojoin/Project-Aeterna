@@ -68,7 +68,6 @@ namespace StateMachine
 
         public void ChangeFromPause(bool value)
         {
-            PlayerBaseState.isPause = value;
             PlayerBaseState.inputDirection = Vector2.zero;
             _playerAnimatorController.speed = value ? 0 : 1;
             ChangeFromEndAttack();

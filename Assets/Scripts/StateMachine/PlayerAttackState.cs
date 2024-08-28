@@ -20,8 +20,8 @@ namespace StateMachine
 
         #endregion
 
-        public float timeBetweenCombo = 1.0f;
-        public float timeBetweenComboEnd = 0.5f;
+        public float timeBetweenCombo = 0.4f;
+        public float timeBetweenComboEnd = 1.5f;
         private float lastClickedTime = 0;
         private float lastComboEnd = 0;
         private int comboCounter = 0;
@@ -31,6 +31,7 @@ namespace StateMachine
         private float timeUntilStart;
         private float timeAfterComboEnds;
         private float attackTimer = 0.0f;
+        private float timer = 0.0f;
         private List<IHealthSystem> currentlyHitted = new List<IHealthSystem>();
 
         public PlayerAttackState(Action onAttackEnd, Action onMove, params object[] data) : base(onMove, data)
@@ -40,8 +41,8 @@ namespace StateMachine
             AttackChannel = data[7] as VoidChannelSO;
             gameSettings = data[8] as GameSettings;
             OnAttackEnd += onAttackEnd;
-            lastComboEnd = -timeBetweenComboEnd;
-            lastClickedTime = -timeBetweenCombo;
+            lastComboEnd = -timeBetweenComboEnd * 5;
+            lastClickedTime = -timeBetweenCombo * 5;
             attackTimer = 0.0f;
             currentlyHitted.Clear();
         }
@@ -61,7 +62,7 @@ namespace StateMachine
         {
             base.OnExit();
 
-            lastComboEnd = Time.time;
+            lastComboEnd = Time.realtimeSinceStartup;
             AttackChannel.Unsubscribe(Attack);
             _attackCollider.OnTriggerEnterObject.RemoveListener(OnAttackEnter);
             _attackCollider.OnTriggerExitObject.RemoveListener(OnAttackExit);
@@ -70,22 +71,21 @@ namespace StateMachine
 
         private void Attack()
         {
-            if (isPause)
-                return;
-            if (Time.time - lastComboEnd > timeBetweenComboEnd && comboCounter <= comboList.Count)
+            if (Time.realtimeSinceStartup - lastComboEnd > timeBetweenComboEnd && comboCounter <= comboList.Count)
             {
                 Debug.Log($"The last clicked time was {lastClickedTime}");
-                if (Time.time - lastClickedTime >= timeBetweenCombo)
+                if (Time.realtimeSinceStartup - lastClickedTime >= timeBetweenCombo)
                 {
                     ActivateCollider(comboList[comboCounter]);
                     _playerAnimatorController.CrossFade(comboList[comboCounter].animationName, 0.25f, 0, 0);
                     comboCounter++;
                     CheckTarget();
-                    lastClickedTime = Time.time;
+                    lastClickedTime = Time.realtimeSinceStartup;
                     Debug.Log($"Current clicked time is {lastClickedTime}");
                     if (comboCounter >= comboList.Count)
                     {
                         comboCounter = 0;
+                        lastComboEnd = Time.realtimeSinceStartup;
                     }
                 }
             }
@@ -164,14 +164,11 @@ namespace StateMachine
         {
             if (inputDirection != Vector2.zero)
             {
-                if (!isPause)
-                {
-                    Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
-                    float time = Time.deltaTime;
-                    rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-                    _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
-                    onMove.Invoke();
-                }
+                Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+                float time = Time.deltaTime;
+                rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+                _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
+                onMove.Invoke();
             }
             else
             {
@@ -183,7 +180,7 @@ namespace StateMachine
         {
             StopAttack();
             comboCounter = 0;
-            lastComboEnd = Time.time;
+            lastComboEnd = Time.realtimeSinceStartup;
             _playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
             OnAttackEnd?.Invoke();
         }
@@ -200,19 +197,12 @@ namespace StateMachine
         {
             if (isAttacking)
             {
+                timer += deltaTime;
                 attackTimer += deltaTime;
                 if (attackTimer >= timeAfterComboEnds)
                 {
                     EndCombo();
                     Debug.Log("FinishCombo");
-                }
-                else if (attackTimer >= timeUntilAttackEnds)
-                {
-                    _attackCollider.ToggleCollider(false);
-                }
-                else if (attackTimer >= timeUntilStart)
-                {
-                    _attackCollider.ToggleCollider(true);
                 }
             }
         }
@@ -239,7 +229,7 @@ namespace StateMachine
                 if (!currentlyHitted.Contains(healthSystem))
                 {
                     Debug.Log("Enter attack.");
-                    healthSystem.ReceiveDamage(comboList[comboCounter].damage);
+                    healthSystem.ReceiveDamage(comboList[comboCounter].damage + player.damage);
                     currentlyHitted.Add(healthSystem);
                 }
                 else
