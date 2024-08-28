@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Enemy;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -282,7 +281,7 @@ public class DungeonGeneration : MonoBehaviour
 
         Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection);
 
-        ActualPlayerRoom.enemyManager.OnEnterNewRoom();
+        //ActualPlayerRoom.enemyManager.OnEnterNewRoom();
 
         player.enabled = false;
         player.transform.position = nextDoorPosition.position + (nextDoorPosition.up * playerTpPositionY);
@@ -333,10 +332,10 @@ public class DungeonGeneration : MonoBehaviour
 
     private void SetVisibleRooms()
     {
-        foreach (DungeonRoom d in dungeonRooms)
-        {
-            d.dungeonRoomInstance.SetActive(d == ActualPlayerRoom);
-        }
+        // foreach (DungeonRoom d in dungeonRooms)
+        // {
+        //     d.dungeonRoomInstance.SetActive(d == ActualPlayerRoom);
+        // }
     }
 
     private bool IsThereRoomInPosition(int x, int z)
@@ -383,16 +382,17 @@ public class DungeonGeneration : MonoBehaviour
             room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
             room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
 
-            if (roomInstance.GetComponent<EnemyManager>())
-            {
-                room.enemyManager = roomInstance.GetComponent<EnemyManager>();
-                room.enemyManager.proceduralRoomGeneration = room.proceduralRoomGeneration;
-                room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
-            }
+            //TODO : SET BETTER ENEMY MANAGER
+            // if (roomInstance.GetComponent<EnemyManager>())
+            // {
+            //     room.enemyManager = roomInstance.GetComponent<EnemyManager>();
+            //     room.enemyManager.proceduralRoomGeneration = room.proceduralRoomGeneration;
+            //     room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
+            // }
 
             room.roomBehaviour.StartRoom();
 
-            roomInstance.transform.Rotate(0,0,0);
+            roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
 
             room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
@@ -401,7 +401,7 @@ public class DungeonGeneration : MonoBehaviour
             {
                 ActualPlayerRoom = room;
                 cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
-                room.enemyManager.CallEndRoom();
+                //room.enemyManager.CallEndRoom();
             }
         }
     }
@@ -502,5 +502,102 @@ public class DungeonGeneration : MonoBehaviour
     private void ProvidePosition()
     {
         OnProvidePosition?.Invoke(player.transform.position);
+    }
+
+    private float GetFinalRoomRotation(DungeonRoom room)
+    {
+        float finalRotation = 0;
+        switch (room.roomForm)
+        {
+            case RoomForm.U:
+                if (room.HasNeighbourInDirection(RoomDirection.UP))
+                {
+                    finalRotation = 270;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.UP);
+                }
+
+                if (room.HasNeighbourInDirection(RoomDirection.LEFT))
+                {
+                    finalRotation = 180;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.LEFT);
+                }
+
+                if (room.HasNeighbourInDirection(RoomDirection.DOWN))
+                {
+                    finalRotation = 90;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.DOWN);
+                }
+
+                return finalRotation;
+            case RoomForm.I:
+                if (room.HasNeighbourInDirection(RoomDirection.LEFT))
+                {
+                    finalRotation = 90;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.LEFT, RoomDirection.RIGHT);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.LEFT);
+                }
+
+                return finalRotation;
+            case RoomForm.L:
+                if (room.HasNeighbourInDirection(RoomDirection.DOWN) &&
+                    room.HasNeighbourInDirection(RoomDirection.LEFT))
+                {
+                    finalRotation = 90;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.LEFT);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.DOWN);
+                }
+
+                if (room.HasNeighbourInDirection(RoomDirection.UP) && room.HasNeighbourInDirection(RoomDirection.LEFT))
+                {
+                    finalRotation = 180;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.RIGHT);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.LEFT);
+                }
+
+                if (room.HasNeighbourInDirection(RoomDirection.UP) && room.HasNeighbourInDirection(RoomDirection.RIGHT))
+                {
+                    finalRotation = 270;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.RIGHT);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.UP);
+                }
+
+                return finalRotation;
+            case RoomForm.T:
+                if (room.HasNeighbourInDirection(RoomDirection.DOWN) &&
+                    room.HasNeighbourInDirection(RoomDirection.LEFT) &&
+                    room.HasNeighbourInDirection(RoomDirection.RIGHT))
+                {
+                    finalRotation = 90;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.UP, RoomDirection.RIGHT);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.DOWN);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.LEFT);
+                }
+
+                if (room.HasNeighbourInDirection(RoomDirection.UP) &&
+                    room.HasNeighbourInDirection(RoomDirection.DOWN) &&
+                    room.HasNeighbourInDirection(RoomDirection.LEFT))
+                {
+                    finalRotation = 180;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.UP, RoomDirection.DOWN);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.LEFT);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.UP);
+                }
+
+                if (room.HasNeighbourInDirection(RoomDirection.UP) &&
+                    room.HasNeighbourInDirection(RoomDirection.RIGHT) &&
+                    room.HasNeighbourInDirection(RoomDirection.LEFT))
+                {
+                    finalRotation = 270;
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.UP, RoomDirection.LEFT);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.UP);
+                    room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.RIGHT);
+                }
+
+                return finalRotation;
+            case RoomForm.X:
+                return finalRotation;
+        }
+
+        return finalRotation;
     }
 }

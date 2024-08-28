@@ -25,12 +25,12 @@ public class DoorColecction
                 {
                     o.SetActive(value);
                 }
-                
+
                 doorCollider.enabled = value;
             }
         }
     }
-    
+
     public bool ShowWalls
     {
         get { return showWalls; }
@@ -89,7 +89,8 @@ public class RoomBehaviour : MonoBehaviour
 
         foreach (DoorColecction d in doorColecctions)
         {
-            d.DoorState = false;
+            //TODO : CHANGE DOOR STATE
+            d.DoorState = doorsOpened;
             d.doorBehaviour.doorDirection = d.doorDirection;
         }
     }
@@ -106,6 +107,7 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (doorsOpened)
         {
+            Debug.Log("Player Interact door");
             PlayerInteractNewDoor.Invoke(direction);
         }
     }
@@ -149,8 +151,14 @@ public class RoomBehaviour : MonoBehaviour
         return null;
     }
 
-    public float GetRotaionWithNeighbour()
+    public void SetDoorDirection(RoomDirection doorDirection, RoomDirection newRoomDirection)
     {
-        
+        foreach (DoorColecction doorColecction in doorColecctions)
+        {
+            if (doorColecction.doorBehaviour.doorDirection == doorDirection)
+            {
+                doorColecction.doorBehaviour.doorDirection = newRoomDirection;
+            }
+        }
     }
 }

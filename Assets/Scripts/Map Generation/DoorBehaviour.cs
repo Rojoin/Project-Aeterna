@@ -1,8 +1,5 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
-using static System.TimeZoneInfo;
 
 public class DoorBehaviour : MonoBehaviour
 {
@@ -11,7 +8,7 @@ public class DoorBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        Debug.Log("Collision");
         OnPlayerInteractDoor.Invoke(doorDirection);
     }
 }
