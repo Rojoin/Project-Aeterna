@@ -1,11 +1,12 @@
 ﻿using System;
+using ScriptableObjects.Entities;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Projectile
 {
     [Flags]
-    enum ProjectileProperties
+    public enum ProjectileProperties
     {
         None = 0,
         ShouldBeDeathOverTime = 1,
@@ -16,7 +17,7 @@ namespace Projectile
 
     public class BaseProjectile : MonoBehaviour
     {
-        public Transform target;
+        [SerializeField] public Transform target;
         [SerializeField] private float gravity;
         [SerializeField] private Vector3 acceleration = Vector3.zero;
         [SerializeField] private float speed;
@@ -33,7 +34,9 @@ namespace Projectile
         public void OnEnable()
         {
             currentTime = 0;
-            direction = (target.position - transform.position).normalized;
+            direction = target != null
+                ? (target.position - transform.position).normalized
+                : (finalPos - transform.position).normalized;
             onProyectileDeath.AddListener(DeathBehaviour);
         }
 
@@ -41,7 +44,7 @@ namespace Projectile
         {
             onProyectileDeath.RemoveAllListeners();
         }
-        
+
 
         private void DeathBehaviour()
         {
@@ -90,7 +93,24 @@ namespace Projectile
             {
                 onProyectileDeath.Invoke();
             }
-            
+        }
+
+        public void SetSettings(ShootingEnemySO config)
+        {
+            properties = config.settings;
+            speed = config.projectileSpeed;
+            damage = config.projectileDamage;
+            lifeTime = config.projectileLifeTime;
+        }
+
+        public void SetTarget(Transform target)
+        {
+            this.target = target;
+        }
+
+        public void SetDirection(Vector3 position)
+        {
+            finalPos = position;
         }
     }
 }

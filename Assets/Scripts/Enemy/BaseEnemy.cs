@@ -7,7 +7,8 @@ namespace Enemy
 {
     public abstract class BaseEnemy : MonoBehaviour, IHealthSystem
     {
-        [SerializeField] protected DummySO enemy;
+        [FormerlySerializedAs("enemy")] [SerializeField]
+        protected EntitySO config;
         [SerializeField] private CustomSlider healthBar;
         [SerializeField] public UnityEvent OnHit;
         [SerializeField] public UnityEvent OnDeath;
@@ -15,6 +16,10 @@ namespace Enemy
         [SerializeField] public Animator animator;
         private float currentHealth;
         private float maxHealth;
+        protected bool canAttack;
+        protected float timer;
+        public bool isAttacking;
+        protected static readonly int AttackAnim = Animator.StringToHash("isAttacking");
         private static readonly int IsIdle = Animator.StringToHash("isIdle");
         private static readonly int Hurt = Animator.StringToHash("isHurt");
         private static readonly int Dead = Animator.StringToHash("isDead");
@@ -26,9 +31,16 @@ namespace Enemy
             Init();
         }
 
+        private void OnValidate()
+        {
+            ValidateMethod();
+        }
+
+        protected abstract void ValidateMethod();
+
         protected virtual void Init()
         {
-            maxHealth = enemy.health;
+            maxHealth = config.health;
             currentHealth = maxHealth;
             healthBar.FillAmount = 1.0f;
             animator.SetFloat(Damage, 1.0f);
@@ -37,14 +49,14 @@ namespace Enemy
 
         public void SetHealth(float newHealth)
         {
-            enemy.health = newHealth;
+            config.health = newHealth;
         }
 
-        public float GetHealth() => enemy.health;
+        public float GetHealth() => config.health;
 
         public void SetMaxHealigh(float newMaxHealth)
         {
-            enemy.health = newMaxHealth;
+            config.health = newMaxHealth;
         }
 
         public virtual void ReceiveDamage(float damage)

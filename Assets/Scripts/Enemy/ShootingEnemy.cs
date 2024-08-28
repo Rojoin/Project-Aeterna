@@ -1,51 +1,30 @@
-using System;
-using System.Collections;
+﻿using ScriptableObjects.Entities;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class DummyEnemy : BaseEnemy
+    public class ShootingEnemy : BaseEnemy
     {
-        
-        public AttackCollision damageCollision;
-     
- 
-
-        private DummySO enemyConfig;
-
-        protected override void Init()
-        {
-            base.Init();
-            enemyConfig = config as DummySO;
-            damageCollision.OnTriggerEnterObject.AddListener(DamageEnemy);
-        }
-
+        [SerializeField] private Projectile.BaseProjectile projectile;
+        private ShootingEnemySO enemyConfig;
         
         protected override void ValidateMethod()
         {
-            if (config.GetType() != typeof(DummySO))
+            if (config.GetType() != typeof(ShootingEnemySO))
             {
                 config = null;
             }
             else
             {
-                enemyConfig = config as DummySO;
+                enemyConfig = config as ShootingEnemySO;
             }
         }
 
-        private void OnDisable()
+        protected override void Init()
         {
-            damageCollision.OnTriggerEnterObject.RemoveListener(DamageEnemy);
+            base.Init();
+            projectile.SetSettings(enemyConfig);
         }
-
-        private void DamageEnemy(GameObject arg0)
-        {
-            if (arg0.TryGetComponent<IHealthSystem>(out var entity))
-            {
-                entity.ReceiveDamage(config.damage);
-            }
-        }
-
         protected void Update()
         {
             if (IsDead()) return;
@@ -59,7 +38,7 @@ namespace Enemy
                 timer += Time.deltaTime;
             }
 
-            if (timer > enemyConfig.attackSpeed)
+            if (timer > enemyConfig.timeBetweenAttacks)
             {
                 canAttack = true;
             }
@@ -69,7 +48,7 @@ namespace Enemy
         {
             int layerMask = 1 << gameObject.layer;
             layerMask = ~layerMask;
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyConfig.attackRange);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyConfig.timeBetweenAttacks);
             foreach (Collider hitCollider in hitColliders)
             {
                 if (hitCollider.CompareTag("Player") && canAttack)
@@ -100,7 +79,7 @@ namespace Enemy
         protected void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, enemyConfig.attackRange);
+            Gizmos.DrawWireSphere(transform.position, enemyConfig.timeBetweenAttacks);
         }
     }
 }
