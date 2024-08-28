@@ -515,14 +515,12 @@ public class DungeonGeneration : MonoBehaviour
                     finalRotation = 270;
                     room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.UP);
                 }
-
-                if (room.HasNeighbourInDirection(RoomDirection.LEFT))
+                else if (room.HasNeighbourInDirection(RoomDirection.LEFT))
                 {
                     finalRotation = 180;
                     room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.LEFT);
                 }
-
-                if (room.HasNeighbourInDirection(RoomDirection.DOWN))
+                else if (room.HasNeighbourInDirection(RoomDirection.DOWN))
                 {
                     finalRotation = 90;
                     room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.DOWN);
@@ -546,15 +544,15 @@ public class DungeonGeneration : MonoBehaviour
                     room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.LEFT);
                     room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.DOWN);
                 }
-
-                if (room.HasNeighbourInDirection(RoomDirection.UP) && room.HasNeighbourInDirection(RoomDirection.LEFT))
+                else if (room.HasNeighbourInDirection(RoomDirection.UP) &&
+                         room.HasNeighbourInDirection(RoomDirection.LEFT))
                 {
                     finalRotation = 180;
                     room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.RIGHT);
                     room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.LEFT);
                 }
-
-                if (room.HasNeighbourInDirection(RoomDirection.UP) && room.HasNeighbourInDirection(RoomDirection.RIGHT))
+                else if (room.HasNeighbourInDirection(RoomDirection.UP) &&
+                         room.HasNeighbourInDirection(RoomDirection.RIGHT))
                 {
                     finalRotation = 270;
                     room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.RIGHT);
@@ -572,20 +570,18 @@ public class DungeonGeneration : MonoBehaviour
                     room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.DOWN);
                     room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.LEFT);
                 }
-
-                if (room.HasNeighbourInDirection(RoomDirection.UP) &&
-                    room.HasNeighbourInDirection(RoomDirection.DOWN) &&
-                    room.HasNeighbourInDirection(RoomDirection.LEFT))
+                else if (room.HasNeighbourInDirection(RoomDirection.UP) &&
+                         room.HasNeighbourInDirection(RoomDirection.DOWN) &&
+                         room.HasNeighbourInDirection(RoomDirection.LEFT))
                 {
                     finalRotation = 180;
                     room.roomBehaviour.SetDoorDirection(RoomDirection.UP, RoomDirection.DOWN);
                     room.roomBehaviour.SetDoorDirection(RoomDirection.RIGHT, RoomDirection.LEFT);
                     room.roomBehaviour.SetDoorDirection(RoomDirection.DOWN, RoomDirection.UP);
                 }
-
-                if (room.HasNeighbourInDirection(RoomDirection.UP) &&
-                    room.HasNeighbourInDirection(RoomDirection.RIGHT) &&
-                    room.HasNeighbourInDirection(RoomDirection.LEFT))
+                else if (room.HasNeighbourInDirection(RoomDirection.UP) &&
+                         room.HasNeighbourInDirection(RoomDirection.RIGHT) &&
+                         room.HasNeighbourInDirection(RoomDirection.LEFT))
                 {
                     finalRotation = 270;
                     room.roomBehaviour.SetDoorDirection(RoomDirection.UP, RoomDirection.LEFT);
