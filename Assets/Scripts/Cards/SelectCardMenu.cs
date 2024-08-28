@@ -77,8 +77,6 @@ public class SelectCardMenu : MonoBehaviour
                 if (cardsToShow[i].isInverted == true)
                 {
                     PlayInvertedCardAnimation(cardsToShow[i].slotIndex);
-
-                    return;
                 }
             }
         }
@@ -102,6 +100,8 @@ public class SelectCardMenu : MonoBehaviour
 
         card.ID = Random.Range(0, playerInventory.GetMaxCards());
 
+        DontRepeatCards(card);
+
         card.isInverted = IsCardInverted();
 
         for (int i = 0; i < allCards.Count; i++)
@@ -113,6 +113,21 @@ public class SelectCardMenu : MonoBehaviour
         }
 
         return card;
+    }
+
+    private void DontRepeatCards(CardSO card) 
+    {
+        if(cardsToShow.Count != 0) 
+        {
+            for (int i = 0; i < cardsToShow.Count; i++)
+            {
+                while (card.ID == cardsToShow[i].ID)
+                {
+                    card.ID = Random.Range(0, playerInventory.GetMaxCards());
+
+                } 
+            }
+        }
     }
 
     private void PickCardsToShow()
