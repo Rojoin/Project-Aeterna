@@ -156,7 +156,7 @@ public class PlayerInventory : MonoBehaviour
 
                 case CardSO.CardType.Health:
 
-                    playerHealth.SetMaxHealigh(newCard.health);
+                    playerHealth.SetMaxHealth(newCard.health);
 
                     break;
 

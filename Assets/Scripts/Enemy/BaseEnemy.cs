@@ -54,7 +54,7 @@ namespace Enemy
 
         public float GetHealth() => config.health;
 
-        public void SetMaxHealigh(float newMaxHealth)
+        public void SetMaxHealth(float newMaxHealth)
         {
             config.health = newMaxHealth;
         }

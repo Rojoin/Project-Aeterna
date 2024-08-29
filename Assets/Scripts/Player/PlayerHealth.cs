@@ -7,10 +7,10 @@ using UnityEngine.Serialization;
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
     [Header("Data")]
-    [SerializeField]private EntitySO player;
-    [SerializeField]private Animator animator;
-    [SerializeField]private VoidChannelSO MoveCamera;
-     [SerializeField] private CustomSlider healthBar;
+    [SerializeField] private EntitySO player;
+    [SerializeField] private Animator animator;
+    [SerializeField] private VoidChannelSO MoveCamera;
+    [SerializeField] private CustomSlider healthBar;
     private float currentHealth;
     private float maxHealth;
     private float damage;
@@ -26,30 +26,33 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         speed = player.speed;
     }
 
-    public void SetHealth(float newHealth) 
+    public void SetHealth(float newHealth)
     {
         player.health = newHealth;
         healthBar.FillAmount = currentHealth / maxHealth;
     }
-    public float GetHealth() 
+
+    public float GetHealth()
     {
         return player.health;
     }
 
-    public void SetMaxHealigh(float newMaxHealth)
+    public void SetMaxHealth(float newMaxHealth)
     {
         maxHealth += newMaxHealth;
         currentHealth += newMaxHealth;
         healthBar.FillAmount = currentHealth / maxHealth;
     }
-[ContextMenu("KillPlayer")]
-private void KillPlayer()
-{
-    ReceiveDamage(1000000);
-}
-    public void ReceiveDamage(float damage) 
+
+    [ContextMenu("KillPlayer")]
+    private void KillPlayer()
     {
-        if (currentHealth <= 0 || currentHealth <= damage) 
+        ReceiveDamage(1000000);
+    }
+
+    public void ReceiveDamage(float damage)
+    {
+        if (currentHealth <= 0 || currentHealth <= damage)
         {
             currentHealth = 0;
             MoveCamera.RaiseEvent();
@@ -59,16 +62,21 @@ private void KillPlayer()
         {
             currentHealth -= damage;
         }
+
         OnPlayerHurt.Invoke();
         animator.SetTrigger(IsHurt);
-        healthBar.FillAmount = currentHealth / maxHealth;
+        if (healthBar != null)
+        {
+            healthBar.FillAmount = currentHealth / maxHealth;
+        }
     }
 
-    public void SetDamage(float newDamage) 
+    public void SetDamage(float newDamage)
     {
         player.damage = newDamage;
     }
-    public float GetDamage() 
+
+    public float GetDamage()
     {
         return player.damage;
     }
@@ -77,25 +85,27 @@ private void KillPlayer()
     {
         player.speed = newSpeed;
     }
+
     public float GetSpeed()
     {
         return player.speed;
     }
+
     public float GetMaxSpeed()
     {
         return player.maxSpeed;
     }
 
-    public bool IsDead() 
+    public bool IsDead()
     {
-        if (currentHealth <= 0) 
+        if (currentHealth <= 0)
         {
             return true;
         }
 
-        else 
+        else
         {
-            return false; 
+            return false;
         }
     }
 
