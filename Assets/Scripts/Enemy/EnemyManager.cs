@@ -10,46 +10,52 @@ namespace Enemy
     {
         public bool roomClear = false;
         public UnityEvent OnLastEnemyKilled;
-        public ProceduralRoomGeneration proceduralRoomGeneration;
 
-        public List<GameObject> enemyPrefab;
         private int totalEnemies = 0;
         private List<BaseEnemy> Enemies = new List<BaseEnemy>();
-        [SerializeField] private int minNumberEnemies;
-        [SerializeField] private int maxNumberEnemies;
-        [SerializeField] private float enemyMinSpawnDistance;
-
-        public void OnEnterNewRoom()
+        [SerializeField] private Transform[] SpawnPoints;
+        private EnemyLevelSO enemyLevelSo;
+        
+        public void OnEnterNewRoom() 
         {
+            Debug.Log("try spawn Enemies");
+
             if (!roomClear)
             {
+                Debug.Log("Spawn Enemies");
                 SpawnEnemies();
             }
         }
 
+        public void SetEnemyRoomStats(EnemyLevelSO levelSo)
+        {
+            enemyLevelSo = levelSo;
+        }
+
         private void SpawnEnemies()
         {
-            // int NewEnemyCuantity = Random.Range(minNumberEnemies, maxNumberEnemies);
-            // totalEnemies = NewEnemyCuantity;
-            //
-            // for (int i = 0; i < NewEnemyCuantity; i++)
-            // {
-            //     Cell spawnPositionCell =
-            //         proceduralRoomGeneration.GetRandomCellByType(CellTag.inside, enemyMinSpawnDistance);
-            //     GameObject enemyToInvoke = enemyPrefab[Random.Range(0, enemyPrefab.Count)];
-            //     GameObject newEnemy =
-            //         Instantiate(enemyToInvoke, spawnPositionCell.position + (enemyToInvoke.transform.up *
-            //                                                                  ((enemyToInvoke
-            //                                                                      .transform.localScale.y / 2) + 0.3f)),
-            //             quaternion.identity, transform);
-            //     newEnemy.transform.Rotate(Vector3.up, 180);
-            //     Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
-            // }
-            //
-            // foreach (BaseEnemy e in Enemies)
-            // {
-            //     e.OnDeath.AddListener(DeletePlayer);
-            // }
+            int NewEnemyCuantity = Random.Range(enemyLevelSo.minNumberEnemies, enemyLevelSo.maxNumberEnemies);
+            totalEnemies = NewEnemyCuantity;
+
+            for (int i = 0; i < NewEnemyCuantity; i++)
+            {
+                Vector3 spawnPosition = SpawnPoints[Random.Range(0, SpawnPoints.Length)].position;
+
+                GameObject enemyToInvoke = enemyLevelSo.enemiesList[Random.Range(0, enemyLevelSo.enemiesList.Count)];
+
+                GameObject newEnemy =
+                    Instantiate(enemyToInvoke, spawnPosition + (enemyToInvoke.transform.up *
+                                                                ((enemyToInvoke
+                                                                    .transform.localScale.y / 2) + 0.3f)),
+                        quaternion.identity, transform);
+                newEnemy.transform.Rotate(Vector3.up, 180);
+                Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
+            }
+
+            foreach (BaseEnemy e in Enemies)
+            {
+                e.OnDeath.AddListener(DeletePlayer);
+            }
         }
 
         private void DeletePlayer()

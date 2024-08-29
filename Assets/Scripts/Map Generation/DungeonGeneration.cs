@@ -9,6 +9,8 @@ using Random = UnityEngine.Random;
 public class DungeonGeneration : MonoBehaviour
 {
     [Header("Level So")] [SerializeField] private LevelRoomsSO levelRoom;
+    
+    [Header("Level Enemy So")] [SerializeField] private EnemyLevelSO enemyLevelSo;
 
     [Header("Grid")] [SerializeField] private Vector2 gapBetweenRooms;
 
@@ -280,8 +282,8 @@ public class DungeonGeneration : MonoBehaviour
         opositeDirection = GetOpositeDirection(direction);
 
         Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection);
-
-        //ActualPlayerRoom.enemyManager.OnEnterNewRoom();
+        
+        ActualPlayerRoom.enemyManager.OnEnterNewRoom();
 
         player.enabled = false;
         player.transform.position = nextDoorPosition.position + (nextDoorPosition.up * playerTpPositionY);
@@ -332,10 +334,10 @@ public class DungeonGeneration : MonoBehaviour
 
     private void SetVisibleRooms()
     {
-        // foreach (DungeonRoom d in dungeonRooms)
-        // {
-        //     d.dungeonRoomInstance.SetActive(d == ActualPlayerRoom);
-        // }
+        foreach (DungeonRoom d in dungeonRooms)
+        {
+            d.dungeonRoomInstance.SetActive(d == ActualPlayerRoom);
+        }
     }
 
     private bool IsThereRoomInPosition(int x, int z)
@@ -383,12 +385,7 @@ public class DungeonGeneration : MonoBehaviour
             room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
 
             //TODO : SET BETTER ENEMY MANAGER
-            // if (roomInstance.GetComponent<EnemyManager>())
-            // {
-            //     room.enemyManager = roomInstance.GetComponent<EnemyManager>();
-            //     room.enemyManager.proceduralRoomGeneration = room.proceduralRoomGeneration;
-            //     room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
-            // }
+            SetEnemyManager(room, roomInstance);
 
             room.roomBehaviour.StartRoom();
 
@@ -400,10 +397,22 @@ public class DungeonGeneration : MonoBehaviour
             if (room.type == RoomTypes.START)
             {
                 ActualPlayerRoom = room;
+                room.roomBehaviour.SetRoomDoorState(true);
                 cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
-                //room.enemyManager.CallEndRoom();
+                room.enemyManager.CallEndRoom();
             }
         }
+    }
+
+    private void SetEnemyManager(DungeonRoom room, GameObject roomInstance)
+    {
+        EnemyManager enemyManager = roomInstance.GetComponent<EnemyManager>();
+
+        room.enemyManager = enemyManager;
+
+        room.enemyManager.SetEnemyRoomStats(enemyLevelSo);
+        
+        room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
     }
 
     private RoomDirection GetRandomNeighbourDirection(DungeonRoom currentRoom)
@@ -504,6 +513,7 @@ public class DungeonGeneration : MonoBehaviour
         OnProvidePosition?.Invoke(player.transform.position);
     }
 
+    //TODO : Cambiar como funciona y quemar al hdp que lo hizo
     private float GetFinalRoomRotation(DungeonRoom room)
     {
         float finalRotation = 0;

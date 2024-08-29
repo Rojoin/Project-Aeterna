@@ -27,7 +27,7 @@ public class DoorColecction
                     o.SetActive(value);
                 }
 
-                doorCollider.enabled = value;
+                //doorCollider.enabled = value;
             }
         }
     }
