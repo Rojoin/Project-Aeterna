@@ -48,7 +48,7 @@ namespace Projectile
 
         private void DeathBehaviour()
         {
-            this.enabled = false;
+            gameObject.SetActive(false);
         }
 
         private void Update()

@@ -1,4 +1,6 @@
-﻿using ScriptableObjects.Entities;
+﻿using Projectile;
+using ScriptableObjects.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Enemy
@@ -7,9 +9,14 @@ namespace Enemy
     {
         [SerializeField] private Projectile.BaseProjectile projectile;
         private ShootingEnemySO enemyConfig;
-        
+        private Transform target;
+       private Collider[] _colliders = new Collider[2];
+
+
         protected override void ValidateMethod()
         {
+            if (config == null) 
+                return;
             if (config.GetType() != typeof(ShootingEnemySO))
             {
                 config = null;
@@ -25,6 +32,7 @@ namespace Enemy
             base.Init();
             projectile.SetSettings(enemyConfig);
         }
+
         protected void Update()
         {
             if (IsDead()) return;
@@ -48,7 +56,7 @@ namespace Enemy
         {
             int layerMask = 1 << gameObject.layer;
             layerMask = ~layerMask;
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyConfig.timeBetweenAttacks);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyConfig.attackRange);
             foreach (Collider hitCollider in hitColliders)
             {
                 if (hitCollider.CompareTag("Player") && canAttack)
@@ -56,7 +64,7 @@ namespace Enemy
                     Transform currentObjective = hitCollider.gameObject.transform;
                     Vector3 direction = currentObjective.position - transform.position;
                     direction.y = 0;
-
+                    target = hitCollider.transform;
                     if (direction != Vector3.zero)
                     {
                         Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -75,11 +83,17 @@ namespace Enemy
         {
             isAttacking = false;
         }
-        
+
+        public void SendProjectile()
+        {
+            BaseProjectile baseProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
+            baseProjectile.SetTarget(target);
+            baseProjectile.gameObject.SetActive(true);
+        }
         protected void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, enemyConfig.timeBetweenAttacks);
+            Gizmos.DrawWireSphere(transform.position, enemyConfig.attackRange);
         }
     }
 }

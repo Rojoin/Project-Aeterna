@@ -1,12 +1,17 @@
 ﻿using Enemy;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class EnemyAnimatorEvent : MonoBehaviour
 {
-    public DummyEnemy _dummyEnemy;
+    public BaseEnemy baseEnemy;
+    public UnityEvent OnAttack;
+
     public void SetAttackState(int value)
     {
-        _dummyEnemy.isAttacking = value != 0;
+        baseEnemy.isAttacking = value != 0;
     }
-    
+
+    public void ActivateAttack() => OnAttack.Invoke();
 }

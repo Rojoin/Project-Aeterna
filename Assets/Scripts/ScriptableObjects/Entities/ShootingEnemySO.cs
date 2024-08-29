@@ -11,6 +11,7 @@ namespace ScriptableObjects.Entities
       
         public float timeBetweenAttacks;
         public float timeUntilBlock;
+        public float attackRange = 50;
         [Header("Projectile")]
         public Projectile.ProjectileProperties settings;
         public float projectileSpeed;
