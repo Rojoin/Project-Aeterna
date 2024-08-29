@@ -29,27 +29,27 @@ namespace Enemy
 
         private void SpawnEnemies()
         {
-            int NewEnemyCuantity = Random.Range(minNumberEnemies, maxNumberEnemies);
-            totalEnemies = NewEnemyCuantity;
-
-            for (int i = 0; i < NewEnemyCuantity; i++)
-            {
-                Cell spawnPositionCell =
-                    proceduralRoomGeneration.GetRandomCellByType(CellTag.inside, enemyMinSpawnDistance);
-                GameObject enemyToInvoke = enemyPrefab[Random.Range(0, enemyPrefab.Count)];
-                GameObject newEnemy =
-                    Instantiate(enemyToInvoke, spawnPositionCell.position + (enemyToInvoke.transform.up *
-                                                                             ((enemyToInvoke
-                                                                                 .transform.localScale.y / 2) + 0.3f)),
-                        quaternion.identity, transform);
-                newEnemy.transform.Rotate(Vector3.up, 180);
-                Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
-            }
-
-            foreach (BaseEnemy e in Enemies)
-            {
-                e.OnDeath.AddListener(DeletePlayer);
-            }
+            // int NewEnemyCuantity = Random.Range(minNumberEnemies, maxNumberEnemies);
+            // totalEnemies = NewEnemyCuantity;
+            //
+            // for (int i = 0; i < NewEnemyCuantity; i++)
+            // {
+            //     Cell spawnPositionCell =
+            //         proceduralRoomGeneration.GetRandomCellByType(CellTag.inside, enemyMinSpawnDistance);
+            //     GameObject enemyToInvoke = enemyPrefab[Random.Range(0, enemyPrefab.Count)];
+            //     GameObject newEnemy =
+            //         Instantiate(enemyToInvoke, spawnPositionCell.position + (enemyToInvoke.transform.up *
+            //                                                                  ((enemyToInvoke
+            //                                                                      .transform.localScale.y / 2) + 0.3f)),
+            //             quaternion.identity, transform);
+            //     newEnemy.transform.Rotate(Vector3.up, 180);
+            //     Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
+            // }
+            //
+            // foreach (BaseEnemy e in Enemies)
+            // {
+            //     e.OnDeath.AddListener(DeletePlayer);
+            // }
         }
 
         private void DeletePlayer()

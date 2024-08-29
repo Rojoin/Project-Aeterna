@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6609680635174012541}
   - component: {fileID: -22964642545148674}
   - component: {fileID: 602511915727980567}
+  - component: {fileID: 1565306297757825915}
   m_Layer: 0
   m_Name: Basic Chamber
   m_TagString: Untagged
@@ -114,18 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 10, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 871861efc4ed97f42a044078c7076156, type: 2}
-  - {fileID: 11400000, guid: 1ffa7d8ab16944a4f84509afc9a841ec, type: 2}
-  - {fileID: 11400000, guid: adec2d31112df1449842c2e0b64a00d1, type: 2}
-  - {fileID: 11400000, guid: 0af8d0c1cebb28b478a13dc7451e8e00, type: 2}
-  - {fileID: 11400000, guid: 65d730f439b4fa440bcaa413d3600714, type: 2}
-  totalObjects: 10
-  wallSize: 1
-  playerD: 0
+  chamberSO: {fileID: 11400000, guid: 64225a07b4365fa48907e1a7ba3820fb, type: 2}
+  unityGrid: {fileID: 1565306297757825915}
 --- !u!114 &-22964642545148674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +161,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!156049354 &1565306297757825915
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203743812469221639}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 1
 --- !u!1001 &2575069338340890274
 PrefabInstance:
   m_ObjectHideFlags: 0
