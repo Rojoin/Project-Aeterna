@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
   animator: {fileID: 4241493471790223710}
+  MoveCamera: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   healthBar: {fileID: 0}
   OnPlayerHurt:
     m_PersistentCalls:
@@ -163,6 +164,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4544806065991443501}
         m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CameraShake, Assembly-CSharp
+        m_MethodName: ShakeCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -647,6 +660,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 98365337757529717}
     m_Modifications:
+    - target: {fileID: 626679615997913298, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2557474552460562186, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
       propertyPath: _attackCollider
       value: 
@@ -655,6 +672,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7900223848651455243, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0825c0f494d8de64cb00516755f86f21, type: 2}
+    - target: {fileID: 7900223848651455243, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 37828c3e6016fb34abe8c42cf16da6eb, type: 2}
     - target: {fileID: 9079201566075216794, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
