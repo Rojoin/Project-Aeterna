@@ -39,7 +39,7 @@ namespace Enemy
 
             for (int i = 0; i < NewEnemyCuantity; i++)
             {
-                Vector3 spawnPosition = SpawnPoints[Random.Range(0, SpawnPoints.Length)].position;
+                Vector3 spawnPosition = SpawnPoints[i].position;
 
                 GameObject enemyToInvoke = enemyLevelSo.enemiesList[Random.Range(0, enemyLevelSo.enemiesList.Count)];
 

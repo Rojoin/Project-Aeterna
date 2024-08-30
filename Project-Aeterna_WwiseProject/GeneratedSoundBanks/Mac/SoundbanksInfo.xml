@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{500E5E81-70A8-10ED-B56E-3E0144F7A17A}">
+		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{D974A3EF-8570-938A-FE68-1226BB76F100}">
 			<ShortName>BaseSoundBank</ShortName>
 			<Path>BaseSoundBank.bnk</Path>
 			<Media>
@@ -41,6 +41,10 @@
 					<ShortName>SFX-impact-punch-bag-04_wav.wav</ShortName>
 					<CachePath>SFX/SFX-impact-punch-bag-04_wav_818F3B66.wem</CachePath>
 				</File>
+				<File Id="136787914" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Sinterminar-001.wav</ShortName>
+					<CachePath>SFX/Sinterminar-001_818F3B66.wem</CachePath>
+				</File>
 				<File Id="224161510" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX-impact-punch-bag-05_wav.wav</ShortName>
 					<CachePath>SFX/SFX-impact-punch-bag-05_wav_818F3B66.wem</CachePath>
@@ -48,6 +52,10 @@
 				<File Id="301685552" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Drs_Table_Close_01.wav</ShortName>
 					<CachePath>SFX/Drs_Table_Close_01_818F3B66.wem</CachePath>
+				</File>
+				<File Id="317201615" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Sinterminar.wav</ShortName>
+					<CachePath>SFX/Sinterminar_818F3B66.wem</CachePath>
 				</File>
 				<File Id="419712923" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enojado_muierte 3.wav</ShortName>
@@ -105,6 +113,10 @@
 					<ShortName>many_coins_12.wav</ShortName>
 					<CachePath>SFX/many_coins_12_818F3B66.wem</CachePath>
 				</File>
+				<File Id="795160225" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Sinterminar-002.wav</ShortName>
+					<CachePath>SFX/Sinterminar-002_818F3B66.wem</CachePath>
+				</File>
 				<File Id="802887724" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Voice_Female_V2_Attack_Mono_09.wav</ShortName>
 					<CachePath>SFX/Voice_Female_V2_Attack_Mono_09_818F3B66.wem</CachePath>
@@ -116,6 +128,10 @@
 				<File Id="858051376" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enojado_muierte 4.wav</ShortName>
 					<CachePath>SFX/Enojado_muierte 4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="977828449" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Sinterminar-003.wav</ShortName>
+					<CachePath>SFX/Sinterminar-003_818F3B66.wem</CachePath>
 				</File>
 				<File Id="987444625" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Drs_Open_Drawer_01.wav</ShortName>
@@ -135,6 +151,19 @@
 				</File>
 			</Media>
 			<Events>
+				<Event Id="2114297034" Name="Cards_Select_Play" DurationType="OneShot" DurationMin="2.1997278" DurationMax="2.1997278">
+					<MediaRefs>
+						<MediaRef Id="977828449"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1511560907" Name="Cards_Show_Play" DurationType="OneShot" DurationMin="2" DurationMax="2.1997278">
+					<MediaRefs>
+						<MediaRef Id="136787914"/>
+						<MediaRef Id="317201615"/>
+						<MediaRef Id="795160225"/>
+						<MediaRef Id="977828449"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="128625444" Name="Door_Close" DurationType="OneShot" DurationMin="0.7426077" DurationMax="0.7426077">
 					<MediaRefs>
 						<MediaRef Id="301685552"/>
@@ -222,5 +251,5 @@
 			</Busses>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{7AB69C38-1567-2E00-0EB0-2F9FB54CA8E6}</FileHash>
+	<FileHash>{73BCE8AB-32AB-E8C8-DB8B-4EE8405E4EF5}</FileHash>
 </SoundBanksInfo>

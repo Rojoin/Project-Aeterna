@@ -140,6 +140,32 @@
 								</Folder>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="Cards" ID="{076D4A34-E0E7-4115-AC23-1D751BF80888}" ShortID="1039639500">
+							<ChildrenList>
+								<Event Name="Cards_Show_Play" ID="{90AE2708-2C85-4332-AD29-D25954AA879C}">
+									<ChildrenList>
+										<Action Name="" ID="{50E76E4E-8561-4F4C-AB29-51A99F813D5A}" ShortID="252899638">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ShowCard" ID="{213B7EFF-EE50-471A-BD58-2E7A25573AED}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Cards_Select_Play" ID="{2BB00CBA-CD40-4B35-BFAE-C67939F92347}">
+									<ChildrenList>
+										<Action Name="" ID="{0B2A5897-AE0F-4CDA-BFEB-7C52EAD9C6D6}" ShortID="432627489">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="SelectCard" ID="{1A5B2170-2736-4B04-AB15-DDF7A52FB004}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="MUSIC" ID="{43113541-0FF1-45CB-A9BC-71EA2544335A}" ShortID="779894061">
