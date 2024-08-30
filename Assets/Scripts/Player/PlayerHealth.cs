@@ -42,6 +42,22 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         currentHealth += newMaxHealth;
         healthBar.FillAmount = currentHealth / maxHealth;
     }
+
+    public void HealthPlayer(float AddHealth) 
+    {
+        if(currentHealth >= maxHealth) 
+        {
+            currentHealth = maxHealth;
+            healthBar.FillAmount = currentHealth;
+        }
+
+        else 
+        {
+            currentHealth += AddHealth;
+            healthBar.FillAmount = currentHealth;
+        }
+    }
+
 [ContextMenu("KillPlayer")]
 private void KillPlayer()
 {
