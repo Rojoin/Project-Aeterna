@@ -24,7 +24,6 @@ public class ShootingEnemy : BaseEnemy
     private Material materialFace;
     private ShootingEnemySO enemyConfig;
     private Transform target;
-    private Collider[] _colliders = new Collider[2];
     private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
     private float defenseModeTimer = 0.0f;
     private float canEnterDefenseModeTimer = 0.0f;
