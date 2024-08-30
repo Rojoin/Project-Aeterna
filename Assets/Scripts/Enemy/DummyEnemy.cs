@@ -56,10 +56,10 @@ namespace Enemy
             }
             else if (!isAttacking)
             {
-                timer += Time.deltaTime;
+                attackTimer += Time.deltaTime;
             }
 
-            if (timer > enemyConfig.attackSpeed)
+            if (attackTimer > enemyConfig.attackSpeed)
             {
                 canAttack = true;
             }
@@ -84,7 +84,7 @@ namespace Enemy
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
                     }
 
-                    timer = 0.0f;
+                    attackTimer = 0.0f;
                     animator.SetTrigger(AttackAnim);
                     canAttack = false;
                     break;

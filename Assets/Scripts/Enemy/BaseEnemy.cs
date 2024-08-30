@@ -9,26 +9,33 @@ namespace Enemy
     {
         [FormerlySerializedAs("enemy")] [SerializeField]
         protected EntitySO config;
-        [SerializeField] private CustomSlider healthBar;
+        [SerializeField]  protected CustomSlider healthBar;
         [SerializeField] public UnityEvent OnHit;
         [SerializeField] public UnityEvent OnDeath;
         [SerializeField] public UnityEvent<BaseEnemy> OnDeathRemove;
         [SerializeField] public Animator animator;
-        private float currentHealth;
-        private float maxHealth;
+        protected float currentHealth;
+        protected float maxHealth;
         protected bool canAttack;
-        protected float timer;
+        protected float attackTimer;
         public bool isAttacking;
         protected static readonly int AttackAnim = Animator.StringToHash("isAttacking");
-        private static readonly int IsIdle = Animator.StringToHash("isIdle");
-        private static readonly int Hurt = Animator.StringToHash("isHurt");
-        private static readonly int Dead = Animator.StringToHash("isDead");
-        private static readonly int Damage = Animator.StringToHash("Damage");
+        protected static readonly int IsIdle = Animator.StringToHash("isIdle");
+        protected static readonly int Hurt = Animator.StringToHash("isHurt");
+        protected static readonly int Dead = Animator.StringToHash("isDead");
+        protected static readonly int Damage = Animator.StringToHash("Damage");
         [SerializeField] float timeAfterDeactivate = 0.50f;
 
         private void OnEnable()
         {
             Init();
+            OnDeath.AddListener(DeathBehaviour);
+        }
+
+        private void OnDisable()
+        {
+            OnDeath.RemoveAllListeners();
+            OnHit.RemoveAllListeners();
         }
 
         private void OnValidate()
@@ -67,7 +74,7 @@ namespace Enemy
                 currentHealth = 0;
                 OnHit.Invoke();
                 OnDeath.Invoke();
-                Invoke(nameof(DeactivateObject), timeAfterDeactivate);
+                Invoke(nameof(DeathBehaviour), timeAfterDeactivate);
             }
             else
             {
@@ -83,7 +90,7 @@ namespace Enemy
 
         public bool IsDead() => currentHealth <= 0;
 
-        void DeactivateObject()
+        public virtual void DeathBehaviour()
         {
             this.gameObject.SetActive(false);
         }

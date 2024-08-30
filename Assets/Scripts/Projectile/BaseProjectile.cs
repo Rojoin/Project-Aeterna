@@ -26,6 +26,8 @@ namespace Projectile
         [SerializeField] private ProjectileProperties properties;
         private Vector3 direction;
         private Vector3 finalPos;
+        [SerializeField] float scaleSpeed = 2;
+        [SerializeField]  float maxScale = 2;
 
         [SerializeField] private UnityEvent onProyectileHit;
         [SerializeField] private UnityEvent onProyectileDeath;
@@ -38,6 +40,7 @@ namespace Projectile
                 ? (target.position - transform.position).normalized
                 : (finalPos - transform.position).normalized;
             onProyectileDeath.AddListener(DeathBehaviour);
+            transform.LookAt(target != null ? target.position : finalPos);
         }
 
         public void OnDisable()
@@ -65,6 +68,9 @@ namespace Projectile
                 {
                     onProyectileDeath.Invoke();
                 }
+
+
+                transform.localScale = Vector3.one * Mathf.Clamp(currentTime * scaleSpeed, 1, maxScale);
             }
 
             Vector3 velocity = direction;
