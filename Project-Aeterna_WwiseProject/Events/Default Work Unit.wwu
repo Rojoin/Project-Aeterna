@@ -76,29 +76,40 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
-						<Folder Name="Dummy" ID="{FE1A87B4-3C97-48F8-A05C-34D8BBC429C0}" ShortID="58906333">
+						<Folder Name="Enemies" ID="{FE1A87B4-3C97-48F8-A05C-34D8BBC429C0}" ShortID="58906333">
 							<PropertyList>
 								<Property Name="Color" Type="int16" Value="10"/>
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ChildrenList>
-								<Event Name="Dummy_Dead" ID="{11816771-F83E-41AA-86EE-8246493AC591}">
+								<Event Name="Yukinko_Dead" ID="{11816771-F83E-41AA-86EE-8246493AC591}">
 									<ChildrenList>
 										<Action Name="" ID="{8FEA6DC0-9059-4A2E-9E3D-FD7012BF64EE}" ShortID="797136730">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="Dummy_Dead" ID="{42C55D9E-16AB-4038-8010-9B9CCF312E70}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+													<ObjectRef Name="Yukinko_Dead" ID="{42C55D9E-16AB-4038-8010-9B9CCF312E70}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="Dummy_Hit" ID="{9553BD6F-AAA8-4A8E-B679-5F717BDBEA58}">
+								<Event Name="Yukinko_Hit" ID="{9553BD6F-AAA8-4A8E-B679-5F717BDBEA58}">
 									<ChildrenList>
 										<Action Name="" ID="{B8A53CDF-C765-4D35-AFDF-B0BBA05D279A}" ShortID="885548226">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="Dummy_Hit" ID="{D94D8FBD-BA4B-4019-94C5-8A1CE3541AF5}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+													<ObjectRef Name="Yukinko_Hit" ID="{D94D8FBD-BA4B-4019-94C5-8A1CE3541AF5}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Yukinko_Attack" ID="{F979943B-BFB3-4559-8E4B-80D6C6D9F2E9}">
+									<ChildrenList>
+										<Action Name="" ID="{2CC5F05B-15E4-447C-B5F8-AF07E9422552}" ShortID="934742350">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Yukinko_Attack" ID="{C0BF87CF-F496-4F14-AD11-D59571CFD212}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
