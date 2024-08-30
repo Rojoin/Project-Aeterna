@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d441e771cfc49174a95a2569539d82f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000030517577
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d441e771cfc49174a95a2569539d82f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000000076293944
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d441e771cfc49174a95a2569539d82f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d441e771cfc49174a95a2569539d82f6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55,5 +55,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d441e771cfc49174a95a2569539d82f6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1404368257907959615}
   m_SourcePrefab: {fileID: 100100000, guid: d441e771cfc49174a95a2569539d82f6, type: 3}
+--- !u!1 &7436788466810194949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d441e771cfc49174a95a2569539d82f6, type: 3}
+  m_PrefabInstance: {fileID: 7779315678388728148}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1404368257907959615
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436788466810194949}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 200, y: 1000, z: 200}
+  m_Center: {x: 0, y: 400, z: 0}
