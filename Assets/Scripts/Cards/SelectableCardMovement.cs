@@ -1,7 +1,10 @@
+using ScriptableObjects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -11,12 +14,15 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
 
     [SerializeField] private GameObject cardInformation;
 
+    [SerializeField] private GameSettings gameSettings;
+
     [Header("Setup")]
     [SerializeField] private float minRotation;
     [SerializeField] private float maxRotation;
 
     [SerializeField] private float rotationSpeed;
 
+    [Header("Setup: for controller")]
     [SerializeField] private float xCardRotation;
 
     [SerializeField] private Button button;
@@ -24,6 +30,7 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
     private RectTransform rectTransform;
 
     private float targetAngle;
+    private float angle;
 
     public bool canMove = true;
     public bool isSelected = false;
@@ -33,33 +40,38 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
         rectTransform = GetComponent<RectTransform>();
     }
 
+    private void Update()
+    {
+        if (!gameSettings.isUsingController)
+        {
+            SelectableCardMovementWithMouse();
+        }
+
+        else
+        {
+            SelectableCardMovementWithGamepad();   
+        }
+    }
+
     public void SelectableCardMovementWithMouse()
     {
         if (canMove)
         {
             Vector3 mousePos = Input.mousePosition;
 
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, mousePos, null, out Vector2 localMousePos);
+            if (mousePos.x < Screen.width / 2)
+            {
+                angle = maxRotation;
+            }
 
-            Vector2 direction = ((RectTransform)transform).anchoredPosition - localMousePos;
-            direction.Normalize();
+            if (mousePos.x > Screen.width / 2)
+            {
+                angle = minRotation;
+            }
 
-            targetAngle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+            float currentAngle = Mathf.LerpAngle(rectTransform.eulerAngles.y, angle, rotationSpeed * Time.deltaTime);
 
-            targetAngle = Mathf.Clamp(targetAngle, minRotation, maxRotation);
-
-            float currentAngle = transform.rotation.eulerAngles.y;
-            float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
-
-            float rotationAmount = rotationSpeed * Time.deltaTime;
-
-            if (Mathf.Abs(angleDifference) > rotationAmount)
-                currentAngle += Mathf.Sign(angleDifference) * rotationAmount;
-
-            else
-                currentAngle = targetAngle;
-
-            transform.rotation = Quaternion.Euler(xCardRotation, currentAngle, 0);
+            rectTransform.eulerAngles = new Vector3(0, currentAngle, 0);
         }
     }
 
@@ -82,8 +94,8 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
             rectTransform.rotation = Quaternion.Slerp(rectTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        else 
-        { 
+        else
+        {
             isSelected = true;
 
             transform.rotation = Quaternion.Euler(xCardRotation, 0, 0);
@@ -127,14 +139,14 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
         return false;
     }
 
-    public bool IsSelected() 
+    public bool IsSelected()
     {
-        if (isSelected) 
+        if (isSelected)
         {
             return true;
         }
 
-        else 
+        else
         {
             return false;
         }

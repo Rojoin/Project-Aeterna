@@ -11,6 +11,11 @@ public class CardDisplay : MonoBehaviour
 
     public void ShowCard(CardSO card) 
     {
+        if (card.isInverted) 
+        {
+            allCardSprite.rectTransform.rotation = new Quaternion(0, 0, 180, 0);
+        }
+
         allCardSprite.sprite = card.allCardSprite;
     }
 }

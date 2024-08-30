@@ -7,45 +7,48 @@ using Random = UnityEngine.Random;
 
 public class SelectCardMenu : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private GameObject SelectCardUI;
-    [SerializeField] private PlayerInventory playerInventory;
     [SerializeField] private BoolChannelSO TogglePause;
     [SerializeField] private VoidChannelSO moveCamera;
     [SerializeField] private GameObject gameOverScreen;
-    private List<CardSO> cardsSelected = new List<CardSO>();
 
-    private bool isCardSelected;
+    [Header("Reference: UI")]
+    [SerializeField] private GameObject SelectCardUI;
 
-    private int cardToSelect;
+    private bool showCardMenu = false;
 
-    [Header("Setup")]
-    [SerializeField] private int maxCardsToSelect = 3;
+    [Header("Reference: Player Inventory")]
+    [SerializeField] private PlayerInventory playerInventory;
 
-    private List<CardSO> cardList = new List<CardSO>();
+    private List<CardSO> allCards;
 
-    public List<CardSO> allCards = new List<CardSO>();
+    [Header("Reference: Selectable Cards")]
+    [SerializeField] private List<SelectableCardMovement> cardsMovements;
+    [SerializeField] private List<SelectableCardDisplay> cardsDisplay;
 
-    public List<SelectableCardDisplay> seletableCardsDisplays = new List<SelectableCardDisplay>();
+    [Header("Animations")]
+    [SerializeField] private List<Animator> cardsAnimator;
 
-    public List<SelectableCardMovement> selectableCardMovements = new List<SelectableCardMovement>();
+    public List<CardSO> cardsToShow;
 
-    public bool isCardActivated = false;
+    [SerializeField] private Animator invertedCardAnimator;
+
+    [Header("Setup: Cards")]
+    public int maxCardsToSelect = 3;
 
     public TextMeshProUGUI description;
 
     void Start()
     {
-        allCards = playerInventory.GetAllCardsList();
-
         ShowSelectCardMenu(false);
-        isCardSelected = false;
+        allCards = playerInventory.GetAllCard();
     }
 
     private void OnEnable()
     {
         moveCamera.Subscribe(TurnGameOver);
-    }    private void OnDisable()
+    }
+
+    private void OnDisable()
     {
         moveCamera.Unsubscribe(TurnGameOver);
     }
@@ -57,114 +60,155 @@ public class SelectCardMenu : MonoBehaviour
 
     private void Update()
     {
-        if (isCardActivated) 
+        PickCardsToShow();
+
+        if (showCardMenu)
         {
-            for (int i = 0; i < selectableCardMovements.Count; i++)
+            for (int i = 0; i < cardsMovements.Count; i++)
             {
-                if (selectableCardMovements[i].IsSelected())
+                if (cardsMovements[i].IsSelected())
                 {
-                    seletableCardsDisplays[i].ShowCardDescription(cardList[i]);
+                    cardsDisplay[i].ShowCardDescription(cardsToShow[i]);
+                }
+            }
+
+            for (int i = 0; i < cardsToShow.Count; i++)
+            {
+                if (cardsToShow[i].isInverted == true)
+                {
+                    PlayInvertedCardAnimation(cardsToShow[i].slotIndex);
                 }
             }
         }
-    }
 
-    public void ShowSelectCardMenu(bool value) 
-    {
-        SelectCardUI.SetActive(value);
-        isCardActivated = value;
-        TogglePause.RaiseEvent(value);
-
-        if (value == true) 
+        else
         {
-            cardList.Clear();
-
-            for (int i = 0; i < seletableCardsDisplays.Count; i++)
-            {
-                CardSO card = GetRandomCard();
-
-                cardList.Add(card);
-
-                seletableCardsDisplays[i].ShowCardImage(card);
-            }
+            cardsToShow.Clear();
         }
     }
 
-    public CardSO GetRandomCard() 
+    public void ShowSelectCardMenu(bool value)
+    {
+        showCardMenu = value;
+        SelectCardUI.SetActive(value);
+        TogglePause.RaiseEvent(value);
+    }
+
+    public CardSO GetRandomCard(int minRangeOfCards, int maxRangeOfCards)
     {
         CardSO card = ScriptableObject.CreateInstance<CardSO>();
 
-        card.ID = Random.Range(0, maxCardsToSelect);
+        card.ID = Random.Range(minRangeOfCards, maxRangeOfCards);
+
+        DontRepeatCards(card);
+
+        card.isInverted = IsCardInverted();
 
         for (int i = 0; i < allCards.Count; i++)
         {
             if (allCards[i].ID == card.ID)
             {
                 card = allCards[i];
-
-                cardsSelected.Add(card);
             }
         }
 
         return card;
     }
 
-    public void SetCardSelected(int value) 
+    private void DontRepeatCards(CardSO card) 
     {
-        cardToSelect = value;
-        isCardSelected = true;
-
-        for (int i = 0; i < selectableCardMovements.Count; i++)
+        if(cardsToShow.Count != 0) 
         {
-            selectableCardMovements[i].isSelected = false;
-            selectableCardMovements[i].canMove = true;
+            for (int i = 0; i < cardsToShow.Count; i++)
+            {
+                while (card.ID == cardsToShow[i].ID)
+                {
+                    card.ID = Random.Range(0, playerInventory.GetMaxCards());
+
+                } 
+            }
+        }
+    }
+
+    private void PickCardsToShow()
+    {
+        if (cardsToShow.Count == 0)
+        {
+            for (int i = 0; i < maxCardsToSelect; i++)
+            {
+                cardsToShow.Add(GetRandomCard(0, playerInventory.GetMaxCards()));
+
+                cardsDisplay[i].ShowCardImage(cardsToShow[i]);
+
+                cardsToShow[i].slotIndex = i;
+            }
+        }
+    }
+
+    public bool IsCardInverted() 
+    {
+        int maxPercentage = 100;
+        int isInverted = 30;
+
+        int cardInvertedChanse = Random.Range(0, maxPercentage);
+
+        if (cardInvertedChanse <= isInverted)
+        {
+            return true;
         }
 
-        description.text = "";
+        else 
+        {
+            return false;
+        }
+    }
+
+    public void PlayInvertedCardAnimation(int slotIndex) 
+    {
+        cardsAnimator[slotIndex].runtimeAnimatorController = invertedCardAnimator.runtimeAnimatorController;
+
+        StartCoroutine(ChangeInvertCardAnimation(slotIndex));
+    }
+
+    public IEnumerator ChangeInvertCardAnimation(int slotIndex) 
+    {
+        yield return new WaitForSeconds(1);
+
+        cardsAnimator[slotIndex].SetBool("IsPresentationEnd", true);
+    }
+
+    private void SetCardSelected(int cardSelected) 
+    {
+        List<CardSO> inventory = playerInventory.GetInventory();
+        bool isOnInvetory = false;
+
+        for (int i = 0; i < playerInventory.GetCurrentCards(); i++)
+        {
+            if (inventory[i] == cardsToShow[cardSelected])
+            {
+                isOnInvetory = true;
+
+                break;
+            }
+        }
+
+        if (!isOnInvetory && inventory.Count > 0)
+        {
+            playerInventory.AddCard(cardsToShow[cardSelected]);
+            playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+        }
+
+        if (inventory.Count == 0) 
+        {
+            playerInventory.AddCard(cardsToShow[cardSelected]);
+            playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+        }
+
+        else
+        {
+            playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+        }
 
         ShowSelectCardMenu(false);
-    }
-
-    public void SetIsCardSelected(bool value) 
-    {
-        isCardSelected = value;
-    }
-
-    public bool GetIsCardSelected() 
-    {
-        return isCardSelected;
-    }
-
-    public CardSO GetCardSelected() 
-    {
-        CardSO card = ScriptableObject.CreateInstance<CardSO>();
-
-        switch (cardToSelect) 
-        {
-            case 0:
-
-                card = cardsSelected[0];
-
-            break;
-
-            case 1:
-
-                card = cardsSelected[1];
-
-            break;
-
-            case 2:
-
-                card = cardsSelected[2];
-
-            break;
-        }
-
-        return card;
-    }
-
-    public void RefreshCardsSelectedList() 
-    {
-        cardsSelected.Clear();
     }
 }

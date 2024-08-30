@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject firsButtonSelected;
 
-
     private void Start()
     {
         EventSystem.current.SetSelectedGameObject(firsButtonSelected);
