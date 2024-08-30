@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{819EF768-B617-7DEC-EC5F-AE53FD075A0C}">
+		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{70190DC2-73E1-AB68-90C2-FCA81A4A502A}">
 			<ShortName>BaseSoundBank</ShortName>
 			<Path>BaseSoundBank.bnk</Path>
 			<Media>
@@ -191,12 +191,12 @@
 				</File>
 			</Media>
 			<Events>
-				<Event Id="2114297034" Name="Cards_Select_Play" DurationType="OneShot" DurationMin="2.1997278" DurationMax="2.1997278">
+				<Event Id="2114297034" Name="Cards_Select_Play" DurationType="OneShot" DurationMin="2.5" DurationMax="2.5">
 					<MediaRefs>
 						<MediaRef Id="977828449"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="1511560907" Name="Cards_Show_Play" DurationType="OneShot" DurationMin="2" DurationMax="2.1997278">
+				<Event Id="1511560907" Name="Cards_Show_Play" DurationType="OneShot" DurationMin="2" DurationMax="2.5">
 					<MediaRefs>
 						<MediaRef Id="136787914"/>
 						<MediaRef Id="317201615"/>
@@ -259,6 +259,14 @@
 						<MediaRef Id="931501730"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2964619405" Name="Proyectile_Hit" DurationType="OneShot" DurationMin="2" DurationMax="2.5">
+					<MediaRefs>
+						<MediaRef Id="136787914"/>
+						<MediaRef Id="317201615"/>
+						<MediaRef Id="795160225"/>
+						<MediaRef Id="977828449"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="502652540" Name="Stop_DefaultMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2759476964" Name="Yukinko_Attack" DurationType="OneShot" DurationMin="0.41504166" DurationMax="0.6848125">
 					<MediaRefs>
@@ -305,5 +313,5 @@
 			</Busses>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{9107617E-D235-52B5-44D3-14B890763244}</FileHash>
+	<FileHash>{38B971F8-85B6-B8C6-DF05-C01E5C0FFF51}</FileHash>
 </SoundBanksInfo>

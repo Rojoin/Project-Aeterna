@@ -115,6 +115,17 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="Proyectile_Hit" ID="{F315903C-9B24-4C0A-861B-8A1BF12C624A}">
+									<ChildrenList>
+										<Action Name="" ID="{8C30F981-D681-4189-B0B6-E7782D8EFC6B}" ShortID="988599549">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Proyectile_Hit" ID="{06710712-7AD9-4FBE-AA35-3829A5A645CA}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Enviroment" ID="{1F209F26-2FF7-487D-9848-1A4B857F00FA}" ShortID="463920395">
