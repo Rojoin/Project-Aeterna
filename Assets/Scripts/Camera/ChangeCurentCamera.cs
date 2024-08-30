@@ -10,6 +10,11 @@ public class ChangeCurentCamera : MonoBehaviour
     public VoidChannelSO onChangeCameraChannel;
     public VoidChannelSO onResetSceneChannel;
     public VoidChannelSO onExitChannel;
+    public Skybox skybox;
+    private Material skyboxMaterial;
+    private float skyboxMaterialRangeMin = 38;
+    private float skyboxMaterialRange = 35;
+    private float skyboxMaterialRangeMax = 232;
     private bool isGlobalCamera = false;
     public Transform MapCamera;
     private void OnEnable()
@@ -17,6 +22,20 @@ public class ChangeCurentCamera : MonoBehaviour
         onChangeCameraChannel.Subscribe(ChangeCamera);
         onResetSceneChannel.Subscribe(ResetScene);
         onExitChannel.Subscribe(Exit);
+        skyboxMaterial = skybox.material;
+        skyboxMaterialRange = skyboxMaterialRangeMin;
+    }
+
+    public void Update()
+    {
+        if (skyboxMaterialRange < skyboxMaterialRangeMax)
+        {
+   
+        }
+        else if
+        {
+            
+        }
     }
 
     private void OnDisable()

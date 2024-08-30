@@ -31,7 +31,7 @@ public class ShootingEnemy : BaseEnemy
     private static readonly int IsExitingDefense = Animator.StringToHash("isExitingDefense");
     private static readonly int IsEnteringDefense = Animator.StringToHash("isEnteringDefense");
     private YukinkoStates states = YukinkoStates.Idle;
-    private UnityEvent OnAttack;
+    public UnityEvent OnAttack = new();
 
     protected override void ValidateMethod()
     {
@@ -78,6 +78,7 @@ public class ShootingEnemy : BaseEnemy
     protected override void Init()
     {
         base.Init();
+        enemyConfig = config as ShootingEnemySO;
         projectile.SetSettings(enemyConfig);
         materialBody = meshBody.material;
         materialFace = meshFace.material;

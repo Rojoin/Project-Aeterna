@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8ccbc094f29d5ea41af52c2aad5a39ec, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ec7b971b6da7add4f8a14ad64db27ad2, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.111086205, g: 0.063144036, b: 0.032515854, a: 1}
+  m_IndirectSpecularColor: {r: 0.029600043, g: 0.07516305, b: 0.09364052, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1365,11 +1365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038369a7c04b808488dc155b5d04bdc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1166619372 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-  m_PrefabInstance: {fileID: 2050413946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!143 &1166619375 stripped
 CharacterController:
   m_CorrespondingSourceObject: {fileID: 6572671916540871610, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
@@ -1690,11 +1685,11 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1166619372}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 4.3
-    NearClipPlane: -10.64
+    OrthographicSize: 11
+    NearClipPlane: -5.12
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -1719,7 +1714,7 @@ Transform:
   m_GameObject: {fileID: 1681417376}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22272427, y: -0.37139675, z: 0.09225541, w: 0.8966311}
-  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.249167}
+  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.2491674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1733,7 +1728,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681417376}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
   m_Name: 
@@ -1800,11 +1795,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelRoom: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
+  enemyLevelSo: {fileID: 11400000, guid: b2cc560a17477a646b4704f442973a63, type: 2}
   gapBetweenRooms: {x: 40, y: 40}
   PlayerPrefab: {fileID: 1166619365}
   player: {fileID: 1166619375}
   playerTpPositionY: -1.75
-  cameraConfiner: {fileID: 1681417379}
+  camera: {fileID: 1681417377}
   OnEnd: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   selectCardMenu: {fileID: 1166619377}
   transitionGO: {fileID: 637629739}
@@ -2011,11 +2007,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -10.64
+  near clip plane: -5.12
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.3
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2040,7 +2036,7 @@ Transform:
   m_GameObject: {fileID: 1852679709}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22272427, y: -0.37139675, z: 0.09225541, w: 0.8966311}
-  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.249167}
+  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.2491674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2286,6 +2282,14 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1166619369}
+    - target: {fileID: 5071247299521754643, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071247299521754643, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5250553791646526628, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_IsActive
       value: 1
