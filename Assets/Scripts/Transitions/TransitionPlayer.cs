@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,14 @@ public class TransitionPlayer : MonoBehaviour
 
     [SerializeField] private float transitionTime;
 
-    private void Update()
-    {
-        StartCoroutine(StartTransition());
-    }
-
-    public IEnumerator StartTransition()
+    private void OnEnable()
     {
         transitionAnimator.SetTrigger("Start");
+    }
+    
+    public IEnumerator StartTransition()
+    {
+       
 
         yield return new WaitForSeconds(transitionTime);
     }

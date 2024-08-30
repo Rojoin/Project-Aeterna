@@ -274,34 +274,9 @@ public class DungeonGeneration : MonoBehaviour
     private void TranslatePlayerToNewRoom(RoomDirection direction)
     {
         transitionGO.SetActive(true);
-        StartCoroutine(DisableTransition());
+        Time.timeScale = 0;
+        StartCoroutine(DisableTransition(direction));
 
-        ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
-        camera.GetComponent<CinemachineConfiner>().m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
-        camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
-
-        RoomDirection opositeDirection;
-        opositeDirection = GetOpositeDirection(direction);
-
-        Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection);
-        
-        ActualPlayerRoom.enemyManager.OnEnterNewRoom();
-
-        player.enabled = false;
-        player.transform.position = nextDoorPosition.position + (nextDoorPosition.up * playerTpPositionY);
-        player.enabled = true;
-
-        SetVisibleRooms();
-        if (ActualPlayerRoom.type == RoomTypes.BOSS)
-        {
-            foreach (DungeonRoom d in dungeonRooms)
-            {
-                d.dungeonRoomInstance.SetActive(true);
-            }
-
-            OnEnd.RaiseEvent();
-            player.gameObject.SetActive(false);
-        }
     }
 
     private static RoomDirection GetOpositeDirection(RoomDirection direction)
@@ -328,9 +303,40 @@ public class DungeonGeneration : MonoBehaviour
         return opositeDirection;
     }
 
-    private IEnumerator DisableTransition()
+    private IEnumerator DisableTransition(RoomDirection direction)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSecondsRealtime(1);
+  
+        Time.timeScale = 1;
+        
+        
+        ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
+        camera.GetComponent<CinemachineConfiner>().m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
+        camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
+
+        RoomDirection opositeDirection;
+        opositeDirection = GetOpositeDirection(direction);
+
+        Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection);
+        
+        ActualPlayerRoom.enemyManager.OnEnterNewRoom();
+
+        player.enabled = false;
+        player.transform.position = nextDoorPosition.position + (nextDoorPosition.up * playerTpPositionY);
+        player.enabled = true;
+
+        SetVisibleRooms();
+        if (ActualPlayerRoom.type == RoomTypes.BOSS)
+        {
+            foreach (DungeonRoom d in dungeonRooms)
+            {
+                d.dungeonRoomInstance.SetActive(true);
+            }
+
+            OnEnd.RaiseEvent();
+            player.gameObject.SetActive(false);
+        }
+        yield return new WaitForSecondsRealtime(1);
         transitionGO.SetActive(false);
     }
 
