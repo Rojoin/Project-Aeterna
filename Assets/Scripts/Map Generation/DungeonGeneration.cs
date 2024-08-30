@@ -277,6 +277,7 @@ public class DungeonGeneration : MonoBehaviour
         StartCoroutine(DisableTransition());
 
         ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
+        camera.GetComponent<CinemachineConfiner>().m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
         camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
 
         RoomDirection opositeDirection;
@@ -399,6 +400,7 @@ public class DungeonGeneration : MonoBehaviour
             {
                 ActualPlayerRoom = room;
                 room.roomBehaviour.SetRoomDoorState(true);
+                camera.GetComponent<CinemachineConfiner>().m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
                 camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
                 room.enemyManager.CallEndRoom();
             }

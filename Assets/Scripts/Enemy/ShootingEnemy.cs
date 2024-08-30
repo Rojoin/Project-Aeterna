@@ -199,8 +199,17 @@ public class ShootingEnemy : BaseEnemy
 
     public void SendProjectile()
     {
+        Vector3 direction = target.position - transform.position;
+        direction.y = 0;
+        target = target.transform;
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
+        }
+
         OnAttack.Invoke();
-        BaseProjectile baseProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
+        BaseProjectile baseProjectile = Instantiate(projectile, transform.position , Quaternion.identity);
         baseProjectile.SetTarget(target);
         baseProjectile.gameObject.SetActive(true);
     }
