@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 [Serializable]
 public class DoorColecction
 {
+    public bool Changed = false;
     private bool showWalls;
     private bool doorState;
 
@@ -25,8 +26,6 @@ public class DoorColecction
                 {
                     o.SetActive(value);
                 }
-
-                doorCollider.enabled = value;
             }
         }
     }
@@ -129,11 +128,14 @@ public class RoomBehaviour : MonoBehaviour
                 pd.particleDoorsGameobject.SetActive(false);
                 pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Stop();
                 doorAnimation.SetTrigger("OpenDoor");
+                pd.doorCollider.enabled = false;
+
             }
             else
             {
                 pd.particleDoorsGameobject.SetActive(true);
                 pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Play();
+                pd.doorCollider.enabled = true;
             }
         }
     }
@@ -155,9 +157,14 @@ public class RoomBehaviour : MonoBehaviour
     {
         foreach (DoorColecction doorColecction in doorColecctions)
         {
-            if (doorColecction.doorBehaviour.doorDirection == doorDirection)
+            if (doorColecction.doorDirection == doorDirection && !doorColecction.Changed)
             {
+                //Debug.Log("setting door " + doorColecction.doorDirection + " to : " + newRoomDirection);
+                doorColecction.doorDirection = newRoomDirection;
+                //Debug.Log("setting doorbehaibur " + doorColecction.doorBehaviour.doorDirection + " to : " + newRoomDirection);
                 doorColecction.doorBehaviour.doorDirection = newRoomDirection;
+
+                doorColecction.Changed = true;
             }
         }
     }

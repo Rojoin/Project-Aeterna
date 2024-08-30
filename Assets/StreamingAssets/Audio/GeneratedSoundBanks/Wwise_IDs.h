@@ -13,17 +13,21 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CARDS_SELECT_PLAY = 2114297034U;
+        static const AkUniqueID CARDS_SHOW_PLAY = 1511560907U;
         static const AkUniqueID DOOR_CLOSE = 128625444U;
         static const AkUniqueID DOOR_OPEN = 535830432U;
-        static const AkUniqueID DUMMY_DEAD = 2103557112U;
-        static const AkUniqueID DUMMY_HIT = 2333910817U;
         static const AkUniqueID EVENT_TEST = 1618187162U;
         static const AkUniqueID PLAY_DEFAULTMUSIC = 1857418338U;
         static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
         static const AkUniqueID PLAYER_RECIEVEDAMAGE = 1990870923U;
         static const AkUniqueID PLAYER_WALK_LEVEL1 = 3808387538U;
+        static const AkUniqueID PROYECTILE_HIT = 2964619405U;
         static const AkUniqueID STOP_DEFAULTMUSIC = 502652540U;
+        static const AkUniqueID YUKINKO_ATTACK = 2759476964U;
+        static const AkUniqueID YUKINKO_DEAD = 1827819594U;
+        static const AkUniqueID YUKINKO_HIT = 2316635047U;
     } // namespace EVENTS
 
     namespace BANKS

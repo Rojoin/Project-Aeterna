@@ -76,29 +76,51 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
-						<Folder Name="Dummy" ID="{FE1A87B4-3C97-48F8-A05C-34D8BBC429C0}" ShortID="58906333">
+						<Folder Name="Enemies" ID="{FE1A87B4-3C97-48F8-A05C-34D8BBC429C0}" ShortID="58906333">
 							<PropertyList>
 								<Property Name="Color" Type="int16" Value="10"/>
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ChildrenList>
-								<Event Name="Dummy_Dead" ID="{11816771-F83E-41AA-86EE-8246493AC591}">
+								<Event Name="Yukinko_Dead" ID="{11816771-F83E-41AA-86EE-8246493AC591}">
 									<ChildrenList>
 										<Action Name="" ID="{8FEA6DC0-9059-4A2E-9E3D-FD7012BF64EE}" ShortID="797136730">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="Dummy_Dead" ID="{42C55D9E-16AB-4038-8010-9B9CCF312E70}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+													<ObjectRef Name="Yukinko_Dead" ID="{42C55D9E-16AB-4038-8010-9B9CCF312E70}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="Dummy_Hit" ID="{9553BD6F-AAA8-4A8E-B679-5F717BDBEA58}">
+								<Event Name="Yukinko_Hit" ID="{9553BD6F-AAA8-4A8E-B679-5F717BDBEA58}">
 									<ChildrenList>
 										<Action Name="" ID="{B8A53CDF-C765-4D35-AFDF-B0BBA05D279A}" ShortID="885548226">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="Dummy_Hit" ID="{D94D8FBD-BA4B-4019-94C5-8A1CE3541AF5}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+													<ObjectRef Name="Yukinko_Hit" ID="{D94D8FBD-BA4B-4019-94C5-8A1CE3541AF5}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Yukinko_Attack" ID="{F979943B-BFB3-4559-8E4B-80D6C6D9F2E9}">
+									<ChildrenList>
+										<Action Name="" ID="{2CC5F05B-15E4-447C-B5F8-AF07E9422552}" ShortID="934742350">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Yukinko_Attack" ID="{C0BF87CF-F496-4F14-AD11-D59571CFD212}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Proyectile_Hit" ID="{F315903C-9B24-4C0A-861B-8A1BF12C624A}">
+									<ChildrenList>
+										<Action Name="" ID="{8C30F981-D681-4189-B0B6-E7782D8EFC6B}" ShortID="988599549">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Proyectile_Hit" ID="{06710712-7AD9-4FBE-AA35-3829A5A645CA}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -138,6 +160,32 @@
 										</Event>
 									</ChildrenList>
 								</Folder>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Cards" ID="{076D4A34-E0E7-4115-AC23-1D751BF80888}" ShortID="1039639500">
+							<ChildrenList>
+								<Event Name="Cards_Show_Play" ID="{90AE2708-2C85-4332-AD29-D25954AA879C}">
+									<ChildrenList>
+										<Action Name="" ID="{50E76E4E-8561-4F4C-AB29-51A99F813D5A}" ShortID="252899638">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ShowCard" ID="{213B7EFF-EE50-471A-BD58-2E7A25573AED}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Cards_Select_Play" ID="{2BB00CBA-CD40-4B35-BFAE-C67939F92347}">
+									<ChildrenList>
+										<Action Name="" ID="{0B2A5897-AE0F-4CDA-BFEB-7C52EAD9C6D6}" ShortID="432627489">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="SelectCard" ID="{1A5B2170-2736-4B04-AB15-DDF7A52FB004}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
