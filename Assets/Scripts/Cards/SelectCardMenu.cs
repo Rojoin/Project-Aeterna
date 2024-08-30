@@ -94,11 +94,11 @@ public class SelectCardMenu : MonoBehaviour
         TogglePause.RaiseEvent(value);
     }
 
-    public CardSO GetRandomCard()
+    public CardSO GetRandomCard(int minRangeOfCards, int maxRangeOfCards)
     {
         CardSO card = ScriptableObject.CreateInstance<CardSO>();
 
-        card.ID = Random.Range(0, playerInventory.GetMaxCards());
+        card.ID = Random.Range(minRangeOfCards, maxRangeOfCards);
 
         DontRepeatCards(card);
 
@@ -136,7 +136,7 @@ public class SelectCardMenu : MonoBehaviour
         {
             for (int i = 0; i < maxCardsToSelect; i++)
             {
-                cardsToShow.Add(GetRandomCard());
+                cardsToShow.Add(GetRandomCard(0, playerInventory.GetMaxCards()));
 
                 cardsDisplay[i].ShowCardImage(cardsToShow[i]);
 
