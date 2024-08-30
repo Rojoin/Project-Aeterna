@@ -26,8 +26,6 @@ public class DoorColecction
                 {
                     o.SetActive(value);
                 }
-
-                //doorCollider.enabled = value;
             }
         }
     }
@@ -130,11 +128,14 @@ public class RoomBehaviour : MonoBehaviour
                 pd.particleDoorsGameobject.SetActive(false);
                 pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Stop();
                 doorAnimation.SetTrigger("OpenDoor");
+                pd.doorCollider.enabled = false;
+
             }
             else
             {
                 pd.particleDoorsGameobject.SetActive(true);
                 pd.particleDoorsGameobject.GetComponent<ParticleSystem>().Play();
+                pd.doorCollider.enabled = true;
             }
         }
     }

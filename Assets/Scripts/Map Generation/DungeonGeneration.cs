@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Enemy;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class DungeonGeneration : MonoBehaviour
@@ -20,8 +21,8 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private CharacterController player;
     [SerializeField] private float playerTpPositionY;
 
-    [Header("Camera Data")] [SerializeField]
-    private CinemachineConfiner cameraConfiner;
+   [Header("Camera Data")] [SerializeField]
+    private CinemachineVirtualCamera camera;
 
     [SerializeField] private VoidChannelSO OnEnd;
 
@@ -276,7 +277,7 @@ public class DungeonGeneration : MonoBehaviour
         StartCoroutine(DisableTransition());
 
         ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
-        cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
+        camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
 
         RoomDirection opositeDirection;
         opositeDirection = GetOpositeDirection(direction);
@@ -398,7 +399,7 @@ public class DungeonGeneration : MonoBehaviour
             {
                 ActualPlayerRoom = room;
                 room.roomBehaviour.SetRoomDoorState(true);
-                cameraConfiner.m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
+                camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
                 room.enemyManager.CallEndRoom();
             }
         }

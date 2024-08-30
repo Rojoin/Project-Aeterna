@@ -1372,11 +1372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038369a7c04b808488dc155b5d04bdc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1166619372 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-  m_PrefabInstance: {fileID: 2050413946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!143 &1166619375 stripped
 CharacterController:
   m_CorrespondingSourceObject: {fileID: 6572671916540871610, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
@@ -1697,10 +1692,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 0
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1166619372}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 4.3
+    OrthographicSize: 11
     NearClipPlane: -10.64
     FarClipPlane: 1000
     Dutch: 0
@@ -1726,7 +1721,7 @@ Transform:
   m_GameObject: {fileID: 1681417376}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22272427, y: -0.37139675, z: 0.09225541, w: 0.8966311}
-  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.249167}
+  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.2491674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1740,7 +1735,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681417376}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
   m_Name: 
@@ -1812,7 +1807,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 1166619365}
   player: {fileID: 1166619375}
   playerTpPositionY: -1.75
-  cameraConfiner: {fileID: 1681417379}
+  camera: {fileID: 1681417377}
   OnEnd: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   selectCardMenu: {fileID: 1166619377}
   transitionGO: {fileID: 637629739}
@@ -2023,7 +2018,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.3
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2048,7 +2043,7 @@ Transform:
   m_GameObject: {fileID: 1852679709}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22272427, y: -0.37139675, z: 0.09225541, w: 0.8966311}
-  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.249167}
+  m_LocalPosition: {x: 8.159167, y: 4.6792974, z: -6.2491674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
