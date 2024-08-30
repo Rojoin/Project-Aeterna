@@ -87,6 +87,11 @@ public class SelectCardMenu : MonoBehaviour
         }
     }
 
+    [ContextMenu("TestCard")]
+    public void ShowSelectCardMenuDebug()
+    {
+        ShowSelectCardMenu(true);
+    }
     public void ShowSelectCardMenu(bool value)
     {
         showCardMenu = value;
@@ -115,17 +120,16 @@ public class SelectCardMenu : MonoBehaviour
         return card;
     }
 
-    private void DontRepeatCards(CardSO card) 
+    private void DontRepeatCards(CardSO card)
     {
-        if(cardsToShow.Count != 0) 
+        if (cardsToShow.Count != 0)
         {
             for (int i = 0; i < cardsToShow.Count; i++)
             {
                 while (card.ID == cardsToShow[i].ID)
                 {
                     card.ID = Random.Range(0, playerInventory.GetMaxCards());
-
-                } 
+                }
             }
         }
     }
@@ -145,7 +149,7 @@ public class SelectCardMenu : MonoBehaviour
         }
     }
 
-    public bool IsCardInverted() 
+    public bool IsCardInverted()
     {
         int maxPercentage = 100;
         int isInverted = 30;
@@ -157,27 +161,27 @@ public class SelectCardMenu : MonoBehaviour
             return true;
         }
 
-        else 
+        else
         {
             return false;
         }
     }
 
-    public void PlayInvertedCardAnimation(int slotIndex) 
+    public void PlayInvertedCardAnimation(int slotIndex)
     {
         cardsAnimator[slotIndex].runtimeAnimatorController = invertedCardAnimator.runtimeAnimatorController;
 
         StartCoroutine(ChangeInvertCardAnimation(slotIndex));
     }
 
-    public IEnumerator ChangeInvertCardAnimation(int slotIndex) 
+    public IEnumerator ChangeInvertCardAnimation(int slotIndex)
     {
         yield return new WaitForSeconds(1);
 
         cardsAnimator[slotIndex].SetBool("IsPresentationEnd", true);
     }
 
-    private void SetCardSelected(int cardSelected) 
+    private void SetCardSelected(int cardSelected)
     {
         List<CardSO> inventory = playerInventory.GetInventory();
         bool isOnInvetory = false;
@@ -198,7 +202,7 @@ public class SelectCardMenu : MonoBehaviour
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
         }
 
-        if (inventory.Count == 0) 
+        if (inventory.Count == 0)
         {
             playerInventory.AddCard(cardsToShow[cardSelected]);
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);

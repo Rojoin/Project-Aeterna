@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         return player.health;
     }
 
-    public void SetMaxHealigh(float newMaxHealth)
+    public void SetMaxHealth(float newMaxHealth)
     {
         maxHealth += newMaxHealth;
         currentHealth += newMaxHealth;

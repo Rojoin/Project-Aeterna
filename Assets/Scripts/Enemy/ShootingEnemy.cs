@@ -4,6 +4,7 @@ using Enemy;
 using Projectile;
 using ScriptableObjects.Entities;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Flags]
 public enum YukinkoStates
@@ -30,7 +31,7 @@ public class ShootingEnemy : BaseEnemy
     private static readonly int IsExitingDefense = Animator.StringToHash("isExitingDefense");
     private static readonly int IsEnteringDefense = Animator.StringToHash("isEnteringDefense");
     private YukinkoStates states = YukinkoStates.Idle;
-
+    private UnityEvent OnAttack;
 
     protected override void ValidateMethod()
     {
@@ -197,6 +198,7 @@ public class ShootingEnemy : BaseEnemy
 
     public void SendProjectile()
     {
+        OnAttack.Invoke();
         BaseProjectile baseProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
         baseProjectile.SetTarget(target);
         baseProjectile.gameObject.SetActive(true);
