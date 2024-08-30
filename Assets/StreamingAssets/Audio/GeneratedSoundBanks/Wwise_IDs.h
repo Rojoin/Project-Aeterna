@@ -23,6 +23,7 @@ namespace AK
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
         static const AkUniqueID PLAYER_RECIEVEDAMAGE = 1990870923U;
         static const AkUniqueID PLAYER_WALK_LEVEL1 = 3808387538U;
+        static const AkUniqueID PROYECTILE_HIT = 2964619405U;
         static const AkUniqueID STOP_DEFAULTMUSIC = 502652540U;
         static const AkUniqueID YUKINKO_ATTACK = 2759476964U;
         static const AkUniqueID YUKINKO_DEAD = 1827819594U;

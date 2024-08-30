@@ -455,6 +455,106 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Proyectile_Hit" ID="{06710712-7AD9-4FBE-AA35-3829A5A645CA}" ShortID="388480608">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="Sinterminar-001" ID="{90AF4DF8-0E22-484D-B142-B4E5BAFE244E}" ShortID="994964743">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Sinterminar-001" ID="{030E0CF5-DD4B-4AD4-BBF4-703AA293239D}">
+											<Language>SFX</Language>
+											<AudioFile>Sinterminar-001.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="136787914"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Sinterminar-001" ID="{030E0CF5-DD4B-4AD4-BBF4-703AA293239D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Sinterminar-002" ID="{CC188AD7-D12E-47BA-B718-A6302D0ACF26}" ShortID="116987675">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Sinterminar-002" ID="{85C3391F-DD21-44E7-9206-B35741CC6549}">
+											<Language>SFX</Language>
+											<AudioFile>Sinterminar-002.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="795160225"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Sinterminar-002" ID="{85C3391F-DD21-44E7-9206-B35741CC6549}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Sinterminar-003" ID="{5636279C-93DB-4E3B-9FFB-D2B59D076596}" ShortID="767296135">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Sinterminar-003" ID="{44D22F3B-E76B-4A79-B5C8-5ADEA3FCCAF7}">
+											<Language>SFX</Language>
+											<AudioFile>Sinterminar-003.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="977828449"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Sinterminar-003" ID="{44D22F3B-E76B-4A79-B5C8-5ADEA3FCCAF7}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="Sinterminar" ID="{1DF72483-2F07-43CF-B8D3-B04CCA4F7F9B}" ShortID="46617200">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Sinterminar" ID="{7DE59444-DA31-4639-8021-97B3ED45EBD1}">
+											<Language>SFX</Language>
+											<AudioFile>Sinterminar.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="317201615"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Sinterminar" ID="{7DE59444-DA31-4639-8021-97B3ED45EBD1}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{7515299F-41EC-454E-AF5E-7D4A675BEB8C}" ShortID="13075865">
