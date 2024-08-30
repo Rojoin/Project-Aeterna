@@ -108,6 +108,7 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
         isSelected = true;
         cardInformation.SetActive(true);
         transform.rotation = Quaternion.Euler(xCardRotation, 0, 0);
+        AkSoundEngine.PostEvent("Cards_Show_Play", gameObject);
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 8008970834563820836}
   - component: {fileID: 2136061228353986023}
   - component: {fileID: 7909532028066547496}
+  - component: {fileID: 4448414164253175429}
   m_Layer: 0
   m_Name: Yukinko
   m_TagString: Untagged
@@ -203,6 +204,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4448414164253175429}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Yukinko_Hit
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -218,6 +231,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4448414164253175429}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Yukinko_Dead
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeathRemove:
     m_PersistentCalls:
       m_Calls: []
@@ -228,6 +253,34 @@ MonoBehaviour:
   meshBody: {fileID: 5224128851236635458}
   meshFace: {fileID: 3055780812807144566}
   OnAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4448414164253175429}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Yukinko_Attack
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4448414164253175429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5365952018591506370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: Yukinko_Hit
+  onPlayAudioEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &2510328197857939620
