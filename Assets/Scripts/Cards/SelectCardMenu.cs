@@ -31,6 +31,7 @@ public class SelectCardMenu : MonoBehaviour
     public List<CardSO> cardsToShow;
 
     [SerializeField] private Animator invertedCardAnimator;
+    [SerializeField] private Animator normalCardAnimator;
 
     [Header("Setup: Cards")]
     public int maxCardsToSelect = 3;
@@ -77,6 +78,11 @@ public class SelectCardMenu : MonoBehaviour
                 if (cardsToShow[i].isInverted == true)
                 {
                     PlayInvertedCardAnimation(cardsToShow[i].slotIndex);
+                }
+
+                else 
+                {
+                    PlayNormalCardAnimation(cardsToShow[i].slotIndex);
                 }
             }
         }
@@ -184,6 +190,11 @@ public class SelectCardMenu : MonoBehaviour
         cardsAnimator[slotIndex].runtimeAnimatorController = invertedCardAnimator.runtimeAnimatorController;
 
         StartCoroutine(ChangeInvertCardAnimation(slotIndex));
+    }
+
+    public void PlayNormalCardAnimation(int slotIndex) 
+    {
+        cardsAnimator[slotIndex].runtimeAnimatorController = normalCardAnimator.runtimeAnimatorController;
     }
 
     public IEnumerator ChangeInvertCardAnimation(int slotIndex)
