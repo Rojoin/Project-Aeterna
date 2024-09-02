@@ -78,6 +78,11 @@ namespace Enemy
             roomClear = true;
         }
 
+        public bool GetRoomClear() 
+        {
+            return roomClear;
+        }
+
         private void OnDestroy()
         {
             foreach (BaseEnemy e in Enemies)

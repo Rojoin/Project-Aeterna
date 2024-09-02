@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerHudInputs : MonoBehaviour
 {
@@ -29,9 +30,12 @@ public class PlayerHudInputs : MonoBehaviour
 
     public IEnumerator ShowSelectableCardMenu()
     {
-        yield return new WaitForSeconds(timeToSpawnShop);
+        if (playerInventory.GetCurrentCards() <= playerInventory.GetMaxCards())
+        {
+            yield return new WaitForSeconds(timeToSpawnShop);
 
-        selectCardMenu.ShowSelectCardMenu(activeCardSystem);
+            selectCardMenu.ShowSelectCardMenu(activeCardSystem);
+        }
     }
 
     public void CardSystem()

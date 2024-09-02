@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029557975, g: 0.07506133, b: 0.09350486, a: 1}
+  m_IndirectSpecularColor: {r: 0.029601384, g: 0.07513324, b: 0.09357419, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1997,6 +1997,10 @@ PrefabInstance:
       propertyPath: selectCardMenu
       value: 
       objectReference: {fileID: 2077532266}
+    - target: {fileID: 2419694579521688218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: timeToSpawnShop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3502469410240450855, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: healthBar
       value: 
@@ -2005,6 +2009,14 @@ PrefabInstance:
       propertyPath: OnPlayerHurt.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1681417380}
+    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: maxCards
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: maxCardOnInventory
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6277302197274292131, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_Name
       value: PlayerFSM

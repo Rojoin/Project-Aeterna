@@ -13,6 +13,8 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] private int currentCards;
 
+    [SerializeField] private int maxCardOnInventory;
+
     [SerializeField] private List<CardSO> playerCardsInventory;
 
     [SerializeField] private List<CardSO> allCards;
@@ -79,6 +81,11 @@ public class PlayerInventory : MonoBehaviour
                 playerCardsInventory.Remove(playerCardsInventory[i]);
             }
         }
+    }
+
+    public int GetMaxCardOnInventory() 
+    {
+        return maxCardOnInventory;
     }
 
     private void OnDisable()

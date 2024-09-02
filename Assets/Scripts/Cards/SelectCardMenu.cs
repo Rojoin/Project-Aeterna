@@ -136,7 +136,19 @@ public class SelectCardMenu : MonoBehaviour
 
     private void PickCardsToShow()
     {
-        if (cardsToShow.Count == 0)
+        if (playerInventory.GetInventory().Count == playerInventory.GetMaxCardOnInventory())
+        {
+            for (int i = 0; i < playerInventory.GetMaxCardOnInventory(); i++)
+            {
+                cardsToShow.Add(playerInventory.GetInventory()[i]);
+
+                cardsDisplay[i].ShowCardImage(cardsToShow[i]);
+
+                cardsToShow[i].slotIndex = i;
+            }
+        }
+
+        if (cardsToShow.Count == 0 && playerInventory.GetInventory().Count != playerInventory.GetMaxCardOnInventory())
         {
             for (int i = 0; i < maxCardsToSelect; i++)
             {

@@ -42,6 +42,8 @@ public class DungeonGeneration : MonoBehaviour
     private Dictionary<(int, int), DungeonRoom> dungeonRoomsLayout = new();
     private Dictionary<RoomForm, List<GameObject>> chambersTypes = new();
 
+    private int roomsCounter = 0;
+
     [Serializable]
     private class DungeonRoom
     {
@@ -268,7 +270,17 @@ public class DungeonGeneration : MonoBehaviour
     private void OpenDungeonRoom()
     {
         ActualPlayerRoom.roomBehaviour.SetRoomDoorState(true);
-        StartCoroutine(selectCardMenu.ShowSelectableCardMenu());
+
+        if (roomsCounter >= 1)
+        {
+            StartCoroutine(selectCardMenu.ShowSelectableCardMenu());
+            roomsCounter = 0;
+        }
+
+        else 
+        {
+            roomsCounter++;
+        }
     }
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)
