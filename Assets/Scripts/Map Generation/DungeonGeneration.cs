@@ -10,8 +10,9 @@ using Random = UnityEngine.Random;
 public class DungeonGeneration : MonoBehaviour
 {
     [Header("Level So")] [SerializeField] private LevelRoomsSO levelRoom;
-    
-    [Header("Level Enemy So")] [SerializeField] private EnemyLevelSO enemyLevelSo;
+
+    [Header("Level Enemy So")] [SerializeField]
+    private EnemyLevelSO enemyLevelSo;
 
     [Header("Grid")] [SerializeField] private Vector2 gapBetweenRooms;
 
@@ -21,7 +22,7 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private CharacterController player;
     [SerializeField] private float playerTpPositionY;
 
-   [Header("Camera Data")] [SerializeField]
+    [Header("Camera Data")] [SerializeField]
     private CinemachineVirtualCamera camera;
 
     [SerializeField] private VoidChannelSO OnEnd;
@@ -274,9 +275,7 @@ public class DungeonGeneration : MonoBehaviour
     private void TranslatePlayerToNewRoom(RoomDirection direction)
     {
         transitionGO.SetActive(true);
-        Time.timeScale = 0;
         StartCoroutine(DisableTransition(direction));
-
     }
 
     private static RoomDirection GetOpositeDirection(RoomDirection direction)
@@ -305,20 +304,18 @@ public class DungeonGeneration : MonoBehaviour
 
     private IEnumerator DisableTransition(RoomDirection direction)
     {
-        yield return new WaitForSecondsRealtime(1);
-  
-        Time.timeScale = 1;
-        
-        
         ActualPlayerRoom = ActualPlayerRoom.GetNeighbourDirection(direction);
-        camera.GetComponent<CinemachineConfiner>().m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
-        camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
+        camera.transform.position = ActualPlayerRoom.dungeonRoomInstance.transform.position + new Vector3(6.24f, 4.67f, -6.24f);
+        yield return new WaitForSecondsRealtime(1);
 
+
+        // camera.GetComponent<CinemachineConfiner>().m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
+        //  camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
         RoomDirection opositeDirection;
         opositeDirection = GetOpositeDirection(direction);
 
         Transform nextDoorPosition = ActualPlayerRoom.roomBehaviour.GetDoorDirection(opositeDirection);
-        
+
         ActualPlayerRoom.enemyManager.OnEnterNewRoom();
 
         player.enabled = false;
@@ -336,6 +333,7 @@ public class DungeonGeneration : MonoBehaviour
             OnEnd.RaiseEvent();
             player.gameObject.SetActive(false);
         }
+
         yield return new WaitForSecondsRealtime(1);
         transitionGO.SetActive(false);
     }
@@ -406,8 +404,7 @@ public class DungeonGeneration : MonoBehaviour
             {
                 ActualPlayerRoom = room;
                 room.roomBehaviour.SetRoomDoorState(true);
-                camera.GetComponent<CinemachineConfiner>().m_BoundingVolume = ActualPlayerRoom.roomBehaviour.roomConfiner;
-                camera.Follow = ActualPlayerRoom.dungeonRoomInstance.transform;
+                camera.transform.position = ActualPlayerRoom.dungeonRoomInstance.transform.position + new Vector3(6.24f, 4.67f, -6.24f);
                 room.enemyManager.CallEndRoom();
             }
         }
@@ -420,7 +417,7 @@ public class DungeonGeneration : MonoBehaviour
         room.enemyManager = enemyManager;
 
         room.enemyManager.SetEnemyRoomStats(enemyLevelSo);
-        
+
         room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
     }
 

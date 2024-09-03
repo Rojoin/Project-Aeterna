@@ -145,7 +145,7 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void ChangeScale()
     {
-        float timeStep = scaleSpeed * Time.unscaledDeltaTime;
+        float timeStep = scaleSpeed * Time.fixedDeltaTime;
         scale = transform.localScale;
         if (increment)
         {
