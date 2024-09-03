@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,7 +11,16 @@ namespace StateMachine
         Move,
         Attack,
         EndAttack,
+        OnDashStart,
+        OnDashEnd,
         Pause
+    }
+
+    public enum PlayerStates
+    {
+        Move,
+        Attack,
+        Dash
     }
 
     public class PlayerFSM : MonoBehaviour
@@ -19,6 +29,7 @@ namespace StateMachine
         [SerializeField] protected CharacterController _characterController;
         [SerializeField] protected Vector2ChannelSO OnMoveChannel;
         [SerializeField] protected VoidChannelSO AttackChannel;
+        [SerializeField] protected VoidChannelSO DashChannel;
         [SerializeField] protected GameSettings gameSettings;
         [SerializeField] protected PlayerEntitySO player;
         [SerializeField] private List<AttackSO> comboList;
@@ -31,19 +42,37 @@ namespace StateMachine
         private void OnEnable()
         {
             speed = player.speed;
-            fsm = new(2, 3);
+            fsm = new(Enum.GetNames(typeof(PlayerStates)).Length, Enum.GetNames(typeof(PlayerFlags)).Length);
             int idleState = fsm.AddNewState(new PlayerMoveState(ActivateOnMoveEffects, this.gameObject,
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player));
-            int attackState = fsm.AddNewState(new PlayerAttackState(ChangeFromEndAttack,ActivateOnMoveEffects ,
+            int attackState = fsm.AddNewState(new PlayerAttackState(ChangeFromEndAttack, ActivateOnMoveEffects,
                 this.gameObject,
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player, comboList, _attackCollider, AttackChannel, gameSettings));
 
+            int dashState = fsm.AddNewState(new PlayerDashState(ActivateOnMoveEffects, ChangeFromDashEnd,
+                this.gameObject,
+                _playerAnimatorController,
+                _characterController, OnMoveChannel, player));
+
             fsm.SetTranstions(idleState, PlayerFlags.Attack, attackState);
             fsm.SetTranstions(attackState, PlayerFlags.EndAttack, idleState);
+            fsm.SetTranstions(idleState, PlayerFlags.OnDashStart, dashState);
+            fsm.SetTranstions(dashState, PlayerFlags.OnDashEnd, idleState);
             AttackChannel.Subscribe(ChangeFromAttack);
+            DashChannel.Subscribe(ChangeFromDashStart);
             fsm.SetDefaultState(idleState);
+        }
+
+        private void ChangeFromDashEnd()
+        {
+            fsm.OnTriggerState(PlayerFlags.OnDashEnd);
+        }
+
+        private void ChangeFromDashStart()
+        {
+            fsm.OnTriggerState(PlayerFlags.OnDashStart);
         }
 
         private void Update()
@@ -82,6 +111,7 @@ namespace StateMachine
         {
             fsm.OnDestroy();
             AttackChannel.Unsubscribe(ChangeFromAttack);
+            DashChannel.Unsubscribe(ChangeFromDashStart);
         }
     }
 }

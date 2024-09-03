@@ -5,4 +5,8 @@ public class PlayerEntitySO : EntitySO
 {
     public float movementSpeedDuringAttack;
     public float timeBetweenComboEnd = 2.0f;
+    [Header("Dash")] 
+    public float dashSpeed = 4.0f;
+    public float dashTimer = 0.5f;
+
 }

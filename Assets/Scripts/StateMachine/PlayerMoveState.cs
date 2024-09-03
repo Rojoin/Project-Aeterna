@@ -12,6 +12,7 @@ namespace StateMachine
 
         public PlayerMoveState(Action onMove, params object[] data) : base(onMove, data)
         {
+            
         }
 
         public override void OnEnter()
