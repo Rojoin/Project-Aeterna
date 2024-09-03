@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
-using Enemy;
-using Projectile;
-using ScriptableObjects.Entities;
 using UnityEngine;
 using UnityEngine.Events;
+using ScriptableObjects.Entities;
+using Enemy;
+using Projectile;
+using StateMachine;
 
 [Flags]
 public enum YukinkoStates
@@ -21,6 +22,7 @@ public class ShootingEnemy : BaseEnemy
     [SerializeField] private BaseProjectile projectile;
     [SerializeField] private SkinnedMeshRenderer meshBody;
     [SerializeField] private SkinnedMeshRenderer meshFace;
+    private FSM _fsm;
     private Material materialBody;
     private Material materialFace;
     private ShootingEnemySO enemyConfig;
@@ -96,8 +98,7 @@ public class ShootingEnemy : BaseEnemy
             states |= YukinkoStates.CanEnterDefense;
         }
     }
-
-
+    
     protected void Update()
     {
         if (IsDead()) return;

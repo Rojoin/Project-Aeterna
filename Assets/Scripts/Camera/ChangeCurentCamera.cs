@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class ChangeCurentCamera : MonoBehaviour
 {
@@ -20,6 +16,7 @@ public class ChangeCurentCamera : MonoBehaviour
     private bool increasing = true;
     private bool isGlobalCamera = false;
     public Transform MapCamera;
+    private static readonly int Rotation = Shader.PropertyToID("_Rotation");
 
     private void OnEnable()
     {
@@ -52,7 +49,7 @@ public class ChangeCurentCamera : MonoBehaviour
         }
 
         // Set the skybox rotation
-        RenderSettings.skybox.SetFloat("_Rotation", skyboxMaterialRange);
+        RenderSettings.skybox.SetFloat(Rotation, skyboxMaterialRange);
     }
 
     private void OnDisable()
