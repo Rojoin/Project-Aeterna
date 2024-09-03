@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -9,8 +10,7 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     public Action onButtonEnter;
     public Action onButtonExit;
-
-  
+    
     [SerializeField] private bool modifyHitBox;
 
     [SerializeField] private float alphaRayCast = 0.1f;
@@ -119,6 +119,7 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         if (textHighlight)
             textToHighlight.color = colorHighlight;
+        
     }
 
     public void OnMouseExitButton()

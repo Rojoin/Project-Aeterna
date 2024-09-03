@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "New Entity", menuName = "Entity")]
 public class EntitySO : ScriptableObject
@@ -15,7 +16,7 @@ public class EntitySO : ScriptableObject
 
     private float m_speed;
     public float speed;
-    public float masSpeed;
+    [FormerlySerializedAs("masSpeed")] public float maxSpeed;
     public bool isDead;
 
     public void ResetStacks() 

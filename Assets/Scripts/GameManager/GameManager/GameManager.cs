@@ -2,6 +2,7 @@ using System;
 using Character;
 using System.Collections;
 using System.Collections.Generic;
+using InputControls;
 using StateMachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,12 +10,13 @@ using UnityEngine.EventSystems;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerFSM player;
+    [SerializeField] private InputController _inputController;
 
-    [SerializeField] private GameObject firsButtonSelected;
     [SerializeField] private BoolChannelSO TogglePause;
 
     [SerializeField] private PlayerHud playerHud;
-    
+
+    [SerializeField] private GameObject firsButtonSelected;
 
     private void Start()
     {
@@ -29,7 +31,12 @@ public class GameManager : MonoBehaviour
 
     private void OnPauseToggle(bool value)
     {
+        _inputController.IsGamePaused = value;
         player.ChangeFromPause(value);
     }
-    
+
+    public GameObject GetSelectedButton()
+    {
+        return EventSystem.current.currentSelectedGameObject;
+    }
 }

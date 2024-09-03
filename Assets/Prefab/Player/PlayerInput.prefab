@@ -56,7 +56,19 @@ MonoBehaviour:
       m_Calls: []
   m_ControlsChangedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnChangeInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
@@ -76,30 +88,70 @@ MonoBehaviour:
     m_ActionName: Player/Move[/DualSenseGamepadHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/DualSenseGamepadHID/dpad/up,/DualSenseGamepadHID/dpad/down,/DualSenseGamepadHID/dpad/left,/DualSenseGamepadHID/dpad/right]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 86feedd2-7402-4f30-a38a-8462b0832ab5
-    m_ActionName: Player/OnGridMovement[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/DualSenseGamepadHID/dpad/up,/DualSenseGamepadHID/dpad/down,/DualSenseGamepadHID/dpad/left,/DualSenseGamepadHID/dpad/right]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 367d245e-05db-434a-ae38-a875a0ee197c
-    m_ActionName: Player/OnGridMovementStick[/DualSenseGamepadHID/leftStick]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: b5fcf0c7-9cd9-477c-94ed-4dbc9664d44a
     m_ActionName: Player/Look[/DualSenseGamepadHID/rightStick,/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b3d604f8-d0b6-470d-ad19-99369810b0fc
     m_ActionName: Player/Fire[/DualSenseGamepadHID/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
+        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: eb34d9e1-4c07-4718-aa05-347f5379a858
     m_ActionName: Player/Interact[/Keyboard/e,/DualSenseGamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: fdf873835f0c8644fa75bc9a213b7046, type: 2}
+        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ff76b812-ba1a-430c-b391-16839e6c48d6
     m_ActionName: Player/Back[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ee870a1ab6b1cf34285cd8d95c5bbee5, type: 2}
+        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7fcce02b-eaea-4a83-a1af-ff197ca1df6d
     m_ActionName: Player/Pause[/Keyboard/escape,/DualSenseGamepadHID/start]
   - m_PersistentCalls:
@@ -127,51 +179,11 @@ MonoBehaviour:
     m_ActionId: f16ac01a-0b20-44ef-9733-60da5c37fe32
     m_ActionName: Player/CheatShowConsole[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a8430c6c-8856-4025-9af5-a966fbe04611
-    m_ActionName: UI/Navigate[/DualSenseGamepadHID/leftStick/up,/DualSenseGamepadHID/rightStick/up,/DualSenseGamepadHID/leftStick/down,/DualSenseGamepadHID/rightStick/down,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/rightStick/left,/DualSenseGamepadHID/leftStick/right,/DualSenseGamepadHID/rightStick/right,/DualSenseGamepadHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2399d870-2f1f-4d38-9bf6-57fa98005e35
-    m_ActionName: UI/Submit[/Keyboard/enter,/DualSenseGamepadHID/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e533791e-8e67-4566-9e87-5f382a7a007e
-    m_ActionName: UI/Cancel[/Keyboard/escape,/DualSenseGamepadHID/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7d7fa58c-a886-4146-a548-5eff481258ad
-    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e82f553f-8544-4852-a5ee-6a7ec4532aa4
-    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ef7f5236-6f22-406c-8783-5519ae3a9f69
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll,/DualSenseGamepadHID/rightStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 81bb95b9-855c-4bb2-8c10-77eff474052d
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bc05656f-d7ec-46ec-99c5-866277e6e58b
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b65abcd6-73ab-48fa-9a8a-3ef4f8696d16
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ccad0cea-2a7b-432d-b12f-240ad597596f
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5116400276696402719}
-        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
-        m_MethodName: OnCameraMove
-        m_Mode: 0
+      - m_Target: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
+        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
+        m_MethodName: RaiseEvent
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -182,6 +194,62 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c8e7d1b7-6c1b-4c3c-a062-6f4e900b86ad
     m_ActionName: Player/CameraMove[/DualSenseGamepadHID/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnHud
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 41850591-c88a-47b0-9278-75c885a384fa
+    m_ActionName: Player/OpenHud[/Keyboard/tab,/SwitchProControllerHID/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1db002fd-e901-418e-ad38-746d4cf01848
+    m_ActionName: UI/Navigate[/SwitchProControllerHID/leftStick/up,/SwitchProControllerHID/rightStick/up,/SwitchProControllerHID/leftStick/down,/SwitchProControllerHID/rightStick/down,/SwitchProControllerHID/leftStick/left,/SwitchProControllerHID/rightStick/left,/SwitchProControllerHID/leftStick/right,/SwitchProControllerHID/rightStick/right,/SwitchProControllerHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 91942533-61a4-4d2f-b7b8-7e8c799e3a71
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ad39b645-a458-4ae9-862b-41cd1c6b88f8
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 42bd5495-8f78-4be5-8878-d7137fb8ff55
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ff07379-3fdd-44db-b16f-58420c7ab966
+    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c029f8d8-90b6-4140-ad6d-d1e247ebb9db
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 48c76b88-b19f-4647-a7b8-0ca4f9edf299
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c0d7cc8-9d8b-4c2d-bfa6-a1b1075703cc
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 00260667-ab8d-4e4c-8a05-f1d59c608283
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 781459e7-7b55-4b29-adfb-bbbd07b09c51
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -199,9 +267,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2ab385e1994896843f21d574d64b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnMoveChannel: {fileID: 11400000, guid: 75ccca9bcbc82034a84dbafeb1a7ad4c, type: 2}
+  OnMoveChannel: {fileID: 11400000, guid: 2bd7e0755fcc8014bb81d352bf091fec, type: 2}
   OnCameraMoveChannel: {fileID: 11400000, guid: 6af624f6f9ad8034cb27223e408070ca, type: 2}
-  OnAttackChannel: {fileID: 11400000, guid: d3fc223a2d090da4ea5cc11a7acbc2f1, type: 2}
-  OnTargetLockChannel: {fileID: 11400000, guid: ce50aa3c74248b74496de231a0ef10a2, type: 2}
-  OnBackInteractChannel: {fileID: 0}
-  OnControlSchemeChange: {fileID: 0}
+  OnAttackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
+  OnInteractChannel: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
+  OnChangeCameraChannel: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
+  OnResetLevel: {fileID: 11400000, guid: fdf873835f0c8644fa75bc9a213b7046, type: 2}
+  OnBackInteractChannel: {fileID: 11400000, guid: ee870a1ab6b1cf34285cd8d95c5bbee5, type: 2}
+  OnHudToggleChannel: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
+  OnControlSchemeChange: {fileID: 11400000, guid: 31cb41d326db3c84586e863551aec40b, type: 2}
+  gameSettings: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}

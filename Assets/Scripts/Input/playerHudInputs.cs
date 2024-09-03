@@ -1,70 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using static UnityEngine.Rendering.DebugUI;
 
-public class BasicInputs : MonoBehaviour
+public class PlayerHudInputs : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;
     [SerializeField] private PlayerHud playerHud;
     [SerializeField] private SelectCardMenu selectCardMenu;
-    [SerializeField] private List<CardsSlots> cardsCounter;
     [SerializeField] private VoidChannelSO OnInteraction;
 
     [SerializeField] private VoidChannelSO OnHudToggle;
 
-
     [Header("Card System")]
     [SerializeField] private bool activeCardSystem;
 
-    private void Start()
-    {
-        cardsCounter = playerInventory.GetCardsCounterList();
-        OnInteraction.Subscribe(ToggleStore);
-        OnHudToggle.Subscribe(playerHud.ToggleHud);
-    }
+    [SerializeField] private int timeToSpawnShop;
 
     void Update()
     {
-        if (activeCardSystem) 
+        if (activeCardSystem)
         {
             CardSystem();
         }
     }
 
-    public void ToggleStore() 
+    public IEnumerator ShowSelectableCardMenu()
     {
-        if (playerInventory.GetMaxCards() > playerInventory.GetCurrentCards())
+        if (playerInventory.GetCurrentCards() <= playerInventory.GetMaxCards())
         {
-            selectCardMenu.RefreshCardsSelectedList();
-            selectCardMenu.isCardActivated = !selectCardMenu.isCardActivated;
-            activeCardSystem = selectCardMenu.isCardActivated;
+            yield return new WaitForSeconds(timeToSpawnShop);
+
             selectCardMenu.ShowSelectCardMenu(activeCardSystem);
         }
     }
 
     public void CardSystem()
     {
-        playerHud.ShowHud();
-
-        for (int i = 0; i < cardsCounter.Count; i++)
-        {
-            cardsCounter[i].ShowCardsStacksUI();
-        }
-
-        if (selectCardMenu.GetIsCardSelected())
-        {
-            selectCardMenu.SetIsCardSelected(false);
-            playerInventory.PickUpCard(selectCardMenu.GetCardSelected());
-            playerHud.ShowCardsHud(selectCardMenu.GetCardSelected());
-
-            selectCardMenu.RefreshCardsSelectedList();
-        }
-    }
-
-    private void OnDestroy()
-    {
-        OnInteraction.Unsubscribe(ToggleStore);
-        OnHudToggle.Unsubscribe(playerHud.ToggleHud);
+        playerHud.ShowCardsHud();
     }
 }

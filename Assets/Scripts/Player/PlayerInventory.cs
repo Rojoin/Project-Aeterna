@@ -6,217 +6,90 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private PlayerHealth playerHealth;
-    
-
-    [SerializeField] private List<CardsSlots> cardsSlots;
-
-    [SerializeField] private List<CardSO> allCards;
-
-    [SerializeField] private List<CardSO> playerCardsInventory;
 
     [SerializeField] private int maxCards;
 
+    [SerializeField] private int maxCardsOnSlot;
+
     [SerializeField] private int currentCards;
 
-    private int upgradeValue = 0;
-    private float newHealth = 0;
-    private float newDamage = 0;
-    private float newSpeed = 0;
+    [SerializeField] private int maxCardOnInventory;
 
-    public void PickUpCard(CardSO card)
-    {
-        if (maxCards > currentCards)
-        {
-            for (int i = 0; i < allCards.Count; i++)
-            {
-                if (allCards[i].ID == card.ID)
-                {
-                    AddCard(allCards[i]);
+    [SerializeField] private List<CardSO> playerCardsInventory;
 
-                    if (allCards[i].cardsOnSlot < 3) 
-                    {
-                        allCards[i].cardsOnSlot++;
+    [SerializeField] private List<CardSO> allCards;
 
-                        CheckPlayerInventory(allCards[i]);
-                    }
-
-                    break;
-                }
-            }
-        }
-    }
-
-    public void AddCard(CardSO newCard)
-    {
-        if (currentCards > 0)
-        {
-            for (int i = 0; i < playerCardsInventory.Count; i++)
-            {
-                if (newCard == playerCardsInventory[i])
-                {
-                    cardsSlots[i].SetCurrentCardsInSlot(1);
-
-                    if (playerCardsInventory[i].cardsOnSlot < 3)
-                    {
-                        currentCards++;
-                    }
-
-                    break;
-                }
-
-                else if (cardsSlots[i + 1].GetCurrentCardsInSlot() == 0)
-                {
-                    playerCardsInventory.Add(newCard);
-                    cardsSlots[i + 1].SetCurrentCardsInSlot(1);
-
-                    if (playerCardsInventory[i].cardsOnSlot < 3)
-                    {
-                        currentCards++;
-                    }
-
-                    break;
-                }
-            }
-        }
-
-        else
-        {
-            playerCardsInventory.Add(newCard);
-            cardsSlots[currentCards].SetCurrentCardsInSlot(1);
-            currentCards++;
-        }
-    }
-
-    public void CheckPlayerInventory(CardSO newCard)
-    {
-        if (currentCards > 0)
-        {
-            switch (newCard.cardsOnSlot)
-            {
-                case 1:
-                    upgradeValue = 1;
-                    UpdatePlayerStacks(newCard, upgradeValue);
-                break;
-
-                case 2:
-                    upgradeValue = 2;
-                    UpdatePlayerStacks(newCard, upgradeValue);
-                break;
-
-                case 3:
-                    upgradeValue = 3;
-                    UpdatePlayerStacks(newCard, upgradeValue);
-                break;
-            }
-        }
-    }
-
-    public void RemoveCard(int cardID)
-    {
-        for (int i = 0; i < GetMaxCards(); i++)
-        {
-            if (playerCardsInventory[i].ID == cardID && currentCards > 0)
-            {
-                playerCardsInventory.Remove(playerCardsInventory[i]);
-                Debug.Log("Remove card:" + playerCardsInventory[i].ID);
-                currentCards--;
-            }
-        }
-    }
-
-    public CardSO GetCardOnInventory(CardSO card)
-    {
-        for (int i = 0; i < playerCardsInventory.Count; i++)
-        {
-            if (playerCardsInventory[i].ID == card.ID)
-            {
-                return playerCardsInventory[i];
-            }
-        }
-
-        return playerCardsInventory[0];
-    }
-
-    public void UpdatePlayerStacks(CardSO newCard, int valueToUpgrade)
-    {
-        newHealth = playerHealth.GetHealth();
-        newDamage = playerHealth.GetDamage();
-        newSpeed = playerHealth.GetSpeed();
-
-        for (int i = 0; i < valueToUpgrade; i++)
-        {
-            switch (newCard.cardType)
-            {
-                case CardSO.CardType.Attack:
-
-                    newDamage += newCard.damage;
-
-                    break;
-
-                case CardSO.CardType.Health:
-
-                    newHealth += newCard.health;
-
-                    break;
-
-                case CardSO.CardType.Speed:
-
-                    if (newSpeed >=playerHealth.GetMaxSpeed())
-                    {
-                        newSpeed =  playerHealth.GetMaxSpeed();
-                    }
-
-                    else
-                    {
-                        newSpeed += newCard.speed;
-                    }
-
-                    break;
-            }
-        }
-
-        playerHealth.SetHealth(newHealth);
-        playerHealth.SetDamage(newDamage);
-        playerHealth.SetSpeed(newSpeed);
-    }
-
-    public int GetMaxCards()
-    {
-        return maxCards;
-    }
-
-    public int GetCurrentCards()
-    {
-        return currentCards;
-    }
-
-    public List<CardsSlots> GetCardsCounterList()
-    {
-        return cardsSlots;
-    }
-
-    public List<CardSO> GetAllCardsList()
-    {
-        return allCards;
-    }
-
-    public List<CardSO> GetPlayerCardsInventoryList() 
+    public List<CardSO> GetInventory() 
     {
         return playerCardsInventory;
     }
 
-    private void OnDestroy()
+    public void ClearInventory() 
     {
-        currentCards = 0;
         playerCardsInventory.Clear();
+    }
+
+    public int GetMaxCards() 
+    {
+        return maxCards;
+    }
+
+    public void SetMaxCards(int num) 
+    {
+        maxCards = num;
+    }
+
+    public int GetCurrentCards() 
+    {
+        return currentCards;
+    }
+
+    public void SetCurrentCards(int num) 
+    {
+        currentCards = num;
+    }
+
+    public void SetCardsOnSlot(CardSO newCard) 
+    {
+        for (int i = 0; i < currentCards; i++)
+        {
+            if (newCard.ID == playerCardsInventory[i].ID && playerCardsInventory[i].cardsOnSlot < maxCardsOnSlot) 
+            {
+                playerCardsInventory[i].cardsOnSlot++;
+                break;
+            }
+        }
+    }
+
+    public List<CardSO> GetAllCard() 
+    {
+        return allCards;
+    }
+
+    public void AddCard(CardSO newCard) 
+    {
+        playerCardsInventory.Add(newCard);
+        currentCards++;
+    }
+
+    public void RemoveCard(CardSO newCard) 
+    {
+        for (int i = 0; i < playerCardsInventory.Count; i++) 
+        {
+            if (playerCardsInventory[i].ID == newCard.ID) 
+            {
+                playerCardsInventory.Remove(playerCardsInventory[i]);
+            }
+        }
+    }
+
+    public int GetMaxCardOnInventory() 
+    {
+        return maxCardOnInventory;
     }
 
     private void OnDisable()
     {
-        for (int i = 0; i < allCards.Count; i++) 
-        {
-            allCards[i].ResetStacks();
-        }
+        ClearInventory();
     }
 }
