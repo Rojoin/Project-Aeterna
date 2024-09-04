@@ -29,6 +29,8 @@ public class CardSO : ScriptableObject
     public Vector2 newSizeDelta3 = new Vector2(500, 500);
     public Sprite artFrame;
 
+    public Animator animator;
+
     public int ID;
     public int slotIndex = -1;
 
