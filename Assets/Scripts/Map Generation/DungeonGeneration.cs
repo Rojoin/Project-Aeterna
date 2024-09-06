@@ -169,7 +169,6 @@ public class DungeonGeneration : MonoBehaviour
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)
     {
-        transitionGO.SetActive(true);
         StartCoroutine(DisableTransition(direction));
     }
 
@@ -192,7 +191,12 @@ public class DungeonGeneration : MonoBehaviour
 
     private IEnumerator DisableTransition(RoomDirection direction)
     {
-        Debug.Log("call transition");
+        transitionGO.SetActive(true);
+        actualPlayerRoom.roomBehaviour.SetDoorCollisions(false);
+        DungeonRoom oldRoom = actualPlayerRoom;
+        
+        yield return new WaitForSecondsRealtime(1);
+
         actualPlayerRoom = GetNeighbourDirection(direction, actualPlayerRoom);
 
         camera.transform.position =
@@ -220,6 +224,7 @@ public class DungeonGeneration : MonoBehaviour
         }
 
         yield return new WaitForSecondsRealtime(1);
+        oldRoom.roomBehaviour.SetDoorCollisions(true);
         transitionGO.SetActive(false);
     }
 
@@ -294,8 +299,7 @@ public class DungeonGeneration : MonoBehaviour
                 dungeonRooms[i].roomBehaviour.roomType = RoomTypes.ENEMIES;
             }
         }
-
-
+        
         dungeonRooms[0].roomBehaviour.roomType = RoomTypes.START;
         actualPlayerRoom = dungeonRooms[0];
         dungeonRooms[0].roomBehaviour.SetRoomDoorState(true);

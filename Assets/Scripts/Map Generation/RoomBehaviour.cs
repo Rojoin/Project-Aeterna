@@ -168,4 +168,12 @@ public class RoomBehaviour : MonoBehaviour
             }
         }
     }
+
+    public void SetDoorCollisions(bool state)
+    {
+        foreach (DoorColecction d in doorColecctions)
+        {
+            d.doorBehaviour.GetComponent<BoxCollider>().enabled = state;
+        }
+    }
 }

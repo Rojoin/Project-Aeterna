@@ -54,8 +54,6 @@ namespace Enemy
 
         private void RemoveEnemy(BaseEnemy enemy)
         {
-            Debug.LogError("Enemy not finded");
-
             if (enemyList.Contains(enemy))
             {
                 enemyList.Remove(enemy);
@@ -64,7 +62,7 @@ namespace Enemy
             }
             else
             {
-                Debug.LogError("Enemy not finded");
+                Debug.LogError("Enemy not finded to remove");
             }
         }
 
