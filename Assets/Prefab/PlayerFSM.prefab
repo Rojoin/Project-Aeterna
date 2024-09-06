@@ -83,12 +83,13 @@ GameObject:
   m_Component:
   - component: {fileID: 98365337757529717}
   - component: {fileID: 6572671916540871610}
+  - component: {fileID: 424831013041824585}
+  - component: {fileID: 6080904298022426995}
+  - component: {fileID: 3972282457891632485}
   - component: {fileID: 3502469410240450855}
   - component: {fileID: 5135478775610306301}
   - component: {fileID: 2419694579521688218}
-  - component: {fileID: 424831013041824585}
-  - component: {fileID: 3972282457891632485}
-  - component: {fileID: 6080904298022426995}
+  - component: {fileID: 679484672302640284}
   m_Layer: 11
   m_Name: PlayerFSM
   m_TagString: Player
@@ -142,6 +143,94 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.12, z: 0}
+--- !u!54 &424831013041824585
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277302197274292131}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 7168
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &6080904298022426995
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277302197274292131}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 7168
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.05
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.05, z: 0}
+--- !u!114 &3972282457891632485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277302197274292131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec0f165451340c7993a1206099ba66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAnimatorController: {fileID: 4241493471790223710}
+  _characterController: {fileID: 6572671916540871610}
+  OnMoveChannel: {fileID: 11400000, guid: 2bd7e0755fcc8014bb81d352bf091fec, type: 2}
+  AttackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
+  gameSettings: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}
+  player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
+  comboList:
+  - {fileID: 11400000, guid: 6035da61ecfe4264d8df90e2c1734a00, type: 2}
+  - {fileID: 11400000, guid: 7c95df3b3eca2b1468d82933f7c363a3, type: 2}
+  - {fileID: 11400000, guid: 287c39144bb0b0842a45dd4e357d8666, type: 2}
+  _attackCollider: {fileID: 5988611204825936752}
+  onMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4379027676623561758}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3502469410240450855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,34 +317,7 @@ MonoBehaviour:
   OnHudToggle: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
   activeCardSystem: 1
   timeToSpawnShop: 0
---- !u!54 &424831013041824585
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6277302197274292131}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 7168
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &3972282457891632485
+--- !u!114 &679484672302640284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -264,58 +326,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6277302197274292131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec0f165451340c7993a1206099ba66c, type: 3}
+  m_Script: {fileID: 11500000, guid: ad7f6835d4085a44e9c40d6b5e45df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAnimatorController: {fileID: 4241493471790223710}
-  _characterController: {fileID: 6572671916540871610}
-  OnMoveChannel: {fileID: 11400000, guid: 2bd7e0755fcc8014bb81d352bf091fec, type: 2}
-  AttackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
-  gameSettings: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
-  comboList:
-  - {fileID: 11400000, guid: 6035da61ecfe4264d8df90e2c1734a00, type: 2}
-  - {fileID: 11400000, guid: 7c95df3b3eca2b1468d82933f7c363a3, type: 2}
-  - {fileID: 11400000, guid: 287c39144bb0b0842a45dd4e357d8666, type: 2}
-  _attackCollider: {fileID: 5988611204825936752}
-  onMove:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4379027676623561758}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!136 &6080904298022426995
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6277302197274292131}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 7168
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.05
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!1001 &2243488746932339593
 PrefabInstance:
   m_ObjectHideFlags: 0

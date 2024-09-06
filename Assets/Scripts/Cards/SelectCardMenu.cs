@@ -26,6 +26,9 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private List<SelectableCardMovement> cardsMovements;
     [SerializeField] private List<SelectableCardDisplay> cardsDisplay;
 
+    [Header("Reference: Buff System")]
+    [SerializeField] private BuffSystem buffSystem;
+
     [Header("Animations")]
     [SerializeField] private List<Animator> cardsAnimator;
 
@@ -214,19 +217,27 @@ public class SelectCardMenu : MonoBehaviour
         {
             playerInventory.AddCard(cardsToShow[cardSelected]);
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+            buffSystem.CheckCardType(cardsToShow[cardSelected]);
         }
 
         if (inventory.Count == 0)
         {
             playerInventory.AddCard(cardsToShow[cardSelected]);
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+            buffSystem.CheckCardType(cardsToShow[cardSelected]);
         }
 
         else
         {
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
+            buffSystem.CheckCardType(cardsToShow[cardSelected]);
         }
 
         ShowSelectCardMenu(false);
+
+        for (int i = 0;i < cardsToShow.Count; i++) 
+        {
+            cardsAnimator[i].SetBool("StartReverseMovement", false);
+        }
     }
 }
