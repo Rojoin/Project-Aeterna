@@ -48,7 +48,7 @@ namespace Enemy
                                                                 ((enemyToInvoke
                                                                     .transform.localScale.y / 2) + 0.3f)),
                         quaternion.identity, transform);
-                newEnemy.transform.Rotate(Vector3.up, 180);
+                
                 Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
             }
 
@@ -76,11 +76,6 @@ namespace Enemy
         {
             OnLastEnemyKilled.Invoke();
             roomClear = true;
-        }
-
-        public bool GetRoomClear() 
-        {
-            return roomClear;
         }
 
         private void OnDestroy()

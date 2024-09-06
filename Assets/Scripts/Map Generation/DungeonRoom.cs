@@ -32,11 +32,6 @@ public class DungeonRoom
         }
     }
 
-    public DungeonRoom GetNeighbourDirection(RoomDirection direction)
-    {
-        return neighbours.TryGetValue(direction, out var neighbour) ? neighbour : null;
-    }
-
     public bool HasNeighbourInDirection(RoomDirection direction)
     {
         return neighbours.ContainsKey(direction);

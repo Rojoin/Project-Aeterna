@@ -22,7 +22,6 @@ public class DungeonGeneration : MonoBehaviour
     private GameObject PlayerPrefab;
 
     [SerializeField] private CharacterController player;
-    [SerializeField] private float playerTpPositionY;
 
     [Header("Camera Settings")] [SerializeField]
     private CinemachineVirtualCamera camera;
@@ -58,6 +57,7 @@ public class DungeonGeneration : MonoBehaviour
         foreach (DungeonRoom room in dungeonRooms)
         {
             room.roomBehaviour.PlayerInteractNewDoor.RemoveListener(TranslatePlayerToNewRoom);
+            
             if (room.enemyManager)
                 room.enemyManager.OnLastEnemyKilled.RemoveListener(OpenDungeonRoom);
         }
@@ -173,22 +173,38 @@ public class DungeonGeneration : MonoBehaviour
         StartCoroutine(DisableTransition(direction));
     }
 
+    private DungeonRoom GetNeighbourDirection(RoomDirection direction, DungeonRoom currentRoom)
+    {
+        switch (direction)
+        {
+            case RoomDirection.UP:
+                return dungeonRoomsLayout[(currentRoom.xPosition, currentRoom.zPosition + 1)];
+            case RoomDirection.RIGHT:
+                return dungeonRoomsLayout[(currentRoom.xPosition + 1, currentRoom.zPosition)];
+            case RoomDirection.DOWN:
+                return dungeonRoomsLayout[(currentRoom.xPosition, currentRoom.zPosition - 1)];
+            case RoomDirection.LEFT:
+                return dungeonRoomsLayout[(currentRoom.xPosition - 1, currentRoom.zPosition)];
+            default:
+                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+        }
+    }
+
     private IEnumerator DisableTransition(RoomDirection direction)
     {
-        actualPlayerRoom = actualPlayerRoom.GetNeighbourDirection(direction);
+        Debug.Log("call transition");
+        actualPlayerRoom = GetNeighbourDirection(direction, actualPlayerRoom);
+
         camera.transform.position =
             actualPlayerRoom.dungeonRoomInstance.transform.position + new Vector3(6.24f, 4.67f, -6.24f);
-        yield return new WaitForSecondsRealtime(1);
-
+        
         RoomDirection oppositeDirection = GetOppositeDirection(direction);
         Transform nextDoorPosition = actualPlayerRoom.roomBehaviour.GetDoorDirection(oppositeDirection);
         actualPlayerRoom.enemyManager.OnEnterNewRoom();
-
+        
         player.enabled = false;
-        player.transform.position = nextDoorPosition.position + (nextDoorPosition.up * playerTpPositionY);
+        player.transform.position = nextDoorPosition.position;
         player.enabled = true;
-
-        SetVisibleRooms();
 
         if (actualPlayerRoom.roomBehaviour.roomType == RoomTypes.BOSS)
         {
@@ -197,6 +213,10 @@ public class DungeonGeneration : MonoBehaviour
 
             OnEnd.RaiseEvent();
             player.gameObject.SetActive(false);
+        }
+        else
+        {
+            SetVisibleRooms();
         }
 
         yield return new WaitForSecondsRealtime(1);
