@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,9 +30,6 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private List<Animator> cardsAnimator;
 
     public List<CardSO> cardsToShow;
-
-    [SerializeField] private Animator invertedCardAnimator;
-    [SerializeField] private Animator normalCardAnimator;
 
     [Header("Setup: Cards")]
     public int maxCardsToSelect = 3;
@@ -144,13 +142,25 @@ public class SelectCardMenu : MonoBehaviour
                 cardsToShow.Add(GetRandomCard(0, playerInventory.GetMaxCards()));
             }
 
-            cardsDisplay[i].ShowCardImage(cardsToShow[i]);
-
             cardsToShow[i].slotIndex = i;
 
-            PlayInvertedCardAnimation(cardsToShow[i]);
-            PlayNormalCardAnimation(cardsToShow[i]);
-        }        
+            if (cardsDisplay[i].isOnSide && !cardsToShow[i].isInverted)
+            {
+                cardsAnimator[i].SetBool("IsOnSide", true);
+            }
+
+            if (cardsDisplay[i].isOnSide && cardsToShow[i].isInverted)
+            {
+                StartCoroutine(ChangeInvertCardAnimation(cardsToShow[i].slotIndex));
+            }
+
+            if (!cardsDisplay[i].isOnSide && cardsToShow[i].isInverted)
+            {
+                StartCoroutine(ChangeInvertCardAnimation(cardsToShow[i].slotIndex));
+            }
+
+            cardsDisplay[i].ShowCardImage(cardsToShow[i]);
+        }
     }
 
     public bool IsCardInverted()
@@ -171,29 +181,18 @@ public class SelectCardMenu : MonoBehaviour
         }
     }
 
-    public void PlayInvertedCardAnimation(CardSO card)
+    public IEnumerator ChangeInvertCardAnimation(int cardID)
     {
-        if (card.isInverted)
+        if (cardsToShow[cardID].isInverted)
         {
-            card.animator = invertedCardAnimator;
-
-            StartCoroutine(ChangeInvertCardAnimation(card));
+            cardsAnimator[cardID].SetBool("IsOnSide", false);
         }
-    }
 
-    public void PlayNormalCardAnimation(CardSO card) 
-    {
-        if (!card.isInverted) 
-        {
-            card.animator = normalCardAnimator;
-        }
-    }
+        cardsAnimator[cardID].SetBool("IsReverse", true);
 
-    public IEnumerator ChangeInvertCardAnimation(CardSO card)
-    {
         yield return new WaitForSeconds(1);
 
-        card.animator.SetBool("IsPresentationEnd", true);
+        cardsAnimator[cardID].SetBool("StartReverseMovement", true);
     }
 
     private void SetCardSelected(int cardSelected)
