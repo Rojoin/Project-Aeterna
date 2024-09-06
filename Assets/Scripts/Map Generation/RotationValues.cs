@@ -66,13 +66,6 @@ public class RotationValues
                                 (RoomDirection.DOWN, RoomDirection.RIGHT)
                             })
                     }
-                },
-                {
-                    RoomForm.X, new List<(RoomDirection[], float, (RoomDirection, RoomDirection)[])>
-                    {
-                        (new RoomDirection[0], 0,
-                            new[] { (RoomDirection.UP, RoomDirection.DOWN), (RoomDirection.RIGHT, RoomDirection.LEFT) })
-                    }
                 }
             };
 

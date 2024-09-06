@@ -63,7 +63,6 @@ public class DoorColecction
 public class RoomBehaviour : MonoBehaviour
 {
     public RoomTypes roomType;
-    public BoxCollider roomConfiner;
 
     [SerializeField] private bool doorsOpened;
 
@@ -141,15 +140,17 @@ public class RoomBehaviour : MonoBehaviour
 
     public Transform GetDoorDirection(RoomDirection direction)
     {
+        Transform spawnPoint = null;
+        
         foreach (DoorColecction d in doorColecctions)
         {
             if (d.doorDirection == direction)
             {
-                return d.spawnPosition;
+                spawnPoint = d.spawnPosition;
             }
         }
 
-        return null;
+        return spawnPoint;
     }
 
     public void SetDoorDirection(RoomDirection doorDirection, RoomDirection newRoomDirection)
