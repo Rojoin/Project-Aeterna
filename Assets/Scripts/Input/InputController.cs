@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +20,7 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnDashChannel;
         [SerializeField] private BoolChannelSO OnControlSchemeChange;
         [SerializeField] private GameSettings gameSettings;
+        [SerializeField] private PlayerEntitySO player;
         private bool _isGamePaused = false;
         public bool IsGamePaused
         {
@@ -26,7 +28,7 @@ namespace InputControls
             set => _isGamePaused = value;
         }
 
-
+        private bool canDash = true;
         private const int keyboardSchemeValue = 0;
         private const int gamepadSchemeValue = 1;
 
@@ -102,10 +104,19 @@ namespace InputControls
         }
         public void OnDash(InputAction.CallbackContext ctx)
         {
-            if (ctx.performed)
+            if (ctx.performed && canDash)
             {
                 OnDashChannel.RaiseEvent();
+                canDash = false;
+                StartCoroutine(DashTimer());
             }
+        }
+
+        private IEnumerator DashTimer()
+        {
+            yield return new WaitForSeconds(player.timebetweenDashes);
+            canDash = true;
+
         }
     }
 }

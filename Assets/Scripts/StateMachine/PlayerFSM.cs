@@ -35,6 +35,8 @@ namespace StateMachine
         [SerializeField] private List<AttackSO> comboList;
         [SerializeField] private AttackCollision _attackCollider;
         [SerializeField] private UnityEvent onMove;
+        [SerializeField] private UnityEvent onDash;
+        [SerializeField] private UnityEvent onEndDash;
         protected float speed;
         private FSM fsm;
         private Vector2 moveDir;
@@ -51,7 +53,7 @@ namespace StateMachine
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player, comboList, _attackCollider, AttackChannel, gameSettings));
 
-            int dashState = fsm.AddNewState(new PlayerDashState(ActivateOnMoveEffects, ChangeFromDashEnd,
+            int dashState = fsm.AddNewState(new PlayerDashState(ActivateOnMoveEffects,ActivateOnDashEffects, ChangeFromDashEnd,
                 this.gameObject,
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player));
@@ -65,8 +67,14 @@ namespace StateMachine
             fsm.SetDefaultState(idleState);
         }
 
+        private void ActivateOnDashEffects()
+        {
+            onDash.Invoke();
+        }
+
         private void ChangeFromDashEnd()
         {
+            onEndDash.Invoke();
             fsm.OnTriggerState(PlayerFlags.OnDashEnd);
         }
 

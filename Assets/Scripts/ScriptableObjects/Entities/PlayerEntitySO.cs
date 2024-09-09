@@ -8,5 +8,7 @@ public class PlayerEntitySO : EntitySO
     [Header("Dash")] 
     public float dashSpeed = 4.0f;
     public float dashTimer = 0.5f;
+    public float timebetweenDashes = 0.3f;
+    public AnimationCurve dashCurve;
 
 }
