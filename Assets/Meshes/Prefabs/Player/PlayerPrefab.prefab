@@ -1788,6 +1788,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f16edea5960ad38488767f4a488c2587, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5384867475556953380}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f16edea5960ad38488767f4a488c2587, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3677190308236792384}
     - targetCorrespondingSourceObject: {fileID: -6673342778159764535, guid: f16edea5960ad38488767f4a488c2587, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2911793980038055341}
@@ -1916,6 +1919,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3677190308236792384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2814897110738796106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fd3249049d46e8a73c91b3fb1dc41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterImageMaterial: {fileID: 2100000, guid: a375cd51be77b144caf5e06ee1f4cabc, type: 2}
+  afterImageDuration: 6.46
+  afterImageInterval: 0.05
+  poolSize: 20
+  skinnedMeshRenderer: {fileID: 7900223848651455243}
 --- !u!4 &3196243668128998640 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f16edea5960ad38488767f4a488c2587, type: 3}
@@ -1969,6 +1989,11 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 1
   m_Center: {x: 0.03, y: -0.05, z: -0.08}
+--- !u!137 &7900223848651455243 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4147018762502621168, guid: f16edea5960ad38488767f4a488c2587, type: 3}
+  m_PrefabInstance: {fileID: 3157568507455390491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8431174836010339350 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6832069504278531853, guid: f16edea5960ad38488767f4a488c2587, type: 3}
