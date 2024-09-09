@@ -16,6 +16,7 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnResetLevel;
         [SerializeField] private VoidChannelSO OnBackInteractChannel;
         [SerializeField] private VoidChannelSO OnHudToggleChannel;
+        [SerializeField] private VoidChannelSO OnDashChannel;
         [SerializeField] private BoolChannelSO OnControlSchemeChange;
         [SerializeField] private GameSettings gameSettings;
         private bool _isGamePaused = false;
@@ -97,6 +98,13 @@ namespace InputControls
             if (ctx.performed)
             {
                 OnHudToggleChannel.RaiseEvent();
+            }
+        }
+        public void OnDash(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+                OnDashChannel.RaiseEvent();
             }
         }
     }
