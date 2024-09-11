@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuffSystem : MonoBehaviour
 {
     [Header("Entity")]
-    [SerializeField] private EntitySO player;
+    [SerializeField] private PlayerEntitySO player;
 
     public void CheckCardType(CardSO card)
     {
@@ -66,11 +66,14 @@ public class BuffSystem : MonoBehaviour
 
     private void UpgradeHealth(CardSO card)
     {
-        //float health = player.health;
+        float maxHealth = card.health;
+        float health = card.health;
+        
+        maxHealth *= card.cardsOnSlot;
+        health *= card.cardsOnSlot;
 
-        //health *= card.cardsOnSlot;
-
-        //player.health += health;
+        player.health += maxHealth;
+        player.health += health;
     }
 
     private void UpgradeSpeed(CardSO card)

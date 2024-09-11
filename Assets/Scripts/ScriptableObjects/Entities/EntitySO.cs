@@ -8,9 +8,6 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "New Entity", menuName = "Entity")]
 public class EntitySO : ScriptableObject
 {
-    private float m_health;
-    public float health;
-
     private float m_damage;
     public float damage;
 
@@ -18,6 +15,9 @@ public class EntitySO : ScriptableObject
     public float speed;
     [FormerlySerializedAs("masSpeed")] public float maxSpeed;
     public bool isDead;
+
+    private float m_health;
+    public float health;
 
     public void ResetStacks() 
     {
@@ -35,5 +35,10 @@ public class EntitySO : ScriptableObject
         isDead = false;
 
         Debug.Log(nameof(EntitySO) + "enable");
+    }
+
+    private void OnDisable()
+    {
+        ResetStacks();
     }
 }

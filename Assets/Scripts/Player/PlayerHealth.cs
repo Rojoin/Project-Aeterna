@@ -7,10 +7,10 @@ using UnityEngine.Serialization;
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
     [Header("Data")]
-    [SerializeField]private EntitySO player;
+    [SerializeField]private PlayerEntitySO player;
     [SerializeField]private Animator animator;
     [SerializeField]private VoidChannelSO MoveCamera;
-     [SerializeField] private CustomSlider healthBar;
+    [SerializeField] private CustomSlider healthBar;
     private float currentHealth;
     private float maxHealth;
     private float damage;
@@ -20,8 +20,10 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
     private void Start()
     {
-        maxHealth = player.health;
-        currentHealth = maxHealth;
+        player.health = player.maxHealth;
+        maxHealth = player.maxHealth;
+        currentHealth = player.health;
+
         damage = player.damage;
         speed = player.speed;
     }
@@ -75,6 +77,7 @@ private void KillPlayer()
         {
             currentHealth -= damage;
         }
+
         OnPlayerHurt.Invoke();
         animator.SetTrigger(IsHurt);
         healthBar.FillAmount = currentHealth / maxHealth;
