@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScrollViewButtonAdder : MonoBehaviour
+public class CanvasPropViewer : MonoBehaviour
 {
     public GameObject PrefabSprite;
     public PlacementSystem placementSystem;
@@ -10,12 +10,8 @@ public class ScrollViewButtonAdder : MonoBehaviour
 
     public ObjectsDatabaseSO DatabaseSo;
     public Transform content;
-    private void Start()
-    {
-        StartCoroutine(CallScript());
-    }
 
-    IEnumerator CallScript()
+    public IEnumerator StartCanvasView()
     {
         yield return new WaitForSeconds(0.01f);
         
