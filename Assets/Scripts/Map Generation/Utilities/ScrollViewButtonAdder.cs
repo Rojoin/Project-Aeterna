@@ -17,6 +17,8 @@ public class ScrollViewButtonAdder : MonoBehaviour
 
     IEnumerator CallScript()
     {
+        yield return new WaitForSeconds(0.01f);
+        
         for (int i = 0; i < DatabaseSo.objectsData.Count; i++)
         {
             int index = i;
