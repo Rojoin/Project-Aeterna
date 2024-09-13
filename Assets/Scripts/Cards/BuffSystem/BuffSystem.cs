@@ -7,6 +7,13 @@ public class BuffSystem : MonoBehaviour
     [Header("Entity")]
     [SerializeField] private PlayerEntitySO player;
 
+    private float resetDashSpeed;
+
+    private void Start()
+    {
+        resetDashSpeed = player.dashSpeed;
+    }
+
     public void CheckCardType(CardSO card)
     {
         switch (card.cardType)
@@ -15,7 +22,7 @@ public class BuffSystem : MonoBehaviour
 
                 if (card.isInverted)
                 {
-
+                    InvertedAttackCard(card);
                 }
 
                 else
@@ -43,7 +50,7 @@ public class BuffSystem : MonoBehaviour
 
                 if (card.isInverted)
                 {
-
+                    InvertedSpeedCard(card);
                 }
 
                 else
@@ -62,6 +69,13 @@ public class BuffSystem : MonoBehaviour
         damage *= card.cardsOnSlot;
 
         player.damage += damage;
+    }
+
+    private void InvertedAttackCard(CardSO card)
+    {
+        float newDamage = 1.5f;
+
+        player.damage += newDamage;
     }
 
     private void UpgradeHealth(CardSO card)
@@ -87,28 +101,27 @@ public class BuffSystem : MonoBehaviour
     {
         int randomNumber = Random.Range(0, 100);
 
-        int firstChanse = 15;
-        int secondChanse = 20;
-        int thirdChanse = 25;
-        int fourthChanse = 30;
+        int defaultChance = 10;
+        int firstChance = 15;
+        int secondChance = 20;
+        int thirdChance = 25;
+        int fourthChance = 30;
 
-        if (card.cardsOnSlot == 1) 
-        {
-            if (randomNumber <= firstChanse)
-                player.healingValue = firstChanse;
+        if (randomNumber <= firstChance)
+            player.healingValue = firstChance;
 
-            if (randomNumber > firstChanse && randomNumber <= secondChanse)
-                player.healingValue = secondChanse;
+        if (randomNumber > firstChance && randomNumber <= secondChance)
+            player.healingValue = secondChance;
 
-            if (randomNumber > secondChanse && randomNumber <= thirdChanse)
-                player.healingValue = thirdChanse;
+        if (randomNumber > secondChance && randomNumber <= thirdChance)
+            player.healingValue = thirdChance;
 
-            if (randomNumber > thirdChanse && randomNumber <= fourthChanse)
-                player.healingValue = fourthChanse;
+        if (randomNumber > thirdChance && randomNumber <= fourthChance)
+            player.healingValue = fourthChance;
 
-            else
-                player.healingValue = 0;
-        }
+        else
+            player.healingValue = defaultChance;
+        
     }
 
     private void UpgradeSpeed(CardSO card)
@@ -117,6 +130,33 @@ public class BuffSystem : MonoBehaviour
 
         speed *= card.cardsOnSlot;
 
-        player.speed += card.speed;
+        player.speed += speed;
+    }
+
+    private void InvertedSpeedCard(CardSO card) 
+    {
+        int randomNumber = Random.Range(0, 100);
+
+        int firstChance = 15;
+        int secondChance = 20;
+        int thirdChance = 25;
+        int fourthChance = 30;
+
+        player.dashSpeed = resetDashSpeed;
+
+        if (randomNumber <= firstChance) 
+            player.dashSpeed += 1f;
+
+        if (randomNumber > firstChance && randomNumber <= secondChance)
+            player.dashSpeed += 2f;
+
+        if (randomNumber > secondChance && randomNumber <= thirdChance)
+            player.dashSpeed += 3f;
+
+        if (randomNumber > thirdChance && randomNumber <= fourthChance)
+            player.dashSpeed += 4f;
+
+        else
+            player.dashSpeed += 1f;        
     }
 }

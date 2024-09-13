@@ -19,7 +19,7 @@ public class EntitySO : ScriptableObject
     private float m_health;
     public float health;
 
-    public void ResetStacks() 
+    public void ResetStacks()
     {
         damage = m_damage;
         health = m_health;

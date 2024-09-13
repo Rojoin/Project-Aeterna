@@ -8,11 +8,12 @@ using UnityEngine.Serialization;
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
     [Header("Data")]
-    [SerializeField] private EntitySO player;
+    [SerializeField] private PlayerEntitySO player;
     [SerializeField] private Animator animator;
     [SerializeField] private VoidChannelSO MoveCamera;
     [SerializeField] private CustomSlider healthBar;
-    
+    [SerializeField] private SelectCardMenu selectCardMenu;
+
     private float currentHealth;
     private float maxHealth;
     private float damage;
@@ -23,10 +24,15 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
     private void Start()
     {
-        maxHealth = player.health;
-        currentHealth = maxHealth;
-        damage = player.damage;
-        speed = player.speed;
+        player.health = player.maxHealth;
+        maxHealth = player.maxHealth;
+        currentHealth = player.health;
+    }
+
+    private void UpdatePlayerStacks()
+    {
+        player.maxHealth = maxHealth;
+        player.health = currentHealth;
     }
 
     public void SetHealth(float newHealth)
@@ -47,7 +53,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         healthBar.FillAmount = currentHealth / maxHealth;
     }
 
-    public void HealthPlayer(float AddHealth)
+    public void HealthPlayer()
     {
         if (currentHealth >= maxHealth)
         {
@@ -57,9 +63,12 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         else
         {
-            currentHealth += AddHealth;
+            currentHealth += player.healingValue;
             healthBar.FillAmount = currentHealth;
         }
+
+        UpdatePlayerStacks();
+        selectCardMenu.ShowSelectCardMenu(false);
     }
 
     [ContextMenu("KillPlayer")]
@@ -88,6 +97,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         OnPlayerHurt.Invoke();
         animator.SetTrigger(IsHurt);
         healthBar.FillAmount = currentHealth / maxHealth;
+
+        UpdatePlayerStacks();
     }
 
     public void SetDamage(float newDamage)
@@ -124,6 +135,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     {
         if (currentHealth <= 0)
         {
+            UpdatePlayerStacks();
             return true;
         }
 
@@ -131,10 +143,5 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             return false;
         }
-    }
-
-    private void OnDisable()
-    {
-        player.ResetStacks();
     }
 }
