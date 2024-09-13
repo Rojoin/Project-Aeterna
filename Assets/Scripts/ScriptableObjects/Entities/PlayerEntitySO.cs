@@ -6,6 +6,8 @@ public class PlayerEntitySO : EntitySO
     private float m_maxHealth;
     public float maxHealth;
 
+    public float healingValue;
+
     public float movementSpeedDuringAttack;
     public float timeBetweenComboEnd = 2.0f;
 
@@ -17,6 +19,7 @@ public class PlayerEntitySO : EntitySO
     private void OnDisable()
     {
         maxHealth = m_maxHealth;
+        healingValue = 0;
         ResetStacks();
     }
 }

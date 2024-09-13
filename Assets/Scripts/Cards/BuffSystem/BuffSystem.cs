@@ -29,7 +29,7 @@ public class BuffSystem : MonoBehaviour
 
                 if (card.isInverted)
                 {
-
+                    InvertedHealthCard(card);
                 }
 
                 else
@@ -80,6 +80,34 @@ public class BuffSystem : MonoBehaviour
         else
         {
             player.health += card.health;
+        }
+    }
+
+    private void InvertedHealthCard(CardSO card)
+    {
+        int randomNumber = Random.Range(0, 100);
+
+        int firstChanse = 15;
+        int secondChanse = 20;
+        int thirdChanse = 25;
+        int fourthChanse = 30;
+
+        if (card.cardsOnSlot == 1) 
+        {
+            if (randomNumber <= firstChanse)
+                player.healingValue = firstChanse;
+
+            if (randomNumber > firstChanse && randomNumber <= secondChanse)
+                player.healingValue = secondChanse;
+
+            if (randomNumber > secondChanse && randomNumber <= thirdChanse)
+                player.healingValue = thirdChanse;
+
+            if (randomNumber > thirdChanse && randomNumber <= fourthChanse)
+                player.healingValue = fourthChanse;
+
+            else
+                player.healingValue = 0;
         }
     }
 

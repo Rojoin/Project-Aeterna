@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         healthBar.FillAmount = currentHealth / maxHealth;
     }
 
-    public void HealthPlayer(float AddHealth) 
+    public void HealthPlayer() 
     {
         if(currentHealth >= maxHealth) 
         {
@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         else 
         {
-            currentHealth += AddHealth;
+            currentHealth += player.healingValue;
             healthBar.FillAmount = currentHealth;
         }
 
