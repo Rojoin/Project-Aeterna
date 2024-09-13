@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 [Serializable]
 public class DoorColecction
@@ -64,7 +63,6 @@ public class DoorColecction
 public class RoomBehaviour : MonoBehaviour
 {
     public RoomTypes roomType;
-    public BoxCollider roomConfiner;
 
     [SerializeField] private bool doorsOpened;
 
@@ -142,15 +140,17 @@ public class RoomBehaviour : MonoBehaviour
 
     public Transform GetDoorDirection(RoomDirection direction)
     {
+        Transform spawnPoint = null;
+        
         foreach (DoorColecction d in doorColecctions)
         {
             if (d.doorDirection == direction)
             {
-                return d.spawnPosition;
+                spawnPoint = d.spawnPosition;
             }
         }
 
-        return null;
+        return spawnPoint;
     }
 
     public void SetDoorDirection(RoomDirection doorDirection, RoomDirection newRoomDirection)
@@ -166,6 +166,14 @@ public class RoomBehaviour : MonoBehaviour
 
                 doorColecction.Changed = true;
             }
+        }
+    }
+
+    public void SetDoorCollisions(bool state)
+    {
+        foreach (DoorColecction d in doorColecctions)
+        {
+            d.doorBehaviour.GetComponent<BoxCollider>().enabled = state;
         }
     }
 }

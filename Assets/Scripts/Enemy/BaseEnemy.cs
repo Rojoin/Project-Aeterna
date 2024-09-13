@@ -74,6 +74,7 @@ namespace Enemy
                 currentHealth = 0;
                 OnHit.Invoke();
                 OnDeath.Invoke();
+                OnDeathRemove.Invoke(this);
                 Invoke(nameof(DeathBehaviour), timeAfterDeactivate);
             }
             else
