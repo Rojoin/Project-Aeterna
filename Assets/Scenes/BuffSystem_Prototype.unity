@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029571142, g: 0.07510079, b: 0.09355388, a: 1}
+  m_IndirectSpecularColor: {r: 0.029600602, g: 0.075169355, b: 0.09365125, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2012,6 +2012,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1025194290}
     - target: {fileID: 3502469410240450855, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: selectCardMenu
+      value: 
+      objectReference: {fileID: 2077532266}
+    - target: {fileID: 3502469410240450855, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: OnPlayerHurt.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1681417380}
@@ -2052,9 +2056,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1552293560}
     - target: {fileID: 2062347629773223091, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062347629773223091, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1166619370}
+    - target: {fileID: 2062347629773223091, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HealthPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062347629773223091, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerHealth, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062347629773223091, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062347629773223091, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2484874690972814955, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: playerInventory
       value: 

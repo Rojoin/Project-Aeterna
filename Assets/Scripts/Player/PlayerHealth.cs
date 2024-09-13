@@ -11,10 +11,9 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField]private Animator animator;
     [SerializeField]private VoidChannelSO MoveCamera;
     [SerializeField] private CustomSlider healthBar;
+    [SerializeField] private SelectCardMenu selectCardMenu;
     private float currentHealth;
     private float maxHealth;
-    private float damage;
-    private float speed;
     private static readonly int IsHurt = Animator.StringToHash("isHurt");
     public UnityEvent OnPlayerHurt;
 
@@ -23,9 +22,12 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         player.health = player.maxHealth;
         maxHealth = player.maxHealth;
         currentHealth = player.health;
+    }
 
-        damage = player.damage;
-        speed = player.speed;
+    private void UpdatePlayerStacks()
+    {
+        player.maxHealth = maxHealth;
+        player.health = currentHealth;
     }
 
     public void SetHealth(float newHealth) 
@@ -58,6 +60,9 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
             currentHealth += AddHealth;
             healthBar.FillAmount = currentHealth;
         }
+
+        UpdatePlayerStacks();
+        selectCardMenu.ShowSelectCardMenu(false);
     }
 
 [ContextMenu("KillPlayer")]
@@ -81,6 +86,8 @@ private void KillPlayer()
         OnPlayerHurt.Invoke();
         animator.SetTrigger(IsHurt);
         healthBar.FillAmount = currentHealth / maxHealth;
+
+        UpdatePlayerStacks();
     }
 
     public void SetDamage(float newDamage) 
@@ -109,6 +116,7 @@ private void KillPlayer()
     {
         if (currentHealth <= 0) 
         {
+            UpdatePlayerStacks();
             return true;
         }
 
