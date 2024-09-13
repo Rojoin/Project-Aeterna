@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029600602, g: 0.075169355, b: 0.09365125, a: 1}
+  m_IndirectSpecularColor: {r: 0.02957607, g: 0.07511214, b: 0.093567245, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1446,17 +1446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ea42d248e457141993dd50b2172ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1166619381 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 679484672302640284, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-  m_PrefabInstance: {fileID: 2050413946}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166619365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7f6835d4085a44e9c40d6b5e45df0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1231999819 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2484874690972814955, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -1826,6 +1815,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f376d0ac7fb4c84a7f14e9e6c3a1109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShakeIntensity: 8.5
+  timer: 0
+  ShakeTime: 0.2
 --- !u!1 &1808721093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,6 +2012,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1681417380}
     - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: maxCardOnInventory
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: allCards.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: b79125d7bcba9904c9a4ec8b4d38dd54, type: 2}
@@ -2094,7 +2090,7 @@ PrefabInstance:
     - target: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: buffSystem
       value: 
-      objectReference: {fileID: 1166619381}
+      objectReference: {fileID: 0}
     - target: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: playerInventory
       value: 
