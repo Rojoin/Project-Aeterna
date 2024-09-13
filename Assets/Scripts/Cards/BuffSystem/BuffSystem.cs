@@ -67,13 +67,23 @@ public class BuffSystem : MonoBehaviour
     private void UpgradeHealth(CardSO card)
     {
         float maxHealth = card.health;
-        float health = card.health;
-        
-        maxHealth *= card.cardsOnSlot;
-        health *= card.cardsOnSlot;
+        float currentHealth = card.health;
 
-        player.health += maxHealth;
-        player.health += health;
+        maxHealth *= card.cardsOnSlot;
+
+        player.maxHealth += maxHealth;
+
+        if (player.health == player.maxHealth)
+        {
+            player.health += currentHealth;
+        }
+
+        else
+        {
+            float aux;
+            aux = currentHealth - maxHealth;
+            player.health += aux;
+        }
     }
 
     private void UpgradeSpeed(CardSO card)
