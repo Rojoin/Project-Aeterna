@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029593334, g: 0.07512137, b: 0.09356169, a: 1}
+  m_IndirectSpecularColor: {r: 0.029504096, g: 0.07498018, b: 0.09338875, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1861,12 +1861,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelRoom: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
   enemyLevelSo: {fileID: 11400000, guid: b2cc560a17477a646b4704f442973a63, type: 2}
+  OnEnd: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   gapBetweenRooms: {x: 40, y: 40}
   PlayerPrefab: {fileID: 1166619365}
   player: {fileID: 1166619375}
-  playerTpPositionY: -1.75
   camera: {fileID: 1681417377}
-  OnEnd: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   selectCardMenu: {fileID: 1166619377}
   transitionGO: {fileID: 637629739}
 --- !u!1 &1844124701
@@ -2032,6 +2031,10 @@ PrefabInstance:
     - target: {fileID: 3502469410240450855, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: OnPlayerHurt.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: maxCardOnInventory
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: allCards.Array.data[2]

@@ -49,14 +49,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 0
+  roomType: 5
   roomConfiner: {fileID: 1200269025268670105}
   doorsOpened: 0
   doorColecctions:
-  - doorDirection: 0
+  - Changed: 0
+    doorDirection: 0
     spawnPosition: {fileID: 0}
-    behindGameObjects: []
-    frontGameObjects: []
+    doorGameObjects: []
+    wallGameObjects: []
     doorBehaviour: {fileID: 0}
     doorCollider: {fileID: 0}
     particleDoorsGameobject: {fileID: 0}
@@ -95,13 +96,7 @@ MonoBehaviour:
   OnLastEnemyKilled:
     m_PersistentCalls:
       m_Calls: []
-  proceduralRoomGeneration: {fileID: 0}
-  enemyPrefab:
-  - {fileID: 2987170732086015747, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
-  - {fileID: 1221649853939336821, guid: 204ff4bfe86c698459fec2587a692149, type: 3}
-  minNumberEnemies: 5
-  maxNumberEnemies: 7
-  enemyMinSpawnDistance: 4
+  SpawnPoints: []
 --- !u!95 &2357739548588696867
 Animator:
   serializedVersion: 5
