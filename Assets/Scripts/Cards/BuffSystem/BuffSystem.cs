@@ -75,7 +75,11 @@ public class BuffSystem : MonoBehaviour
     {
         float newDamage = 1.5f;
 
-        player.damage += newDamage;
+        float damage = card.damage;
+
+        damage *= card.cardsOnSlot ;
+
+        player.damage += damage * newDamage;
     }
 
     private void UpgradeHealth(CardSO card)
