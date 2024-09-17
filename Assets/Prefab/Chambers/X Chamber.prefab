@@ -526,8 +526,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4387299858582288128}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -552,7 +552,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 5
-  roomConfiner: {fileID: 2427361438224189}
   doorsOpened: 0
   doorColecctions:
   - Changed: 0
@@ -2168,11 +2167,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6be711accbb2d7d4386b3d347718fc3e, type: 3}
---- !u!65 &2427361438224189 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 3375499197660967585, guid: 6be711accbb2d7d4386b3d347718fc3e, type: 3}
-  m_PrefabInstance: {fileID: 3373390798756707740}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6254336645736255154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8654633172474508078, guid: 6be711accbb2d7d4386b3d347718fc3e, type: 3}

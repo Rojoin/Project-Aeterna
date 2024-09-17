@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -11,33 +12,39 @@ public class CanvasChamberViewer : MonoBehaviour
 
     public LevelRoomsSO levelRoomsSo;
     public Transform content;
-    
-    public Transform roomPosition;
 
-    public Action<bool> OnSelectedChamber;
+    [SerializeField] private Vector3 roomPosition;
+    [SerializeField] private Vector3 roomRotation;
+
+    private Dictionary<Button, int> buttonsListeners = new Dictionary<Button, int>();
+
+    public UnityEvent OnSelectedChamber;
 
     public IEnumerator StartCanvasView()
     {
         yield return new WaitForSeconds(0.01f);
-        
+
         for (int i = 0; i < levelRoomsSo.Chambers.Length; i++)
         {
-            int index = i;
-
             GameObject newImage = Instantiate(PrefabSprite, content);
             Button buttonComponent = newImage.GetComponent<Button>();
             
-            cameraPreview.CapturePrefabImage(buttonComponent, levelRoomsSo.Chambers[i].roomPrefab);
-            
-            buttonComponent.onClick.AddListener(() => SetButtonSettings(i));
+            buttonsListeners.Add(buttonComponent, i);
+
+            GameObject PrefabToCapture = levelRoomsSo.Chambers[i].roomPrefab;
+            PrefabToCapture.transform.position = roomPosition;
+            PrefabToCapture.transform.rotation = Quaternion.Euler(roomRotation);
+            cameraPreview.CapturePrefabImage(buttonComponent, PrefabToCapture, roomPosition, roomRotation);
+
+            buttonComponent.onClick.AddListener(() => SetButtonSettings(buttonsListeners[buttonComponent]));
 
             yield return new WaitForSeconds(0.01f);
         }
     }
 
-    private GameObject SetButtonSettings(int i)
+    private void SetButtonSettings(int i)
     {
-        OnSelectedChamber.Invoke(true);
-        return Instantiate(levelRoomsSo.Chambers[i].roomPrefab, roomPosition.position, Quaternion.identity);
+        OnSelectedChamber.Invoke();
+        Instantiate(levelRoomsSo.Chambers[i].roomPrefab, new Vector3(0, 1.5f, 0), Quaternion.identity);
     }
 }

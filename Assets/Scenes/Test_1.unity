@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029562201, g: 0.075080074, b: 0.09353787, a: 1}
+  m_IndirectSpecularColor: {r: 0.02954551, g: 0.07503798, b: 0.0934829, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -707,63 +707,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewCamera: {fileID: 1295732008}
   renderTextureSize: 500
---- !u!1001 &620861702
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4805274277905224765, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_Name
-      value: SM_FloorOnlySnow
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324402458907938439, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4070f86f29a42f84bb698847235d58d6, type: 3}
 --- !u!1 &626877763
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +764,7 @@ MonoBehaviour:
   placementSystem: {fileID: 1115535585}
   cameraPreview: {fileID: 502712718}
   DatabaseSo: {fileID: 11400000, guid: 56be82633a7d931469c2df5afd763d50, type: 2}
-  content: {fileID: 984527224}
+  content: {fileID: 171400600}
 --- !u!114 &626877766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1579,14 +1522,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1053463311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f3c321881198b844afaf6d7a6212b1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 90818529754f8b1418b7835764546666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PrefabSprite: {fileID: 976203253699539337, guid: f1c8c49af46b31a4988bb94b0e9519e3, type: 3}
-  placementSystem: {fileID: 1115535585}
   cameraPreview: {fileID: 502712718}
-  DatabaseSo: {fileID: 11400000, guid: 56be82633a7d931469c2df5afd763d50, type: 2}
+  levelRoomsSo: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
   content: {fileID: 984527224}
+  roomPosition: {x: 0, y: 0, z: 50}
+  roomRotation: {x: -90, y: 0, z: 0}
+  OnSelectedChamber:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1090989159
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,10 +2038,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5240bd452bf9cd848a6a9ca9cbdd8c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chamberViewButtonAdder: {fileID: 0}
-  chamberCanvas: {fileID: 0}
-  PropsViewButtonAdder: {fileID: 0}
-  propsCanvas: {fileID: 0}
+  chamberViewButtonAdder: {fileID: 1053463316}
+  chamberCanvas: {fileID: 1053463311}
+  PropsViewButtonAdder: {fileID: 626877765}
+  propsCanvas: {fileID: 626877763}
 --- !u!20 &1845685072 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4610753144933997836, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
@@ -2344,4 +2291,3 @@ SceneRoots:
   - {fileID: 943243428}
   - {fileID: 502712716}
   - {fileID: 1295732009}
-  - {fileID: 620861702}

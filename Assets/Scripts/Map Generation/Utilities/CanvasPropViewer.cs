@@ -22,7 +22,7 @@ public class CanvasPropViewer : MonoBehaviour
             GameObject newImage = Instantiate(PrefabSprite, content);
             Button buttonComponent = newImage.GetComponent<Button>();
             
-            cameraPreview.CapturePrefabImage(buttonComponent, DatabaseSo.objectsData[i].Prefab);
+            cameraPreview.CapturePrefabImage(buttonComponent, DatabaseSo.objectsData[i].Prefab, new Vector3(0,0,10), new Vector3(0,180,0));
             
             buttonComponent.onClick.AddListener(() => placementSystem.StartPlacement(DatabaseSo.objectsData[index].ID));
 

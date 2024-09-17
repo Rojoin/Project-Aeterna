@@ -13,6 +13,7 @@ public class RoomCreationManager : MonoBehaviour
 
     private void Start()
     {
+        chamberViewButtonAdder.OnSelectedChamber.AddListener(SetChamberUIFalse);
         StartCoroutine(chamberViewButtonAdder.StartCanvasView());
         
         chamberCanvas.SetActive(true);
@@ -22,5 +23,13 @@ public class RoomCreationManager : MonoBehaviour
     private void StartPropViewer()
     {
         
+    }
+
+    private void SetChamberUIFalse()
+    {
+        chamberCanvas.SetActive(false);
+        propsCanvas.SetActive(true);
+        
+        StartCoroutine(PropsViewButtonAdder.StartCanvasView());
     }
 }
