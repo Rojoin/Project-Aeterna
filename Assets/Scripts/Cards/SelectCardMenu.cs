@@ -213,31 +213,19 @@ public class SelectCardMenu : MonoBehaviour
             }
         }
 
-        if (!isOnInvetory && inventory.Count > 0)
+        if (!isOnInvetory)
         {
             playerInventory.AddCard(cardsToShow[cardSelected]);
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
-            
-            if (cardsToShow[cardSelected].slotIndex <= 3)
-                buffSystem.CheckCardType(cardsToShow[cardSelected]);
         }
 
-        if (inventory.Count == 0)
-        {
-            playerInventory.AddCard(cardsToShow[cardSelected]);
-            playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
-            
-            if (cardsToShow[cardSelected].slotIndex <= 3)
-                buffSystem.CheckCardType(cardsToShow[cardSelected]);
-        }
-
-        else
+        if (isOnInvetory)
         {
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
-
-            if (cardsToShow[cardSelected].slotIndex <= 3)
-                buffSystem.CheckCardType(cardsToShow[cardSelected]);
         }
+
+        if (cardsToShow[cardSelected].cardsOnSlot < 3)
+            buffSystem.CheckCardType(cardsToShow[cardSelected]);
 
         ShowSelectCardMenu(false);
 
