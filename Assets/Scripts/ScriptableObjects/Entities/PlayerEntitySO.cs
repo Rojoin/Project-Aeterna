@@ -27,6 +27,7 @@ public class PlayerEntitySO : EntitySO
         maxHealth = m_maxHealth;
         healingValue = 0;
         dashSpeed = 35f;
-        ResetStacks();
+        damage = 30;
+        speed = 3;
     }
 }
