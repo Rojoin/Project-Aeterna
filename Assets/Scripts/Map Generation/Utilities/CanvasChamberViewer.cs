@@ -18,7 +18,7 @@ public class CanvasChamberViewer : MonoBehaviour
 
     private Dictionary<Button, int> buttonsListeners = new Dictionary<Button, int>();
 
-    public UnityEvent OnSelectedChamber;
+    public UnityEvent<int> OnSelectedChamber;
 
     public IEnumerator StartCanvasView()
     {
@@ -44,7 +44,7 @@ public class CanvasChamberViewer : MonoBehaviour
 
     private void SetButtonSettings(int i)
     {
-        OnSelectedChamber.Invoke();
+        OnSelectedChamber.Invoke(i);
         Instantiate(levelRoomsSo.Chambers[i].roomPrefab, new Vector3(0, 1.5f, 0), Quaternion.identity);
     }
 }
