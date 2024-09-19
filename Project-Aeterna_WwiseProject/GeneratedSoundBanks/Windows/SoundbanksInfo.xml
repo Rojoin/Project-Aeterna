@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{ADDE9D4F-3710-2189-E036-162EE47B5631}">
+		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{FD1D1962-FE0C-DAFD-E943-4A7FBC358874}">
 			<ShortName>BaseSoundBank</ShortName>
 			<Path>BaseSoundBank.bnk</Path>
 			<Media>
@@ -173,6 +173,10 @@
 					<ShortName>Voice_Female_V2_Attack_Mono_09.wav</ShortName>
 					<CachePath>SFX/Voice_Female_V2_Attack_Mono_09_818F3B66.wem</CachePath>
 				</File>
+				<File Id="837171404" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Dash_01.wav</ShortName>
+					<CachePath>SFX/Dash_01_818F3B66.wem</CachePath>
+				</File>
 				<File Id="858051376" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enojado_muierte 4.wav</ShortName>
 					<CachePath>SFX/Enojado_muierte 4_818F3B66.wem</CachePath>
@@ -242,6 +246,11 @@
 						<MediaRef Id="501727537"/>
 						<MediaRef Id="731725842"/>
 						<MediaRef Id="802887724"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2394582229" Name="Player_Dash" DurationType="OneShot" DurationMin="1.5445614" DurationMax="1.7845132">
+					<MediaRefs>
+						<MediaRef Id="837171404"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3083087645" Name="Player_Death" DurationType="OneShot" DurationMin="0.5053958" DurationMax="0.708875">
@@ -325,5 +334,5 @@
 			</Busses>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{3BD84FD7-4116-9EC0-3973-E2B3AB23B73C}</FileHash>
+	<FileHash>{2CCCD2E2-20DC-F0A1-BD47-873869EC096F}</FileHash>
 </SoundBanksInfo>

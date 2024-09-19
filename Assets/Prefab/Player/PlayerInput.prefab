@@ -123,19 +123,7 @@ MonoBehaviour:
     m_ActionId: eb34d9e1-4c07-4718-aa05-347f5379a858
     m_ActionName: Player/Interact[/Keyboard/e,/DualSenseGamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: fdf873835f0c8644fa75bc9a213b7046, type: 2}
-        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
-        m_MethodName: RaiseEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: ff76b812-ba1a-430c-b391-16839e6c48d6
     m_ActionName: Player/Back[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
@@ -179,35 +167,11 @@ MonoBehaviour:
     m_ActionId: f16ac01a-0b20-44ef-9733-60da5c37fe32
     m_ActionName: Player/CheatShowConsole[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
-        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
-        m_MethodName: RaiseEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c8e7d1b7-6c1b-4c3c-a062-6f4e900b86ad
     m_ActionName: Player/CameraMove[/DualSenseGamepadHID/rightStick,/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5116400276696402719}
-        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
-        m_MethodName: OnHud
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 41850591-c88a-47b0-9278-75c885a384fa
     m_ActionName: Player/OpenHud[/Keyboard/tab,/SwitchProControllerHID/select]
   - m_PersistentCalls:
@@ -250,6 +214,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 781459e7-7b55-4b29-adfb-bbbd07b09c51
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 96cdc5ee-bb23-48c9-9a46-49bb8bf2ea37
+    m_ActionName: Player/Dash[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -271,9 +251,11 @@ MonoBehaviour:
   OnCameraMoveChannel: {fileID: 11400000, guid: 6af624f6f9ad8034cb27223e408070ca, type: 2}
   OnAttackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
   OnInteractChannel: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
-  OnChangeCameraChannel: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
-  OnResetLevel: {fileID: 11400000, guid: fdf873835f0c8644fa75bc9a213b7046, type: 2}
+  OnChangeCameraChannel: {fileID: 0}
+  OnResetLevel: {fileID: 0}
   OnBackInteractChannel: {fileID: 11400000, guid: ee870a1ab6b1cf34285cd8d95c5bbee5, type: 2}
   OnHudToggleChannel: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
+  OnDashChannel: {fileID: 11400000, guid: 4312eae7dc310ef4bb5f7cbd39742da4, type: 2}
   OnControlSchemeChange: {fileID: 11400000, guid: 31cb41d326db3c84586e863551aec40b, type: 2}
   gameSettings: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}
+  player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}

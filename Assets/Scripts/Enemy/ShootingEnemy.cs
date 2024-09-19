@@ -64,6 +64,7 @@ public class ShootingEnemy : BaseEnemy
                 currentHealth = 0;
                 OnHit.Invoke();
                 OnDeath.Invoke();
+                OnDeathRemove.Invoke(this);
             }
             else
             {
