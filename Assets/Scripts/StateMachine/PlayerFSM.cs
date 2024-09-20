@@ -96,7 +96,7 @@ namespace StateMachine
         private void ChangeFromEndAttack()
         {
             fsm.OnTriggerState(PlayerFlags.EndAttack);
-            _playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
+           // _playerAnimatorController.CrossFade("NormalStatus", 0.75f, 0, 0);
 
         }
 
