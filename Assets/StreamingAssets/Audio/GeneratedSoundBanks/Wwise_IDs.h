@@ -17,7 +17,6 @@ namespace AK
         static const AkUniqueID CARDS_SHOW_PLAY = 1511560907U;
         static const AkUniqueID DOOR_CLOSE = 128625444U;
         static const AkUniqueID DOOR_OPEN = 535830432U;
-        static const AkUniqueID EVENT_TEST = 1618187162U;
         static const AkUniqueID PLAY_DEFAULTMUSIC = 1857418338U;
         static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
         static const AkUniqueID PLAYER_DASH = 2394582229U;
@@ -54,7 +53,8 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID BASESOUNDBANK = 795106865U;
+        static const AkUniqueID MUSICSOUNDBANK = 3427827313U;
+        static const AkUniqueID SFXSOUNDBANK = 3641780361U;
     } // namespace BANKS
 
     namespace BUSSES
