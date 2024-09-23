@@ -212,7 +212,7 @@
 								<Action Name="" ID="{C0A68A74-1035-4297-A251-DBF31662B6DC}" ShortID="296014262">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Default_Music" ID="{254191B7-8F33-4AF1-9AA8-16368E6EB069}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+											<ObjectRef Name="DeathFloorMusic" ID="{3D24983C-FBD1-4D11-A697-5F8035F5C385}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -226,7 +226,49 @@
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Default_Music" ID="{254191B7-8F33-4AF1-9AA8-16368E6EB069}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+											<ObjectRef Name="DeathFloorMusic" ID="{3D24983C-FBD1-4D11-A697-5F8035F5C385}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_CombatMusic" ID="{0EA3129E-A52C-44E3-954C-D565CBDAC96B}">
+							<ChildrenList>
+								<Action Name="" ID="{9033F112-3DFC-4186-8C31-56ED5B484B06}" ShortID="248592335">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Combat" ID="{1AE442F4-B902-43CC-AA0B-341023B1BF88}" WorkUnitID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_DeathMusic" ID="{0A1D6AF5-B7F7-4126-84F6-19CF9FFED0AB}">
+							<ChildrenList>
+								<Action Name="" ID="{9B6511D9-EF65-4DF7-BC6B-F9288C99AC90}" ShortID="41583060">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Death" ID="{FEFDFB31-0036-4C3F-A290-276FD3EEC45F}" WorkUnitID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Set_ExploringMusic" ID="{DCDBF204-D532-4097-8987-5F231C01D2A7}">
+							<ChildrenList>
+								<Action Name="" ID="{E3BF16C9-D18E-4E5B-87F6-2A4A31630A3A}" ShortID="176614365">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Exploring" ID="{2E558C24-D55C-4F7D-8687-413AAAAE92F4}" WorkUnitID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

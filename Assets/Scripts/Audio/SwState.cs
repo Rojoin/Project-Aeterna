@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class SwState : MonoBehaviour
 {
-    public string stateGroup;
-    
-    public void SetState(string newState)
+    public void SetState(string EventName)
     {
-        AkSoundEngine.SetState(stateGroup, newState);
+        AkSoundEngine.PostEvent(EventName, gameObject);
     }
 }

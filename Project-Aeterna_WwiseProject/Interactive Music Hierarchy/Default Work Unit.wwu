@@ -3,14 +3,7 @@
 	<InteractiveMusic>
 		<WorkUnit Name="Default Work Unit" ID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}" PersistMode="Standalone">
 			<ChildrenList>
-				<MusicPlaylistContainer Name="Default_Music" ID="{254191B7-8F33-4AF1-9AA8-16368E6EB069}" ShortID="368973145">
-					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-7</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
+				<MusicSwitchContainer Name="DeathFloorMusic" ID="{3D24983C-FBD1-4D11-A697-5F8035F5C385}" ShortID="752351489">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -18,55 +11,149 @@
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
 						</Reference>
-						<Reference Name="PlaylistRoot">
-							<Custom>
-								<MusicPlaylistItem Name="" ID="{0FA8CCD3-1203-47C6-9BC1-A5AA1899135E}" ShortID="49423897">
-									<PropertyList>
-										<Property Name="LoopCount" Type="int16" Value="0"/>
-									</PropertyList>
-									<ChildrenList>
-										<MusicPlaylistItem Name="" ID="{B4EA9A5A-C95D-480B-8EC8-3F741D517C17}" ShortID="330050182">
-											<PropertyList>
-												<Property Name="LoopCount" Type="int16" Value="0"/>
-												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Segment">
-													<ObjectRef Name="main music_aeterna_V1" ID="{870FABDA-8CD8-423B-90EA-49558C865714}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
-												</Reference>
-											</ReferenceList>
-										</MusicPlaylistItem>
-									</ChildrenList>
-								</MusicPlaylistItem>
-							</Custom>
-						</Reference>
 						<Reference Name="TransitionRoot">
 							<Custom>
-								<MusicTransition Name="Root" ID="{22B5B43B-F344-4577-8827-A1E110933E69}">
+								<MusicTransition Name="Root" ID="{1004028A-2AC0-42C4-97A2-2C0A55950B55}">
 									<PropertyList>
 										<Property Name="IsFolder" Type="bool" Value="True"/>
 									</PropertyList>
 									<ChildrenList>
-										<MusicTransition Name="Transition" ID="{8BE0749D-A672-4591-A59A-F33B0767FC3B}">
+										<MusicTransition Name="Transition" ID="{F887AC38-3A13-457F-9A4D-68F1503D41E4}">
 											<PropertyList>
+												<Property Name="ExitSourceAt" Type="int16" Value="0"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{22A91FAF-20DC-4CF6-A36C-76B8E07324A9}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="DestinationJumpPositionPreset" Type="int16" Value="1"/>
 												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
 												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeOut" Type="bool" Value="True"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="2"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
 											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Combat" ID="{DD7A54FC-354C-4500-AFAF-5A4C680542A6}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Exploring" ID="{6A9B5A27-5966-4D1A-8A85-E36C44B1F3C9}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+												</Reference>
+											</ReferenceList>
 											<TransitionInfo>
 												<SourceFadeOut>
-													<MusicFade Name="Source Fade-out" ID="{293DE3EC-5071-4A01-BFBA-824EBDBC948F}">
+													<MusicFade Name="Source Fade-out" ID="{E6E4D35D-39DA-4DAC-8055-8A296989A217}">
 														<PropertyList>
-															<Property Name="FadeCurve" Type="int16" Value="1"/>
-															<Property Name="FadeTime" Type="Real64" Value="2"/>
+															<Property Name="FadeCurve" Type="int16" Value="5"/>
+															<Property Name="FadeOffset" Type="Real64" Value="0.7"/>
+															<Property Name="FadeTime" Type="Real64" Value="1"/>
 															<Property Name="FadeType" Type="int16" Value="1"/>
 														</PropertyList>
 													</MusicFade>
 												</SourceFadeOut>
 												<DestinationFadeIn>
-													<MusicFade Name="Destination Fade-in" ID="{28241FD2-B782-4D06-9CD2-BCB073D7491C}">
+													<MusicFade Name="Destination Fade-in" ID="{246E9BEE-BE74-473D-B8EA-2E0808EBB78D}">
+														<PropertyList>
+															<Property Name="FadeCurve" Type="int16" Value="3"/>
+															<Property Name="FadeOffset" Type="Real64" Value="-0.5"/>
+															<Property Name="FadeTime" Type="Real64" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</DestinationFadeIn>
+												<TransitionFadeIn>
+													<MusicFade Name="Transition Fade-in" ID="{650134FB-EDB4-453D-AC89-6BC4336A963C}">
 														<PropertyList>
 															<Property Name="FadeCurve" Type="int16" Value="7"/>
 															<Property Name="FadeTime" Type="Real64" Value="2"/>
+														</PropertyList>
+													</MusicFade>
+												</TransitionFadeIn>
+												<TransitionFadeOut>
+													<MusicFade Name="Transition Fade-out" ID="{377B167A-44B6-4FFD-9585-87B3573E4846}">
+														<PropertyList>
+															<Property Name="FadeCurve" Type="int16" Value="7"/>
+															<Property Name="FadeTime" Type="Real64" Value="2"/>
+															<Property Name="FadeType" Type="int16" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</TransitionFadeOut>
+											</TransitionInfo>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{A891E45F-A373-4BA3-AD1D-CEDFEA2E4586}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="DestinationJumpPositionPreset" Type="int16" Value="1"/>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="2"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Exploring" ID="{6A9B5A27-5966-4D1A-8A85-E36C44B1F3C9}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Combat" ID="{DD7A54FC-354C-4500-AFAF-5A4C680542A6}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<SourceFadeOut>
+													<MusicFade Name="Source Fade-out" ID="{4F243084-A1E2-415E-A6FF-60F2098A1765}">
+														<PropertyList>
+															<Property Name="FadeCurve" Type="int16" Value="6"/>
+															<Property Name="FadeOffset" Type="Real64" Value="0.3"/>
+															<Property Name="FadeTime" Type="Real64" Value="1"/>
+															<Property Name="FadeType" Type="int16" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</SourceFadeOut>
+												<DestinationFadeIn>
+													<MusicFade Name="Destination Fade-in" ID="{21A460EB-9E8A-48D5-A2A9-11510528AE76}">
+														<PropertyList>
+															<Property Name="FadeCurve" Type="int16" Value="7"/>
+															<Property Name="FadeOffset" Type="Real64" Value="-0.6"/>
+															<Property Name="FadeTime" Type="Real64" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</DestinationFadeIn>
+											</TransitionInfo>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{DB97AC27-A031-4320-98EE-5E71AC987C32}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="ExitSourceAt" Type="int16" Value="2"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Death" ID="{C5E05BA3-DDDD-4999-B1F6-68E9C3293543}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Combat" ID="{DD7A54FC-354C-4500-AFAF-5A4C680542A6}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<SourceFadeOut>
+													<MusicFade Name="Source Fade-out" ID="{E54EF9F3-FE3B-4BDE-B146-8B9956BC7A40}">
+														<PropertyList>
+															<Property Name="FadeCurve" Type="int16" Value="6"/>
+															<Property Name="FadeOffset" Type="Real64" Value="0.5"/>
+															<Property Name="FadeTime" Type="Real64" Value="1"/>
+															<Property Name="FadeType" Type="int16" Value="1"/>
+														</PropertyList>
+													</MusicFade>
+												</SourceFadeOut>
+												<DestinationFadeIn>
+													<MusicFade Name="Destination Fade-in" ID="{CA28C321-CD99-44B9-9AD1-B653EB1D1AD0}">
+														<PropertyList>
+															<Property Name="FadeCurve" Type="int16" Value="1"/>
+															<Property Name="FadeOffset" Type="Real64" Value="-0.2"/>
+															<Property Name="FadeTime" Type="Real64" Value="1"/>
 														</PropertyList>
 													</MusicFade>
 												</DestinationFadeIn>
@@ -79,14 +166,10 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<MusicSegment Name="main music_aeterna_V1" ID="{870FABDA-8CD8-423B-90EA-49558C865714}" ShortID="681358942">
+						<MusicSegment Name="Exploring" ID="{6A9B5A27-5966-4D1A-8A85-E36C44B1F3C9}" ShortID="409051223">
 							<PropertyList>
-								<Property Name="EndPosition" Type="Real64" Value="135500"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-10</Value>
-									</ValueList>
-								</Property>
+								<Property Name="EndPosition" Type="Real64" Value="54528.4220246238"/>
+								<Property Name="Tempo" Type="Real64" Value="142"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -97,14 +180,14 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<MusicTrack Name="main music_aeterna_V1" ID="{E58C1845-D4DE-45A6-964B-B194652425AC}" ShortID="679616635">
+								<MusicTrack Name="BELLS - stemdeathfloorBGM142bpm" ID="{29B2AE35-3755-4357-A2BC-49DDFB66AFF8}" ShortID="879836817">
 									<ReferenceList>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
 										</Reference>
 										<Reference Name="TransitionRoot">
 											<Custom>
-												<MusicTransition Name="Root" ID="{C041D8B7-6BEF-4E5C-9DD5-7753BDC5E57E}">
+												<MusicTransition Name="Root" ID="{D4DDC698-CE15-44BA-9241-4047E373257C}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -114,11 +197,11 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="main music_aeterna_V1" ID="{31E7E423-4029-4E21-9275-310FD5633E9E}">
+										<AudioFileSource Name="BELLS - stemdeathfloorBGM142bpm" ID="{6F8594E2-7337-48C6-93D1-FA0948C73E2C}">
 											<Language>SFX</Language>
-											<AudioFile>main music_aeterna_V1.wav</AudioFile>
+											<AudioFile>BELLS - stemdeathfloorBGM142bpm.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="53258193"/>
+												<MediaID ID="60911401"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
@@ -126,18 +209,382 @@
 										<ObjectList Name="Sequences">
 											<Reference>
 												<Local>
-													<MusicTrackSequence Name="" ID="{F3561A31-6FE5-432C-A27C-01DE89A8012B}">
+													<MusicTrackSequence Name="" ID="{5B8A313D-2FA8-46B9-B9A8-BC710D55E75C}">
 														<ObjectLists>
 															<ObjectList Name="Clips">
 																<Reference>
 																	<Local>
-																		<MusicClip Name="main music_aeterna_V1" ID="{924E4A76-B06F-4EC3-941F-7992471A1D43}">
+																		<MusicClip Name="BELLS - stemdeathfloorBGM142bpm" ID="{A201E9E0-422E-46B1-A185-7FFB4653498C}">
 																			<PropertyList>
-																				<Property Name="EndTrimOffset" Type="Real64" Value="135500"/>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
 																				<Property Name="FadeInMode" Type="int16" Value="0"/>
 																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																			</PropertyList>
-																			<AudioSourceRef Name="main music_aeterna_V1" ID="{31E7E423-4029-4E21-9275-310FD5633E9E}"/>
+																			<AudioSourceRef Name="BELLS - stemdeathfloorBGM142bpm" ID="{6F8594E2-7337-48C6-93D1-FA0948C73E2C}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="FLUTE - stemdeathfloorBGM142bpm" ID="{5956C805-28E1-45FD-96B0-C63E7FF76FCD}" ShortID="412739254">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{DE455D0E-97C4-4A65-AA14-188D18D42EFC}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="FLUTE - stemdeathfloorBGM142bpm" ID="{FBF3EA7F-E7AF-43C9-9DB5-4220D5B65228}">
+											<Language>SFX</Language>
+											<AudioFile>FLUTE - stemdeathfloorBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="77855965"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{F3DFDDC6-AB75-4945-BED7-D8F1AE24CDFC}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="FLUTE - stemdeathfloorBGM142bpm" ID="{93097E9C-6B46-4E9E-A010-FFBB7500637D}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="FLUTE - stemdeathfloorBGM142bpm" ID="{FBF3EA7F-E7AF-43C9-9DB5-4220D5B65228}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="JUNO KEYS - stemdeathfloorBGM142bpm" ID="{CED8C4CC-1ECD-427A-B20A-597C234F6ACF}" ShortID="227707186">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{59DFC848-2DA4-4544-830C-FCD35D523037}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="JUNO KEYS - stemdeathfloorBGM142bpm" ID="{92D91C14-819F-4D31-8DF7-A7EDF7E25D5C}">
+											<Language>SFX</Language>
+											<AudioFile>JUNO KEYS - stemdeathfloorBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="45913145"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{B18C88C1-187A-4732-A713-46DDEB22DF04}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="JUNO KEYS - stemdeathfloorBGM142bpm" ID="{DD8BB46D-C21A-43D7-9CFA-A95EDEAF43CC}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="JUNO KEYS - stemdeathfloorBGM142bpm" ID="{92D91C14-819F-4D31-8DF7-A7EDF7E25D5C}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="MIX BUSdeathfloorBGM142bpm" ID="{E786FDB4-7077-4D56-A011-0D8E33A29165}" ShortID="861999725">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{1F33B6D4-A90B-4550-85D4-102BDC9CCBA4}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="MIX BUSdeathfloorBGM142bpm" ID="{6139AD32-A152-4E0C-8D87-930E9C2ACA51}">
+											<Language>SFX</Language>
+											<AudioFile>MIX BUSdeathfloorBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="353056499"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{4888FEF4-A891-4C94-8C04-D60330EBDE99}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="MIX BUSdeathfloorBGM142bpm" ID="{5DD73508-6BE7-4FDD-8CE1-FFD233EE5E8B}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="MIX BUSdeathfloorBGM142bpm" ID="{6139AD32-A152-4E0C-8D87-930E9C2ACA51}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="PERC - stemdeathfloorBGM142bpm" ID="{D38935AE-B3EB-4634-82A6-50C736F08AA7}" ShortID="319459449">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{C4E607A4-5CF0-42F2-9AE9-A9A52249D466}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PERC - stemdeathfloorBGM142bpm" ID="{7CBBAA39-8EED-4747-9259-41BAD5A03D8F}">
+											<Language>SFX</Language>
+											<AudioFile>PERC - stemdeathfloorBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="563863151"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{B07746CE-3DBC-464C-9F4E-E01C26449396}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="PERC - stemdeathfloorBGM142bpm" ID="{E4EF0C26-9A8D-4713-8130-CE3A03DAFE1B}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="PERC - stemdeathfloorBGM142bpm" ID="{7CBBAA39-8EED-4747-9259-41BAD5A03D8F}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="SHAMISEN - stemdeathfloorBGM142bpm" ID="{8171EF6C-43B8-4646-AA22-881D90211012}" ShortID="4965541">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{2C858921-D3A0-4857-A323-2AD37C6C7BEC}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SHAMISEN - stemdeathfloorBGM142bpm" ID="{0DE8A4BB-6CF2-40BE-9379-5D7B2BA11AE1}">
+											<Language>SFX</Language>
+											<AudioFile>SHAMISEN - stemdeathfloorBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1040475087"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{33E30F19-2196-421E-BD49-6945209F9C0A}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="SHAMISEN - stemdeathfloorBGM142bpm" ID="{9F6AF8F2-6CD5-4693-96BB-BDC12506AAF0}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="SHAMISEN - stemdeathfloorBGM142bpm" ID="{0DE8A4BB-6CF2-40BE-9379-5D7B2BA11AE1}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="STRINGS 18osc - stemdeathfloorBGM142bpm" ID="{23B628CA-1B3B-4672-A4E4-4408F80E3070}" ShortID="1019041077">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{900D250F-3BA5-46AC-8726-166C255E6A76}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="STRINGS 18osc - stemdeathfloorBGM142bpm" ID="{C3064936-C37F-4DC2-B212-CD793553B016}">
+											<Language>SFX</Language>
+											<AudioFile>STRINGS 18osc - stemdeathfloorBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="223485048"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{290D8FA3-A326-4141-A032-91BD747A31EB}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="STRINGS 18osc - stemdeathfloorBGM142bpm" ID="{9892A0A6-86DD-4CF5-BCD9-0C98142185FC}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="STRINGS 18osc - stemdeathfloorBGM142bpm" ID="{C3064936-C37F-4DC2-B212-CD793553B016}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="STRINGS DEL MAR - stemdeathfloorBGM142bpm" ID="{59B598AE-6AA8-47B7-B548-FC446EE70E69}" ShortID="1072856760">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{1AF727A7-CD9F-4772-A3C7-4E06574D67DD}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="STRINGS DEL MAR - stemdeathfloorBGM142bpm" ID="{24D4F354-F7C4-49B8-9665-3D45E3471360}">
+											<Language>SFX</Language>
+											<AudioFile>STRINGS DEL MAR - stemdeathfloorBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="235877646"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{A84FC9E7-131B-45A8-9CEA-2B5C55B3B0B0}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="STRINGS DEL MAR - stemdeathfloorBGM142bpm" ID="{344F58F4-19F7-4AFB-B39A-106481918769}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="STRINGS DEL MAR - stemdeathfloorBGM142bpm" ID="{24D4F354-F7C4-49B8-9665-3D45E3471360}"/>
 																		</MusicClip>
 																	</Local>
 																</Reference>
@@ -154,15 +601,1019 @@
 								<ObjectList Name="Cues">
 									<Reference>
 										<Local>
-											<MusicCue Name="Entry Cue" ID="{87D83838-4524-46B5-8447-6F29DBC3D852}"/>
+											<MusicCue Name="Entry Cue" ID="{098327CA-E4F2-44B7-92B1-220AD1A50FFF}"/>
 										</Local>
 									</Reference>
 									<Reference>
 										<Local>
-											<MusicCue Name="Exit Cue" ID="{3DD29EFB-AE48-4A17-971A-45F56C8363E3}">
+											<MusicCue Name="Exit Cue" ID="{80B6C456-A166-41C6-A442-B9FDAB8DCA36}">
 												<PropertyList>
 													<Property Name="CueType" Type="int16" Value="1"/>
-													<Property Name="TimeMs" Type="Real64" Value="135500"/>
+													<Property Name="TimeMs" Type="Real64" Value="54084.5"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+						<MusicSegment Name="Combat" ID="{DD7A54FC-354C-4500-AFAF-5A4C680542A6}" ShortID="609698155">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="54114.1454202078"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="BELLS - stemdeathfloorcombatBGM142bpm" ID="{1D344AEE-5B36-4BA0-B886-BC176EB61A2D}" ShortID="852402882">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{3050B41D-1E59-4854-9D37-5F46A8A71DB5}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="BELLS - stemdeathfloorcombatBGM142bpm" ID="{D492E3BA-1D67-451E-91A7-624D8BB13B0E}">
+											<Language>SFX</Language>
+											<AudioFile>BELLS - stemdeathfloorcombatBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="202674845"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{9E9E6AA4-3125-495B-A8B9-A211E2F66D3C}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="BELLS - stemdeathfloorcombatBGM142bpm" ID="{8EC0F750-71EA-46BF-AB2C-571C67852499}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="BELLS - stemdeathfloorcombatBGM142bpm" ID="{D492E3BA-1D67-451E-91A7-624D8BB13B0E}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="JUNO KEYS - stemdeathfloorcombatBGM142bpm" ID="{EF523A4A-60EA-4E19-B904-6B1727756256}" ShortID="444073000">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{AFC535F3-2620-4F45-B0AD-2FE24E76446A}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="JUNO KEYS - stemdeathfloorcombatBGM142bpm" ID="{4AF61B8D-8BD0-45D0-850C-8A4CA7BA52EB}">
+											<Language>SFX</Language>
+											<AudioFile>JUNO KEYS - stemdeathfloorcombatBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="320778038"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{08D83E47-18AA-4E24-AA6E-DA1DCEE7DF48}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="JUNO KEYS - stemdeathfloorcombatBGM142bpm" ID="{EACC6C2D-25A0-4F7C-833B-2FF5D7B894C6}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="JUNO KEYS - stemdeathfloorcombatBGM142bpm" ID="{4AF61B8D-8BD0-45D0-850C-8A4CA7BA52EB}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="MIX BUSdeathfloorcombatBGM142bpm" ID="{BC3975F6-7E9E-4E17-9611-F2428B97F17D}" ShortID="519892365">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{9B9EA93C-FD96-4439-9070-A5D4C144A6F4}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="MIX BUSdeathfloorcombatBGM142bpm" ID="{A8328D52-B37B-4539-B500-506D72FCF44A}">
+											<Language>SFX</Language>
+											<AudioFile>MIX BUSdeathfloorcombatBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="479082728"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{EC121B83-7F1F-43C9-B59A-992E1B71FC2E}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="MIX BUSdeathfloorcombatBGM142bpm" ID="{92E73089-A7CC-4926-96FB-2E277C747CAB}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="MIX BUSdeathfloorcombatBGM142bpm" ID="{A8328D52-B37B-4539-B500-506D72FCF44A}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="PERC - stemdeathfloorcombatBGM142bpm" ID="{DB7D73C9-C597-4C0E-BADB-DF6C5FA450C5}" ShortID="954306159">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{7ABDFC51-5543-417B-BBDD-AE9FBDB07D46}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PERC - stemdeathfloorcombatBGM142bpm" ID="{35331544-40E0-4388-B468-0A0BF69AA10D}">
+											<Language>SFX</Language>
+											<AudioFile>PERC - stemdeathfloorcombatBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="313545198"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{13660436-779B-46D0-972F-91A3CDBF267D}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="PERC - stemdeathfloorcombatBGM142bpm" ID="{7CCC4C81-DE59-498D-9A35-159CA584B25A}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="PERC - stemdeathfloorcombatBGM142bpm" ID="{35331544-40E0-4388-B468-0A0BF69AA10D}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="SHAMISEN - stemdeathfloorcombatBGM142bpm" ID="{329E0E8B-42BE-477A-9FAB-D7DE49C9D0FA}" ShortID="273198326">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{C0C565B3-5F50-4DFD-BE2D-4D75548C3FBF}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SHAMISEN - stemdeathfloorcombatBGM142bpm" ID="{BD34C1D1-5519-42CF-A221-7A0217202F50}">
+											<Language>SFX</Language>
+											<AudioFile>SHAMISEN - stemdeathfloorcombatBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="411247633"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{6FB08F73-5BB3-4E86-BD15-1363DEDFACDF}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="SHAMISEN - stemdeathfloorcombatBGM142bpm" ID="{7F23E7EA-7856-4C08-9F26-236C93C40F42}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="SHAMISEN - stemdeathfloorcombatBGM142bpm" ID="{BD34C1D1-5519-42CF-A221-7A0217202F50}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="SPEED RUN STRINGS - stemdeathfloorcombatBGM142bpm" ID="{36E42AE1-81B9-4FDB-9EA9-A739EC949FC6}" ShortID="724190100">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{E006E8DE-CF62-48D6-87D6-105364E82007}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SPEED RUN STRINGS - stemdeathfloorcombatBGM142bpm" ID="{21F21A00-B926-43F7-88E5-8E856FDD7DA5}">
+											<Language>SFX</Language>
+											<AudioFile>SPEED RUN STRINGS - stemdeathfloorcombatBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="99726784"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{BFA0AA5D-5DE9-450F-ADEB-A925C66B954F}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="SPEED RUN STRINGS - stemdeathfloorcombatBGM142bpm" ID="{0E04FFAB-ACA1-49C8-BBEF-8059C49166D6}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="SPEED RUN STRINGS - stemdeathfloorcombatBGM142bpm" ID="{21F21A00-B926-43F7-88E5-8E856FDD7DA5}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="STRINGS DEL MAR - stemdeathfloorcombatBGM142bpm" ID="{3EE39C73-E0B1-4A4E-A52D-E8A0CCFA02E7}" ShortID="955052051">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{0EF7E8A9-F936-4F33-84B8-4C083EEFFEC7}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="STRINGS DEL MAR - stemdeathfloorcombatBGM142bpm" ID="{DB5C4855-3E62-48BE-8BDD-01AFA9B36C49}">
+											<Language>SFX</Language>
+											<AudioFile>STRINGS DEL MAR - stemdeathfloorcombatBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="689716171"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{1A87F54D-6876-4A99-8CCF-1C29B5B44B99}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="STRINGS DEL MAR - stemdeathfloorcombatBGM142bpm" ID="{C1D8AA00-DBE4-42C4-9CC8-A9EA71337F5E}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="STRINGS DEL MAR - stemdeathfloorcombatBGM142bpm" ID="{DB5C4855-3E62-48BE-8BDD-01AFA9B36C49}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="VOICES _ua_ - stemdeathfloorcombatBGM142bpm" ID="{57107CE2-68FD-42BE-9991-9993B645BA39}" ShortID="143452783">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{162BEDC5-A81B-421D-B508-5514FFCAF735}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="VOICES _ua_ - stemdeathfloorcombatBGM142bpm" ID="{CEB155AA-E790-48F7-B510-D6A8E6E5592D}">
+											<Language>SFX</Language>
+											<AudioFile>VOICES _ua_ - stemdeathfloorcombatBGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="568599203"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{7A3157C9-531F-459D-8659-FE86229A9C6F}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="VOICES _ua_ - stemdeathfloorcombatBGM142bpm" ID="{31CD612C-6DE9-4F76-85DA-A007AFD88B2B}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="54084.5"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="VOICES _ua_ - stemdeathfloorcombatBGM142bpm" ID="{CEB155AA-E790-48F7-B510-D6A8E6E5592D}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{166C52CE-1746-4A83-AA99-8417A64B9D6E}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{8DE7B6DA-9D2C-40C6-B12C-F5FF9F09B7A9}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="54012.0028328612"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+						<MusicSegment Name="Death" ID="{C5E05BA3-DDDD-4999-B1F6-68E9C3293543}" ShortID="521290170">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="9466.66812244256"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="BELLS - stemdeath screen BGM142bpm" ID="{57551C63-216A-4097-B1D9-BF041B61BEB0}" ShortID="76607036">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{70D91062-4293-4EE1-8C12-F83C25EB5BB0}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="BELLS - stemdeath screen BGM142bpm" ID="{1FF740A5-DA7F-44CD-AB91-99CE57E048B0}">
+											<Language>SFX</Language>
+											<AudioFile>BELLS - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1046410580"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{BB081E3C-97FB-46BE-B711-E2A98242079C}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="BELLS - stemdeath screen BGM142bpm" ID="{37DCD72D-1F95-48C7-B3A7-2AED4B4EB6F6}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="BELLS - stemdeath screen BGM142bpm" ID="{1FF740A5-DA7F-44CD-AB91-99CE57E048B0}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="BRAAM - stemdeath screen BGM142bpm" ID="{C248DCE6-FC68-41A1-A208-8688EF6E307B}" ShortID="684628727">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{46B6C5F1-4CB9-4C5B-9A69-2EC55306142A}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="BRAAM - stemdeath screen BGM142bpm" ID="{57BD396B-29C3-4628-AC55-60D115747F35}">
+											<Language>SFX</Language>
+											<AudioFile>BRAAM - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="336447613"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{5AB47CDC-6529-4ACC-BFF0-6F8C4C9A54AF}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="BRAAM - stemdeath screen BGM142bpm" ID="{F3E74632-4B0F-484D-A471-1B30AEC81C17}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="BRAAM - stemdeath screen BGM142bpm" ID="{57BD396B-29C3-4628-AC55-60D115747F35}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="FLUTE - stemdeath screen BGM142bpm" ID="{CABB7677-28E0-4D94-8596-3C1D7F972E23}" ShortID="217686970">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{C4FE4568-15A4-4AF5-BCD8-96BB9E65A048}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="FLUTE - stemdeath screen BGM142bpm" ID="{64172E83-43FC-4287-AE88-85879745BB15}">
+											<Language>SFX</Language>
+											<AudioFile>FLUTE - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="818183112"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{EEF680DD-43D4-4468-8042-93DECE34CA95}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="FLUTE - stemdeath screen BGM142bpm" ID="{F3BBB0EF-A2F7-480A-AB23-3B35F10DB69D}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="FLUTE - stemdeath screen BGM142bpm" ID="{64172E83-43FC-4287-AE88-85879745BB15}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="JUNO KEYS - stemdeath screen BGM142bpm" ID="{C11696E6-496E-48AD-BE55-174FB43F7A64}" ShortID="164411606">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{C1E5A717-620E-42DC-99C9-AA3B3121244C}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="JUNO KEYS - stemdeath screen BGM142bpm" ID="{52CE9C88-D0E7-42BC-9BD6-1BBF16D22927}">
+											<Language>SFX</Language>
+											<AudioFile>JUNO KEYS - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="926583808"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{B74F298C-5302-4054-B35B-B49AFA11C622}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="JUNO KEYS - stemdeath screen BGM142bpm" ID="{42795E92-2D8A-4734-BA4A-7992C52195D7}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="JUNO KEYS - stemdeath screen BGM142bpm" ID="{52CE9C88-D0E7-42BC-9BD6-1BBF16D22927}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="MIX BUSdeath screen BGM142bpm" ID="{DAF02A1E-3603-42EB-9085-9CF11A400FBC}" ShortID="152266563">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{1544A30D-FBA2-4206-A086-F4B6C512E3D6}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="MIX BUSdeath screen BGM142bpm" ID="{3E5249B8-91D7-4AA0-925E-18BC5E6A96CA}">
+											<Language>SFX</Language>
+											<AudioFile>MIX BUSdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="635928028"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{F80011E5-4138-408D-A263-3A1746E49547}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="MIX BUSdeath screen BGM142bpm" ID="{1E2CB83B-AC6D-4012-959B-ABB7FBE8E3EC}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="MIX BUSdeath screen BGM142bpm" ID="{3E5249B8-91D7-4AA0-925E-18BC5E6A96CA}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="PERC - stemdeath screen BGM142bpm" ID="{A0A92184-8A9D-4A59-872B-3783BA9C6C43}" ShortID="902299493">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{491D973C-7C15-45E3-859A-9E56FFF83364}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="PERC - stemdeath screen BGM142bpm" ID="{30ADF946-B91D-4422-AE0B-6252DAE3AEAC}">
+											<Language>SFX</Language>
+											<AudioFile>PERC - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="145179426"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{99ABF307-5003-448C-A1BD-DE280DDE006D}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="PERC - stemdeath screen BGM142bpm" ID="{86B599FC-3350-495D-9344-73AA452FC7DE}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="PERC - stemdeath screen BGM142bpm" ID="{30ADF946-B91D-4422-AE0B-6252DAE3AEAC}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="SHAMISEN - stemdeath screen BGM142bpm" ID="{00CD6399-9C29-4D37-824E-E8868297F260}" ShortID="541746483">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{098CA1AF-2503-4679-8E71-75E2545B234C}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SHAMISEN - stemdeath screen BGM142bpm" ID="{F50B61A6-A80A-4B72-A372-A6BE5C0BC29F}">
+											<Language>SFX</Language>
+											<AudioFile>SHAMISEN - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="508273767"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{D9786BAD-7BB5-4682-BA7C-CD082B1750C3}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="SHAMISEN - stemdeath screen BGM142bpm" ID="{8C26C7FB-FD0E-49DA-BD6D-0378DE4F21A6}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="SHAMISEN - stemdeath screen BGM142bpm" ID="{F50B61A6-A80A-4B72-A372-A6BE5C0BC29F}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="STRINGS 18osc - stemdeath screen BGM142bpm" ID="{03498BC7-FC02-4807-8C8F-F440A47DACBF}" ShortID="437684447">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{54C1B241-1728-462A-99CA-6699D662A904}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="STRINGS 18osc - stemdeath screen BGM142bpm" ID="{419D9C21-D70D-444D-A727-BEC12A0DACD0}">
+											<Language>SFX</Language>
+											<AudioFile>STRINGS 18osc - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="676002546"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{78C6DFFE-9872-4C2B-BAE7-EBB68EEF846F}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="STRINGS 18osc - stemdeath screen BGM142bpm" ID="{12D88630-EBA2-405B-903A-2E6740C5A3CC}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="STRINGS 18osc - stemdeath screen BGM142bpm" ID="{419D9C21-D70D-444D-A727-BEC12A0DACD0}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="STRINGS DEL MAR - stemdeath screen BGM142bpm" ID="{18225B45-31FA-4F72-ADB3-FA735D1EEB91}" ShortID="663137100">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{728AA90B-6E35-445E-AEE6-8F8B9E45C29D}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="STRINGS DEL MAR - stemdeath screen BGM142bpm" ID="{2E06E3F4-727F-40D6-B5CD-589CF53AE2B6}">
+											<Language>SFX</Language>
+											<AudioFile>STRINGS DEL MAR - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="721615837"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{A9C37A21-1412-42AD-9E91-9EB87C30EA17}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="STRINGS DEL MAR - stemdeath screen BGM142bpm" ID="{751ED16D-7CD7-4587-8F2E-2F1872443282}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="STRINGS DEL MAR - stemdeath screen BGM142bpm" ID="{2E06E3F4-727F-40D6-B5CD-589CF53AE2B6}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="VOICES _ua_ - stemdeath screen BGM142bpm" ID="{23F5398C-5B95-4E83-9857-BEE5E217B027}" ShortID="320859623">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+										<Reference Name="TransitionRoot">
+											<Custom>
+												<MusicTransition Name="Root" ID="{06E96366-625E-4355-B125-36DCB2AE964C}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="VOICES _ua_ - stemdeath screen BGM142bpm" ID="{D66D8FF6-69FE-4067-81E3-D55D701A1040}">
+											<Language>SFX</Language>
+											<AudioFile>VOICES _ua_ - stemdeath screen BGM142bpm.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="690064417"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{A603E8F5-E9D9-433B-ABB2-DBB3E02A10DD}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="VOICES _ua_ - stemdeath screen BGM142bpm" ID="{105DC91C-A92E-47F0-A9C6-0435BE17B4E8}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="8450.70833333333"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="VOICES _ua_ - stemdeath screen BGM142bpm" ID="{D66D8FF6-69FE-4067-81E3-D55D701A1040}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{0ABF2DC9-1CF6-4CE4-89D1-176BC02F0A2E}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{4C664FA6-3A71-4A8A-9EBA-0A53D321F9A8}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="8437.2617248977"/>
 												</PropertyList>
 											</MusicCue>
 										</Local>
@@ -171,7 +1622,91 @@
 							</ObjectLists>
 						</MusicSegment>
 					</ChildrenList>
-				</MusicPlaylistContainer>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo MusicSyncType="3">
+								<StateGroupRef Name="DeathFloorMusic" ID="{951C4D00-4AB8-4327-90D9-1BDA059F4550}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="Combat" ID="{1AE442F4-B902-43CC-AA0B-341023B1BF88}"/>
+								<CustomState Name="" ID="{F757F6D5-500E-43FB-BDB7-9B7C4676A4B7}" ShortID="909322351"/>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Death" ID="{FEFDFB31-0036-4C3F-A290-276FD3EEC45F}"/>
+								<CustomState Name="" ID="{F6734E55-0546-4B30-ACEF-367C360B4318}" ShortID="812446326"/>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Exploring" ID="{2E558C24-D55C-4F7D-8687-413AAAAE92F4}"/>
+								<CustomState Name="" ID="{21337C0F-B329-4D28-B32C-AB090729CCFD}" ShortID="220665144"/>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
+					<ObjectLists>
+						<ObjectList Name="Arguments">
+							<Reference>
+								<ObjectRef Name="DeathFloorMusic" ID="{951C4D00-4AB8-4327-90D9-1BDA059F4550}" WorkUnitID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}"/>
+							</Reference>
+						</ObjectList>
+						<ObjectList Name="Entries">
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{9CF315B3-5B48-4B61-96E7-08835A839B5F}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Combat" ID="{DD7A54FC-354C-4500-AFAF-5A4C680542A6}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Combat" ID="{1AE442F4-B902-43CC-AA0B-341023B1BF88}" WorkUnitID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{C4A13501-10C7-4C19-9503-9F4B1C67BB9A}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Death" ID="{C5E05BA3-DDDD-4999-B1F6-68E9C3293543}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Death" ID="{FEFDFB31-0036-4C3F-A290-276FD3EEC45F}" WorkUnitID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+							<Reference>
+								<Local>
+									<MultiSwitchEntry Name="" ID="{F2B2A073-C7D7-4D85-B460-E24CCC2CC5D1}">
+										<ReferenceList>
+											<Reference Name="AudioNode">
+												<ObjectRef Name="Exploring" ID="{6A9B5A27-5966-4D1A-8A85-E36C44B1F3C9}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+											</Reference>
+										</ReferenceList>
+										<ObjectLists>
+											<ObjectList Name="EntryPath">
+												<Reference>
+													<ObjectRef Name="Exploring" ID="{2E558C24-D55C-4F7D-8687-413AAAAE92F4}" WorkUnitID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}"/>
+												</Reference>
+											</ObjectList>
+										</ObjectLists>
+									</MultiSwitchEntry>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
+				</MusicSwitchContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</InteractiveMusic>

@@ -25,11 +25,31 @@ namespace AK
         static const AkUniqueID PLAYER_RECIEVEDAMAGE = 1990870923U;
         static const AkUniqueID PLAYER_WALK_LEVEL1 = 3808387538U;
         static const AkUniqueID PROYECTILE_HIT = 2964619405U;
+        static const AkUniqueID SET_COMBATMUSIC = 1226438939U;
+        static const AkUniqueID SET_DEATHMUSIC = 1819564765U;
+        static const AkUniqueID SET_EXPLORINGMUSIC = 881121579U;
         static const AkUniqueID STOP_DEFAULTMUSIC = 502652540U;
         static const AkUniqueID YUKINKO_ATTACK = 2759476964U;
         static const AkUniqueID YUKINKO_DEAD = 1827819594U;
         static const AkUniqueID YUKINKO_HIT = 2316635047U;
     } // namespace EVENTS
+
+    namespace STATES
+    {
+        namespace DEATHFLOORMUSIC
+        {
+            static const AkUniqueID GROUP = 69122470U;
+
+            namespace STATE
+            {
+                static const AkUniqueID COMBAT = 2764240573U;
+                static const AkUniqueID DEATH = 779278001U;
+                static const AkUniqueID EXPLORING = 1823678183U;
+                static const AkUniqueID NONE = 748895195U;
+            } // namespace STATE
+        } // namespace DEATHFLOORMUSIC
+
+    } // namespace STATES
 
     namespace BANKS
     {

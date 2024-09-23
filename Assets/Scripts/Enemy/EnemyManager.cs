@@ -33,6 +33,9 @@ namespace Enemy
 
         private void SpawnEnemies()
         {
+            Debug.Log("CallEnemyMusic");
+            AkSoundEngine.SetState("DeathFloorMusic", "Combat");
+            
             int NewEnemyCuantity = Random.Range(enemyLevelSo.minNumberEnemies, enemyLevelSo.maxNumberEnemies);
 
             for (int i = 0; i < NewEnemyCuantity; i++)
@@ -58,6 +61,7 @@ namespace Enemy
             {
                 enemyList.Remove(enemy);
                 enemy.OnDeathRemove.RemoveListener(RemoveEnemy);
+                
                 EndChamber();
             }
             else
@@ -70,6 +74,8 @@ namespace Enemy
         {
             if (enemyList.Count <= 0)
             {
+                Debug.Log("CallExploringMusic");
+                AkSoundEngine.SetState("DeathFloorMusic", "Exploring");
                 CallEndRoom();
             }
         }
