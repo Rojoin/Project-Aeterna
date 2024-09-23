@@ -10,7 +10,7 @@ public class CanvasChamberViewer : MonoBehaviour
     public GameObject PrefabSprite;
     public PrefabPreviewCapture cameraPreview;
 
-    public LevelRoomsSO levelRoomsSo;
+    public BaseChamberSo levelRoomsSo;
     public Transform content;
 
     [SerializeField] private Vector3 roomPosition;
@@ -24,7 +24,7 @@ public class CanvasChamberViewer : MonoBehaviour
     {
         yield return new WaitForSeconds(0.01f);
 
-        for (int i = 0; i < levelRoomsSo.Chambers.Length; i++)
+        for (int i = 0; i < levelRoomsSo.Chambers.Count; i++)
         {
             GameObject newImage = Instantiate(PrefabSprite, content);
             Button buttonComponent = newImage.GetComponent<Button>();

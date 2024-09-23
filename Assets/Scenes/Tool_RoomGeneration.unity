@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029577952, g: 0.075131506, b: 0.09359598, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1607,7 +1607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabSprite: {fileID: 976203253699539337, guid: f1c8c49af46b31a4988bb94b0e9519e3, type: 3}
   cameraPreview: {fileID: 502712718}
-  levelRoomsSo: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
+  levelRoomsSo: {fileID: 11400000, guid: 4eb40904215cfd44695b0e3dfed0cd77, type: 2}
   content: {fileID: 984527224}
   roomPosition: {x: 0, y: 0, z: 50}
   roomRotation: {x: -90, y: 0, z: 0}
@@ -2240,11 +2240,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelRoomsSO: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
+  BaseChamberSo: {fileID: 11400000, guid: 4eb40904215cfd44695b0e3dfed0cd77, type: 2}
   chamberViewButtonAdder: {fileID: 1053463316}
   chamberCanvas: {fileID: 1053463311}
   PropsViewButtonAdder: {fileID: 626877765}
   propsCanvas: {fileID: 626877763}
   EndChamberPersonalization: {fileID: 1589510505}
+  objectPlacer: {fileID: 1291006714}
 --- !u!20 &1845685072 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4610753144933997836, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}

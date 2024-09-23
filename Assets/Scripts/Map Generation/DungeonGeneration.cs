@@ -36,7 +36,7 @@ public class DungeonGeneration : MonoBehaviour
     private Queue<DungeonRoom> pendingRooms = new();
     private List<DungeonRoom> dungeonRooms = new();
     private Dictionary<(int, int), DungeonRoom> dungeonRoomsLayout = new();
-    private Dictionary<RoomForm, List<GameObject>> chambersTypes = new();
+    private Dictionary<RoomForm, List<LevelRoomPropsSo>> chambersTypes = new();
 
     public static Action OnRequestPosition;
     public static Action<Vector3> OnProvidePosition;
@@ -80,12 +80,12 @@ public class DungeonGeneration : MonoBehaviour
 
     private void SetRoomsDivision()
     {
-        foreach (ChamberSO chamber in levelRoom.Chambers)
+        foreach (LevelRoomPropsSo chamber in levelRoom.Chambers)
         {
-            if (!chambersTypes.ContainsKey(chamber.roomForm))
-                chambersTypes[chamber.roomForm] = new List<GameObject>();
+            if (!chambersTypes.ContainsKey(chamber.levelRoom.roomForm))
+                chambersTypes[chamber.levelRoom.roomForm] = new List<LevelRoomPropsSo>();
 
-            chambersTypes[chamber.roomForm].Add(chamber.roomPrefab);
+            chambersTypes[chamber.levelRoom.roomForm].Add(chamber);
         }
     }
 
@@ -310,13 +310,16 @@ public class DungeonGeneration : MonoBehaviour
     {
         foreach (DungeonRoom room in dungeonRooms)
         {
-            GameObject prefab = chambersTypes[room.roomForm][Random.Range(0, chambersTypes[room.roomForm].Count)];
+            LevelRoomPropsSo currentRoom = chambersTypes[room.roomForm][Random.Range(0, chambersTypes[room.roomForm].Count)];
+            GameObject prefab = currentRoom.levelRoom.roomPrefab;
             GameObject roomInstance = Instantiate(prefab,
                 new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
                 Quaternion.identity, transform);
 
             room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
             room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
+            
+            room.proceduralRoomGeneration.CreateRoomProps(currentRoom);
 
             SetEnemyManager(room, roomInstance);
 
