@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,13 +26,13 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private List<SelectableCardMovement> cardsMovements;
     [SerializeField] private List<SelectableCardDisplay> cardsDisplay;
 
+    [Header("Reference: Buff System")]
+    [SerializeField] private BuffSystem buffSystem;
+
     [Header("Animations")]
     [SerializeField] private List<Animator> cardsAnimator;
 
     public List<CardSO> cardsToShow;
-
-    [SerializeField] private Animator invertedCardAnimator;
-    [SerializeField] private Animator normalCardAnimator;
 
     [Header("Setup: Cards")]
     public int maxCardsToSelect = 3;
@@ -61,8 +62,6 @@ public class SelectCardMenu : MonoBehaviour
 
     private void Update()
     {
-        PickCardsToShow();
-
         if (showCardMenu)
         {
             for (int i = 0; i < cardsMovements.Count; i++)
@@ -70,19 +69,6 @@ public class SelectCardMenu : MonoBehaviour
                 if (cardsMovements[i].IsSelected())
                 {
                     cardsDisplay[i].ShowCardDescription(cardsToShow[i]);
-                }
-            }
-
-            for (int i = 0; i < cardsToShow.Count; i++)
-            {
-                if (cardsToShow[i].isInverted == true)
-                {
-                    PlayInvertedCardAnimation(cardsToShow[i].slotIndex);
-                }
-
-                else 
-                {
-                    PlayNormalCardAnimation(cardsToShow[i].slotIndex);
                 }
             }
         }
@@ -103,6 +89,11 @@ public class SelectCardMenu : MonoBehaviour
         showCardMenu = value;
         SelectCardUI.SetActive(value);
         TogglePause.RaiseEvent(value);
+
+        if (showCardMenu)
+        {
+            PickCardsToShow();
+        }
     }
 
     public CardSO GetRandomCard(int minRangeOfCards, int maxRangeOfCards)
@@ -142,28 +133,36 @@ public class SelectCardMenu : MonoBehaviour
 
     private void PickCardsToShow()
     {
-        if (playerInventory.GetInventory().Count == playerInventory.GetMaxCardOnInventory())
+        for (int i = 0; i < maxCardsToSelect; i++)
         {
-            for (int i = 0; i < playerInventory.GetMaxCardOnInventory(); i++)
+            if (playerInventory.GetInventory().Count == playerInventory.GetMaxCardOnInventory())
             {
                 cardsToShow.Add(playerInventory.GetInventory()[i]);
-
-                cardsDisplay[i].ShowCardImage(cardsToShow[i]);
-
-                cardsToShow[i].slotIndex = i;
             }
-        }
 
-        if (cardsToShow.Count == 0 && playerInventory.GetInventory().Count != playerInventory.GetMaxCardOnInventory())
-        {
-            for (int i = 0; i < maxCardsToSelect; i++)
+            if (cardsToShow.Count == 0 || playerInventory.GetInventory().Count != playerInventory.GetMaxCardOnInventory())
             {
                 cardsToShow.Add(GetRandomCard(0, playerInventory.GetMaxCards()));
-
-                cardsDisplay[i].ShowCardImage(cardsToShow[i]);
-
-                cardsToShow[i].slotIndex = i;
             }
+
+            cardsToShow[i].slotIndex = i;
+
+            if (cardsDisplay[i].isOnSide && !cardsToShow[i].isInverted)
+            {
+                cardsAnimator[i].SetBool("IsOnSide", true);
+            }
+
+            if (cardsDisplay[i].isOnSide && cardsToShow[i].isInverted)
+            {
+                StartCoroutine(ChangeInvertCardAnimation(cardsToShow[i].slotIndex));
+            }
+
+            if (!cardsDisplay[i].isOnSide && cardsToShow[i].isInverted)
+            {
+                StartCoroutine(ChangeInvertCardAnimation(cardsToShow[i].slotIndex));
+            }
+
+            cardsDisplay[i].ShowCardImage(cardsToShow[i]);
         }
     }
 
@@ -185,23 +184,18 @@ public class SelectCardMenu : MonoBehaviour
         }
     }
 
-    public void PlayInvertedCardAnimation(int slotIndex)
+    public IEnumerator ChangeInvertCardAnimation(int cardID)
     {
-        cardsAnimator[slotIndex].runtimeAnimatorController = invertedCardAnimator.runtimeAnimatorController;
+        if (cardsToShow[cardID].isInverted)
+        {
+            cardsAnimator[cardID].SetBool("IsOnSide", false);
+        }
 
-        StartCoroutine(ChangeInvertCardAnimation(slotIndex));
-    }
+        cardsAnimator[cardID].SetBool("IsReverse", true);
 
-    public void PlayNormalCardAnimation(int slotIndex) 
-    {
-        cardsAnimator[slotIndex].runtimeAnimatorController = normalCardAnimator.runtimeAnimatorController;
-    }
-
-    public IEnumerator ChangeInvertCardAnimation(int slotIndex)
-    {
         yield return new WaitForSeconds(1);
 
-        cardsAnimator[slotIndex].SetBool("IsPresentationEnd", true);
+        cardsAnimator[cardID].SetBool("StartReverseMovement", true);
     }
 
     private void SetCardSelected(int cardSelected)
@@ -219,23 +213,25 @@ public class SelectCardMenu : MonoBehaviour
             }
         }
 
-        if (!isOnInvetory && inventory.Count > 0)
+        if (!isOnInvetory)
         {
             playerInventory.AddCard(cardsToShow[cardSelected]);
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
         }
 
-        if (inventory.Count == 0)
+        if (isOnInvetory)
         {
-            playerInventory.AddCard(cardsToShow[cardSelected]);
             playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
         }
 
-        else
-        {
-            playerInventory.SetCardsOnSlot(cardsToShow[cardSelected]);
-        }
+        if (cardsToShow[cardSelected].cardsOnSlot < 3)
+            buffSystem.CheckCardType(cardsToShow[cardSelected]);
 
         ShowSelectCardMenu(false);
+
+        for (int i = 0;i < cardsToShow.Count; i++) 
+        {
+            cardsAnimator[i].SetBool("StartReverseMovement", false);
+        }
     }
 }

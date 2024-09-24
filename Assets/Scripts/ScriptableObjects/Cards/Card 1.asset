@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5581028bc32b5f648871b3108121304c, type: 3}
   m_Name: Card 1
   m_EditorClassIdentifier: 
-  description: Do more damage
+  cardType: 0
+  description: Gain physical damage.
   allCardSprite: {fileID: 21300000, guid: a6ac57f9b816f164f84006cae26b5533, type: 3}
   artMidground_1: {fileID: 7127646173262896620, guid: 569bfce4cf05b0748945b3d7acafee5b, type: 3}
   newPosition1: {x: 0, y: 0, z: 75}
@@ -24,12 +25,12 @@ MonoBehaviour:
   newPosition3: {x: 0, y: 0, z: 20}
   newSizeDelta3: {x: 445, y: 365}
   artFrame: {fileID: 616848488372456900, guid: 569bfce4cf05b0748945b3d7acafee5b, type: 3}
+  animator: {fileID: 0}
   ID: 0
-  slotIndex: 2
+  slotIndex: -1
   cardsOnSlot: 0
   isSelected: 0
   isInverted: 0
-  cardType: 0
   damage: 10
   health: 0
   speed: 0

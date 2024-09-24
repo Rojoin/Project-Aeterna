@@ -15,6 +15,8 @@ public class SelectableCardDisplay : MonoBehaviour
 
     public Image artFrame;
 
+    public bool isOnSide;
+
     public void ShowCardImage(CardSO card)
     {
         artMidground_1.sprite = card.artMidground_1 ? card.artMidground_1 : null;

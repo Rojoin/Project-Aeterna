@@ -14,8 +14,13 @@ public class CardSO : ScriptableObject
         Speed
     }
 
+    [Header("Cart Type")]
+    public CardType cardType;
+
+    [Header("Description")]
     public string description;
 
+    [Header("Art")]
     public Sprite allCardSprite;
 
     public Sprite artMidground_1;
@@ -29,6 +34,10 @@ public class CardSO : ScriptableObject
     public Vector2 newSizeDelta3 = new Vector2(500, 500);
     public Sprite artFrame;
 
+    [Header("Animator")]
+    public Animator animator;
+
+    [Header("Values")]
     public int ID;
     public int slotIndex = -1;
 
@@ -39,8 +48,7 @@ public class CardSO : ScriptableObject
 
     public bool isInverted;
 
-    public CardType cardType;
-
+    [Header("Buff Data")]
     public float damage;
 
     public float health;
