@@ -3,13 +3,16 @@
 [CreateAssetMenu(menuName = "Create PlayerEntitySO", fileName = "PlayerEntitySO", order = 0)]
 public class PlayerEntitySO : EntitySO
 {
-    private float m_maxHealth;
+    [Header("Health")]
     public float maxHealth;
-
+    private float m_maxHealth;
     public float healingValue;
 
+    [Header("Attack")]
     public float movementSpeedDuringAttack;
     public float timeBetweenComboEnd = 2.0f;
+
+    public float attackSpeed;
 
     [Header("Dash")] 
     public float dashSpeed = 4.0f;
@@ -29,5 +32,6 @@ public class PlayerEntitySO : EntitySO
         dashSpeed = 35f;
         damage = 30;
         speed = 3;
+        attackSpeed = 1;
     }
 }
