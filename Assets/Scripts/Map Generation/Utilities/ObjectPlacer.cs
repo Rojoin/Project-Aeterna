@@ -9,7 +9,7 @@ public class ObjectPlacer : MonoBehaviour
     {
         GameObject newObject = Instantiate(objectData.Prefab);
         newObject.transform.position = position;
-        placedGameObjects.Add(new Props(objectData.Prefab, position, objectData.EnemySpawn));
+        placedGameObjects.Add(new Props(objectData.Prefab, position));
         return placedGameObjects.Count - 1;
     }
 

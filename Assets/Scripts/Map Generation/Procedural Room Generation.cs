@@ -1,13 +1,12 @@
 using System;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class ProceduralRoomGeneration : MonoBehaviour
 {
-    public void CreateRoomProps(List<Props> propsList)
+    public void CreateRoomProps(LevelRoomPropsSo room)
     {
-        foreach (Props currentProp in propsList)
+        foreach (Props currentProp in room.PropsList)
         {
             GameObject newProp = Instantiate(currentProp.prop, transform);
             newProp.transform.localPosition = currentProp.propPosition;

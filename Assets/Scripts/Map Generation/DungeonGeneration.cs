@@ -318,26 +318,9 @@ public class DungeonGeneration : MonoBehaviour
 
             room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
             room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
+            
+            room.proceduralRoomGeneration.CreateRoomProps(currentRoom);
 
-
-            List<(BaseEnemy, Vector3)> EnemyList = new List<(BaseEnemy, Vector3)>();
-            List<Props> propsList = new List<Props>();
-            
-            foreach (Props currentProp in currentRoom.PropsList)
-            {
-                if (currentProp.enemySpawn)
-                {
-                    EnemyList.Add((currentProp.prop.GetComponent<BaseEnemy>(), currentProp.propPosition));
-                }
-                else
-                {
-                    propsList.Add(currentProp);
-                }
-            }
-            
-            room.proceduralRoomGeneration.CreateRoomProps(propsList);
-            room.enemyManager.SetEnemyRoomStats(EnemyList);
-            
             SetEnemyManager(room, roomInstance);
 
             room.roomBehaviour.StartRoom();
@@ -350,6 +333,7 @@ public class DungeonGeneration : MonoBehaviour
     private void SetEnemyManager(DungeonRoom room, GameObject roomInstance)
     {
         room.enemyManager = roomInstance.GetComponent<EnemyManager>();
+        room.enemyManager.SetEnemyRoomStats(enemyLevelSo);
         room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
         room.roomBehaviour.SetRoomDoorState(false);
     }
