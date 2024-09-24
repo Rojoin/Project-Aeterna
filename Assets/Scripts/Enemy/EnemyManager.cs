@@ -11,9 +11,8 @@ namespace Enemy
         public bool roomClear = false;
         public UnityEvent OnLastEnemyKilled;
         
-        private List<BaseEnemy> enemyList = new List<BaseEnemy>();
-        [SerializeField] private Transform[] SpawnPoints;
-        private EnemyLevelSO enemyLevelSo;
+        private List<(BaseEnemy, Vector3)> enemyList = new List<(BaseEnemy, Vector3)>();
+        private List<BaseEnemy> enemySpawnedList = new List<BaseEnemy>();
 
         public void OnEnterNewRoom()
         {
@@ -26,40 +25,37 @@ namespace Enemy
             }
         }
 
-        public void SetEnemyRoomStats(EnemyLevelSO levelSo)
+        public void SetEnemyRoomStats(List<(BaseEnemy, Vector3)> newEnemyList)
         {
-            enemyLevelSo = levelSo;
+            enemyList = newEnemyList;
         }
 
         private void SpawnEnemies()
         {
             Debug.Log("CallEnemyMusic");
             AkSoundEngine.SetState("DeathFloorMusic", "Combat");
-            
-            int NewEnemyCuantity = Random.Range(enemyLevelSo.minNumberEnemies, enemyLevelSo.maxNumberEnemies);
 
-            for (int i = 0; i < NewEnemyCuantity; i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
-                Vector3 spawnPosition = SpawnPoints[i].position;
-
-                BaseEnemy enemyToInvoke = enemyLevelSo.enemiesList[Random.Range(0, enemyLevelSo.enemiesList.Count)];
-
                 BaseEnemy newEnemy =
-                    Instantiate(enemyToInvoke, spawnPosition + (enemyToInvoke.transform.up *
-                                                                ((enemyToInvoke
-                                                                    .transform.localScale.y / 2) + 0.3f)),
+                    Instantiate(enemyList[i].Item1, enemyList[i].Item2 + (enemyList[i].Item1.transform.up *
+                                                                          ((enemyList[i].Item1
+                                                                              .transform.localScale.y / 2) + 0.3f)),
                         quaternion.identity, transform);
 
+                
+                
                 newEnemy.OnDeathRemove.AddListener(RemoveEnemy);
-                enemyList.Add(newEnemy);
+                enemySpawnedList.Add(newEnemy);
+                
             }
         }
 
         private void RemoveEnemy(BaseEnemy enemy)
         {
-            if (enemyList.Contains(enemy))
+            if (enemySpawnedList.Contains(enemy))
             {
-                enemyList.Remove(enemy);
+                enemySpawnedList.Remove(enemy);
                 enemy.OnDeathRemove.RemoveListener(RemoveEnemy);
                 
                 EndChamber();
@@ -72,7 +68,7 @@ namespace Enemy
 
         private void EndChamber()
         {
-            if (enemyList.Count <= 0)
+            if (enemySpawnedList.Count <= 0)
             {
                 Debug.Log("CallExploringMusic");
                 AkSoundEngine.SetState("DeathFloorMusic", "Exploring");

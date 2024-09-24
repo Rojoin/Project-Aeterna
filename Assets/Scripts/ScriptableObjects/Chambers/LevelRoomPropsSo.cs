@@ -18,12 +18,14 @@ public class LevelRoomPropsSo
 [Serializable]
 public class Props
 {
-    public Props(GameObject prop, Vector3 propPosition)
+    public Props(GameObject prop, Vector3 propPosition, bool enemySpawn)
     {
         this.prop = prop;
         this.propPosition = propPosition;
+        this.enemySpawn = enemySpawn;
     }
 
     public GameObject prop;
     public Vector3 propPosition;
+    public bool enemySpawn;
 }

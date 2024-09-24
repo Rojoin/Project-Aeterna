@@ -46,7 +46,7 @@ public class RoomCreationManager : MonoBehaviour
         List<Props> propsList = new List<Props>();
         foreach (Props currentProp in objectPlacer.placedGameObjects)
         {
-            propsList.Add(new Props(currentProp.prop, currentProp.propPosition));
+            propsList.Add(new Props(currentProp.prop, currentProp.propPosition, currentProp.enemySpawn));
         }
 
         levelRoomsSO.Chambers.Add(new LevelRoomPropsSo(BaseChamberSo.Chambers[chamberId], propsList));
