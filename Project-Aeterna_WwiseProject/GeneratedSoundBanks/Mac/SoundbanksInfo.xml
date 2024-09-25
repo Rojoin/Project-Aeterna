@@ -9,9 +9,100 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="795106865" Type="User" Language="SFX" Hash="{FD1D1962-FE0C-DAFD-E943-4A7FBC358874}">
-			<ShortName>BaseSoundBank</ShortName>
-			<Path>BaseSoundBank.bnk</Path>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{F90D219C-BEF0-B281-7F0A-FF8BE5D9F20C}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+			<StateGroups>
+				<StateGroup Id="69122470" Name="DeathFloorMusic">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="779278001" Name="Death"/>
+						<State Id="1823678183" Name="Exploring"/>
+						<State Id="2764240573" Name="Combat"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+		</SoundBank>
+		<SoundBank Id="3427827313" Type="User" Language="SFX" Hash="{35ABB833-9B1C-0B63-C3AE-3E4C319B8834}">
+			<ShortName>MusicSoundBank</ShortName>
+			<Path>MusicSoundBank.bnk</Path>
+			<Media>
+				<File Id="353056499" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>MIX BUSdeathfloorBGM142bpm.wav</ShortName>
+					<CachePath>SFX/MIX BUSdeathfloorBGM142bpm_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="479082728" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>MIX BUSdeathfloorcombatBGM142bpm.wav</ShortName>
+					<CachePath>SFX/MIX BUSdeathfloorcombatBGM142bpm_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="635928028" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>MIX BUSdeath screen BGM142bpm.wav</ShortName>
+					<CachePath>SFX/MIX BUSdeath screen BGM142bpm_FBC78EF0.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="1857418338" Name="Play_DefaultMusic" DurationType="Infinite">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="69122470" Id="2764240573"/>
+							<MediaRefs>
+								<MediaRef Id="479082728"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="69122470" Id="779278001"/>
+							<MediaRefs>
+								<MediaRef Id="635928028"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="69122470" Id="1823678183"/>
+							<MediaRefs>
+								<MediaRef Id="353056499"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="1226438939" Name="Set_CombatMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="69122470" Id="2764240573" Name="Combat"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1819564765" Name="Set_DeathMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="69122470" Id="779278001" Name="Death"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="881121579" Name="Set_ExploringMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0">
+					<ActionSetState>
+						<ActionSetStateEntry GroupId="69122470" Id="1823678183" Name="Exploring"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="502652540" Name="Stop_DefaultMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
+			<StateGroups>
+				<StateGroup Id="69122470" Name="DeathFloorMusic">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="779278001" Name="Death"/>
+						<State Id="1823678183" Name="Exploring"/>
+						<State Id="2764240573" Name="Combat"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+		</SoundBank>
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{31E9353B-C581-1452-036D-EECFE0091640}">
+			<ShortName>SfxSoundBank</ShortName>
+			<Path>SfxSoundBank.bnk</Path>
 			<Media>
 				<File Id="18408502" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enojado_esfuerzo 5.wav</ShortName>
@@ -28,10 +119,6 @@
 				<File Id="40101356" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Voice_Female_V2_Attack_Mono_03.wav</ShortName>
 					<CachePath>SFX/Voice_Female_V2_Attack_Mono_03_818F3B66.wem</CachePath>
-				</File>
-				<File Id="53258193" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>main music_aeterna_V1.wav</ShortName>
-					<CachePath>SFX/main music_aeterna_V1_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="71045666" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Voice_Female_V2_Hit_Short_Mono_01.wav</ShortName>
@@ -157,10 +244,6 @@
 					<ShortName>Voice_Female_V2_Hit_Short_Mono_04.wav</ShortName>
 					<CachePath>SFX/Voice_Female_V2_Hit_Short_Mono_04_818F3B66.wem</CachePath>
 				</File>
-				<File Id="781684899" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>many_coins_12.wav</ShortName>
-					<CachePath>SFX/many_coins_12_818F3B66.wem</CachePath>
-				</File>
 				<File Id="784391297" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>e.wav</ShortName>
 					<CachePath>SFX/e_818F3B66.wem</CachePath>
@@ -230,16 +313,6 @@
 						<MediaRef Id="987444625"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="1618187162" Name="Event_Test" DurationType="OneShot" DurationMin="0.5" DurationMax="0.5">
-					<MediaRefs>
-						<MediaRef Id="781684899"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="1857418338" Name="Play_DefaultMusic" DurationType="Infinite">
-					<MediaRefs>
-						<MediaRef Id="53258193"/>
-					</MediaRefs>
-				</Event>
 				<Event Id="4161660071" Name="Player_Attack_Sword" DurationType="OneShot" DurationMin="1.3304651" DurationMax="1.6859915">
 					<MediaRefs>
 						<MediaRef Id="40101356"/>
@@ -288,7 +361,6 @@
 						<MediaRef Id="977828449"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="502652540" Name="Stop_DefaultMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2759476964" Name="Yukinko_Attack" DurationType="OneShot" DurationMin="0.4371887" DurationMax="0.7213548">
 					<MediaRefs>
 						<MediaRef Id="18408502"/>
@@ -320,19 +392,6 @@
 				</Event>
 			</Events>
 		</SoundBank>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{D326F752-7CA2-0A14-FDB1-63ECE89D0199}">
-			<ShortName>Init</ShortName>
-			<Path>Init.bnk</Path>
-			<Plugins>
-				<AudioDevices>
-					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
-					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
-				</AudioDevices>
-			</Plugins>
-			<Busses>
-				<Bus Id="3803692087" Name="Master Audio Bus"/>
-			</Busses>
-		</SoundBank>
 	</SoundBanks>
-	<FileHash>{5063A599-DD9F-0B5D-93B9-FCBA22DE6515}</FileHash>
+	<FileHash>{79E3D0D8-BB04-CC43-ADF4-3877A4C68F5E}</FileHash>
 </SoundBanksInfo>

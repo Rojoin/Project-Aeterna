@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Enemy;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class DungeonRoom

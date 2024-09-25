@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -71,6 +72,8 @@ public class RoomBehaviour : MonoBehaviour
     public UnityEvent<RoomDirection> PlayerInteractNewDoor;
 
     public Animator doorAnimation;
+
+    public NavMeshSurface navMeshSurface;
 
     private void OnEnable()
     {

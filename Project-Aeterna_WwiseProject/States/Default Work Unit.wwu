@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}" SchemaVersion="119">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{8DD389FC-914A-4CBF-9DDF-90F7A4BDD068}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="DeathFloorMusic" ID="{951C4D00-4AB8-4327-90D9-1BDA059F4550}">
+					<ChildrenList>
+						<State Name="None" ID="{81AA0B9B-BFF4-4807-B4AE-0B729F65A843}"/>
+						<State Name="Combat" ID="{1AE442F4-B902-43CC-AA0B-341023B1BF88}"/>
+						<State Name="Exploring" ID="{2E558C24-D55C-4F7D-8687-413AAAAE92F4}"/>
+						<State Name="Death" ID="{FEFDFB31-0036-4C3F-A290-276FD3EEC45F}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

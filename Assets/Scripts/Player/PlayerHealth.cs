@@ -86,6 +86,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         if (currentHealth <= 0 || currentHealth <= damage)
         {
             currentHealth = 0;
+            AkSoundEngine.SetState("DeathFloorMusic", "Death");
             MoveCamera.RaiseEvent();
             gameObject.SetActive(false);
         }

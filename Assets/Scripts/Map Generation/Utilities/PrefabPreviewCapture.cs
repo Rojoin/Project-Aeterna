@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,13 +15,13 @@ public class PrefabPreviewCapture : MonoBehaviour
         renderTexture = new RenderTexture(renderTextureSize, renderTextureSize, 16);
         previewCamera.targetTexture = renderTexture;
     }
-    public void CapturePrefabImage(Button targetButton, GameObject prefabToCapture)
+    public void CapturePrefabImage(Button targetButton, GameObject prefabToCapture, Vector3 position, Vector3 rotation)
     {
-        lastInstance = Instantiate(prefabToCapture, Vector3.zero, Quaternion.identity);
+        lastInstance = Instantiate(prefabToCapture, Vector3.zero, quaternion.identity);
         
-        lastInstance.transform.position = previewCamera.transform.position + previewCamera.transform.forward * 6;
+        lastInstance.transform.position = previewCamera.transform.position + position;
         
-        lastInstance.transform.rotation = Quaternion.Euler(0, 180, 0); 
+        lastInstance.transform.rotation = Quaternion.Euler(rotation); 
         previewCamera.Render();
         
         Texture2D capturedTexture = new Texture2D(renderTextureSize, renderTextureSize, TextureFormat.RGB24, false);
