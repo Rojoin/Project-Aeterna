@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 2419694579521688218}
   - component: {fileID: 3972282457891632485}
   - component: {fileID: 7113949663427211157}
+  - component: {fileID: 979544022058091302}
   m_Layer: 11
   m_Name: PlayerFSM
   m_TagString: Player
@@ -338,7 +339,7 @@ MonoBehaviour:
   maxCards: 6
   maxCardsOnSlot: 3
   currentCards: 0
-  maxCardOnInventory: 0
+  maxCardOnInventory: 3
   playerCardsInventory: []
   allCards:
   - {fileID: 11400000, guid: 2cc15799823eda0468f5f84e3d63864e, type: 2}
@@ -432,6 +433,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 979544022058091302}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Player_Dash
+          m_BoolArgument: 1
+        m_CallState: 2
   onEndDash:
     m_PersistentCalls:
       m_Calls:
@@ -471,7 +484,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7f6835d4085a44e9c40d6b5e45df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
+--- !u!114 &979544022058091302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277302197274292131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: 
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8080152934088668185
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,10 +990,26 @@ PrefabInstance:
       propertyPath: _attackCollider
       value: 
       objectReference: {fileID: 4902487192498453034}
+    - target: {fileID: 2911793980038055341, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: outlineMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911793980038055341, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: outlineWidth
+      value: 4.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911793980038055341, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: precomputeOutline
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3677190308236792384, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
       propertyPath: meshDefault
       value: 
       objectReference: {fileID: 2300633682667982152}
+    - target: {fileID: 3677190308236792384, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+      propertyPath: afterImageDuration
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 5999740667410381990, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab

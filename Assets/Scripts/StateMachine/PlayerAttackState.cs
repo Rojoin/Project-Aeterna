@@ -73,7 +73,7 @@ namespace StateMachine
             if (isAttacking) return;
 
             float realtimeSinceStartup = Time.realtimeSinceStartup - lastComboEnd;
-            if (realtimeSinceStartup* player.attackSpeed < timeBetweenCombo )
+            if (realtimeSinceStartup * player.attackSpeed < timeBetweenCombo)
 
             {
                 OnAttackEnd?.Invoke();
@@ -272,7 +272,17 @@ namespace StateMachine
                 if (!currentlyHitted.Contains(healthSystem))
                 {
                     Debug.Log("Enter attack.");
-                    healthSystem.ReceiveDamage(comboList[comboCounter].damage + player.damage);
+                    if (player.hasReverseTheStars && comboCounter == comboList.Count - 1)
+                    {
+                        healthSystem.ReceiveDamage(
+                            comboList[comboCounter].damage + player.damage + player.theStarDamage);
+                    }
+                    else
+                    {
+                        healthSystem.ReceiveDamage(
+                            comboList[comboCounter].damage + player.damage);
+                    }
+
                     currentlyHitted.Add(healthSystem);
                 }
                 else

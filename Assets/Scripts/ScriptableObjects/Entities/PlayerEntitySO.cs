@@ -13,6 +13,8 @@ public class PlayerEntitySO : EntitySO
     public float timeBetweenComboEnd = 2.0f;
 
     public float attackSpeed;
+    public bool hasReverseTheStars = false;
+    public float theStarDamage = 10;
 
     [Header("Dash")] 
     public float dashSpeed = 4.0f;
