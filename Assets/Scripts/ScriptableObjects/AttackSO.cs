@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "AttackFileSO", menuName = "Attacks" , order = 0)]
+    [CreateAssetMenu(fileName = "AttackFileSO", menuName = "Attacks", order = 0)]
     public class AttackSO : ScriptableObject
     {
         public string animationName;
@@ -10,10 +11,7 @@ namespace ScriptableObjects
         public Vector3 colliderCenter;
         public Vector3 colliderSize;
         public float attackTime;
-        public float timeUntilStart;
-        
-        public float timeUntilEnd;
-        
+        public float timeUntilComboEnds;
     }
     //Todo: Make a way for multihit attacks.
     //Maybe make a custom method inside the attackSo

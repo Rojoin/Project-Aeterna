@@ -10,13 +10,12 @@ namespace Enemy
     {
         public bool roomClear = false;
         public UnityEvent OnLastEnemyKilled;
-
-        private int totalEnemies = 0;
-        private List<BaseEnemy> Enemies = new List<BaseEnemy>();
+        
+        private List<BaseEnemy> enemyList = new List<BaseEnemy>();
         [SerializeField] private Transform[] SpawnPoints;
         private EnemyLevelSO enemyLevelSo;
-        
-        public void OnEnterNewRoom() 
+
+        public void OnEnterNewRoom()
         {
             Debug.Log("try spawn Enemies");
 
@@ -34,61 +33,57 @@ namespace Enemy
 
         private void SpawnEnemies()
         {
+            Debug.Log("CallEnemyMusic");
+            AkSoundEngine.SetState("DeathFloorMusic", "Combat");
+            
             int NewEnemyCuantity = Random.Range(enemyLevelSo.minNumberEnemies, enemyLevelSo.maxNumberEnemies);
-            totalEnemies = NewEnemyCuantity;
 
             for (int i = 0; i < NewEnemyCuantity; i++)
             {
                 Vector3 spawnPosition = SpawnPoints[i].position;
 
-                GameObject enemyToInvoke = enemyLevelSo.enemiesList[Random.Range(0, enemyLevelSo.enemiesList.Count)];
+                BaseEnemy enemyToInvoke = enemyLevelSo.enemiesList[Random.Range(0, enemyLevelSo.enemiesList.Count)];
 
-                GameObject newEnemy =
+                BaseEnemy newEnemy =
                     Instantiate(enemyToInvoke, spawnPosition + (enemyToInvoke.transform.up *
                                                                 ((enemyToInvoke
                                                                     .transform.localScale.y / 2) + 0.3f)),
                         quaternion.identity, transform);
-                newEnemy.transform.Rotate(Vector3.up, 180);
-                Enemies.Add(newEnemy.GetComponent<BaseEnemy>());
-            }
 
-            foreach (BaseEnemy e in Enemies)
-            {
-                e.OnDeath.AddListener(DeletePlayer);
+                newEnemy.OnDeathRemove.AddListener(RemoveEnemy);
+                enemyList.Add(newEnemy);
             }
         }
 
-        private void DeletePlayer()
+        private void RemoveEnemy(BaseEnemy enemy)
         {
-            totalEnemies--;
-            if (totalEnemies <= 0)
+            if (enemyList.Contains(enemy))
             {
-                foreach (BaseEnemy e in Enemies)
-                {
-                    e.OnDeath.RemoveListener(DeletePlayer);
-                }
+                enemyList.Remove(enemy);
+                enemy.OnDeathRemove.RemoveListener(RemoveEnemy);
+                
+                EndChamber();
+            }
+            else
+            {
+                Debug.LogError("Enemy not finded to remove");
+            }
+        }
 
+        private void EndChamber()
+        {
+            if (enemyList.Count <= 0)
+            {
+                Debug.Log("CallExploringMusic");
+                AkSoundEngine.SetState("DeathFloorMusic", "Exploring");
                 CallEndRoom();
             }
         }
 
         public void CallEndRoom()
         {
-            OnLastEnemyKilled.Invoke();
+            OnLastEnemyKilled?.Invoke();
             roomClear = true;
-        }
-
-        public bool GetRoomClear() 
-        {
-            return roomClear;
-        }
-
-        private void OnDestroy()
-        {
-            foreach (BaseEnemy e in Enemies)
-            {
-                e.OnDeath.RemoveListener(DeletePlayer);
-            }
         }
     }
 }

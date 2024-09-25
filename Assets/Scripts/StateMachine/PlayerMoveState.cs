@@ -12,6 +12,7 @@ namespace StateMachine
 
         public PlayerMoveState(Action onMove, params object[] data) : base(onMove, data)
         {
+            
         }
 
         public override void OnEnter()
@@ -30,6 +31,7 @@ namespace StateMachine
             if (inputDirection != Vector2.zero)
             {
                 Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+                moveDir.Normalize();
                 var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
                 Rotate(rotatedMoveDir);
                 _characterController.Move(rotatedMoveDir * (deltaTime * player.speed));
@@ -45,7 +47,8 @@ namespace StateMachine
 
         public override void Rotate(Vector3 newDirection)
         {
-            owner.transform.forward =
+            //Todo: Look Rotation over time.
+            owner.transform.forward = 
                 Vector3.Slerp(owner.transform.forward, newDirection, Time.deltaTime * rotationSpeed);
         }
 

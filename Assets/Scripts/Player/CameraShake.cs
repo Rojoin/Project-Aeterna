@@ -4,9 +4,9 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
     private CinemachineVirtualCamera _cmvc;
-    private float ShakeIntensity = .5f;
-    private float timer;
-    private float ShakeTime = 0.2f;
+    public  float ShakeIntensity = 8.5f;
+    public  float timer;
+    public  float ShakeTime = 0.2f;
 
     private void Awake()
     {

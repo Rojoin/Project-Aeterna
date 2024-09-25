@@ -27,30 +27,30 @@ public class ChangeCurentCamera : MonoBehaviour
         skyboxMaterialRange = skyboxMaterialRangeMin;
     }
 
-    public void Update()
-    {
-        if (increasing)
-        {
-            skyboxMaterialRange += rotationSpeed * Time.deltaTime;
-            if (skyboxMaterialRange >= skyboxMaterialRangeMax)
-            {
-                skyboxMaterialRange = skyboxMaterialRangeMax;
-                increasing = false;
-            }
-        }
-        else
-        {
-            skyboxMaterialRange -= rotationSpeed * Time.deltaTime;
-            if (skyboxMaterialRange <= skyboxMaterialRangeMin)
-            {
-                skyboxMaterialRange = skyboxMaterialRangeMin;
-                increasing = true;
-            }
-        }
-
-        // Set the skybox rotation
-        RenderSettings.skybox.SetFloat(Rotation, skyboxMaterialRange);
-    }
+    // public void Update()
+    // {
+    //     if (increasing)
+    //     {
+    //         skyboxMaterialRange += rotationSpeed * Time.deltaTime;
+    //         if (skyboxMaterialRange >= skyboxMaterialRangeMax)
+    //         {
+    //             skyboxMaterialRange = skyboxMaterialRangeMax;
+    //             increasing = false;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         skyboxMaterialRange -= rotationSpeed * Time.deltaTime;
+    //         if (skyboxMaterialRange <= skyboxMaterialRangeMin)
+    //         {
+    //             skyboxMaterialRange = skyboxMaterialRangeMin;
+    //             increasing = true;
+    //         }
+    //     }
+    //
+    //     // Set the skybox rotation
+    //     RenderSettings.skybox.SetFloat(Rotation, skyboxMaterialRange);
+    // }
 
     private void OnDisable()
     {

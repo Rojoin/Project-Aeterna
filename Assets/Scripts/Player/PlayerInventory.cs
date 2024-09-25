@@ -19,6 +19,11 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] private List<CardSO> allCards;
 
+    private void Start()
+    {
+        maxCards = allCards.Count;
+    }
+
     public List<CardSO> GetInventory() 
     {
         return playerCardsInventory;
