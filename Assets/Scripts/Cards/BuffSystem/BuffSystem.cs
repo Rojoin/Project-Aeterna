@@ -59,6 +59,20 @@ public class BuffSystem : MonoBehaviour
                 }
 
                 break;
+
+            case CardSO.CardType.AttackSpeed:
+                
+                if(card.isInverted) 
+                {
+                    InvertedAttackSpeed(card);
+                }
+
+                else 
+                {
+                    UpgradeAttackSpeed(card);
+                }
+
+                break;
         }
     }
 
@@ -77,7 +91,7 @@ public class BuffSystem : MonoBehaviour
 
         float damage = card.damage;
 
-        damage *= card.cardsOnSlot ;
+        damage *= card.cardsOnSlot;
 
         player.damage += damage * newDamage;
     }
@@ -162,5 +176,27 @@ public class BuffSystem : MonoBehaviour
 
         else
             player.dashSpeed += 1f;        
+    }
+
+    private void UpgradeAttackSpeed(CardSO card)
+    {
+        float newAttackSpeed = 0.1f;
+
+        float attackSpeed = card.attackSpeed;
+
+        attackSpeed += card.cardsOnSlot;
+
+        player.attackSpeed += attackSpeed * newAttackSpeed;
+    }
+
+    private void InvertedAttackSpeed(CardSO card)
+    {
+        player.hasReverseTheStars = true;
+
+        float damage = player.theStarDamage;
+
+        damage *= card.cardsOnSlot;
+
+        player.theStarDamage += damage;
     }
 }

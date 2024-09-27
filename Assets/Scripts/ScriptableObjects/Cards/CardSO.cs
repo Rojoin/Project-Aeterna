@@ -11,7 +11,8 @@ public class CardSO : ScriptableObject
     {
         Attack,
         Health,
-        Speed
+        Speed,
+        AttackSpeed
     }
 
     [Header("Cart Type")]
@@ -54,6 +55,8 @@ public class CardSO : ScriptableObject
     public float health;
 
     public float speed;
+
+    public float attackSpeed;
 
     public void ResetStacks()
     {
