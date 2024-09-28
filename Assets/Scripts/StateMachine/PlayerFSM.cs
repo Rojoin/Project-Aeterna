@@ -13,6 +13,7 @@ namespace StateMachine
         EndAttack,
         OnDashStart,
         OnDashEnd,
+        OnSpecialAttack,
         Pause
     }
 

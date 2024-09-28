@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace StateMachine
 {
-    public class PlayerBaseState : BaseStateFSM
+    public abstract class PlayerBaseState : BaseStateFSM
     {
         protected Animator _playerAnimatorController;
         protected CharacterController _characterController;

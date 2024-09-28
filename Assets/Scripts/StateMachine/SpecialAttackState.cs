@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjects;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace StateMachine
 {
-    public class PlayerAttackState : PlayerBaseState
+    public class SpecialAttackState : PlayerBaseState
     {
         #region References
 
-        public List<AttackSO> comboList;
+        public AttackSO attack;
         private AttackCollision _attackCollider;
         public UnityEvent OnAttack;
         private GameSettings gameSettings;
@@ -23,7 +21,6 @@ namespace StateMachine
         public float timeBetweenCombo = 0f;
         private float lastClickedTime = 0;
         private float lastComboEnd = 0;
-        private int comboCounter = 0;
         private float attackRadius = 5.0f;
         private bool isAttacking;
         private float timeUntilAttackEnds;
@@ -33,9 +30,9 @@ namespace StateMachine
 
         private List<IHealthSystem> currentlyHitted = new List<IHealthSystem>();
 
-        public PlayerAttackState(Action onAttackEnd, Action onMove, params object[] data) : base(onMove, data)
+        public SpecialAttackState(Action onAttackEnd, Action onMove, params object[] data) : base(onMove, data)
         {
-            comboList = data[5] as List<AttackSO>;
+            attack = data[5] as AttackSO;
             _attackCollider = data[6] as AttackCollision;
             AttackChannel = data[7] as VoidChannelSO;
             gameSettings = data[8] as GameSettings;
@@ -43,7 +40,6 @@ namespace StateMachine
             lastComboEnd = Time.realtimeSinceStartup;
             attackTimer = 0.0f;
             currentlyHitted.Clear();
-            comboCounter = comboList.Count - 1;
         }
 
         public override void OnEnter()
@@ -84,48 +80,23 @@ namespace StateMachine
 
             if (realtimeSinceStartup < timeUntilAttackEnds)
             {
-                comboCounter++;
-                Debug.Log($"Going to Attack:{comboCounter}");
-                if (comboCounter >= comboList.Count)
-                {
-                    comboCounter = 0;
-                }
+                Debug.Log($"Attack:");
+
+                ActivateCollider(attack);
+                _playerAnimatorController.speed = player.attackSpeed;
+                _playerAnimatorController.CrossFade(attack.animationName, 0,
+                    0, 0);
+
+                CheckTarget();
+                // lastClickedTime = Time.realtimeSinceStartup;
+                Debug.Log($"Current clicked time is {lastClickedTime}");
+             
             }
-            else
-            {
-                comboCounter = 0;
-            }
-            
-            Debug.Log($"Attack:{comboCounter}");
-
-            ActivateCollider(comboList[comboCounter]);
-            _playerAnimatorController.speed = player.attackSpeed;
-            _playerAnimatorController.CrossFade(comboList[comboCounter].animationName, comboCounter > 0 ? 0.25f : 0,
-                0, 0);
-
-            CheckTarget();
-            // lastClickedTime = Time.realtimeSinceStartup;
-            Debug.Log($"Current clicked time is {lastClickedTime}");
+       
 
 
-            // if (Time.realtimeSinceStartup - lastComboEnd > timeBetweenComboEnd && comboCounter <= comboList.Count)
-            // {
-            //     Debug.Log($"The last clicked time was {lastClickedTime}");
-            //     if (Time.realtimeSinceStartup - lastClickedTime >= timeBetweenCombo)
-            //     {
-            //         ActivateCollider(comboList[comboCounter]);
-            //         _playerAnimatorController.CrossFade(comboList[comboCounter].animationName, 0.25f, 0, 0);
-            //         comboCounter++;
-            //         CheckTarget();
-            //         lastClickedTime = Time.realtimeSinceStartup;
-            //         Debug.Log($"Current clicked time is {lastClickedTime}");
-            //         if (comboCounter >= comboList.Count)
-            //         {
-            //             comboCounter = 0;
-            //             lastComboEnd = Time.realtimeSinceStartup;
-            //         }
-            //     }
-            // }
+
+
         }
 
         public void ActivateCollider(AttackSO attacksParams)
@@ -133,7 +104,7 @@ namespace StateMachine
             StopAttack();
             _attackCollider.SetColliderParams(attacksParams.colliderCenter, attacksParams.colliderSize);
 
-            timeUntilAttackEnds = comboList[comboCounter].timeUntilComboEnds;
+            timeUntilAttackEnds = attack.timeUntilComboEnds;
             isAttacking = true;
         }
 
@@ -214,13 +185,9 @@ namespace StateMachine
         {
             StopAttack();
             lastComboEnd = Time.realtimeSinceStartup;
-
-            if (comboCounter >= comboList.Count - 1)
-            {
-                timeBetweenCombo = comboList[comboCounter].timeUntilComboEnds;
-            }
-
-            // _playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
+            
+            timeBetweenCombo = attack.timeUntilComboEnds;
+                
             OnAttackEnd?.Invoke();
         }
 
@@ -240,7 +207,7 @@ namespace StateMachine
             if (isAttacking)
             {
                 attackTimer += deltaTime * player.attackSpeed;
-                if (attackTimer >= comboList[comboCounter].attackTime)
+                if (attackTimer >= attack.attackTime)
                 {
                     EndAttackState();
                     // StopAttack();
@@ -270,19 +237,10 @@ namespace StateMachine
             {
                 if (!currentlyHitted.Contains(healthSystem))
                 {
-                    Debug.Log("Enter attack.");
-                    if (player.hasReverseTheStars && comboCounter == comboList.Count - 1)
-                    {
-                        healthSystem.ReceiveDamage(
-                            comboList[comboCounter].damage + player.damage + player.theStarDamage);
-                    }
-                    else
-                    {
-                        healthSystem.ReceiveDamage(
-                            comboList[comboCounter].damage + player.damage);
-                    }
+                    healthSystem.ReceiveDamage(attack.damage + player.damage);
 
                     currentlyHitted.Add(healthSystem);
+                    OnAttackEnd?.Invoke();
                 }
                 else
                 {
