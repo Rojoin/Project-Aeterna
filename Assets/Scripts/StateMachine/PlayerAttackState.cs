@@ -108,24 +108,6 @@ namespace StateMachine
             Debug.Log($"Current clicked time is {lastClickedTime}");
 
 
-            // if (Time.realtimeSinceStartup - lastComboEnd > timeBetweenComboEnd && comboCounter <= comboList.Count)
-            // {
-            //     Debug.Log($"The last clicked time was {lastClickedTime}");
-            //     if (Time.realtimeSinceStartup - lastClickedTime >= timeBetweenCombo)
-            //     {
-            //         ActivateCollider(comboList[comboCounter]);
-            //         _playerAnimatorController.CrossFade(comboList[comboCounter].animationName, 0.25f, 0, 0);
-            //         comboCounter++;
-            //         CheckTarget();
-            //         lastClickedTime = Time.realtimeSinceStartup;
-            //         Debug.Log($"Current clicked time is {lastClickedTime}");
-            //         if (comboCounter >= comboList.Count)
-            //         {
-            //             comboCounter = 0;
-            //             lastComboEnd = Time.realtimeSinceStartup;
-            //         }
-            //     }
-            // }
         }
 
         public void ActivateCollider(AttackSO attacksParams)

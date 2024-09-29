@@ -12,6 +12,7 @@ namespace InputControls
         [SerializeField] private Vector2ChannelSO OnMoveChannel;
         [SerializeField] private Vector2ChannelSO OnCameraMoveChannel;
         [SerializeField] private VoidChannelSO OnAttackChannel;
+        [SerializeField] private VoidChannelSO OnSpecialAttackChannel;
         [SerializeField] private VoidChannelSO OnInteractChannel;
         [SerializeField] private VoidChannelSO OnChangeCameraChannel;
         [SerializeField] private VoidChannelSO OnResetLevel;
@@ -68,6 +69,13 @@ namespace InputControls
             if (ctx.performed && !IsGamePaused)
             {
                 OnAttackChannel.RaiseEvent();
+            }
+        }  
+        public void OnSpecialAttack(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed && !IsGamePaused)
+            {
+                OnSpecialAttackChannel.RaiseEvent();
             }
         }
 

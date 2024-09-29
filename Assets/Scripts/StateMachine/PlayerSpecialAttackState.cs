@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace StateMachine
 {
-    public class SpecialAttackState : PlayerBaseState
+    public class PlayerSpecialAttackState : PlayerBaseState
     {
         #region References
 
@@ -23,14 +23,18 @@ namespace StateMachine
         private float lastComboEnd = 0;
         private float attackRadius = 5.0f;
         private bool isAttacking;
+
         private float timeUntilAttackEnds;
+
         // private float timeUntilStart;
         private float timeAfterComboEnds;
         private float attackTimer = 0.0f;
+        private event Action<Vector3> OnAttackConnected;
 
         private List<IHealthSystem> currentlyHitted = new List<IHealthSystem>();
 
-        public SpecialAttackState(Action onAttackEnd, Action onMove, params object[] data) : base(onMove, data)
+        public PlayerSpecialAttackState(Action onAttackEnd, Action<Vector3> onAttackConnected, Action onMove,
+            params object[] data) : base(onMove, data)
         {
             attack = data[5] as AttackSO;
             _attackCollider = data[6] as AttackCollision;
@@ -39,6 +43,7 @@ namespace StateMachine
             OnAttackEnd += onAttackEnd;
             lastComboEnd = Time.realtimeSinceStartup;
             attackTimer = 0.0f;
+            OnAttackConnected += onAttackConnected;
             currentlyHitted.Clear();
         }
 
@@ -47,7 +52,7 @@ namespace StateMachine
             base.OnEnter();
             currentlyHitted.Clear();
             //lastComboEnd = timeBetweenComboEnd;
-            AttackChannel.Subscribe(Attack);
+            // AttackChannel.Subscribe(Attack);
             _attackCollider.OnTriggerEnterObject.AddListener(OnAttackEnter);
             _attackCollider.OnTriggerExitObject.AddListener(OnAttackExit);
             Attack();
@@ -57,8 +62,7 @@ namespace StateMachine
         {
             base.OnExit();
 
-
-            AttackChannel.Unsubscribe(Attack);
+            // AttackChannel.Unsubscribe(Attack);
             _attackCollider.OnTriggerEnterObject.RemoveListener(OnAttackEnter);
             _attackCollider.OnTriggerExitObject.RemoveListener(OnAttackExit);
             currentlyHitted.Clear();
@@ -77,25 +81,12 @@ namespace StateMachine
             }
 
             timeBetweenCombo = 0;
-
-            if (realtimeSinceStartup < timeUntilAttackEnds)
-            {
-                Debug.Log($"Attack:");
-
-                ActivateCollider(attack);
-                _playerAnimatorController.speed = player.attackSpeed;
-                _playerAnimatorController.CrossFade(attack.animationName, 0,
-                    0, 0);
-
-                CheckTarget();
-                // lastClickedTime = Time.realtimeSinceStartup;
-                Debug.Log($"Current clicked time is {lastClickedTime}");
-             
-            }
-       
-
-
-
+            
+            Debug.Log($"Attack:");
+            ActivateCollider(attack);
+            _playerAnimatorController.speed = player.attackSpeed;
+            _playerAnimatorController.CrossFade(attack.animationName, 0,
+                0, 0);
 
         }
 
@@ -167,27 +158,27 @@ namespace StateMachine
 
         protected override void Move(float deltaTime)
         {
-            if (inputDirection != Vector2.zero)
-            {
-                Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
-                float time = Time.deltaTime;
-                rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-                _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
-                onMove.Invoke();
-            }
-            else
-            {
-                rotatedMoveDir = Vector2.zero;
-            }
+            // if (inputDirection != Vector2.zero)
+            // {
+            //     Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+            //     float time = Time.deltaTime;
+            //     rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+            //     _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
+            //     onMove.Invoke();
+            // }
+            // else
+            // {
+            //     rotatedMoveDir = Vector2.zero;
+            // }
         }
 
         void EndAttackState()
         {
             StopAttack();
             lastComboEnd = Time.realtimeSinceStartup;
-            
+
             timeBetweenCombo = attack.timeUntilComboEnds;
-                
+
             OnAttackEnd?.Invoke();
         }
 
@@ -198,7 +189,7 @@ namespace StateMachine
             currentlyHitted.Clear();
             _attackCollider.ToggleCollider(false);
             _playerAnimatorController.speed = 1;
-            //  _playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
+            //_playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
             //OnAttackEnd.Invoke();
         }
 
@@ -237,8 +228,12 @@ namespace StateMachine
             {
                 if (!currentlyHitted.Contains(healthSystem))
                 {
-                    healthSystem.ReceiveDamage(attack.damage + player.damage);
+                    Vector3 direction = (other.transform.position - owner.transform.position).normalized;
+                    direction = new Vector3(direction.x, 0, direction.z);
+                    Rotate(direction);
 
+                    healthSystem.ReceiveDamage(attack.damage + player.damage);
+                    OnAttackConnected?.Invoke(other.transform.position);
                     currentlyHitted.Add(healthSystem);
                     OnAttackEnd?.Invoke();
                 }
@@ -253,6 +248,7 @@ namespace StateMachine
         {
             base.OnDestroy();
             OnAttackEnd = null;
+            OnAttackConnected = null;
             AttackChannel.Unsubscribe(Attack);
         }
     }
