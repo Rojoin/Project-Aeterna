@@ -26,6 +26,7 @@ namespace Enemy
         private float attackTimerlife = 0;
 
         [SerializeField] private NavMeshAgent _navMeshAgent;
+        private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
         protected override void Init()
         {
@@ -33,6 +34,7 @@ namespace Enemy
             enemyConfig = config as OkamiSo;
             damageCollision.OnTriggerEnterObject.AddListener(DamageEnemy);
             currentMovementSpeed = enemyConfig.chasingMoveSpeed;
+            animator.SetTrigger(IsWalking);
         }
 
 
@@ -98,6 +100,7 @@ namespace Enemy
                     playerPosition = hitCollider.gameObject.transform;
                     _navMeshAgent.SetDestination(playerPosition.position);
                     currentState = OkamiStates.Chasing;
+                    animator.SetTrigger(IsWalking);
                     break;
                 }
             }
