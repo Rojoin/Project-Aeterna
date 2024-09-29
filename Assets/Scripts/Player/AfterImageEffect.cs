@@ -13,6 +13,7 @@ public class AfterImageEffect : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
     [SerializeField] private GameObject meshDefault;
     [SerializeField] private Material afterMaterial;
+    [SerializeField] private Transform container;
     private GameObject[] afterImagePool;
     private int currentIndex = 0;
     private float afterImageTimer = 0f;
@@ -38,9 +39,11 @@ public class AfterImageEffect : MonoBehaviour
     void InitializePool()
     {
         afterImagePool = new GameObject[poolSize];
+        var parent = Instantiate(container, Vector3.zero, Quaternion.identity);
         for (int i = 0; i < poolSize; i++)
         {
             afterImagePool[i] = Instantiate(meshDefault);
+            afterImagePool[i].transform.parent = parent.transform;
             afterImagePool[i].SetActive(false);
         }
     }

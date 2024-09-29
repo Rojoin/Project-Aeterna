@@ -13,6 +13,7 @@ namespace StateMachine
         EndAttack,
         OnDashStart,
         OnDashEnd,
+        OnSpecialAttack,
         Pause
     }
 
@@ -20,6 +21,7 @@ namespace StateMachine
     {
         Move,
         Attack,
+        SpecialAttack,
         Dash
     }
 
@@ -29,14 +31,17 @@ namespace StateMachine
         [SerializeField] protected CharacterController _characterController;
         [SerializeField] protected Vector2ChannelSO OnMoveChannel;
         [SerializeField] protected VoidChannelSO AttackChannel;
+        [SerializeField] protected VoidChannelSO SpecialAttackChannel;
         [SerializeField] protected VoidChannelSO DashChannel;
         [SerializeField] protected GameSettings gameSettings;
         [SerializeField] protected PlayerEntitySO player;
         [SerializeField] private List<AttackSO> comboList;
+        [SerializeField] private AttackSO specialAttack;
         [SerializeField] private AttackCollision _attackCollider;
         [SerializeField] private UnityEvent onMove;
         [SerializeField] private UnityEvent onDash;
         [SerializeField] private UnityEvent onEndDash;
+        [SerializeField] private ParticleSystem specialAttackVFX;
         protected float speed;
         private FSM fsm;
         private Vector2 moveDir;
@@ -53,16 +58,25 @@ namespace StateMachine
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player, comboList, _attackCollider, AttackChannel, gameSettings));
 
-            int dashState = fsm.AddNewState(new PlayerDashState(ActivateOnMoveEffects,ActivateOnDashEffects, ChangeFromDashEnd,
+            int dashState = fsm.AddNewState(new PlayerDashState(ActivateOnMoveEffects, ActivateOnDashEffects,
+                ChangeFromDashEnd,
                 this.gameObject,
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player));
+            int specialState = fsm.AddNewState(new PlayerSpecialAttackState(ChangeFromEndAttack,
+                ActivateSpawnMovesPosition, ActivateOnMoveEffects,
+                this.gameObject,
+                _playerAnimatorController,
+                _characterController, OnMoveChannel, player, specialAttack, _attackCollider, SpecialAttackChannel, gameSettings));
 
             fsm.SetTranstions(idleState, PlayerFlags.Attack, attackState);
+            fsm.SetTranstions(idleState, PlayerFlags.OnSpecialAttack, specialState);
             fsm.SetTranstions(attackState, PlayerFlags.EndAttack, idleState);
+            fsm.SetTranstions(specialState, PlayerFlags.EndAttack, idleState);
             fsm.SetTranstions(idleState, PlayerFlags.OnDashStart, dashState);
             fsm.SetTranstions(dashState, PlayerFlags.OnDashEnd, idleState);
             AttackChannel.Subscribe(ChangeFromAttack);
+            SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
             DashChannel.Subscribe(ChangeFromDashStart);
             fsm.SetDefaultState(idleState);
         }
@@ -93,16 +107,28 @@ namespace StateMachine
             fsm.OnTriggerState(PlayerFlags.Attack);
         }
 
+        private void ChangeFromSpecialAttack()
+        {
+            fsm.OnTriggerState(PlayerFlags.OnSpecialAttack);
+        }
+
         private void ChangeFromEndAttack()
         {
             fsm.OnTriggerState(PlayerFlags.EndAttack);
-           // _playerAnimatorController.CrossFade("NormalStatus", 0.75f, 0, 0);
-
+            // _playerAnimatorController.CrossFade("NormalStatus", 0.75f, 0, 0);
         }
 
         private void ActivateOnMoveEffects()
         {
             onMove.Invoke();
+        }
+
+        private void ActivateSpawnMovesPosition(Vector3 position)
+        {
+            var specialAttackObject = Instantiate(specialAttackVFX, position, Quaternion.identity);
+            specialAttackObject.transform.position = position;
+            specialAttackObject.Play(true);
+            // specialAttackVFX
         }
 
         public void ChangeFromPause(bool value)
@@ -121,6 +147,7 @@ namespace StateMachine
         {
             fsm.OnDestroy();
             AttackChannel.Unsubscribe(ChangeFromAttack);
+            SpecialAttackChannel.Unsubscribe(ChangeFromSpecialAttack);
             DashChannel.Unsubscribe(ChangeFromDashStart);
         }
     }

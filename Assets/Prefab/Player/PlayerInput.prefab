@@ -107,19 +107,7 @@ MonoBehaviour:
     m_ActionId: b3d604f8-d0b6-470d-ad19-99369810b0fc
     m_ActionName: Player/Fire[/DualSenseGamepadHID/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
-        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
-        m_MethodName: RaiseEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: eb34d9e1-4c07-4718-aa05-347f5379a858
     m_ActionName: Player/Interact[/Keyboard/e,/DualSenseGamepadHID/buttonSouth]
   - m_PersistentCalls:
@@ -230,6 +218,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 96cdc5ee-bb23-48c9-9a46-49bb8bf2ea37
     m_ActionName: Player/Dash[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnSpecialAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 481a624b-1d93-4a22-a6c7-27a2516cb597
+    m_ActionName: Player/SpecialAttack[/DualSenseGamepadHID/buttonSouth,/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -250,6 +254,7 @@ MonoBehaviour:
   OnMoveChannel: {fileID: 11400000, guid: 2bd7e0755fcc8014bb81d352bf091fec, type: 2}
   OnCameraMoveChannel: {fileID: 11400000, guid: 6af624f6f9ad8034cb27223e408070ca, type: 2}
   OnAttackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
+  OnSpecialAttackChannel: {fileID: 11400000, guid: 51fc7421b630d9d45b98b54803e090ee, type: 2}
   OnInteractChannel: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
   OnChangeCameraChannel: {fileID: 0}
   OnResetLevel: {fileID: 0}

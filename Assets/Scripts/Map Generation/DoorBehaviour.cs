@@ -8,7 +8,10 @@ public class DoorBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision " + doorDirection);
-        OnPlayerInteractDoor?.Invoke(doorDirection);
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Collision " + doorDirection);
+            OnPlayerInteractDoor?.Invoke(doorDirection);
+        }
     }
 }
