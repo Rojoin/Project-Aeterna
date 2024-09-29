@@ -50,8 +50,8 @@ namespace Enemy
             maxHealth = config.health;
             currentHealth = maxHealth;
             healthBar.FillAmount = 1.0f;
-            animator.SetFloat(Damage, 1.0f);
-            animator.SetTrigger(IsIdle);
+            animator?.SetFloat(Damage, 1.0f);
+            animator?.SetTrigger(IsIdle);
         }
 
         public void SetHealth(float newHealth)
@@ -70,7 +70,7 @@ namespace Enemy
         {
             if (currentHealth <= 0 || currentHealth <= damage)
             {
-                animator.SetTrigger(Dead);
+                animator?.SetTrigger(Dead);
                 currentHealth = 0;
                 OnHit.Invoke();
                 OnDeath.Invoke();
@@ -79,14 +79,14 @@ namespace Enemy
             }
             else
             {
-                animator.SetTrigger(Hurt);
+                animator?.SetTrigger(Hurt);
                 currentHealth -= damage;
                 OnHit.Invoke();
             }
 
             float healthNormalize = currentHealth / maxHealth;
             healthBar.FillAmount = healthNormalize;
-            animator.SetFloat(Damage, healthNormalize);
+            animator?.SetFloat(Damage, healthNormalize);
         }
 
         public bool IsDead() => currentHealth <= 0;
