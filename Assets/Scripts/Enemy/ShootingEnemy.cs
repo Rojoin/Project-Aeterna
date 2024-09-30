@@ -65,6 +65,7 @@ public class ShootingEnemy : BaseEnemy
                 OnHit.Invoke();
                 OnDeath.Invoke();
                 OnDeathRemove.Invoke(this);
+                collider.enabled = false;
             }
             else
             {

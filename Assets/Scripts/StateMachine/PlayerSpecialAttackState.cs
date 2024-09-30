@@ -81,13 +81,12 @@ namespace StateMachine
             }
 
             timeBetweenCombo = 0;
-            
+
             Debug.Log($"Attack:");
             ActivateCollider(attack);
             _playerAnimatorController.speed = player.attackSpeed;
             _playerAnimatorController.CrossFade(attack.animationName, 0,
                 0, 0);
-
         }
 
         public void ActivateCollider(AttackSO attacksParams)
@@ -226,21 +225,13 @@ namespace StateMachine
         {
             if (!other.CompareTag("Player") && other.TryGetComponent<IHealthSystem>(out var healthSystem))
             {
-                if (!currentlyHitted.Contains(healthSystem))
-                {
-                    Vector3 direction = (other.transform.position - owner.transform.position).normalized;
-                    direction = new Vector3(direction.x, 0, direction.z);
-                    Rotate(direction);
+                Vector3 direction = (other.transform.position - owner.transform.position).normalized;
+                direction = new Vector3(direction.x, 0, direction.z);
+                Rotate(direction);
 
-                    healthSystem.ReceiveDamage(attack.damage + player.damage);
-                    OnAttackConnected?.Invoke(other.transform.position);
-                    currentlyHitted.Add(healthSystem);
-                    OnAttackEnd?.Invoke();
-                }
-                else
-                {
-                    Debug.Log("AttackMissed");
-                }
+                healthSystem.ReceiveDamage(attack.damage + player.damage);
+                OnAttackConnected?.Invoke(other.transform.position);
+                OnAttackEnd?.Invoke();
             }
         }
 

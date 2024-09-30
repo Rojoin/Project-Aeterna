@@ -33,7 +33,7 @@ public class PlayerEntitySO : EntitySO
         healingValue = 0;
         dashSpeed = 35f;
         damage = 30;
-        speed = 3;
+        speed = 7;
         attackSpeed = 1;
     }
 }

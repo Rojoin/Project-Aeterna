@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89b1977b97741e3a36e2503afe6c692, type: 3}
   m_Name: KatanaPlayer
   m_EditorClassIdentifier: 
-  damage: 30
-  speed: 3
+  damage: 75
+  speed: 7
   maxSpeed: 9
   isDead: 0
   health: 590
@@ -22,9 +22,11 @@ MonoBehaviour:
   movementSpeedDuringAttack: 1
   timeBetweenComboEnd: 2
   attackSpeed: 1
-  dashSpeed: 35
+  hasReverseTheStars: 0
+  theStarDamage: 10
+  dashSpeed: 36
   dashTimer: 0.15
-  timebetweenDashes: 0.3
+  timebetweenDashes: 0.5
   dashCurve:
     serializedVersion: 2
     m_Curve:
@@ -47,13 +49,13 @@ MonoBehaviour:
       inWeight: 0.04805636
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.98669434
-      value: 0.9139023
-      inSlope: -1.5325121
-      outSlope: -1.5325121
+      time: 0.9876709
+      value: 0.92723846
+      inSlope: -0.7550834
+      outSlope: -0.7550834
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.3052248
+      inWeight: 0.23376477
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

@@ -21,9 +21,9 @@ public class EntitySO : ScriptableObject
 
     private void OnEnable()
     {
-        m_damage = damage;
-        m_health = health;
-        m_speed = speed;
+        // m_damage = damage;
+        //m_health = health;
+        // m_speed = speed;
         isDead = false;
 
         Debug.Log(nameof(EntitySO) + "enable");
@@ -31,9 +31,9 @@ public class EntitySO : ScriptableObject
 
     private void OnDisable()
     {
-        damage = m_damage;
-        health = m_health;
-        speed = m_speed;
+        //damage = m_damage;
+        //health = m_health;
+        // speed = m_speed;
         isDead = false;
     }
 }

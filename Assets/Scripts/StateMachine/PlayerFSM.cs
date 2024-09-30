@@ -128,7 +128,6 @@ namespace StateMachine
             var specialAttackObject = Instantiate(specialAttackVFX, position, Quaternion.identity);
             specialAttackObject.transform.position = position;
             specialAttackObject.Play(true);
-            // specialAttackVFX
         }
 
         public void ChangeFromPause(bool value)

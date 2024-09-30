@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void OnPauseToggle(bool value)
     {
-        _inputController.IsGamePaused = value;
+        InputController.IsGamePaused = value;
         player.ChangeFromPause(value);
     }
 
