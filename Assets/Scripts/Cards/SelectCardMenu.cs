@@ -134,14 +134,6 @@ public class SelectCardMenu : MonoBehaviour
         }
     }
 
-    private void FixInvertedCardPosition(CardSO card) 
-    {
-        if (card.isInverted) 
-        {
-            
-        }
-    }
-
     private void PickCardsToShow()
     {
         for (int i = 0; i < maxCardsToSelect; i++)

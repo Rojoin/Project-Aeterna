@@ -477,7 +477,7 @@ MonoBehaviour:
   cardsAnimator:
   - {fileID: 9085792933728486549}
   - {fileID: 4704055748376348907}
-  - {fileID: 0}
+  - {fileID: 2861039496536476544}
   cardsGO: []
   cardsToShow: []
   maxCardsToSelect: 3
@@ -540,6 +540,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1414829265744180361, guid: e3d3f34e2f1c56049ba8220f7b50953d, type: 3}
       propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 4984285993132688431}
+    - target: {fileID: 1414829265744180361, guid: e3d3f34e2f1c56049ba8220f7b50953d, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 4984285993132688431}
     - target: {fileID: 1414829265744180361, guid: e3d3f34e2f1c56049ba8220f7b50953d, type: 3}
@@ -795,6 +799,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2861039496536476544 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2927056649259004979, guid: e3d3f34e2f1c56049ba8220f7b50953d, type: 3}
+  m_PrefabInstance: {fileID: 1092838420451721139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2968839773606785869 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -6477870836206383874, guid: e3d3f34e2f1c56049ba8220f7b50953d, type: 3}
@@ -1913,7 +1922,7 @@ PrefabInstance:
     - target: {fileID: 880013934211653281, guid: d474e8beabe10ad47b09f58b1c763e11, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ca4d2381aeed91c479381bc4c916031e, type: 3}
+      objectReference: {fileID: 21300000, guid: 1bb981c53b195a846bdd3e738afb78d3, type: 3}
     - target: {fileID: 880013934211653281, guid: d474e8beabe10ad47b09f58b1c763e11, type: 3}
       propertyPath: m_Color.a
       value: 1
