@@ -100,7 +100,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{3AA1AF03-CB7F-2979-5224-188691D3F469}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{23126753-02C8-7549-AAAC-DA9C68210C78}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -232,6 +232,10 @@
 					<ShortName>Snow1 8-Audio.wav</ShortName>
 					<CachePath>SFX/Snow1 8-Audio_818F3B66.wem</CachePath>
 				</File>
+				<File Id="637437544" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Special Attack.wav</ShortName>
+					<CachePath>SFX/Special Attack_818F3B66.wem</CachePath>
+				</File>
 				<File Id="679832367" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Okami attack 2.wav</ShortName>
 					<CachePath>SFX/Okami attack 2_818F3B66.wem</CachePath>
@@ -355,6 +359,11 @@
 						<MediaRef Id="1031222764"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="3430919778" Name="Player_SpecialAttack" DurationType="OneShot" DurationMin="1.6137868" DurationMax="1.6137868">
+					<MediaRefs>
+						<MediaRef Id="637437544"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="3808387538" Name="Player_Walk_Level1" DurationType="OneShot" DurationMin="0.7552154" DurationMax="0.7552154">
 					<MediaRefs>
 						<MediaRef Id="108385202"/>
@@ -407,5 +416,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{CC09E455-51CB-E7E3-0065-D0946991E438}</FileHash>
+	<FileHash>{B84C70E0-004B-3D3E-93F2-7410E96CED50}</FileHash>
 </SoundBanksInfo>
