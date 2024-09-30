@@ -42,6 +42,7 @@ namespace StateMachine
         [SerializeField] private UnityEvent onDash;
         [SerializeField] private UnityEvent onEndDash;
         [SerializeField] private ParticleSystem specialAttackVFX;
+        [SerializeField] private UnityEvent OnSpecialAttack;
         protected float speed;
         private FSM fsm;
         private Vector2 moveDir;
@@ -128,6 +129,7 @@ namespace StateMachine
             var specialAttackObject = Instantiate(specialAttackVFX, position, Quaternion.identity);
             specialAttackObject.transform.position = position;
             specialAttackObject.Play(true);
+            OnSpecialAttack?.Invoke();
         }
 
         public void ChangeFromPause(bool value)
