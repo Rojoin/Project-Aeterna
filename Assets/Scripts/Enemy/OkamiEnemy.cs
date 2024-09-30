@@ -31,6 +31,7 @@ namespace Enemy
         [SerializeField] private NavMeshAgent _navMeshAgent;
         private static readonly int IsWalking = Animator.StringToHash("isWalking");
         private Transform currentObjective;
+
         protected override void Init()
         {
             base.Init();
@@ -102,7 +103,7 @@ namespace Enemy
             {
                 if (hitCollider.CompareTag("Player"))
                 {
-                     currentObjective = hitCollider.gameObject.transform;
+                    currentObjective = hitCollider.gameObject.transform;
                     Vector3 direction = currentObjective.position - transform.position;
                     direction.y = 0;
 
@@ -111,6 +112,7 @@ namespace Enemy
                         Quaternion targetRotation = Quaternion.LookRotation(direction);
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
                     }
+
                     playerPosition = hitCollider.gameObject.transform;
                     _navMeshAgent.SetDestination(playerPosition.position);
                     currentState = OkamiStates.Chasing;
@@ -159,10 +161,12 @@ namespace Enemy
             currentMovementSpeed = enemyConfig.attackMoveSpeed;
             _navMeshAgent.SetDestination(playerPosition.position);
 
-            if (Vector3.Distance(transform.position, playerPosition.position) <= 3 || attackTimerlife >= enemyConfig.attackTime)
+            if (Vector3.Distance(transform.position, playerPosition.position) <= 3 ||
+                attackTimerlife >= enemyConfig.attackTime)
             {
                 animator?.SetTrigger(AttackAnim);
                 attackTimerlife = 0;
+                AkSoundEngine.PostEvent("Okami_Attack", gameObject);
                 currentState = OkamiStates.Chasing;
             }
             else
@@ -193,6 +197,7 @@ namespace Enemy
             healthBar.FillAmount = healthNormalize;
             // animator?.SetFloat(Damage, healthNormalize);
         }
+
         public override void DeathBehaviour()
         {
             StartCoroutine(OnDeathMaterialAnimation());
@@ -215,6 +220,7 @@ namespace Enemy
             materialFace.SetFloat(CutOffHeight, heightValue);
             gameObject.SetActive(false);
         }
+
         protected void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;

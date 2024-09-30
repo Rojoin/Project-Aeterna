@@ -17,6 +17,7 @@ namespace AK
         static const AkUniqueID CARDS_SHOW_PLAY = 1511560907U;
         static const AkUniqueID DOOR_CLOSE = 128625444U;
         static const AkUniqueID DOOR_OPEN = 535830432U;
+        static const AkUniqueID OKAMI_ATTACK = 1219344685U;
         static const AkUniqueID PLAY_DEFAULTMUSIC = 1857418338U;
         static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
         static const AkUniqueID PLAYER_DASH = 2394582229U;

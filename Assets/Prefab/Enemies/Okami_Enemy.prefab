@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 7946078008784294838}
   - component: {fileID: 1999588720240191051}
   - component: {fileID: 2944804324486348584}
+  - component: {fileID: -5797396021568235125}
   m_Layer: 0
   m_Name: Okami_Enemy
   m_TagString: Untagged
@@ -320,6 +321,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2005405, y: 2.1099043, z: 2.1625638}
   m_Center: {x: 0.026611328, y: 0.55495214, z: 0.05138302}
+--- !u!114 &-5797396021568235125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195564338604677980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: Okami_Attack
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7122984788534187170
 GameObject:
   m_ObjectHideFlags: 0
