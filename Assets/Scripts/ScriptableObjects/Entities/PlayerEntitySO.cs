@@ -31,7 +31,7 @@ public class PlayerEntitySO : EntitySO
     {
         maxHealth = m_maxHealth;
         healingValue = 0;
-        dashSpeed = 25f;
+        dashSpeed = 35f;
         damage = 30;
         speed = 7;
         attackSpeed = 1;

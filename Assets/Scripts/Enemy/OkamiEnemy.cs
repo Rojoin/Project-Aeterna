@@ -30,7 +30,7 @@ namespace Enemy
         private Material materialFace;
         [SerializeField] private NavMeshAgent _navMeshAgent;
         private static readonly int IsWalking = Animator.StringToHash("isWalking");
-
+        private Transform currentObjective;
         protected override void Init()
         {
             base.Init();
@@ -102,6 +102,15 @@ namespace Enemy
             {
                 if (hitCollider.CompareTag("Player"))
                 {
+                     currentObjective = hitCollider.gameObject.transform;
+                    Vector3 direction = currentObjective.position - transform.position;
+                    direction.y = 0;
+
+                    if (direction != Vector3.zero)
+                    {
+                        Quaternion targetRotation = Quaternion.LookRotation(direction);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
+                    }
                     playerPosition = hitCollider.gameObject.transform;
                     _navMeshAgent.SetDestination(playerPosition.position);
                     currentState = OkamiStates.Chasing;
@@ -130,6 +139,14 @@ namespace Enemy
                 attackTimer = 0;
                 _navMeshAgent.isStopped = false;
                 currentState = OkamiStates.Attack;
+                Vector3 direction = currentObjective.position - transform.position;
+                direction.y = 0;
+
+                if (direction != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
+                }
             }
             else
             {
