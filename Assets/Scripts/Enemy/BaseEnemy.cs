@@ -14,6 +14,7 @@ namespace Enemy
         [SerializeField] public UnityEvent OnDeath;
         [SerializeField] public UnityEvent<BaseEnemy> OnDeathRemove;
         [SerializeField] public Animator animator;
+        [SerializeField] public BoxCollider collider;
         protected float currentHealth;
         protected float maxHealth;
         protected bool canAttack;
@@ -29,6 +30,7 @@ namespace Enemy
         private void OnEnable()
         {
             Init();
+            collider = GetComponent<BoxCollider>();
             OnDeath.AddListener(DeathBehaviour);
         }
 

@@ -1,3 +1,4 @@
+using InputControls;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,7 @@ public class ChangeCurentCamera : MonoBehaviour
     private bool increasing = true;
     private bool isGlobalCamera = false;
     public Transform MapCamera;
+    public Transform MainCamera;
     private static readonly int Rotation = Shader.PropertyToID("_Rotation");
 
     private void OnEnable()
@@ -27,30 +29,7 @@ public class ChangeCurentCamera : MonoBehaviour
         skyboxMaterialRange = skyboxMaterialRangeMin;
     }
 
-    // public void Update()
-    // {
-    //     if (increasing)
-    //     {
-    //         skyboxMaterialRange += rotationSpeed * Time.deltaTime;
-    //         if (skyboxMaterialRange >= skyboxMaterialRangeMax)
-    //         {
-    //             skyboxMaterialRange = skyboxMaterialRangeMax;
-    //             increasing = false;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         skyboxMaterialRange -= rotationSpeed * Time.deltaTime;
-    //         if (skyboxMaterialRange <= skyboxMaterialRangeMin)
-    //         {
-    //             skyboxMaterialRange = skyboxMaterialRangeMin;
-    //             increasing = true;
-    //         }
-    //     }
-    //
-    //     // Set the skybox rotation
-    //     RenderSettings.skybox.SetFloat(Rotation, skyboxMaterialRange);
-    // }
+
 
     private void OnDisable()
     {
@@ -63,6 +42,8 @@ public class ChangeCurentCamera : MonoBehaviour
     {
         isGlobalCamera = !isGlobalCamera;
         MapCamera.gameObject.SetActive(isGlobalCamera);
+        MainCamera.gameObject.SetActive(!isGlobalCamera);
+        InputController.IsGamePaused = true;
     }
 
     private void ResetScene()

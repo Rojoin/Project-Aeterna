@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using InputControls;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -89,7 +90,7 @@ public class SelectCardMenu : MonoBehaviour
         showCardMenu = value;
         SelectCardUI.SetActive(value);
         TogglePause.RaiseEvent(value);
-
+        InputController.IsGamePaused = value;
         if (showCardMenu)
         {
             PickCardsToShow();

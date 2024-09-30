@@ -22,8 +22,9 @@ namespace InputControls
         [SerializeField] private BoolChannelSO OnControlSchemeChange;
         [SerializeField] private GameSettings gameSettings;
         [SerializeField] private PlayerEntitySO player;
-        private bool _isGamePaused = false;
-        public bool IsGamePaused
+        private static bool _isGamePaused = false;
+
+        public static bool IsGamePaused
         {
             get => _isGamePaused;
             set => _isGamePaused = value;
@@ -56,7 +57,10 @@ namespace InputControls
 
         public void OnMove(InputAction.CallbackContext ctx)
         {
-            OnMoveChannel.RaiseEvent(ctx.ReadValue<Vector2>());
+            if (!IsGamePaused)
+            {
+                OnMoveChannel.RaiseEvent(ctx.ReadValue<Vector2>());
+            }
         }
 
         public void OnCameraMove(InputAction.CallbackContext ctx)
@@ -70,7 +74,8 @@ namespace InputControls
             {
                 OnAttackChannel.RaiseEvent();
             }
-        }  
+        }
+
         public void OnSpecialAttack(InputAction.CallbackContext ctx)
         {
             if (ctx.performed && !IsGamePaused)
@@ -110,9 +115,10 @@ namespace InputControls
                 OnHudToggleChannel.RaiseEvent();
             }
         }
+
         public void OnDash(InputAction.CallbackContext ctx)
         {
-            if (ctx.performed && canDash)
+            if (ctx.performed && canDash && !IsGamePaused)
             {
                 OnDashChannel.RaiseEvent();
                 canDash = false;
@@ -124,7 +130,6 @@ namespace InputControls
         {
             yield return new WaitForSeconds(player.timebetweenDashes);
             canDash = true;
-
         }
     }
 }
