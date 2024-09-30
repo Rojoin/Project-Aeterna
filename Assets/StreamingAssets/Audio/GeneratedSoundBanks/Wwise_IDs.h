@@ -23,6 +23,7 @@ namespace AK
         static const AkUniqueID PLAYER_DASH = 2394582229U;
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
         static const AkUniqueID PLAYER_RECIEVEDAMAGE = 1990870923U;
+        static const AkUniqueID PLAYER_SPECIALATTACK = 3430919778U;
         static const AkUniqueID PLAYER_WALK_LEVEL1 = 3808387538U;
         static const AkUniqueID PROYECTILE_HIT = 2964619405U;
         static const AkUniqueID SET_COMBATMUSIC = 1226438939U;

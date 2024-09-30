@@ -669,6 +669,28 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
+						<Sound Name="Special Attack" ID="{1B639A18-AD87-49A9-B793-617163AA48B2}" ShortID="178770852">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Special Attack" ID="{785A8B9F-9A73-458E-BB47-BDEF198D9E60}">
+									<Language>SFX</Language>
+									<AudioFile>Special Attack.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="637437544"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Special Attack" ID="{785A8B9F-9A73-458E-BB47-BDEF198D9E60}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{7515299F-41EC-454E-AF5E-7D4A675BEB8C}" ShortID="13075865">
