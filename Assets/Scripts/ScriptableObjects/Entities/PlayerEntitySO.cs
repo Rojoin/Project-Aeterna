@@ -16,7 +16,7 @@ public class PlayerEntitySO : EntitySO
     public bool hasReverseTheStars = false;
     public float theStarDamage = 10;
 
-    [Header("Dash")] 
+    [Header("Dash")]
     public float dashSpeed = 4.0f;
     public float dashTimer = 0.5f;
     public float timebetweenDashes = 0.3f;
@@ -29,11 +29,13 @@ public class PlayerEntitySO : EntitySO
 
     private void OnDisable()
     {
+        hasReverseTheStars = false;
         maxHealth = m_maxHealth;
         healingValue = 0;
         dashSpeed = 35f;
         damage = 30;
         speed = 7;
         attackSpeed = 1;
+        theStarDamage = 10;
     }
 }

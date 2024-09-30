@@ -11,7 +11,8 @@ public class CardSO : ScriptableObject
     {
         Attack,
         Health,
-        Speed
+        Speed,
+        AttackSpeed
     }
 
     [Header("Cart Type")]
@@ -22,16 +23,23 @@ public class CardSO : ScriptableObject
 
     [Header("Art")]
     public Sprite allCardSprite;
+    
+    public Sprite artMidground_0;
+    public Vector3 newPosition0 = new Vector3(0, 0, 75);
+    public Vector2 newSizeDelta0 = new Vector2(500, 500);
 
     public Sprite artMidground_1;
     public Vector3 newPosition1 = new Vector3(0, 0, 75);
     public Vector2 newSizeDelta1 = new Vector2(500, 500);
+
     public Sprite artMidground_2;
     public Vector3 newPosition2 = new Vector3(0, 0, 50);
     public Vector2 newSizeDelta2 = new Vector2(500, 500);
+
     public Sprite artMidground_3;
     public Vector3 newPosition3 = new Vector3(0, 0, 15);
     public Vector2 newSizeDelta3 = new Vector2(500, 500);
+
     public Sprite artFrame;
 
     [Header("Animator")]
@@ -54,6 +62,8 @@ public class CardSO : ScriptableObject
     public float health;
 
     public float speed;
+
+    public float attackSpeed;
 
     public void ResetStacks()
     {

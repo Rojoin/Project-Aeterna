@@ -33,6 +33,9 @@ public class SelectCardMenu : MonoBehaviour
     [Header("Animations")]
     [SerializeField] private List<Animator> cardsAnimator;
 
+    [Header("CardsGO")]
+    [SerializeField] private List<GameObject> cardsGO;
+
     public List<CardSO> cardsToShow;
 
     [Header("Setup: Cards")]
@@ -148,17 +151,7 @@ public class SelectCardMenu : MonoBehaviour
 
             cardsToShow[i].slotIndex = i;
 
-            if (cardsDisplay[i].isOnSide && !cardsToShow[i].isInverted)
-            {
-                cardsAnimator[i].SetBool("IsOnSide", true);
-            }
-
-            if (cardsDisplay[i].isOnSide && cardsToShow[i].isInverted)
-            {
-                StartCoroutine(ChangeInvertCardAnimation(cardsToShow[i].slotIndex));
-            }
-
-            if (!cardsDisplay[i].isOnSide && cardsToShow[i].isInverted)
+            if (cardsToShow[i].isInverted)
             {
                 StartCoroutine(ChangeInvertCardAnimation(cardsToShow[i].slotIndex));
             }
@@ -187,11 +180,6 @@ public class SelectCardMenu : MonoBehaviour
 
     public IEnumerator ChangeInvertCardAnimation(int cardID)
     {
-        if (cardsToShow[cardID].isInverted)
-        {
-            cardsAnimator[cardID].SetBool("IsOnSide", false);
-        }
-
         cardsAnimator[cardID].SetBool("IsReverse", true);
 
         yield return new WaitForSeconds(1);
