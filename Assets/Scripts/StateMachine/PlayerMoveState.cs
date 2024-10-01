@@ -35,7 +35,7 @@ namespace StateMachine
                 var rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
                 Rotate(rotatedMoveDir);
                 _characterController.Move(rotatedMoveDir * (deltaTime * player.speed));
-                _playerAnimatorController.SetFloat(Blend, inputDirection.magnitude);
+                _playerAnimatorController.SetFloat(Blend, 1);
                 onMove.Invoke();
             }
             else
