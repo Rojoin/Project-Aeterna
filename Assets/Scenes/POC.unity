@@ -196,11 +196,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
---- !u!1 &106016992 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4537692057138833567, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &210268629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1101,7 +1096,7 @@ MonoBehaviour:
   _inputController: {fileID: 210268630}
   TogglePause: {fileID: 11400000, guid: 1b2954b00e4549e4a8245a0eafdebf2e, type: 2}
   playerHud: {fileID: 1231999819}
-  firsButtonSelected: {fileID: 106016992}
+  firsButtonSelected: {fileID: 0}
 --- !u!4 &1552293561
 Transform:
   m_ObjectHideFlags: 0
@@ -1554,6 +1549,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 21291112978684933, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1552293560}
+    - target: {fileID: 350696808411255585, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1552293560}
     - target: {fileID: 2062347629773223091, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1562,6 +1565,10 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1166619369}
+    - target: {fileID: 4040922818847296415, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1552293560}
     - target: {fileID: 4110852990349482478, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: gameManager
       value: 
