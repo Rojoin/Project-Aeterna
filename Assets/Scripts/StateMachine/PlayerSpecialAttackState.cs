@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ScriptableObjects;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -229,7 +230,9 @@ namespace StateMachine
                 direction = new Vector3(direction.x, 0, direction.z);
                 Rotate(direction);
 
-                healthSystem.ReceiveDamage(attack.damage + player.damage);
+                float damage = attack.damage + player.specialAttackDamage;
+                damage = Mathf.Clamp(damage, 50, attack.damage + Mathf.Abs(player.specialAttackDamage));
+                healthSystem.ReceiveDamage(damage);
                 OnAttackConnected?.Invoke(other.transform.position);
                 OnAttackEnd?.Invoke();
             }

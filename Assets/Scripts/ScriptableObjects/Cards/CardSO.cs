@@ -59,6 +59,8 @@ public class CardSO : ScriptableObject
     [Header("Buff Data")]
     public float damage;
 
+    public float removeSpecialDamage;
+
     public float health;
 
     public float speed;
