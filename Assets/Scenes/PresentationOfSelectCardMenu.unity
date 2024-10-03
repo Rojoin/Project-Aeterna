@@ -917,17 +917,6 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 6572671916540871610, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
   m_PrefabInstance: {fileID: 2050413946}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1166619377 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2419694579521688218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-  m_PrefabInstance: {fileID: 2050413946}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166619365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ea42d248e457141993dd50b2172ab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1166619382 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7113949663427211157, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
@@ -1078,6 +1067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1552293561}
   - component: {fileID: 1552293560}
+  - component: {fileID: 1552293562}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1117,6 +1107,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552293562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552293559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71eb9658e3618a145ba5ac5411567cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpPrefab: {fileID: 4703951050675747297, guid: d05055810198c274a803f815b703304d, type: 3}
+  pickUpCollider: {fileID: 5843829359454072384, guid: d05055810198c274a803f815b703304d, type: 3}
+  player: {fileID: 1166619375}
+  selectCardMenu: {fileID: 2077532266}
 --- !u!1 &1594584150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,9 +1320,8 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 1166619365}
   player: {fileID: 1166619375}
   camera: {fileID: 1681417377}
-  selectCardMenu: {fileID: 1166619377}
+  pickUpManager: {fileID: 1552293562}
   transitionGO: {fileID: 637629739}
-  pickUpPrefab: {fileID: 4703951050675747297, guid: d05055810198c274a803f815b703304d, type: 3}
 --- !u!1 &1844124701
 GameObject:
   m_ObjectHideFlags: 0
