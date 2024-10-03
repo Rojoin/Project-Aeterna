@@ -1316,6 +1316,7 @@ MonoBehaviour:
   camera: {fileID: 1681417377}
   selectCardMenu: {fileID: 1166619377}
   transitionGO: {fileID: 637629739}
+  pickUpPrefab: {fileID: 4703951050675747297, guid: d05055810198c274a803f815b703304d, type: 3}
 --- !u!1 &1844124701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1462,10 @@ PrefabInstance:
       propertyPath: container
       value: 
       objectReference: {fileID: 1594584151}
+    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: allCards.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b79125d7bcba9904c9a4ec8b4d38dd54, type: 2}
     - target: {fileID: 6277302197274292131, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_Name
       value: PlayerFSM
