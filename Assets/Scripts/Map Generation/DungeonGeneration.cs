@@ -153,7 +153,6 @@ public class DungeonGeneration : MonoBehaviour
         dungeonRoomsLayout[(room.xPosition, room.zPosition)] = room;
     }
 
-    //TODO: Spawn item to collect.
     private void OpenDungeonRoom()
     {
         actualPlayerRoom.roomBehaviour.SetRoomDoorState(true);
