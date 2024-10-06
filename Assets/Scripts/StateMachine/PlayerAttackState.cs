@@ -26,7 +26,11 @@ namespace StateMachine
         private int comboCounter = 0;
         private float attackRadius = 5.0f;
         private bool isAttacking;
+        private Coroutine AttackingCorroutine;
+
         private float timeUntilAttackEnds;
+        private Vector3 currentInputDirection;
+
         // private float timeUntilStart;
         private float timeAfterComboEnds;
         private float attackTimer = 0.0f;
@@ -55,7 +59,18 @@ namespace StateMachine
             _attackCollider.OnTriggerEnterObject.AddListener(OnAttackEnter);
             _attackCollider.OnTriggerExitObject.AddListener(OnAttackExit);
             Attack();
+            if (inputDirection != Vector2.zero)
+            {
+                currentInputDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
+            }
+            else
+            {
+                currentInputDirection = Vector3.zero;
+            }
+            
         }
+
+    
 
         public override void OnExit()
         {
@@ -95,7 +110,7 @@ namespace StateMachine
             {
                 comboCounter = 0;
             }
-            
+
             Debug.Log($"Attack:{comboCounter}");
 
             ActivateCollider(comboList[comboCounter]);
@@ -106,8 +121,6 @@ namespace StateMachine
             CheckTarget();
             // lastClickedTime = Time.realtimeSinceStartup;
             Debug.Log($"Current clicked time is {lastClickedTime}");
-
-
         }
 
         public void ActivateCollider(AttackSO attacksParams)
@@ -178,18 +191,18 @@ namespace StateMachine
 
         protected override void Move(float deltaTime)
         {
-            if (inputDirection != Vector2.zero)
-            {
-                Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
-                float time = Time.deltaTime;
-                rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-                _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
-                onMove.Invoke();
-            }
-            else
-            {
-                rotatedMoveDir = Vector2.zero;
-            }
+            // if (inputDirection != Vector2.zero)
+            // {
+            //     Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+            //     float time = Time.deltaTime;
+            //     rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+            //     _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
+            //     onMove.Invoke();
+            // }
+            // else
+            // {
+            //     rotatedMoveDir = Vector2.zero;
+            // }
         }
 
         void EndAttackState()
@@ -228,6 +241,20 @@ namespace StateMachine
                     // StopAttack();
                     Debug.Log("Finish attack");
                 }
+
+                float normalizedTime = (attackTimer / comboList[comboCounter].attackTime);
+                float impulse = comboList[comboCounter].animationCurve.Evaluate(normalizedTime);
+                if (comboList[comboCounter].type == AttackMovementTypes.InputDirection)
+                {
+                    rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * currentInputDirection;
+                    _characterController.Move(rotatedMoveDir * (deltaTime * player.speed) * impulse);
+                }
+                else
+                {
+                    _characterController.Move(owner.transform.forward * (deltaTime * player.speed)*impulse);
+                }
+                onMove.Invoke();
+                
             }
         }
 

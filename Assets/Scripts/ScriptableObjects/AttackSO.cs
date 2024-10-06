@@ -12,7 +12,16 @@ namespace ScriptableObjects
         public Vector3 colliderSize;
         public float attackTime;
         public float timeUntilComboEnds;
+        public float speedWhileAttacking = 0.5f;
+        public AttackMovementTypes type;
+        public AnimationCurve animationCurve;
     }
     //Todo: Make a way for multihit attacks.
     //Maybe make a custom method inside the attackSo
+
+    public enum AttackMovementTypes
+    {
+        Forward,
+        InputDirection,
+    }
 }
