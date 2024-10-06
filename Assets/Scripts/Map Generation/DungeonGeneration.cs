@@ -199,9 +199,6 @@ public class DungeonGeneration : MonoBehaviour
 
         actualPlayerRoom = GetNeighbourDirection(direction, actualPlayerRoom);
 
-        //TODO: HAY QUE CHEQUEAR COMO SE ESTAN SETEANDO LAS PUERTAS, ALGUNAS PUERTAS ESTAN MAL ASIGNADAS Y DA EL RESULTADO DE QUE SUMA MAL Y DA NULL REFERENCE
-        //Debug.LogError("Transition from " + oldRoom.xPosition +" , " + oldRoom.zPosition + " to "+ actualPlayerRoom.xPosition +" , " + actualPlayerRoom.zPosition );
-
         camera.transform.position =
             actualPlayerRoom.dungeonRoomInstance.transform.position + new Vector3(6.24f, 4.67f, -6.24f);
 
