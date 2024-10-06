@@ -69,7 +69,7 @@ public class ShootingEnemy : BaseEnemy, IMovevable
                 DetectEntity();
                 hitWhileBlocking = 0;
                 states = states | YukinkoStates.Run;
-                _navMeshAgent.SetDestination(GetRandomPointOnNavMesh(transform.position, enemyConfig.escapeDistance));
+                _navMeshAgent.SetDestination(GetRandomPointOnNavMesh(transform.position, enemyConfig.maxEscapeDistance,enemyConfig.minEscapeDistance));
                 animator.SetTrigger(IsWalking);
                 states = states &= ~YukinkoStates.Defense;
                 defenseModeTimer = 0;
@@ -125,7 +125,7 @@ public class ShootingEnemy : BaseEnemy, IMovevable
     protected void Update()
     {
         if (IsDead()) return;
-        _navMeshAgent.speed = enemyConfig.speed * Time.deltaTime; 
+        _navMeshAgent.speed = enemyConfig.speed * Time.deltaTime;
 
         if (states.HasFlag(YukinkoStates.Run))
         {
@@ -190,6 +190,7 @@ public class ShootingEnemy : BaseEnemy, IMovevable
                 }
             }
         }
+
         return false;
     }
 
@@ -267,6 +268,7 @@ public class ShootingEnemy : BaseEnemy, IMovevable
 
     public void Move(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
     {
+        //Maybe change that when is blocking cannot be moved
         StartCoroutine(MoveByAttack(direction, speed, maxTime, curve));
     }
 
@@ -281,18 +283,20 @@ public class ShootingEnemy : BaseEnemy, IMovevable
         }
     }
 
-    private Vector3 GetRandomPointOnNavMesh(Vector3 center, float maxDistance)
+    private Vector3 GetRandomPointOnNavMesh(Vector3 center, float maxDistance, float minDistance)
     {
-        Vector3 randomDirection = Random.insideUnitSphere * maxDistance;
-        randomDirection += center;
-
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, maxDistance, NavMesh.AllAreas))
-        {
-            return hit.position;
-        }
+        Vector3 randomDirection;
 
-        return GetRandomPointOnNavMesh(center, maxDistance);
+        do
+        {
+            randomDirection = Random.insideUnitSphere * maxDistance;
+            randomDirection += center;
+        } while (!NavMesh.SamplePosition(randomDirection, out hit, maxDistance, NavMesh.AllAreas) ||
+                 Vector3.Distance(center, hit.position) < minDistance);
+
+
+        return hit.position;
     }
 
     protected void OnDrawGizmosSelected()
