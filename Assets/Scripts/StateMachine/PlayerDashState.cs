@@ -24,13 +24,13 @@ namespace StateMachine
         public override void OnEnter()
         {
             startPosition = _characterController.transform.position;
-
+            _characterController.detectCollisions = false;
+            owner.layer = LayerMask.NameToLayer("PlayerDashing");
             timer = 0.0f;
             if (inputDirection != Vector2.zero)
             {
                 Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
                 rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-               
             }
             else
             {
@@ -63,7 +63,6 @@ namespace StateMachine
                 float interpolate = dashCurve.Evaluate(timer / player.dashTimer);
                 
                 Vector3 currentPosition = Vector3.Lerp(startPosition, endPosition, interpolate);
-                
                 _characterController.Move(currentPosition - _characterController.transform.position);
             }
             else
@@ -82,6 +81,8 @@ namespace StateMachine
         {
             base.OnExit();
             timer = 0.0f;
+            _characterController.detectCollisions = true;
+            owner.layer = LayerMask.NameToLayer("Player");
         }
     }
 }
