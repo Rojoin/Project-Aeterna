@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections;
-using UnityEngine;
-using UnityEngine.Events;
-using ScriptableObjects.Entities;
 using Enemy;
 using Projectile;
+using ScriptableObjects.Entities;
 using StateMachine;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 [Flags]
 public enum YukinkoStates
 {
-    None =0,
+    None = 0,
     Idle = 1,
     CanEnterDefense = 2,
     Attack = 4,
-    Defense = 8
+    Defense = 8,
+    Run = 16
 }
 
-public class ShootingEnemy : BaseEnemy
+public class ShootingEnemy : BaseEnemy, IMovevable
 {
     [SerializeField] private BaseProjectile projectile;
     [SerializeField] private SkinnedMeshRenderer meshBody;
@@ -29,11 +33,14 @@ public class ShootingEnemy : BaseEnemy
     private Transform target;
     private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
     private float defenseModeTimer = 0.0f;
+    private int hitWhileBlocking = 0;
     private float canEnterDefenseModeTimer = 0.0f;
     private static readonly int IsExitingDefense = Animator.StringToHash("isExitingDefense");
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsEnteringDefense = Animator.StringToHash("isEnteringDefense");
     private YukinkoStates states = YukinkoStates.Idle;
     public UnityEvent OnAttack = new();
+    [SerializeField] private NavMeshAgent _navMeshAgent;
 
     protected override void ValidateMethod()
     {
@@ -55,6 +62,19 @@ public class ShootingEnemy : BaseEnemy
         {
             OnHit.Invoke();
             isAttacking = true;
+            hitWhileBlocking++;
+            if (hitWhileBlocking >= enemyConfig.hitsUntilCounterAttack)
+            {
+                states = states | YukinkoStates.Attack;
+                DetectEntity();
+                hitWhileBlocking = 0;
+                states = states | YukinkoStates.Run;
+                _navMeshAgent.SetDestination(GetRandomPointOnNavMesh(transform.position, enemyConfig.escapeDistance));
+                animator.SetTrigger(IsWalking);
+                states = states &= ~YukinkoStates.Defense;
+                defenseModeTimer = 0;
+                isAttacking = false;
+            }
         }
         else
         {
@@ -87,6 +107,7 @@ public class ShootingEnemy : BaseEnemy
         materialBody = meshBody.material;
         materialFace = meshFace.material;
         OnHit.AddListener(ResetDefenseMode);
+        _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void ResetDefenseMode()
@@ -100,10 +121,22 @@ public class ShootingEnemy : BaseEnemy
             states |= YukinkoStates.CanEnterDefense;
         }
     }
-    
+
     protected void Update()
     {
         if (IsDead()) return;
+        _navMeshAgent.speed = enemyConfig.speed * Time.deltaTime; 
+
+        if (states.HasFlag(YukinkoStates.Run))
+        {
+            if (HasReachedDestination())
+            {
+                states = states &= ~YukinkoStates.Run;
+                animator.SetTrigger(IsIdle);
+                Debug.Log("Exit Running");
+                states = states | YukinkoStates.Idle;
+            }
+        }
 
         if (states.HasFlag(YukinkoStates.Attack) && !states.HasFlag(YukinkoStates.Defense))
         {
@@ -121,17 +154,17 @@ public class ShootingEnemy : BaseEnemy
             {
                 animator.SetTrigger(IsEnteringDefense);
                 states &= ~YukinkoStates.CanEnterDefense;
-                states |= YukinkoStates.Defense;  
+                states |= YukinkoStates.Defense;
                 canEnterDefenseModeTimer = 0;
             }
         }
-        
+
         if (states.HasFlag(YukinkoStates.Defense))
         {
             defenseModeTimer += Time.deltaTime;
             if (defenseModeTimer > enemyConfig.timeBetweenAttacks)
             {
-                states = states &=  ~YukinkoStates.Defense;
+                states = states &= ~YukinkoStates.Defense;
                 animator.SetTrigger(IsExitingDefense);
                 defenseModeTimer = 0;
             }
@@ -145,6 +178,21 @@ public class ShootingEnemy : BaseEnemy
         }
     }
 
+    private bool HasReachedDestination()
+    {
+        if (!_navMeshAgent.pathPending)
+        {
+            if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+            {
+                if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     protected void DetectEntity()
     {
         int layerMask = 1 << gameObject.layer;
@@ -152,7 +200,7 @@ public class ShootingEnemy : BaseEnemy
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyConfig.attackRange);
         foreach (Collider hitCollider in hitColliders)
         {
-           if (hitCollider.CompareTag("Player") && states.HasFlag(YukinkoStates.Attack))
+            if (hitCollider.CompareTag("Player") && states.HasFlag(YukinkoStates.Attack))
             {
                 Transform currentObjective = hitCollider.gameObject.transform;
                 Vector3 direction = currentObjective.position - transform.position;
@@ -212,9 +260,39 @@ public class ShootingEnemy : BaseEnemy
         }
 
         OnAttack.Invoke();
-        BaseProjectile baseProjectile = Instantiate(projectile, transform.position , Quaternion.identity);
+        BaseProjectile baseProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
         baseProjectile.SetTarget(target);
         baseProjectile.gameObject.SetActive(true);
+    }
+
+    public void Move(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
+    {
+        StartCoroutine(MoveByAttack(direction, speed, maxTime, curve));
+    }
+
+    private IEnumerator MoveByAttack(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
+    {
+        float timer = 0f;
+        while (timer < maxTime)
+        {
+            timer += Time.deltaTime;
+            _navMeshAgent.Move(direction * (speed * curve.Evaluate(timer / maxTime) * Time.deltaTime));
+            yield return null;
+        }
+    }
+
+    private Vector3 GetRandomPointOnNavMesh(Vector3 center, float maxDistance)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * maxDistance;
+        randomDirection += center;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, maxDistance, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+
+        return GetRandomPointOnNavMesh(center, maxDistance);
     }
 
     protected void OnDrawGizmosSelected()

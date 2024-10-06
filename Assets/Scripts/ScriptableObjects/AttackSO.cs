@@ -13,7 +13,7 @@ namespace ScriptableObjects
         public float attackTime;
         public float timeUntilComboEnds;
         public float speedWhileAttacking = 0.5f;
-        public AttackMovementTypes type;
+        [FormerlySerializedAs("attackMovementtype")] [FormerlySerializedAs("type")] public AttackMovementTypes attackMovementType;
         public AnimationCurve animationCurve;
     }
     //Todo: Make a way for multihit attacks.

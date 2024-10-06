@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace Enemy
 {
-    public class OkamiEnemy : BaseEnemy
+    public class OkamiEnemy : BaseEnemy, IMovevable
     {
         enum OkamiStates
         {
@@ -40,7 +40,7 @@ namespace Enemy
             currentMovementSpeed = enemyConfig.chasingMoveSpeed;
             materialBody = meshBody.material;
             materialFace = meshFace.material;
-            animator.SetTrigger(IsWalking);
+            animator.SetTrigger(IsIdle);
         }
 
 
@@ -72,7 +72,6 @@ namespace Enemy
         protected void Update()
         {
             if (IsDead()) return;
-
             _navMeshAgent.speed = currentMovementSpeed * Time.deltaTime;
 
             switch (currentState)
@@ -84,7 +83,7 @@ namespace Enemy
                     ChasingEntity();
                     break;
                 case OkamiStates.Preparing:
-                    PreapreAttack();
+                    PrepareAttack();
                     break;
                 case OkamiStates.Attack:
                     AttackEntity();
@@ -133,7 +132,7 @@ namespace Enemy
             }
         }
 
-        private void PreapreAttack()
+        private void PrepareAttack()
         {
             _navMeshAgent.isStopped = true;
             if (attackTimer > enemyConfig.attackSpeed)
@@ -161,6 +160,7 @@ namespace Enemy
             currentMovementSpeed = enemyConfig.attackMoveSpeed;
             _navMeshAgent.SetDestination(playerPosition.position);
 
+
             if (Vector3.Distance(transform.position, playerPosition.position) <= 3 ||
                 attackTimerlife >= enemyConfig.attackTime)
             {
@@ -185,6 +185,7 @@ namespace Enemy
                 OnDeath.Invoke();
                 OnDeathRemove.Invoke(this);
                 collider.enabled = false;
+                _navMeshAgent.isStopped = true;
             }
             else
             {
@@ -228,6 +229,25 @@ namespace Enemy
 
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, enemyConfig.detectionRange);
+        }
+
+        public void Move(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
+        {
+            StartCoroutine(MoveByAttack(direction, speed, maxTime, curve));
+        }
+
+        private IEnumerator MoveByAttack(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
+        {
+            _navMeshAgent.isStopped = true;
+            float timer = 0f;
+            while (timer < maxTime)
+            {
+                timer += Time.deltaTime;
+                _navMeshAgent.Move(direction * (speed * curve.Evaluate(timer / maxTime) * Time.deltaTime));
+                yield return null;
+            }
+
+            _navMeshAgent.isStopped = false;
         }
     }
 }

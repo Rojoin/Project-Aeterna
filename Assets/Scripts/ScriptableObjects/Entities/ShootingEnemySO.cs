@@ -17,7 +17,9 @@ namespace ScriptableObjects.Entities
         public float projectileSpeed;
         public float projectileDamage;
         public float projectileLifeTime;
-        
+        public int hitsUntilCounterAttack = 3;
+        public float escapeDistance = 30;
+
 
         private void OnValidate()
         {

@@ -67,16 +67,14 @@ namespace StateMachine
             {
                 currentInputDirection = Vector3.zero;
             }
-            
         }
 
-    
 
         public override void OnExit()
         {
             base.OnExit();
 
-
+            currentInputDirection = Vector3.zero;
             AttackChannel.Unsubscribe(Attack);
             _attackCollider.OnTriggerEnterObject.RemoveListener(OnAttackEnter);
             _attackCollider.OnTriggerExitObject.RemoveListener(OnAttackExit);
@@ -226,6 +224,9 @@ namespace StateMachine
             currentlyHitted.Clear();
             _attackCollider.ToggleCollider(false);
             _playerAnimatorController.speed = 1;
+
+            // currentInputDirection = Vector3.zero;
+
             //  _playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
             //OnAttackEnd.Invoke();
         }
@@ -244,17 +245,17 @@ namespace StateMachine
 
                 float normalizedTime = (attackTimer / comboList[comboCounter].attackTime);
                 float impulse = comboList[comboCounter].animationCurve.Evaluate(normalizedTime);
-                if (comboList[comboCounter].type == AttackMovementTypes.InputDirection)
+                if (comboList[comboCounter].attackMovementType == AttackMovementTypes.InputDirection)
                 {
                     rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * currentInputDirection;
-                    _characterController.Move(rotatedMoveDir * (deltaTime * player.speed) * impulse);
+                    _characterController.Move(rotatedMoveDir * (deltaTime * player.speed * impulse));
                 }
                 else
                 {
-                    _characterController.Move(owner.transform.forward * (deltaTime * player.speed)*impulse);
+                    _characterController.Move(owner.transform.forward * (deltaTime * player.speed * impulse));
                 }
+
                 onMove.Invoke();
-                
             }
         }
 
@@ -289,6 +290,13 @@ namespace StateMachine
                     {
                         healthSystem.ReceiveDamage(
                             comboList[comboCounter].damage + player.damage);
+                    }
+
+                    if (other.TryGetComponent<IMovevable>(out var movevable) &&
+                        comboList[comboCounter].attackMovementType == AttackMovementTypes.Forward)
+                    {
+                        movevable.Move(owner.transform.forward, player.speed, comboList[comboCounter].attackTime,
+                            comboList[comboCounter].animationCurve);
                     }
 
                     currentlyHitted.Add(healthSystem);
