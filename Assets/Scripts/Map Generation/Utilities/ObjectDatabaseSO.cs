@@ -20,4 +20,6 @@ public class ObjectData
     public Vector2Int Size { get; private set; } = Vector2Int.one;
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
+    [field: SerializeField]
+    public bool IsEnemy { get; private set; }
 }

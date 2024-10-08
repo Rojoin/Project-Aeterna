@@ -5,14 +5,16 @@ using UnityEngine;
 [Serializable]
 public class LevelRoomPropsSo
 {
-    public LevelRoomPropsSo(ChamberSO levelRoom, List<Props> PropsList)
+    public LevelRoomPropsSo(ChamberSO levelRoom, List<Props> PropsList, List<Props> EnemyList)
     {
         this.levelRoom = levelRoom;
         this.PropsList = PropsList;
+        this.EnemyList = EnemyList;
     }
-    
+
     public ChamberSO levelRoom;
     public List<Props> PropsList = new List<Props>();
+    public List<Props> EnemyList = new List<Props>();
 }
 
 [Serializable]
