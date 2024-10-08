@@ -26,7 +26,7 @@ public class DungeonGeneration : MonoBehaviour
     [Header("Camera Settings")] [SerializeField]
     private CinemachineVirtualCamera camera;
 
-    [SerializeField] private PlayerHudInputs selectCardMenu;
+    [SerializeField] private PickUpManager pickUpManager;
     [SerializeField] private GameObject transitionGO;
 
     private int nCurrentRooms;
@@ -156,9 +156,10 @@ public class DungeonGeneration : MonoBehaviour
     private void OpenDungeonRoom()
     {
         actualPlayerRoom.roomBehaviour.SetRoomDoorState(true);
+
         if (roomsCounter >= 1)
         {
-            StartCoroutine(selectCardMenu.ShowSelectableCardMenu());
+            StartCoroutine(pickUpManager.SpawnPickUp(1));
             roomsCounter = 0;
         }
         else
