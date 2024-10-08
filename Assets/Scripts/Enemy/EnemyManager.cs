@@ -12,8 +12,7 @@ namespace Enemy
         public UnityEvent OnLastEnemyKilled;
         
         private List<BaseEnemy> enemyList = new List<BaseEnemy>();
-        [SerializeField] private Transform[] SpawnPoints;
-        private EnemyLevelSO enemyLevelSo;
+        private List<Props> enemyToSpawnList = new List<Props>();
 
         public void OnEnterNewRoom()
         {
@@ -26,33 +25,38 @@ namespace Enemy
             }
         }
 
-        public void SetEnemyRoomStats(EnemyLevelSO levelSo)
+        public void SetEnemyRoomStats(LevelRoomPropsSo levelRoomProps)
         {
-            enemyLevelSo = levelSo;
+            foreach (Props currentEnemy in levelRoomProps.EnemyList)
+            {
+                enemyToSpawnList.Add(currentEnemy);
+            }
         }
 
         private void SpawnEnemies()
         {
             Debug.Log("CallEnemyMusic");
             AkSoundEngine.SetState("DeathFloorMusic", "Combat");
-            
-            int NewEnemyCuantity = Random.Range(enemyLevelSo.minNumberEnemies, enemyLevelSo.maxNumberEnemies);
 
-            for (int i = 0; i < NewEnemyCuantity; i++)
+            for (int i = 0; i < enemyToSpawnList.Count; i++)
             {
-                Vector3 spawnPosition = SpawnPoints[i].position;
+                Vector3 spawnPosition = enemyToSpawnList[i].propPosition;
 
-                BaseEnemy enemyToInvoke = enemyLevelSo.enemiesList[Random.Range(0, enemyLevelSo.enemiesList.Count)];
-
-                BaseEnemy newEnemy =
+                GameObject enemyToInvoke = enemyToSpawnList[i].prop;
+                
+                GameObject newEnemy =
                     Instantiate(enemyToInvoke, spawnPosition + (enemyToInvoke.transform.up *
                                                                 ((enemyToInvoke
                                                                     .transform.localScale.y / 2) + 0.3f)),
                         quaternion.identity, transform);
+                
+                BaseEnemy newBaseEnemy = newEnemy.GetComponent<BaseEnemy>();
 
-                newEnemy.OnDeathRemove.AddListener(RemoveEnemy);
-                enemyList.Add(newEnemy);
+                newBaseEnemy.OnDeathRemove.AddListener(RemoveEnemy);
+                enemyList.Add(newBaseEnemy);
             }
+            
+            EndChamber();
         }
 
         private void RemoveEnemy(BaseEnemy enemy)

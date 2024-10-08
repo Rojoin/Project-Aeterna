@@ -11,8 +11,6 @@ public class DungeonGeneration : MonoBehaviour
     [Header("Scriptable Objects")] [SerializeField]
     private LevelRoomsSO levelRoom;
 
-    [SerializeField] private EnemyLevelSO enemyLevelSo;
-
     [Header("Channels")] [SerializeField] private VoidChannelSO OnEnd;
 
     [Header("Grid Settings")] [SerializeField]
@@ -335,7 +333,7 @@ public class DungeonGeneration : MonoBehaviour
     private void SetEnemyManager(DungeonRoom room, GameObject roomInstance, LevelRoomPropsSo levelRoomProps)
     {
         room.enemyManager = roomInstance.GetComponent<EnemyManager>();
-        room.enemyManager.SetEnemyRoomStats(enemyLevelSo);
+        room.enemyManager.SetEnemyRoomStats(levelRoomProps);
         room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
         room.roomBehaviour.SetRoomDoorState(false);
     }
