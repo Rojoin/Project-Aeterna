@@ -86,6 +86,7 @@ public class ShootingEnemy : BaseEnemy, IMovevable
                 OnDeath.Invoke();
                 OnDeathRemove.Invoke(this);
                 collider.enabled = false;
+                _navMeshAgent.isStopped = true;
             }
             else
             {
