@@ -1,22 +1,21 @@
- using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GridData
 {
-    Dictionary<Vector3Int, PlacementData> placedObjects = new();
+    public Dictionary<Vector3Int, PlacementData> placedObjects = new();
 
     public void AddObjectAt(Vector3Int gridPosition,
-                            Vector2Int objectSize,
-                            int ID,
-                            int placedObjectIndex)
+        Vector2Int objectSize,
+        int ID,
+        int placedObjectIndex)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
         PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex);
+        
         foreach (var pos in positionToOccupy)
         {
-            if (placedObjects.ContainsKey(pos))
-                throw new Exception($"Dictionary already contains this cell positiojn {pos}");
             placedObjects[pos] = data;
         }
     }
@@ -24,13 +23,21 @@ public class GridData
     private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2Int objectSize)
     {
         List<Vector3Int> returnVal = new();
+        
+        Vector3Int offset = new Vector3Int(
+            gridPosition.x - (objectSize.x - 1) / 2,
+            0, 
+            gridPosition.y - (objectSize.y - 1) / 2
+        );
+        
         for (int x = 0; x < objectSize.x; x++)
         {
             for (int y = 0; y < objectSize.y; y++)
             {
-                returnVal.Add(gridPosition + new Vector3Int(x, 0, y));
+                returnVal.Add(offset + new Vector3Int(x, 0, y));
             }
         }
+        
         return returnVal;
     }
 
@@ -42,6 +49,7 @@ public class GridData
             if (placedObjects.ContainsKey(pos))
                 return false;
         }
+
         return true;
     }
 

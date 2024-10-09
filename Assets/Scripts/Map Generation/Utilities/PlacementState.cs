@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlacementState : IBuildingState
@@ -51,16 +52,17 @@ public class PlacementState : IBuildingState
         {
             return;
         }
-
+        
         int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex],
             grid.CellToWorld(gridPosition));
-
+        
+        
         GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
         selectedData.AddObjectAt(gridPosition,
             database.objectsData[selectedObjectIndex].Size,
             database.objectsData[selectedObjectIndex].ID,
             index);
-
+        
         previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
     }
 
