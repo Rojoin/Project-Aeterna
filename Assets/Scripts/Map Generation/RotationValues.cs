@@ -35,7 +35,7 @@ public class RotationValues
                         (new[] { RoomDirection.UP, RoomDirection.LEFT }, 180,
                             new[]
                             {
-                                (RoomDirection.DOWN, RoomDirection.RIGHT), (RoomDirection.RIGHT, RoomDirection.LEFT)
+                                (RoomDirection.DOWN, RoomDirection.UP), (RoomDirection.RIGHT, RoomDirection.LEFT)
                             }),
                         (new[] { RoomDirection.UP, RoomDirection.RIGHT }, 270,
                             new[]
