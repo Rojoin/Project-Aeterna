@@ -64,13 +64,12 @@ public class PlacementSystem : MonoBehaviour
     {
         if(inputManager.IsPointerOverUI())
         {
-            return;
+            //return;
         }
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
         buildingState.OnAction(gridPosition);
-
     }
 
     private void StopPlacement()
