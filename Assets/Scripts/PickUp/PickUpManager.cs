@@ -58,9 +58,4 @@ public class PickUpManager : MonoBehaviour
         Debug.Log("Evento LLamado");
         selectCardMenu.ShowSelectCardMenu(true);
     }
-
-    private void OnDestroy()
-    {
-        pickUpCollider.onPlayerInteractPickUp.RemoveListener(PlayerInteractPickUp);
-    }
 }
