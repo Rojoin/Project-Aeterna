@@ -126,7 +126,7 @@ public class ShootingEnemy : BaseEnemy, IMovevable
     protected void Update()
     {
         if (IsDead()) return;
-        _navMeshAgent.speed = enemyConfig.speed * Time.deltaTime;
+        _navMeshAgent.speed = enemyConfig.speed;
 
         if (states.HasFlag(YukinkoStates.Run))
         {
