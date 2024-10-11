@@ -32,6 +32,7 @@ namespace Enemy
         private static readonly int IsWalking = Animator.StringToHash("isWalking");
         private Transform currentObjective;
 
+
         protected override void Init()
         {
             base.Init();
@@ -211,7 +212,7 @@ namespace Enemy
             materialFace = meshFace.material;
             while (heightValue > endAnimation)
             {
-                heightValue -= Time.deltaTime * 2;
+                heightValue -= Time.deltaTime * disappearSpeed;
                 materialBody.SetFloat(CutOffHeight, heightValue);
                 materialFace.SetFloat(CutOffHeight, heightValue);
                 yield return null;
