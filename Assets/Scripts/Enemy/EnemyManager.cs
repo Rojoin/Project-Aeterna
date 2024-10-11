@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
@@ -80,9 +81,15 @@ namespace Enemy
             if (enemyList.Count <= 0)
             {
                 Debug.Log("CallExploringMusic");
-                AkSoundEngine.SetState("DeathFloorMusic", "Exploring");
+                StartCoroutine(CallExploringMusic());
                 CallEndRoom();
             }
+        }
+
+        private IEnumerator CallExploringMusic()
+        {
+            yield return new WaitForSecondsRealtime(1);
+            AkSoundEngine.SetState("DeathFloorMusic", "Exploring");
         }
 
         public void CallEndRoom()
