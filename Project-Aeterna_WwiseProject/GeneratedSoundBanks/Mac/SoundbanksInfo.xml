@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{F90D219C-BEF0-B281-7F0A-FF8BE5D9F20C}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{DD807368-CE56-3925-2C45-3FD213876F15}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -21,6 +21,9 @@
 			<Busses>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
+			<GameParameters>
+				<GameParameter Id="1897326479" Name="PlayBackSpeed"/>
+			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="69122470" Name="DeathFloorMusic">
 					<States>
@@ -32,7 +35,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3427827313" Type="User" Language="SFX" Hash="{35ABB833-9B1C-0B63-C3AE-3E4C319B8834}">
+		<SoundBank Id="3427827313" Type="User" Language="SFX" Hash="{EE7238EE-B4D0-771B-168E-36B8BA2D65B4}">
 			<ShortName>MusicSoundBank</ShortName>
 			<Path>MusicSoundBank.bnk</Path>
 			<Media>
@@ -89,6 +92,9 @@
 				</Event>
 				<Event Id="502652540" Name="Stop_DefaultMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
+			<GameParameters>
+				<GameParameter Id="1897326479" Name="PlayBackSpeed"/>
+			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="69122470" Name="DeathFloorMusic">
 					<States>
@@ -416,5 +422,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{B84C70E0-004B-3D3E-93F2-7410E96CED50}</FileHash>
+	<FileHash>{22F520BE-4F0E-54EB-8C8E-6EB202B97A3D}</FileHash>
 </SoundBanksInfo>
