@@ -61,7 +61,8 @@ public class PlacementState : IBuildingState
         selectedData.AddObjectAt(gridPosition,
             database.objectsData[selectedObjectIndex].Size,
             database.objectsData[selectedObjectIndex].ID,
-            index);
+            index,
+            database.objectsData[selectedObjectIndex].IsEnemy);
         
         previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
     }

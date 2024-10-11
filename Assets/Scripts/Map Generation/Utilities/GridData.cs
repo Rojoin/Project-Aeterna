@@ -9,10 +9,11 @@ public class GridData
     public void AddObjectAt(Vector3Int gridPosition,
         Vector2Int objectSize,
         int ID,
-        int placedObjectIndex)
+        int placedObjectIndex,
+        bool isEnemy)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex);
+        PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex, isEnemy);
         
         foreach (var pos in positionToOccupy)
         {
@@ -55,6 +56,9 @@ public class GridData
 
     internal int GetRepresentationIndex(Vector3Int gridPosition)
     {
+        gridPosition.z = gridPosition.y;
+        gridPosition.y = 0;
+        
         if (placedObjects.ContainsKey(gridPosition) == false)
             return -1;
         return placedObjects[gridPosition].PlacedObjectIndex;
@@ -74,11 +78,13 @@ public class PlacementData
     public List<Vector3Int> occupiedPositions;
     public int ID { get; private set; }
     public int PlacedObjectIndex { get; private set; }
+    public bool IsEnemy;
 
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placedObjectIndex)
+    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placedObjectIndex, bool isEnemy)
     {
         this.occupiedPositions = occupiedPositions;
         ID = iD;
         PlacedObjectIndex = placedObjectIndex;
+        IsEnemy = isEnemy;
     }
 }

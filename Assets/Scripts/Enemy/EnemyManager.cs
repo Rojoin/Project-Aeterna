@@ -10,7 +10,7 @@ namespace Enemy
     {
         public bool roomClear = false;
         public UnityEvent OnLastEnemyKilled;
-        
+
         private List<BaseEnemy> enemyList = new List<BaseEnemy>();
         private List<Props> enemyToSpawnList = new List<Props>();
 
@@ -43,19 +43,20 @@ namespace Enemy
                 Vector3 spawnPosition = enemyToSpawnList[i].propPosition;
 
                 GameObject enemyToInvoke = enemyToSpawnList[i].prop;
-                
+
                 GameObject newEnemy =
-                    Instantiate(enemyToInvoke, spawnPosition + (enemyToInvoke.transform.up *
-                                                                ((enemyToInvoke
-                                                                    .transform.localScale.y / 2) + 0.3f)),
-                        quaternion.identity, transform);
-                
+                    Instantiate(enemyToInvoke, transform);
+
+                newEnemy.transform.localPosition = spawnPosition + (enemyToInvoke.transform.up *
+                                                                    ((enemyToInvoke
+                                                                        .transform.localScale.y / 2) + 0.3f));
+
                 BaseEnemy newBaseEnemy = newEnemy.GetComponent<BaseEnemy>();
 
                 newBaseEnemy.OnDeathRemove.AddListener(RemoveEnemy);
                 enemyList.Add(newBaseEnemy);
             }
-            
+
             EndChamber();
         }
 
@@ -65,7 +66,7 @@ namespace Enemy
             {
                 enemyList.Remove(enemy);
                 enemy.OnDeathRemove.RemoveListener(RemoveEnemy);
-                
+
                 EndChamber();
             }
             else
