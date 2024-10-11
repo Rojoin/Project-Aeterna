@@ -51,9 +51,6 @@ public class RoomCreationManager : MonoBehaviour
         List<Props> enemyList = new List<Props>();
         if (objectPlacer.placedGameObjects != null || objectPlacer.placedGameObjects.Count != 0)
         {
-        }
-        else
-        {
             foreach (Props currentProp in objectPlacer.placedGameObjects)
             {
                 propsList.Add(new Props(currentProp.prop, currentProp.propPosition));
@@ -61,9 +58,6 @@ public class RoomCreationManager : MonoBehaviour
         }
 
         if (objectPlacer.placedGameObjects != null || objectPlacer.placedGameObjects.Count != 0)
-        {
-        }
-        else
         {
             foreach (Props currentProp in objectPlacer.placedEnemies)
             {
