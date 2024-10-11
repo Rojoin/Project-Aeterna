@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee48b3b73ce4481839e3e7ecd56633f, type: 3}
   m_Name: ShootingEnemy
   m_EditorClassIdentifier: 
-  health: 430
   damage: 20
-  speed: 2
-  maxSpeed: 2
+  speed: 20
+  maxSpeed: 20
   isDead: 0
+  health: 430
   timeBetweenAttacks: 5
   timeUntilBlock: 1.8
   attackRange: 30
@@ -24,3 +24,6 @@ MonoBehaviour:
   projectileSpeed: 5
   projectileDamage: 20
   projectileLifeTime: 2.5
+  hitsUntilCounterAttack: 3
+  maxEscapeDistance: 30
+  minEscapeDistance: 10

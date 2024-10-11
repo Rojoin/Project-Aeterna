@@ -17,7 +17,10 @@ namespace ScriptableObjects.Entities
         public float projectileSpeed;
         public float projectileDamage;
         public float projectileLifeTime;
-        
+        public int hitsUntilCounterAttack = 3;
+        [FormerlySerializedAs("escapeDistance")] public float maxEscapeDistance = 30;
+        public float minEscapeDistance = 10;
+
 
         private void OnValidate()
         {

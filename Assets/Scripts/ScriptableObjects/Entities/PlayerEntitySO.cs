@@ -9,6 +9,7 @@ public class PlayerEntitySO : EntitySO
     public float healingValue;
 
     [Header("Attack")]
+    public float specialAttackDamage;
     public float movementSpeedDuringAttack;
     public float timeBetweenComboEnd = 2.0f;
 
@@ -37,5 +38,6 @@ public class PlayerEntitySO : EntitySO
         speed = 7;
         attackSpeed = 1;
         theStarDamage = 10;
+        specialAttackDamage = 40.0f;
     }
 }

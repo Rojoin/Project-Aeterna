@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ScriptableObjects;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -70,19 +71,20 @@ namespace StateMachine
 
         private void Attack()
         {
-            if (isAttacking) return;
-
-            float realtimeSinceStartup = Time.realtimeSinceStartup - lastComboEnd;
-            if (realtimeSinceStartup * player.attackSpeed < timeBetweenCombo)
-
-            {
-                OnAttackEnd?.Invoke();
-                return;
-            }
+            // if (isAttacking) return;
+            //
+            // float realtimeSinceStartup = Time.realtimeSinceStartup - lastComboEnd;
+            // if (realtimeSinceStartup * player.attackSpeed < timeBetweenCombo)
+            //
+            // {
+            //     Debug.Log($"The attack couldn't be performed");
+            //     OnAttackEnd?.Invoke();
+            //     return;
+            // }
 
             timeBetweenCombo = 0;
 
-            Debug.Log($"Attack:");
+            Debug.Log("The attack has been Initiated");
             ActivateCollider(attack);
             _playerAnimatorController.speed = player.attackSpeed;
             _playerAnimatorController.CrossFade(attack.animationName, 0,
@@ -157,18 +159,7 @@ namespace StateMachine
 
         protected override void Move(float deltaTime)
         {
-            // if (inputDirection != Vector2.zero)
-            // {
-            //     Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
-            //     float time = Time.deltaTime;
-            //     rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-            //     _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
-            //     onMove.Invoke();
-            // }
-            // else
-            // {
-            //     rotatedMoveDir = Vector2.zero;
-            // }
+
         }
 
         void EndAttackState()
@@ -188,8 +179,6 @@ namespace StateMachine
             currentlyHitted.Clear();
             _attackCollider.ToggleCollider(false);
             _playerAnimatorController.speed = 1;
-            //_playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
-            //OnAttackEnd.Invoke();
         }
 
         private void AttackSequence(float deltaTime)
@@ -229,9 +218,10 @@ namespace StateMachine
                 direction = new Vector3(direction.x, 0, direction.z);
                 Rotate(direction);
 
-                healthSystem.ReceiveDamage(attack.damage + player.damage);
+                float damage = attack.damage + player.specialAttackDamage;
+                damage = Mathf.Clamp(damage, 50, attack.damage + Mathf.Abs(player.specialAttackDamage));
+                healthSystem.ReceiveDamage(damage);
                 OnAttackConnected?.Invoke(other.transform.position);
-                OnAttackEnd?.Invoke();
             }
         }
 

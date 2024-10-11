@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler , IDeselectHandler
 {
     [Header("References")]
     [SerializeField] private GameManager gameManager;
@@ -49,7 +49,7 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
 
         else
         {
-            SelectableCardMovementWithGamepad();   
+            SelectableCardMovementWithGamepad();
         }
     }
 
@@ -91,7 +91,8 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
 
             Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
 
-            rectTransform.rotation = Quaternion.Slerp(rectTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            rectTransform.rotation =
+                Quaternion.Slerp(rectTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
         else
@@ -104,14 +105,15 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        canMove = false;
-        isSelected = true;
-        cardInformation.SetActive(true);
-        transform.rotation = Quaternion.Euler(xCardRotation, 0, 0);
-        AkSoundEngine.PostEvent("Cards_Show_Play", gameObject);
+        OnSelectCard();
     }
 
     public void OnPointerExit(PointerEventData eventData)
+    {
+        OnDeselectCard();
+    }
+
+    private void OnDeselectCard()
     {
         canMove = true;
         isSelected = false;
@@ -151,5 +153,24 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
         {
             return false;
         }
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        OnSelectCard();
+    }
+
+    private void OnSelectCard()
+    {
+        canMove = false;
+        isSelected = true;
+        cardInformation.SetActive(true);
+        transform.rotation = Quaternion.Euler(xCardRotation, 0, 0);
+        AkSoundEngine.PostEvent("Cards_Show_Play", gameObject);
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        OnDeselectCard();
     }
 }
