@@ -26,9 +26,9 @@ public class DungeonGeneration : MonoBehaviour
 
     [SerializeField] private PickUpManager pickUpManager;
     [SerializeField] private GameObject transitionGO;
-    
-    [Header("Seed Settings")] 
-    [SerializeField] private int seed = -1;
+
+    [Header("Seed Settings")] [SerializeField]
+    private int seed = -1;
 
     private System.Random randomGenerator;
     private int nCurrentRooms;
@@ -49,10 +49,10 @@ public class DungeonGeneration : MonoBehaviour
         {
             seed = Random.Range(int.MinValue, int.MaxValue);
         }
-        
+
         randomGenerator = new System.Random(seed);
         Debug.Log($"Dungeon generated with seed: {seed}");
-        
+
         GenerateDungeon();
     }
 
@@ -137,7 +137,9 @@ public class DungeonGeneration : MonoBehaviour
         {
             nCurrentRooms++;
             DungeonRoom currentRoom = pendingRooms.Dequeue();
-            int maxNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms) ? randomGenerator.Next(1, 4) : 0;
+            int maxNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms)
+                ? randomGenerator.Next(1, 4)
+                : 0;
 
             for (int i = 0; i < maxNeighbours; i++)
             {
@@ -303,6 +305,7 @@ public class DungeonGeneration : MonoBehaviour
             if (dungeonRooms[i].NeighboursCount == 1)
             {
                 dungeonRooms[i].roomBehaviour.roomType = bossGenerated ? RoomTypes.ENEMIES : RoomTypes.BOSS;
+                dungeonRooms[i].enemyManager.FinalRoom = true;
                 bossGenerated = true;
             }
             else

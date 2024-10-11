@@ -10,6 +10,7 @@ namespace Enemy
     public class EnemyManager : MonoBehaviour
     {
         public bool roomClear = false;
+        public bool FinalRoom;
         public UnityEvent OnLastEnemyKilled;
 
         private List<BaseEnemy> enemyList = new List<BaseEnemy>();
@@ -36,8 +37,11 @@ namespace Enemy
 
         private void SpawnEnemies()
         {
-            Debug.Log("CallEnemyMusic");
-            AkSoundEngine.SetState("DeathFloorMusic", "Combat");
+            if (!FinalRoom)
+            {
+                Debug.Log("CallEnemyMusic");
+                AkSoundEngine.SetState("DeathFloorMusic", "Combat");
+            }
 
             for (int i = 0; i < enemyToSpawnList.Count; i++)
             {
