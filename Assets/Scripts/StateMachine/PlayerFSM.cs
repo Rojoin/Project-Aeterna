@@ -43,9 +43,11 @@ namespace StateMachine
         [SerializeField] private UnityEvent onEndDash;
         [SerializeField] private ParticleSystem specialAttackVFX;
         [SerializeField] private UnityEvent OnSpecialAttack;
+        [SerializeField] private UnityEvent<float> OnSpecialAttackTimerUpdate;
         protected float speed;
         private FSM fsm;
         private Vector2 moveDir;
+        private float specialAttackTimer = 0;
 
         private void OnEnable()
         {
@@ -68,7 +70,8 @@ namespace StateMachine
                 ActivateSpawnMovesPosition, ActivateOnMoveEffects,
                 this.gameObject,
                 _playerAnimatorController,
-                _characterController, OnMoveChannel, player, specialAttack, _attackCollider, SpecialAttackChannel, gameSettings));
+                _characterController, OnMoveChannel, player, specialAttack, _attackCollider, SpecialAttackChannel,
+                gameSettings));
 
             fsm.SetTranstions(idleState, PlayerFlags.Attack, attackState);
             fsm.SetTranstions(idleState, PlayerFlags.OnSpecialAttack, specialState);
@@ -80,6 +83,7 @@ namespace StateMachine
             SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
             DashChannel.Subscribe(ChangeFromDashStart);
             fsm.SetDefaultState(idleState);
+            specialAttackTimer = specialAttack.timeUntilComboEnds;
         }
 
         private void ActivateOnDashEffects()
@@ -101,7 +105,15 @@ namespace StateMachine
         private void Update()
         {
             fsm.Update(Time.deltaTime);
+            UpdateSpecialAttackTimer();
         }
+
+        private void UpdateSpecialAttackTimer()
+        {
+            specialAttackTimer += Time.deltaTime;
+            OnSpecialAttackTimerUpdate.Invoke(specialAttackTimer / specialAttack.timeUntilComboEnds);
+        }
+
 
         private void ChangeFromAttack()
         {
@@ -110,7 +122,16 @@ namespace StateMachine
 
         private void ChangeFromSpecialAttack()
         {
-            fsm.OnTriggerState(PlayerFlags.OnSpecialAttack);
+            if (specialAttackTimer > specialAttack.timeUntilComboEnds)
+            {
+                Debug.Log($"Execute Special Attack Input");
+                fsm.OnTriggerState(PlayerFlags.OnSpecialAttack);
+                specialAttackTimer = 0;
+            }
+            else
+            {
+                Debug.Log($"The time was:{specialAttackTimer}");
+            }
         }
 
         private void ChangeFromEndAttack()
