@@ -72,7 +72,7 @@ namespace Enemy
         protected void Update()
         {
             if (IsDead()) return;
-            _navMeshAgent.speed = currentMovementSpeed * Time.deltaTime;
+            _navMeshAgent.speed = currentMovementSpeed;
 
             switch (currentState)
             {
