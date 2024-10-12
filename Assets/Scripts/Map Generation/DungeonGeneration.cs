@@ -12,6 +12,7 @@ public class DungeonGeneration : MonoBehaviour
     private LevelRoomsSO levelRoom;
 
     [Header("Channels")] [SerializeField] private VoidChannelSO OnEnd;
+    // [SerializeField] private EnemyLevelSO enemyLevelSo;
 
     [Header("Grid Settings")] [SerializeField]
     private Vector2 gapBetweenRooms;
@@ -306,6 +307,7 @@ public class DungeonGeneration : MonoBehaviour
             if (dungeonRooms[i].NeighboursCount == 1)
             {
                 dungeonRooms[i].roomBehaviour.roomType = bossGenerated ? RoomTypes.ENEMIES : RoomTypes.BOSS;
+                dungeonRooms[i].enemyManager.FinalRoom = true;
                 bossGenerated = true;
             }
             else
@@ -335,7 +337,7 @@ public class DungeonGeneration : MonoBehaviour
             
             room.proceduralRoomGeneration.CreateRoomProps(currentRoom);
 
-            SetEnemyManager(room, roomInstance);
+            SetEnemyManager(room, roomInstance,currentRoom);
 
             room.roomBehaviour.StartRoom();
             roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
@@ -345,10 +347,10 @@ public class DungeonGeneration : MonoBehaviour
         }
     }
 
-    private void SetEnemyManager(DungeonRoom room, GameObject roomInstance)
+    private void SetEnemyManager(DungeonRoom room, GameObject roomInstance, LevelRoomPropsSo levelRoomProps)
     {
         room.enemyManager = roomInstance.GetComponent<EnemyManager>();
-        room.enemyManager.SetEnemyRoomStats(enemyLevelSo);
+         room.enemyManager.SetEnemyRoomStats(levelRoomProps);
         room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
         room.roomBehaviour.SetRoomDoorState(false);
     }
