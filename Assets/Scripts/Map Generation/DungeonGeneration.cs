@@ -343,7 +343,6 @@ public class DungeonGeneration : MonoBehaviour
             roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
             room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
-            // room.roomBehaviour.navMeshSurface.BuildNavMesh();
         }
     }
 
