@@ -10,7 +10,6 @@ public class DoorBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Collision " + doorDirection);
             OnPlayerInteractDoor?.Invoke(doorDirection);
         }
     }
