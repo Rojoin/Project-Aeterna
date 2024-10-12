@@ -58,7 +58,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Enojado_recibe daño 1" ID="{92C05094-6738-40E0-A563-8BD0BDE84013}" ShortID="428130080">
+								<Sound Name="When enemy is hited" ID="{BB3279D4-F5DC-4495-8266-E0243B7B191B}" ShortID="542507325">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -68,126 +68,16 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Enojado_recibe daño 1" ID="{E596B120-C399-4863-8568-B12F54C0B5FC}">
+										<AudioFileSource Name="When enemy is hited" ID="{1AEE0052-2804-4BBC-917B-C18C872CC559}">
 											<Language>SFX</Language>
-											<AudioFile>Enojado_recibe daño 1.wav</AudioFile>
+											<AudioFile>When enemy is hited.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="81310004"/>
+												<MediaID ID="785073113"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Enojado_recibe daño 1" ID="{E596B120-C399-4863-8568-B12F54C0B5FC}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_recibe daño 2" ID="{9CAF1FB2-A7AB-46DD-8230-477FFB77185E}" ShortID="832998423">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_recibe daño 2" ID="{FF7FFCE8-5554-47B2-AE4B-000288E03596}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_recibe daño 2.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="282091733"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_recibe daño 2" ID="{FF7FFCE8-5554-47B2-AE4B-000288E03596}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_recibe daño 3" ID="{ED28C031-9A3A-47FA-BC93-C5CB270F1D8A}" ShortID="1048394664">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_recibe daño 3" ID="{39E7585D-A841-4F0C-9A3A-B690CB2B49D0}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_recibe daño 3.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="183122112"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_recibe daño 3" ID="{39E7585D-A841-4F0C-9A3A-B690CB2B49D0}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_recibe daño 4" ID="{ECF585E6-3E92-4E3F-B734-20765A62C321}" ShortID="242945119">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_recibe daño 4" ID="{B780A058-8506-46FB-A4E0-B823C0C5308C}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_recibe daño 4.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="308834796"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_recibe daño 4" ID="{B780A058-8506-46FB-A4E0-B823C0C5308C}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_recibe daño 5" ID="{A8B0BD7B-622F-4218-96B4-E936C16A864D}" ShortID="321302391">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_recibe daño 5" ID="{3DCD0B56-9473-43BE-B391-89BF29D93100}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_recibe daño 5.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="347206727"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_recibe daño 5" ID="{3DCD0B56-9473-43BE-B391-89BF29D93100}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_recibe daño 6" ID="{9D6EAD93-B99A-42D7-A348-10054A3BE7C5}" ShortID="603646928">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_recibe daño 6" ID="{8BD93A6E-C12A-401B-A5F1-EDA068CD38F7}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_recibe daño 6.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="31104479"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_recibe daño 6" ID="{8BD93A6E-C12A-401B-A5F1-EDA068CD38F7}" Platform="Linked"/>
+										<ActiveSource Name="When enemy is hited" ID="{1AEE0052-2804-4BBC-917B-C18C872CC559}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -320,7 +210,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-20</Value>
+										<Value>-4</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -333,7 +223,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Enojado_esfuerzo 1" ID="{B754D960-3D7B-4567-8940-6010D6E043F1}" ShortID="141919879">
+								<Sound Name="YUKINKO ATACK SFX" ID="{4137E5A3-3EA3-4344-9908-4F2F4EDE9877}" ShortID="252847612">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -343,19 +233,19 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Enojado_esfuerzo 1" ID="{FC08D554-778C-4DD7-8073-B5D3AE1C421E}">
+										<AudioFileSource Name="YUKINKO ATACK SFX" ID="{99B356A0-7655-43AD-B343-57F04810348F}">
 											<Language>SFX</Language>
-											<AudioFile>Enojado_esfuerzo 1.wav</AudioFile>
+											<AudioFile>YUKINKO ATACK SFX.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="241043021"/>
+												<MediaID ID="886773806"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Enojado_esfuerzo 1" ID="{FC08D554-778C-4DD7-8073-B5D3AE1C421E}" Platform="Linked"/>
+										<ActiveSource Name="YUKINKO ATACK SFX" ID="{99B356A0-7655-43AD-B343-57F04810348F}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Enojado_esfuerzo 2" ID="{499CF0CC-08A7-42B1-B595-52CD4846D156}" ShortID="289354542">
+								<Sound Name="YUKINKO atack v2 SFX" ID="{AA38E92A-F907-46B5-972D-42A5EBCDCB81}" ShortID="327599499">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -365,19 +255,19 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Enojado_esfuerzo 2" ID="{6E7560C3-3A44-4C3F-92C8-E7D5EC596951}">
+										<AudioFileSource Name="YUKINKO atack v2 SFX" ID="{AC0BB0D6-B322-43D8-984C-DC2B71D56FA3}">
 											<Language>SFX</Language>
-											<AudioFile>Enojado_esfuerzo 2.wav</AudioFile>
+											<AudioFile>YUKINKO atack v2 SFX.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="251361651"/>
+												<MediaID ID="142539276"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Enojado_esfuerzo 2" ID="{6E7560C3-3A44-4C3F-92C8-E7D5EC596951}" Platform="Linked"/>
+										<ActiveSource Name="YUKINKO atack v2 SFX" ID="{AC0BB0D6-B322-43D8-984C-DC2B71D56FA3}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Enojado_esfuerzo 3" ID="{1204419D-AF93-456E-85FB-FABC0ED738C3}" ShortID="164245942">
+								<Sound Name="YUKINKO atack v3 SFX" ID="{A99A6078-5B75-4BD7-999F-C22B32B54C67}" ShortID="640541066">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -387,104 +277,16 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Enojado_esfuerzo 3" ID="{AB3C70EB-4BC6-4A76-8A57-41D2FB922A91}">
+										<AudioFileSource Name="YUKINKO atack v3 SFX" ID="{4274DE2C-2F54-4CA3-9571-9A5DB9B962E9}">
 											<Language>SFX</Language>
-											<AudioFile>Enojado_esfuerzo 3.wav</AudioFile>
+											<AudioFile>YUKINKO atack v3 SFX.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="498021667"/>
+												<MediaID ID="803712041"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="Enojado_esfuerzo 3" ID="{AB3C70EB-4BC6-4A76-8A57-41D2FB922A91}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_esfuerzo 4" ID="{F3CB1905-1D73-40E0-B9EE-6E2791E5B7AA}" ShortID="648772594">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_esfuerzo 4" ID="{1042E44A-D132-4B63-BA29-0CCDBE19DFBE}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_esfuerzo 4.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="257885803"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_esfuerzo 4" ID="{1042E44A-D132-4B63-BA29-0CCDBE19DFBE}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_esfuerzo 5" ID="{E764C245-71C9-4335-91E6-6BD026ABE7BC}" ShortID="746672649">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_esfuerzo 5" ID="{9B8E024A-56FC-4850-8BE7-47843841062C}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_esfuerzo 5.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="18408502"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_esfuerzo 5" ID="{9B8E024A-56FC-4850-8BE7-47843841062C}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_esfuerzo 6" ID="{A163DA6D-B022-4EA1-9C4D-B77596DAF4EF}" ShortID="603582175">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_esfuerzo 6" ID="{37021405-61FD-4BCE-9B13-7B00B21A5E8C}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_esfuerzo 6.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="507532007"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_esfuerzo 6" ID="{37021405-61FD-4BCE-9B13-7B00B21A5E8C}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="Enojado_esfuerzo 7" ID="{1B6326D2-E5ED-4F26-9C16-9D5F540D4184}" ShortID="553140264">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="Enojado_esfuerzo 7" ID="{0AB9D391-0197-4992-93C5-F027BE6BE5F6}">
-											<Language>SFX</Language>
-											<AudioFile>Enojado_esfuerzo 7.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="568834909"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="Enojado_esfuerzo 7" ID="{0AB9D391-0197-4992-93C5-F027BE6BE5F6}" Platform="Linked"/>
+										<ActiveSource Name="YUKINKO atack v3 SFX" ID="{4274DE2C-2F54-4CA3-9571-9A5DB9B962E9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -669,28 +471,6 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
-						<Sound Name="Special Attack" ID="{1B639A18-AD87-49A9-B793-617163AA48B2}" ShortID="178770852">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Special Attack" ID="{785A8B9F-9A73-458E-BB47-BDEF198D9E60}">
-									<Language>SFX</Language>
-									<AudioFile>Special Attack.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="637437544"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="Special Attack" ID="{785A8B9F-9A73-458E-BB47-BDEF198D9E60}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{7515299F-41EC-454E-AF5E-7D4A675BEB8C}" ShortID="13075865">
@@ -918,14 +698,7 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="Dash_01" ID="{2A2C8A7C-0B83-4DFF-86D4-580694F6E35D}" ShortID="446562825">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>130</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
+										<Sound Name="DASH FX-inputdash - v1" ID="{9016505C-015E-482F-838E-4863898FBA35}" ShortID="905062671">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -935,26 +708,19 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Dash_01" ID="{DDDF66E1-5EB3-4841-81BB-6E709A21816C}">
+												<AudioFileSource Name="DASH FX-inputdash - v1" ID="{99D5F242-513D-4460-A177-A9D1AA3BF626}">
 													<Language>SFX</Language>
-													<AudioFile>Dash_01.wav</AudioFile>
+													<AudioFile>DASH FX-inputdash - v1.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="837171404"/>
+														<MediaID ID="266888604"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ActiveSourceList>
-												<ActiveSource Name="Dash_01" ID="{DDDF66E1-5EB3-4841-81BB-6E709A21816C}" Platform="Linked"/>
+												<ActiveSource Name="DASH FX-inputdash - v1" ID="{99D5F242-513D-4460-A177-A9D1AA3BF626}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="Dash_02" ID="{30CE7C5F-E6ED-41A6-B255-1826B79D4D4E}" ShortID="1014157125">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>230</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
+										<Sound Name="DASH FX-inputdash - v2" ID="{6E92CC5C-9334-4012-8AE8-14F12F6BA59B}" ShortID="692109800">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -964,26 +730,19 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Dash_01" ID="{4B58986C-38FB-445F-9753-6602C845281C}">
+												<AudioFileSource Name="DASH FX-inputdash - v2" ID="{D0210F35-B4AC-45CB-94A7-12C82792F803}">
 													<Language>SFX</Language>
-													<AudioFile>Dash_01.wav</AudioFile>
+													<AudioFile>DASH FX-inputdash - v2.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="837171404"/>
+														<MediaID ID="1044961285"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ActiveSourceList>
-												<ActiveSource Name="Dash_01" ID="{4B58986C-38FB-445F-9753-6602C845281C}" Platform="Linked"/>
+												<ActiveSource Name="DASH FX-inputdash - v2" ID="{D0210F35-B4AC-45CB-94A7-12C82792F803}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="Dash_03" ID="{094F2813-0C99-44AC-95C5-9F577793A30F}" ShortID="921689882">
-											<PropertyList>
-												<Property Name="Pitch" Type="int32">
-													<ValueList>
-														<Value>380</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
+										<Sound Name="DASH FX-inputdash - v3" ID="{9E1B1209-FBD7-453B-A393-5B03A1805085}" ShortID="716918039">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -993,16 +752,16 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="Dash_01" ID="{98A78A1C-EE6D-47BD-A0B2-A8AD6F04B3D8}">
+												<AudioFileSource Name="DASH FX-inputdash - v3" ID="{4B9F2D22-606D-4CFC-B66A-93A785B671FB}">
 													<Language>SFX</Language>
-													<AudioFile>Dash_01.wav</AudioFile>
+													<AudioFile>DASH FX-inputdash - v3.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="837171404"/>
+														<MediaID ID="456292156"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ActiveSourceList>
-												<ActiveSource Name="Dash_01" ID="{98A78A1C-EE6D-47BD-A0B2-A8AD6F04B3D8}" Platform="Linked"/>
+												<ActiveSource Name="DASH FX-inputdash - v3" ID="{4B9F2D22-606D-4CFC-B66A-93A785B671FB}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -1326,6 +1085,11 @@
 										<RandomSequenceContainer Name="Weapon" ID="{3E0E1A69-3393-465E-A493-4EFBF0C95B28}" ShortID="26585378">
 											<PropertyList>
 												<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -1336,19 +1100,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<Sound Name="SWORD_05" ID="{F45CBC0C-9F2A-4EE9-9C6C-11709336B360}" ShortID="882737066">
-													<PropertyList>
-														<Property Name="Pitch" Type="int32">
-															<ValueList>
-																<Value>-280</Value>
-															</ValueList>
-														</Property>
-														<Property Name="Volume" Type="Real64">
-															<ValueList>
-																<Value>-10</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
+												<Sound Name="KATANAATACKSFX - Input katana 1 y 2 v1" ID="{82F1EDC2-FB33-4D30-9635-45BF5ABB4751}" ShortID="678466304">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -1358,26 +1110,19 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="SWORD_05" ID="{C0686EC5-21CC-4A5B-B843-DCA5187F5654}">
+														<AudioFileSource Name="KATANAATACKSFX - Input katana 1 y 2 v1" ID="{1A518022-A7A1-4998-ABCB-E5D4022CACB6}">
 															<Language>SFX</Language>
-															<AudioFile>SWORD_05.wav</AudioFile>
+															<AudioFile>KATANAATACKSFX - Input katana 1 y 2 v1.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="501727537"/>
+																<MediaID ID="839958727"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="SWORD_05" ID="{C0686EC5-21CC-4A5B-B843-DCA5187F5654}" Platform="Linked"/>
+														<ActiveSource Name="KATANAATACKSFX - Input katana 1 y 2 v1" ID="{1A518022-A7A1-4998-ABCB-E5D4022CACB6}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="SWORD_01" ID="{17A1009D-B24F-4293-81EC-41E7A4006992}" ShortID="1038276444">
-													<PropertyList>
-														<Property Name="Volume" Type="Real64">
-															<ValueList>
-																<Value>-10</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
+												<Sound Name="KATANAATACKSFX -Input katana 1 y 2 v2" ID="{93D1B162-D828-4095-88B8-573855159CDA}" ShortID="446424992">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -1387,31 +1132,19 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="SWORD_05" ID="{166695CA-F094-4064-AA60-BDE440FE49A1}">
+														<AudioFileSource Name="KATANAATACKSFX -Input katana 1 y 2 v2" ID="{F0A88BED-5A5F-4600-943D-0D25454A864C}">
 															<Language>SFX</Language>
-															<AudioFile>SWORD_05.wav</AudioFile>
+															<AudioFile>KATANAATACKSFX -Input katana 1 y 2 v2.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="501727537"/>
+																<MediaID ID="460512552"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="SWORD_05" ID="{166695CA-F094-4064-AA60-BDE440FE49A1}" Platform="Linked"/>
+														<ActiveSource Name="KATANAATACKSFX -Input katana 1 y 2 v2" ID="{F0A88BED-5A5F-4600-943D-0D25454A864C}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="SWORD_02" ID="{1ABEA24D-4E2D-48FD-A368-7744F5E9694D}" ShortID="542482019">
-													<PropertyList>
-														<Property Name="Pitch" Type="int32">
-															<ValueList>
-																<Value>130</Value>
-															</ValueList>
-														</Property>
-														<Property Name="Volume" Type="Real64">
-															<ValueList>
-																<Value>-10</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
+												<Sound Name="KATANAATACKSFX -Input katana 1 y 2 v3" ID="{F8CBF4F5-1FE6-4527-AEAC-2EFE9FB468F2}" ShortID="548043578">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -1421,29 +1154,54 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="SWORD_05" ID="{DE95ECB8-D9CB-4ACD-82B8-BFDE211E9790}">
+														<AudioFileSource Name="KATANAATACKSFX -Input katana 1 y 2 v3" ID="{2A2D5BE7-ED57-450D-802A-A868AAA15747}">
 															<Language>SFX</Language>
-															<AudioFile>SWORD_05.wav</AudioFile>
+															<AudioFile>KATANAATACKSFX -Input katana 1 y 2 v3.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="501727537"/>
+																<MediaID ID="184837227"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="SWORD_05" ID="{DE95ECB8-D9CB-4ACD-82B8-BFDE211E9790}" Platform="Linked"/>
+														<ActiveSource Name="KATANAATACKSFX -Input katana 1 y 2 v3" ID="{2A2D5BE7-ED57-450D-802A-A868AAA15747}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="KATANAATTACK3 - input katana attack 3" ID="{F3045680-F9EC-452D-8326-033F49E66771}" ShortID="136625323">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="KATANAATTACK3 - input katana attack 3" ID="{753F08FC-807C-48FE-8B51-8867471F9DAE}">
+															<Language>SFX</Language>
+															<AudioFile>KATANAATTACK3 - input katana attack 3.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="452078375"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="KATANAATTACK3 - input katana attack 3" ID="{753F08FC-807C-48FE-8B51-8867471F9DAE}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
 											<ObjectLists>
 												<ObjectList Name="Playlist">
 													<Reference>
-														<ObjectRef Name="SWORD_05" ID="{F45CBC0C-9F2A-4EE9-9C6C-11709336B360}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+														<ObjectRef Name="KATANAATACKSFX - Input katana 1 y 2 v1" ID="{82F1EDC2-FB33-4D30-9635-45BF5ABB4751}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 													</Reference>
 													<Reference>
-														<ObjectRef Name="SWORD_01" ID="{17A1009D-B24F-4293-81EC-41E7A4006992}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+														<ObjectRef Name="KATANAATACKSFX -Input katana 1 y 2 v2" ID="{93D1B162-D828-4095-88B8-573855159CDA}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 													</Reference>
 													<Reference>
-														<ObjectRef Name="SWORD_02" ID="{1ABEA24D-4E2D-48FD-A368-7744F5E9694D}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+														<ObjectRef Name="KATANAATACKSFX -Input katana 1 y 2 v3" ID="{F8CBF4F5-1FE6-4527-AEAC-2EFE9FB468F2}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+													</Reference>
+													<Reference>
+														<ObjectRef Name="KATANAATTACK3 - input katana attack 3" ID="{F3045680-F9EC-452D-8326-033F49E66771}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 													</Reference>
 												</ObjectList>
 											</ObjectLists>
@@ -1452,6 +1210,28 @@
 								</BlendContainer>
 							</ChildrenList>
 						</Folder>
+						<Sound Name="Special Attack" ID="{1B639A18-AD87-49A9-B793-617163AA48B2}" ShortID="178770852">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Special Attack" ID="{785A8B9F-9A73-458E-BB47-BDEF198D9E60}">
+									<Language>SFX</Language>
+									<AudioFile>Special Attack.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="637437544"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Special Attack" ID="{785A8B9F-9A73-458E-BB47-BDEF198D9E60}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Enviroment" ID="{32273F58-CD41-4FD6-BEC1-11F389AF9225}" ShortID="288433378">
