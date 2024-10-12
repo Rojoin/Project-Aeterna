@@ -15,6 +15,9 @@ public class PickUpManager : MonoBehaviour
     [Header("Restart time speed")] [SerializeField]
     private float restartTimeSpeed = 0.4f;
 
+    [Header("NextCardIndicator")]
+    [SerializeField] private NextCardIndicator nextCardIndicator;
+
     private GameObject prefab;
     private PickUpCollider pickUpCollider;
     private bool stopTime;
@@ -56,6 +59,7 @@ public class PickUpManager : MonoBehaviour
     public void PlayerInteractPickUp()
     {
         Debug.Log("Evento LLamado");
+        nextCardIndicator.RestartIndicatorCard();
         selectCardMenu.ShowSelectCardMenu(true);
     }
 }

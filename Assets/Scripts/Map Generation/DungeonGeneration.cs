@@ -29,6 +29,9 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private PickUpManager pickUpManager;
     [SerializeField] private GameObject transitionGO;
 
+    [Header("NextCardIndicator")]
+    [SerializeField] private NextCardIndicator nextCardIndicator;
+
     private int nCurrentRooms;
     private int roomsCounter = 0;
     private DungeonRoom actualPlayerRoom;
@@ -157,14 +160,14 @@ public class DungeonGeneration : MonoBehaviour
     {
         actualPlayerRoom.roomBehaviour.SetRoomDoorState(true);
 
-        if (roomsCounter >= 1)
+        roomsCounter++;
+
+        nextCardIndicator.CheckNextCard(roomsCounter);
+
+        if (roomsCounter >= 3)
         {
             StartCoroutine(pickUpManager.SpawnPickUp(1));
             roomsCounter = 0;
-        }
-        else
-        {
-            roomsCounter++;
         }
     }
 
