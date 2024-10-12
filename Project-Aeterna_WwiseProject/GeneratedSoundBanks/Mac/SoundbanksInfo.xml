@@ -106,7 +106,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{C38AF430-2079-FDE3-0780-DF4B0A973596}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{0779495C-D8A2-DF17-A673-7647C40F9F17}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -121,6 +121,10 @@
 				<File Id="71045666" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Voice_Female_V2_Hit_Short_Mono_01.wav</ShortName>
 					<CachePath>SFX/Voice_Female_V2_Hit_Short_Mono_01_818F3B66.wem</CachePath>
+				</File>
+				<File Id="71909554" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SWORD_05.wav</ShortName>
+					<CachePath>SFX/SWORD_05_818F3B66.wem</CachePath>
 				</File>
 				<File Id="74241320" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Voice_Female_V2_Hit_Short_Mono_06.wav</ShortName>
@@ -141,10 +145,6 @@
 				<File Id="142539276" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>YUKINKO atack v2 SFX.wav</ShortName>
 					<CachePath>SFX/YUKINKO atack v2 SFX_818F3B66.wem</CachePath>
-				</File>
-				<File Id="184837227" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>KATANAATACKSFX -Input katana 1 y 2 v3.wav</ShortName>
-					<CachePath>SFX/KATANAATACKSFX -Input katana 1 y 2 v3_818F3B66.wem</CachePath>
 				</File>
 				<File Id="266888604" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DASH FX-inputdash - v1.wav</ShortName>
@@ -182,17 +182,9 @@
 					<ShortName>Snow1 4-Audio.wav</ShortName>
 					<CachePath>SFX/Snow1 4-Audio_818F3B66.wem</CachePath>
 				</File>
-				<File Id="452078375" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>KATANAATTACK3 - input katana attack 3.wav</ShortName>
-					<CachePath>SFX/KATANAATTACK3 - input katana attack 3_818F3B66.wem</CachePath>
-				</File>
 				<File Id="456292156" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DASH FX-inputdash - v3.wav</ShortName>
 					<CachePath>SFX/DASH FX-inputdash - v3_818F3B66.wem</CachePath>
-				</File>
-				<File Id="460512552" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>KATANAATACKSFX -Input katana 1 y 2 v2.wav</ShortName>
-					<CachePath>SFX/KATANAATACKSFX -Input katana 1 y 2 v2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="472879366" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enojado_muierte 2.wav</ShortName>
@@ -245,10 +237,6 @@
 				<File Id="803712041" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>YUKINKO atack v3 SFX.wav</ShortName>
 					<CachePath>SFX/YUKINKO atack v3 SFX_818F3B66.wem</CachePath>
-				</File>
-				<File Id="839958727" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>KATANAATACKSFX - Input katana 1 y 2 v1.wav</ShortName>
-					<CachePath>SFX/KATANAATACKSFX - Input katana 1 y 2 v1_818F3B66.wem</CachePath>
 				</File>
 				<File Id="858051376" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enojado_muierte 4.wav</ShortName>
@@ -321,15 +309,12 @@
 						<MediaRef Id="972032177"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="4161660071" Name="Player_Attack_Sword" DurationType="OneShot" DurationMin="1.1003401" DurationMax="1.8439002">
+				<Event Id="4161660071" Name="Player_Attack_Sword" DurationType="OneShot" DurationMin="1.2200419" DurationMax="1.4342177">
 					<MediaRefs>
 						<MediaRef Id="40101356"/>
-						<MediaRef Id="184837227"/>
-						<MediaRef Id="452078375"/>
-						<MediaRef Id="460512552"/>
+						<MediaRef Id="71909554"/>
 						<MediaRef Id="731725842"/>
 						<MediaRef Id="802887724"/>
-						<MediaRef Id="839958727"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2394582229" Name="Player_Dash" DurationType="OneShot" DurationMin="0.8482313" DurationMax="0.9863946">
@@ -402,5 +387,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{19F3912F-9002-D98C-98A3-8E6CB8A13320}</FileHash>
+	<FileHash>{8A6908D7-5A79-72E4-65B2-5AFBBC141138}</FileHash>
 </SoundBanksInfo>

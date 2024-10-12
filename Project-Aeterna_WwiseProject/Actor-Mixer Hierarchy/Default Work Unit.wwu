@@ -1100,7 +1100,14 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<Sound Name="KATANAATACKSFX - Input katana 1 y 2 v1" ID="{82F1EDC2-FB33-4D30-9635-45BF5ABB4751}" ShortID="678466304">
+												<Sound Name="SWORD_03" ID="{ACB8ED9F-01F3-4EDA-A3A0-FA98976F468D}" ShortID="1071880288">
+													<PropertyList>
+														<Property Name="Pitch" Type="int32">
+															<ValueList>
+																<Value>280</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -1110,19 +1117,19 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="KATANAATACKSFX - Input katana 1 y 2 v1" ID="{1A518022-A7A1-4998-ABCB-E5D4022CACB6}">
+														<AudioFileSource Name="SWORD_05" ID="{B6D24CCB-1D58-4D86-8828-17CFE927B4DD}">
 															<Language>SFX</Language>
-															<AudioFile>KATANAATACKSFX - Input katana 1 y 2 v1.wav</AudioFile>
+															<AudioFile>SWORD_05.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="839958727"/>
+																<MediaID ID="71909554"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="KATANAATACKSFX - Input katana 1 y 2 v1" ID="{1A518022-A7A1-4998-ABCB-E5D4022CACB6}" Platform="Linked"/>
+														<ActiveSource Name="SWORD_05" ID="{B6D24CCB-1D58-4D86-8828-17CFE927B4DD}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="KATANAATACKSFX -Input katana 1 y 2 v2" ID="{93D1B162-D828-4095-88B8-573855159CDA}" ShortID="446424992">
+												<Sound Name="SWORD_01" ID="{5F6B8BE5-2758-4D3B-ADF4-FCCEA59D97EE}" ShortID="26195691">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -1132,19 +1139,26 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="KATANAATACKSFX -Input katana 1 y 2 v2" ID="{F0A88BED-5A5F-4600-943D-0D25454A864C}">
+														<AudioFileSource Name="SWORD_05" ID="{777807D4-6767-4A47-9C6D-ACE465DBB84B}">
 															<Language>SFX</Language>
-															<AudioFile>KATANAATACKSFX -Input katana 1 y 2 v2.wav</AudioFile>
+															<AudioFile>SWORD_05.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="460512552"/>
+																<MediaID ID="71909554"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="KATANAATACKSFX -Input katana 1 y 2 v2" ID="{F0A88BED-5A5F-4600-943D-0D25454A864C}" Platform="Linked"/>
+														<ActiveSource Name="SWORD_05" ID="{777807D4-6767-4A47-9C6D-ACE465DBB84B}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="KATANAATACKSFX -Input katana 1 y 2 v3" ID="{F8CBF4F5-1FE6-4527-AEAC-2EFE9FB468F2}" ShortID="548043578">
+												<Sound Name="SWORD_02" ID="{EA80502A-5081-4B8E-8471-9DE8B4EE1AA4}" ShortID="208959872">
+													<PropertyList>
+														<Property Name="Pitch" Type="int32">
+															<ValueList>
+																<Value>120</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
@@ -1154,54 +1168,29 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="KATANAATACKSFX -Input katana 1 y 2 v3" ID="{2A2D5BE7-ED57-450D-802A-A868AAA15747}">
+														<AudioFileSource Name="SWORD_05" ID="{BF06AD41-CB99-40AF-A935-550710789E1E}">
 															<Language>SFX</Language>
-															<AudioFile>KATANAATACKSFX -Input katana 1 y 2 v3.wav</AudioFile>
+															<AudioFile>SWORD_05.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="184837227"/>
+																<MediaID ID="71909554"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="KATANAATACKSFX -Input katana 1 y 2 v3" ID="{2A2D5BE7-ED57-450D-802A-A868AAA15747}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="KATANAATTACK3 - input katana attack 3" ID="{F3045680-F9EC-452D-8326-033F49E66771}" ShortID="136625323">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="KATANAATTACK3 - input katana attack 3" ID="{753F08FC-807C-48FE-8B51-8867471F9DAE}">
-															<Language>SFX</Language>
-															<AudioFile>KATANAATTACK3 - input katana attack 3.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="452078375"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="KATANAATTACK3 - input katana attack 3" ID="{753F08FC-807C-48FE-8B51-8867471F9DAE}" Platform="Linked"/>
+														<ActiveSource Name="SWORD_05" ID="{BF06AD41-CB99-40AF-A935-550710789E1E}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
 											<ObjectLists>
 												<ObjectList Name="Playlist">
 													<Reference>
-														<ObjectRef Name="KATANAATACKSFX - Input katana 1 y 2 v1" ID="{82F1EDC2-FB33-4D30-9635-45BF5ABB4751}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+														<ObjectRef Name="SWORD_01" ID="{5F6B8BE5-2758-4D3B-ADF4-FCCEA59D97EE}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 													</Reference>
 													<Reference>
-														<ObjectRef Name="KATANAATACKSFX -Input katana 1 y 2 v2" ID="{93D1B162-D828-4095-88B8-573855159CDA}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+														<ObjectRef Name="SWORD_02" ID="{EA80502A-5081-4B8E-8471-9DE8B4EE1AA4}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 													</Reference>
 													<Reference>
-														<ObjectRef Name="KATANAATACKSFX -Input katana 1 y 2 v3" ID="{F8CBF4F5-1FE6-4527-AEAC-2EFE9FB468F2}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
-													</Reference>
-													<Reference>
-														<ObjectRef Name="KATANAATTACK3 - input katana attack 3" ID="{F3045680-F9EC-452D-8326-033F49E66771}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+														<ObjectRef Name="SWORD_03" ID="{ACB8ED9F-01F3-4EDA-A3A0-FA98976F468D}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 													</Reference>
 												</ObjectList>
 											</ObjectLists>
