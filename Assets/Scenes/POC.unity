@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029646697, g: 0.07528485, b: 0.09377709, a: 1}
+  m_IndirectSpecularColor: {r: 0.0296496, g: 0.075280175, b: 0.09377345, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -789,17 +789,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &1025194290 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7157839541361306205, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9db088da38bf144bad33b276d3682e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1090447491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,8 +1270,8 @@ MonoBehaviour:
   camera: {fileID: 1681417377}
   pickUpManager: {fileID: 1552293561}
   transitionGO: {fileID: 637629739}
-  seed: 12345
-  dungeonRooms: []
+  seed: -1
+  nextCardIndicator: {fileID: 1976629273}
 --- !u!1 &1844124701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,15 +1345,15 @@ Transform:
   - {fileID: 536771343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 27.9, y: -45, z: 0}
---- !u!114 &2006175507 stripped
+--- !u!114 &1976629273 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8625833880106218710, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+  m_CorrespondingSourceObject: {fileID: 483489788482644469, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
   m_PrefabInstance: {fileID: 5693371484574524226}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: c4275fa6e78792e45930f9535c8da754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2050413946
@@ -1706,7 +1695,7 @@ PrefabInstance:
     - target: {fileID: 3502469410240450855, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 1025194290}
+      objectReference: {fileID: 0}
     - target: {fileID: 3502469410240450855, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: selectCardMenu
       value: 
@@ -1746,7 +1735,7 @@ PrefabInstance:
     - target: {fileID: 3972282457891632485, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: OnSpecialAttackTimerUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2006175507}
+      objectReference: {fileID: 0}
     - target: {fileID: 3972282457891632485, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: OnSpecialAttackTimerUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2440,6 +2429,10 @@ PrefabInstance:
       propertyPath: selectCardMenu
       value: 
       objectReference: {fileID: 2077532266}
+    - target: {fileID: 612350480232095631, guid: 500fd815b57f1ec4f9a61498abf488c7, type: 3}
+      propertyPath: nextCardIndicator
+      value: 
+      objectReference: {fileID: 1976629273}
     - target: {fileID: 2596648921131716709, guid: 500fd815b57f1ec4f9a61498abf488c7, type: 3}
       propertyPath: player
       value: 
