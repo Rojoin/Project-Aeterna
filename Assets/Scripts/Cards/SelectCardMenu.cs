@@ -36,6 +36,10 @@ public class SelectCardMenu : MonoBehaviour
     [Header("CardsGO")]
     [SerializeField] private List<GameObject> cardsGO;
 
+    [Header("Hud")]
+    [SerializeField] private GameObject hud;
+    [SerializeField] private GameObject objective;
+
     public List<CardSO> cardsToShow;
 
     [Header("Setup: Cards")]
@@ -89,6 +93,9 @@ public class SelectCardMenu : MonoBehaviour
     }
     public void ShowSelectCardMenu(bool value)
     {
+        hud.SetActive(!value);
+        objective.SetActive(!value);
+
         showCardMenu = value;
         SelectCardUI.SetActive(value);
         TogglePause.RaiseEvent(value);
