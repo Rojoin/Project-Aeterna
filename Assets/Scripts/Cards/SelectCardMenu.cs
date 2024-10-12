@@ -41,8 +41,6 @@ public class SelectCardMenu : MonoBehaviour
     [Header("Setup: Cards")]
     public int maxCardsToSelect = 3;
 
-    public TextMeshProUGUI description;
-
     void Start()
     {
         ShowSelectCardMenu(false);
@@ -72,6 +70,7 @@ public class SelectCardMenu : MonoBehaviour
             {
                 if (cardsMovements[i].IsSelected())
                 {
+                    cardsDisplay[i].ShowCardTittle(cardsToShow[i]);
                     cardsDisplay[i].ShowCardDescription(cardsToShow[i]);
                 }
             }

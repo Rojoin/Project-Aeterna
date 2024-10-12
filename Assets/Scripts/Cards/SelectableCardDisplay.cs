@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class SelectableCardDisplay : MonoBehaviour
 {
     public TextMeshProUGUI description;
+    public TextMeshProUGUI tittle;
 
     public Image artMidground_0;
     public Image artMidground_1;
@@ -38,5 +39,10 @@ public class SelectableCardDisplay : MonoBehaviour
     public void ShowCardDescription(CardSO card)
     {
         description.text = card.description;
+    }
+
+    public void ShowCardTittle(CardSO card) 
+    {
+        tittle.text = card.tittle;
     }
 }

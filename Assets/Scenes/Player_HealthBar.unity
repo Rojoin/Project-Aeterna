@@ -1270,7 +1270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelRoom: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
-  enemyLevelSo: {fileID: 11400000, guid: b2cc560a17477a646b4704f442973a63, type: 2}
   OnEnd: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   gapBetweenRooms: {x: 40, y: 40}
   PlayerPrefab: {fileID: 1166619365}
@@ -1278,6 +1277,7 @@ MonoBehaviour:
   camera: {fileID: 1681417377}
   pickUpManager: {fileID: 1552293561}
   transitionGO: {fileID: 637629739}
+  seed: -1
   nextCardIndicator: {fileID: 706771933}
 --- !u!1 &1844124701
 GameObject:
@@ -1720,6 +1720,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5579994857006716957, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381634620664140129, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
