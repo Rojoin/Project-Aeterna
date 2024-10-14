@@ -11,9 +11,8 @@ public class DungeonGeneration : MonoBehaviour
     [Header("Scriptable Objects")] [SerializeField]
     private LevelRoomsSO levelRoom;
 
-    [SerializeField] private EnemyLevelSO enemyLevelSo;
-
     [Header("Channels")] [SerializeField] private VoidChannelSO OnEnd;
+    // [SerializeField] private EnemyLevelSO enemyLevelSo;
 
     [Header("Grid Settings")] [SerializeField]
     private Vector2 gapBetweenRooms;
@@ -29,6 +28,13 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private PickUpManager pickUpManager;
     [SerializeField] private GameObject transitionGO;
 
+    [Header("Seed Settings")] [SerializeField]
+    private int seed = -1;
+
+    private System.Random randomGenerator;
+    [Header("NextCardIndicator")]
+    [SerializeField] private NextCardIndicator nextCardIndicator;
+
     private int nCurrentRooms;
     private int roomsCounter = 0;
     private DungeonRoom actualPlayerRoom;
@@ -43,6 +49,14 @@ public class DungeonGeneration : MonoBehaviour
 
     private void Start()
     {
+        if (seed == -1)
+        {
+            seed = Random.Range(int.MinValue, int.MaxValue);
+        }
+
+        randomGenerator = new System.Random(seed);
+        Debug.Log($"Dungeon generated with seed: {seed}");
+
         GenerateDungeon();
     }
 
@@ -157,14 +171,14 @@ public class DungeonGeneration : MonoBehaviour
     {
         actualPlayerRoom.roomBehaviour.SetRoomDoorState(true);
 
-        if (roomsCounter >= 1)
+        roomsCounter++;
+
+        nextCardIndicator.CheckNextCard(roomsCounter);
+
+        if (roomsCounter >= 3)
         {
             StartCoroutine(pickUpManager.SpawnPickUp(1));
             roomsCounter = 0;
-        }
-        else
-        {
-            roomsCounter++;
         }
     }
 
@@ -293,6 +307,7 @@ public class DungeonGeneration : MonoBehaviour
             if (dungeonRooms[i].NeighboursCount == 1)
             {
                 dungeonRooms[i].roomBehaviour.roomType = bossGenerated ? RoomTypes.ENEMIES : RoomTypes.BOSS;
+                dungeonRooms[i].enemyManager.FinalRoom = true;
                 bossGenerated = true;
             }
             else
@@ -322,20 +337,19 @@ public class DungeonGeneration : MonoBehaviour
             
             room.proceduralRoomGeneration.CreateRoomProps(currentRoom);
 
-            SetEnemyManager(room, roomInstance);
+            SetEnemyManager(room, roomInstance,currentRoom);
 
             room.roomBehaviour.StartRoom();
             roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
             room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
-            // room.roomBehaviour.navMeshSurface.BuildNavMesh();
         }
     }
 
-    private void SetEnemyManager(DungeonRoom room, GameObject roomInstance)
+    private void SetEnemyManager(DungeonRoom room, GameObject roomInstance, LevelRoomPropsSo levelRoomProps)
     {
         room.enemyManager = roomInstance.GetComponent<EnemyManager>();
-        room.enemyManager.SetEnemyRoomStats(enemyLevelSo);
+         room.enemyManager.SetEnemyRoomStats(levelRoomProps);
         room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
         room.roomBehaviour.SetRoomDoorState(false);
     }

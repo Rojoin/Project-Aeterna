@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] private PlayerEntitySO player;
     [SerializeField] private Animator animator;
     [SerializeField] private VoidChannelSO MoveCamera;
-    [SerializeField] private CustomSlider healthBar;
+    [SerializeField] private PlayerHealthBar healthBar;
     [SerializeField] private SelectCardMenu selectCardMenu;
 
     private float currentHealth;

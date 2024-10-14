@@ -26,7 +26,7 @@ namespace Enemy
         protected static readonly int Dead = Animator.StringToHash("isDead");
         protected static readonly int Damage = Animator.StringToHash("Damage");
         [SerializeField] float timeAfterDeactivate = 0.50f;
-
+        [SerializeField] protected float disappearSpeed = 5.0f;
         private void OnEnable()
         {
             Init();

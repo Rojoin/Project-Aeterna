@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{90CDE6AD-9B7D-47ED-B361-5C16EEFF0917}" SchemaVersion="119">
 	<GameParameters>
-		<WorkUnit Name="Default Work Unit" ID="{90CDE6AD-9B7D-47ED-B361-5C16EEFF0917}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{90CDE6AD-9B7D-47ED-B361-5C16EEFF0917}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="PlayBackSpeed" ID="{4C61F004-D7A6-41C5-9F42-45A48133EFC9}">
+					<PropertyList>
+						<Property Name="FilterTimeDown" Type="Real64" Value="4"/>
+						<Property Name="FilterTimeUp" Type="Real64" Value="6"/>
+						<Property Name="InitialValue" Type="Real64" Value="100"/>
+						<Property Name="RTPCRamping" Type="int16" Value="2"/>
+					</PropertyList>
+				</GameParameter>
+			</ChildrenList>
+		</WorkUnit>
 	</GameParameters>
 </WwiseDocument>

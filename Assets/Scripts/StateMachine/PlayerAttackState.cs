@@ -34,6 +34,7 @@ namespace StateMachine
         // private float timeUntilStart;
         private float timeAfterComboEnds;
         private float attackTimer = 0.0f;
+        private bool isInputBuffered = false;
 
         private List<IHealthSystem> currentlyHitted = new List<IHealthSystem>();
 
@@ -53,15 +54,27 @@ namespace StateMachine
         public override void OnEnter()
         {
             base.OnEnter();
-            currentlyHitted.Clear();
-            //lastComboEnd = timeBetweenComboEnd;
             AttackChannel.Subscribe(Attack);
             _attackCollider.OnTriggerEnterObject.AddListener(OnAttackEnter);
             _attackCollider.OnTriggerExitObject.AddListener(OnAttackExit);
+         
+            StartAttack();
+        }
+
+        private void StartAttack()
+        {  
+            currentlyHitted.Clear();
+            isInputBuffered = false;
             Attack();
             if (inputDirection != Vector2.zero)
             {
                 currentInputDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
+                Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+                rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+                if (gameSettings.isUsingController)
+                {
+                    Rotate(rotatedMoveDir);
+                }
             }
             else
             {
@@ -83,11 +96,15 @@ namespace StateMachine
 
         private void Attack()
         {
-            if (isAttacking) return;
+            if (isAttacking)
+            {
+                isInputBuffered = true;
+                Debug.Log("Input has been Buffered");
+                return;
+            }
 
             float realtimeSinceStartup = Time.realtimeSinceStartup - lastComboEnd;
             if (realtimeSinceStartup * player.attackSpeed < timeBetweenCombo)
-
             {
                 OnAttackEnd?.Invoke();
                 return;
@@ -111,7 +128,7 @@ namespace StateMachine
 
             Debug.Log($"Attack:{comboCounter}");
 
-            ActivateCollider(comboList[comboCounter]);
+            SetAttackParametters(comboList[comboCounter]);
             _playerAnimatorController.speed = player.attackSpeed;
             _playerAnimatorController.CrossFade(comboList[comboCounter].animationName, comboCounter > 0 ? 0.25f : 0,
                 0, 0);
@@ -121,12 +138,10 @@ namespace StateMachine
             Debug.Log($"Current clicked time is {lastClickedTime}");
         }
 
-        public void ActivateCollider(AttackSO attacksParams)
+        public void SetAttackParametters(AttackSO attacksParams)
         {
-            StopAttack();
-            _attackCollider.SetColliderParams(attacksParams.colliderCenter, attacksParams.colliderSize);
-
-            timeUntilAttackEnds = comboList[comboCounter].timeUntilComboEnds;
+            ResetAttackParameters();
+            timeUntilAttackEnds = attacksParams.timeUntilComboEnds;
             isAttacking = true;
         }
 
@@ -150,11 +165,12 @@ namespace StateMachine
 
             else if (gameSettings.isUsingController)
             {
-                if (GetRotatedMoveDir().magnitude > 0.1f)
+                float minDirMagnitude = 0.1f;
+                if (GetRotatedMoveDir().magnitude > minDirMagnitude)
                 {
                     Rotate(GetRotatedMoveDir());
                 }
-                else if (GetRotatedMoveDir().magnitude <= 0.1f)
+                else if (GetRotatedMoveDir().magnitude < minDirMagnitude)
                 {
                     Collider[] possibleTargets =
                         Physics.OverlapSphere(owner.transform.position, attackRadius, LayerMask.GetMask($"Target"));
@@ -189,35 +205,44 @@ namespace StateMachine
 
         protected override void Move(float deltaTime)
         {
-            // if (inputDirection != Vector2.zero)
-            // {
-            //     Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
-            //     float time = Time.deltaTime;
-            //     rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
-            //     _characterController.Move(rotatedMoveDir * (time * player.movementSpeedDuringAttack));
-            //     onMove.Invoke();
-            // }
-            // else
-            // {
-            //     rotatedMoveDir = Vector2.zero;
-            // }
+            if (inputDirection != Vector2.zero)
+            {
+                Vector3 moveDir = new Vector3(inputDirection.x, 0, inputDirection.y);
+                rotatedMoveDir = Quaternion.AngleAxis(angle, Vector3.up) * moveDir;
+            }
+            else
+            {
+                rotatedMoveDir = Vector2.zero;
+            }
         }
 
         void EndAttackState()
         {
-            StopAttack();
+            ResetAttackParameters();
             lastComboEnd = Time.realtimeSinceStartup;
 
             if (comboCounter >= comboList.Count - 1)
             {
                 timeBetweenCombo = comboList[comboCounter].timeUntilComboEnds;
+                OnAttackEnd?.Invoke();
+            }
+            else if (isInputBuffered)
+            {
+                isInputBuffered = false;
+                isAttacking = false;
+                attackTimer = 0.0f;
+                StartAttack();
+            }
+            else
+            {
+                OnAttackEnd?.Invoke();
             }
 
             // _playerAnimatorController.CrossFade("NormalStatus", 0.25f, 0, 0);
-            OnAttackEnd?.Invoke();
+        
         }
 
-        public void StopAttack()
+        public void ResetAttackParameters()
         {
             isAttacking = false;
             attackTimer = 0.0f;

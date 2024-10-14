@@ -170,10 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &933343
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,10 +292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &11340452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -520,15 +520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &25083840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,10 +532,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 2146533829}
-  doorsDown: {fileID: 1879702044}
-  doorsRight: {fileID: 1227648460}
-  doorsLeft: {fileID: 754244303}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &30171658
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,10 +587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &30171661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -767,10 +762,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &41596763
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -889,10 +884,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &49683265
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1051,10 +1046,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &70553190
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1173,10 +1168,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &72453456
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1295,10 +1290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &73775982
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1523,10 +1518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &82269932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1804,10 +1799,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &96742558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1926,10 +1921,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &98619371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2048,15 +2043,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &113266940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2069,10 +2055,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 830165201}
-  doorsDown: {fileID: 1842161353}
-  doorsRight: {fileID: 1309957097}
-  doorsLeft: {fileID: 262099209}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &119479063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,15 +2110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &119479066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2141,10 +2122,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1543717490}
-  doorsDown: {fileID: 1628301049}
-  doorsRight: {fileID: 1980890889}
-  doorsLeft: {fileID: 955786084}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &120300655
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,10 +2283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &126615031
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2950,10 +2935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &144482459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3178,10 +3163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &146894767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3300,10 +3285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &158207033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3375,6 +3360,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158207030}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &166652893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166652895}
+  - component: {fileID: 166652894}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &166652894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166652893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc21a1ad2f6e454288a3bc88f8cb093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: dcab0de12845cd14cb968d1ae432d06f, type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!4 &166652895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166652893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172004846
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,10 +3464,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &172004849
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3862,10 +3904,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &199813605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3984,15 +4026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &208255702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4005,10 +4038,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 409377205}
-  doorsDown: {fileID: 324553619}
-  doorsRight: {fileID: 410066797}
-  doorsLeft: {fileID: 1818239659}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1001 &210268629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9679,10 +9716,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &219739119
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9913,17 +9950,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 40.9, y: 4.2, z: 28.6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &245798314 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3596068250002058779, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e543c1975234df458d785604b2b7e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &253667650
 GameObject:
   m_ObjectHideFlags: 0
@@ -10130,10 +10156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &262099212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10500,10 +10526,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &297109783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10710,10 +10736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &324553622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10991,10 +11017,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &338996623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11113,10 +11139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &340034510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11341,10 +11367,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &351885317
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11707,10 +11733,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &406724864
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11829,10 +11855,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &409377208
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11951,10 +11977,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &410066800
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12232,15 +12258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &466319450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12253,10 +12270,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1409737318}
-  doorsDown: {fileID: 1715934214}
-  doorsRight: {fileID: 2026608541}
-  doorsLeft: {fileID: 1142665244}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &495120362
 GameObject:
   m_ObjectHideFlags: 0
@@ -13046,10 +13067,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &538274609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13274,10 +13295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &560550152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13396,15 +13417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &560597678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13417,10 +13429,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1490293628}
-  doorsDown: {fileID: 1805545715}
-  doorsRight: {fileID: 840144585}
-  doorsLeft: {fileID: 719386718}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &575120766
 GameObject:
   m_ObjectHideFlags: 0
@@ -13905,10 +13921,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &596287161
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14425,15 +14441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &627019375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14446,10 +14453,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 41596760}
-  doorsDown: {fileID: 1346478547}
-  doorsRight: {fileID: 2016498564}
-  doorsLeft: {fileID: 1246761149}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &629329771
 GameObject:
   m_ObjectHideFlags: 0
@@ -14590,15 +14601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &651664266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14611,10 +14613,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1243652295}
-  doorsDown: {fileID: 1887750561}
-  doorsRight: {fileID: 338996620}
-  doorsLeft: {fileID: 810354239}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &652975336
 GameObject:
   m_ObjectHideFlags: 0
@@ -15126,10 +15132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &715360810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15248,10 +15254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &717135975
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15423,10 +15429,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &719386721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15545,10 +15551,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &720107088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15981,10 +15987,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &741443261
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16209,10 +16215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &744877460
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16331,10 +16337,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &754244306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16453,10 +16459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &760077562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16575,10 +16581,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &779707088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16697,10 +16703,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &790128685
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16819,15 +16825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &807137038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16840,10 +16837,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1893460654}
-  doorsDown: {fileID: 1639324888}
-  doorsRight: {fileID: 1636150329}
-  doorsLeft: {fileID: 72453453}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &807955038
 GameObject:
   m_ObjectHideFlags: 0
@@ -17103,10 +17104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &810354242
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17225,10 +17226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &814464273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17347,10 +17348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &816577074
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17469,10 +17470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &825210765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17591,10 +17592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &830165204
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17713,10 +17714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &832566453
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17835,10 +17836,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &837434935
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17957,10 +17958,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &840144588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18079,10 +18080,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &842575727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24085,15 +24086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &907703055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24106,10 +24098,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1477512579}
-  doorsDown: {fileID: 98619368}
-  doorsRight: {fileID: 70553187}
-  doorsLeft: {fileID: 340034507}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &909095310
 GameObject:
   m_ObjectHideFlags: 0
@@ -24262,10 +24258,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 73775979}
-  doorsDown: {fileID: 779707085}
-  doorsRight: {fileID: 126615028}
-  doorsLeft: {fileID: 158207030}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &924088768
 GameObject:
   m_ObjectHideFlags: 0
@@ -24366,10 +24366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &927218666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24806,10 +24806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &955786087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25604,10 +25604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1002710591
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26256,15 +26256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1034089094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26277,10 +26268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1557199634}
-  doorsDown: {fileID: 1082082765}
-  doorsRight: {fileID: 1519964581}
-  doorsLeft: {fileID: 720107085}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1036668872
 GameObject:
   m_ObjectHideFlags: 0
@@ -26593,15 +26588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1068522411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26614,10 +26600,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 538274606}
-  doorsDown: {fileID: 760077559}
-  doorsRight: {fileID: 1662807979}
-  doorsLeft: {fileID: 1360088695}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1072126285
 GameObject:
   m_ObjectHideFlags: 0
@@ -26665,10 +26655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1072126288
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26827,10 +26817,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1082082768
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27345,10 +27335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1105563629
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27838,10 +27828,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1142665247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28536,10 +28526,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1223599826}
-  doorsDown: {fileID: 560550149}
-  doorsRight: {fileID: 825210762}
-  doorsLeft: {fileID: 11340449}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1217103046
 GameObject:
   m_ObjectHideFlags: 0
@@ -28799,10 +28793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1223599829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28921,15 +28915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1226124843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28942,10 +28927,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1348868496}
-  doorsDown: {fileID: 1592192181}
-  doorsRight: {fileID: 144482456}
-  doorsLeft: {fileID: 837434932}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1227648460
 GameObject:
   m_ObjectHideFlags: 0
@@ -28993,10 +28982,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1227648463
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29115,10 +29104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1228461128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29248,10 +29237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1236145878
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29370,10 +29359,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1240920224
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29492,10 +29481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1243652298
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29614,10 +29603,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1244103992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29736,10 +29725,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1245493090
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29858,10 +29847,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1246761152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30245,15 +30234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1270644517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30266,10 +30246,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 146894764}
-  doorsDown: {fileID: 1818380344}
-  doorsRight: {fileID: 1729175537}
-  doorsLeft: {fileID: 1526722974}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1277619916
 GameObject:
   m_ObjectHideFlags: 0
@@ -30488,10 +30472,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1286945847
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30809,10 +30793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1309957100
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30884,17 +30868,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309957097}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1312863825 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1319664054442216602, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1324137576
 GameObject:
   m_ObjectHideFlags: 0
@@ -31260,10 +31233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1346478550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31382,15 +31355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1347259310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31403,10 +31367,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 406724861}
-  doorsDown: {fileID: 1240920221}
-  doorsRight: {fileID: 814464270}
-  doorsLeft: {fileID: 351885314}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1348868496
 GameObject:
   m_ObjectHideFlags: 0
@@ -31454,10 +31422,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1348868499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31576,10 +31544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1360088698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31804,10 +31772,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1370430553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32349,10 +32317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1390722403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32471,10 +32439,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1409737321
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33017,10 +32985,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1424129940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33762,10 +33730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1477512582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33990,10 +33958,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1490293631
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34576,10 +34544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1519964584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34804,10 +34772,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1526722977
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35072,10 +35040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1543717493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35535,6 +35503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1166619366}
+  _inputController: {fileID: 0}
   TogglePause: {fileID: 11400000, guid: 1b2954b00e4549e4a8245a0eafdebf2e, type: 2}
   playerHud: {fileID: 1231999819}
   firsButtonSelected: {fileID: 0}
@@ -35600,10 +35569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1557199637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35781,30 +35750,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557295547}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1557904433 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8587051116987540109, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1557904437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557904433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ec66458ad00e24184a4ac937e62b1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnControllersChange: {fileID: 11400000, guid: 31cb41d326db3c84586e863551aec40b, type: 2}
-  textContainer: {fileID: 1312863825}
-  controllerText: 'Move: LeftStick ENTEROpen Store: WestButtonENTERPlayerInventory:
-    Select ENTERReset: EastButton  ENTERAttack: RightTrigger  ENTERMove Camera: NorthButton 
-    ENTERExit: Start'
-  keyboardText: 'Move: WASDENTEROpen Store: E ENTER PlayerInventory: Tab ENTER Reset:
-    Q ENTER Attack: Left Click ENTER Move Camera: R ENTER Exit: ESC'
 --- !u!1 &1558183602
 GameObject:
   m_ObjectHideFlags: 0
@@ -35852,15 +35797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1558183605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35873,10 +35809,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1390722400}
-  doorsDown: {fileID: 1244103989}
-  doorsRight: {fileID: 1002710588}
-  doorsLeft: {fileID: 715360807}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1561284859
 GameObject:
   m_ObjectHideFlags: 0
@@ -35923,10 +35863,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1236145875}
-  doorsDown: {fileID: 219739116}
-  doorsRight: {fileID: 741443258}
-  doorsLeft: {fileID: 82269929}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1564999397
 GameObject:
   m_ObjectHideFlags: 0
@@ -35974,15 +35918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1564999400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35995,10 +35930,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 2038408159}
-  doorsDown: {fileID: 816577071}
-  doorsRight: {fileID: 1638141217}
-  doorsLeft: {fileID: 1105563626}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1567127916
 GameObject:
   m_ObjectHideFlags: 0
@@ -36443,10 +36382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1582213519
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36565,10 +36504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1592192184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36793,15 +36732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1609557542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36814,10 +36744,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 832566450}
-  doorsDown: {fileID: 1370430550}
-  doorsRight: {fileID: 933340}
-  doorsLeft: {fileID: 1923503838}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1616348116
 GameObject:
   m_ObjectHideFlags: 0
@@ -37077,10 +37011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1628148577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37199,10 +37133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1628301052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37427,10 +37361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1636150332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37549,10 +37483,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1638141220
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37671,10 +37605,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1639324891
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37833,10 +37767,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1644536421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37955,10 +37889,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1662807982
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38130,10 +38064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1668822719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38497,15 +38431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1684427938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38518,10 +38443,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 596287158}
-  doorsDown: {fileID: 927218663}
-  doorsRight: {fileID: 1628148574}
-  doorsLeft: {fileID: 199813602}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1685001895
 GameObject:
   m_ObjectHideFlags: 0
@@ -38569,10 +38498,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1685001898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38903,15 +38832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1713937118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38924,10 +38844,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1685001895}
-  doorsDown: {fileID: 49683262}
-  doorsRight: {fileID: 790128682}
-  doorsLeft: {fileID: 1424129937}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1715934214
 GameObject:
   m_ObjectHideFlags: 0
@@ -38975,10 +38899,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1715934217
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39097,15 +39021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1715952860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39118,10 +39033,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1072126285}
-  doorsDown: {fileID: 172004846}
-  doorsRight: {fileID: 1286945844}
-  doorsLeft: {fileID: 717135972}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1729175537
 GameObject:
   m_ObjectHideFlags: 0
@@ -39169,10 +39088,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1729175540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40352,10 +40271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1805545718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40500,8 +40419,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelRoom: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
+  OnEnd: {fileID: 0}
   gapBetweenRooms: {x: 30, y: 30}
   PlayerPrefab: {fileID: 1166619365}
+  player: {fileID: 0}
+  camera: {fileID: 0}
+  pickUpManager: {fileID: 0}
+  transitionGO: {fileID: 0}
+  seed: -1
+  nextCardIndicator: {fileID: 0}
 --- !u!1 &1809002786
 GameObject:
   m_ObjectHideFlags: 0
@@ -40801,10 +40727,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1818239662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40923,10 +40849,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1818380347
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41151,10 +41077,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1842161356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41345,10 +41271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1847052791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41430,10 +41356,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1852679714}
   - component: {fileID: 1852679713}
-  - component: {fileID: 1852679712}
   - component: {fileID: 1852679711}
   - component: {fileID: 1852679710}
   - component: {fileID: 1852679715}
+  - component: {fileID: 1852679717}
+  - component: {fileID: 1852679716}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -41519,14 +41446,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!81 &1852679712
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852679709}
-  m_Enabled: 1
 --- !u!20 &1852679713
 Camera:
   m_ObjectHideFlags: 0
@@ -41608,7 +41527,46 @@ MonoBehaviour:
   onChangeCameraChannel: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   onResetSceneChannel: {fileID: 11400000, guid: fdf873835f0c8644fa75bc9a213b7046, type: 2}
   onExitChannel: {fileID: 11400000, guid: ee870a1ab6b1cf34285cd8d95c5bbee5, type: 2}
+  skybox: {fileID: 0}
+  rotationSpeed: 10
   MapCamera: {fileID: 1844124703}
+  MainCamera: {fileID: 0}
+--- !u!114 &1852679716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852679709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c3fd95e325da44bb7611b346cdb3d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
+--- !u!114 &1852679717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852679709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78fd3e49afdad4498417a3508e796a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &1861217088
 GameObject:
   m_ObjectHideFlags: 0
@@ -41656,15 +41614,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1861217091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41677,10 +41626,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 842575724}
-  doorsDown: {fileID: 1582213516}
-  doorsRight: {fileID: 1668822716}
-  doorsLeft: {fileID: 1990434069}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1861272214
 GameObject:
   m_ObjectHideFlags: 0
@@ -41884,10 +41837,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1879702047
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42006,15 +41959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1880467691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42027,10 +41971,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 2094694282}
-  doorsDown: {fileID: 1228461125}
-  doorsRight: {fileID: 30171658}
-  doorsLeft: {fileID: 1847052788}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1881500128
 GameObject:
   m_ObjectHideFlags: 0
@@ -42290,10 +42238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1887750564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42518,10 +42466,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1893460657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42745,10 +42693,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1907615306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42920,15 +42868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &1917245085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42941,10 +42880,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1245493087}
-  doorsDown: {fileID: 744877457}
-  doorsRight: {fileID: 2130340770}
-  doorsLeft: {fileID: 297109780}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &1923503838
 GameObject:
   m_ObjectHideFlags: 0
@@ -42992,10 +42935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1923503841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43114,10 +43057,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1923875478
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43660,10 +43603,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1980890892
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43888,10 +43831,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &1990434072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44222,10 +44165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &2016498567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44535,10 +44478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &2026608544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44610,17 +44553,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026608541}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2026847408 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7934158526880610219, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e543c1975234df458d785604b2b7e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2036284868
 GameObject:
   m_ObjectHideFlags: 0
@@ -49604,10 +49536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &2038408162
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49679,17 +49611,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038408159}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2043038991 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5929036021430803801, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e543c1975234df458d785604b2b7e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2045360683
 GameObject:
   m_ObjectHideFlags: 0
@@ -49818,7 +49739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.88821673
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -49826,11 +49747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.4594247
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -49838,70 +49759,819 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -414.7
       objectReference: {fileID: 0}
     - target: {fileID: 98365337757529717, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2419694579521688218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: playerHud
-      value: 
-      objectReference: {fileID: 1231999819}
-    - target: {fileID: 2419694579521688218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: selectCardMenu
-      value: 
-      objectReference: {fileID: 2077532266}
-    - target: {fileID: 2756004234598643174, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 192353968500701550, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -51.383694
+      objectReference: {fileID: 0}
+    - target: {fileID: 192353968500701550, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -32.266907
+      objectReference: {fileID: 0}
+    - target: {fileID: 192353968500701550, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 33.971294
+      objectReference: {fileID: 0}
+    - target: {fileID: 680522858713951190, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -44.59914
+      objectReference: {fileID: 0}
+    - target: {fileID: 680522858713951190, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -9.0478525
+      objectReference: {fileID: 0}
+    - target: {fileID: 680522858713951190, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 21.839214
+      objectReference: {fileID: 0}
+    - target: {fileID: 775470725513769578, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.00017423785
+      objectReference: {fileID: 0}
+    - target: {fileID: 775470725513769578, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.00003072284
+      objectReference: {fileID: 0}
+    - target: {fileID: 775470725513769578, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 10.000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 818238949043674031, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 24.580858
+      objectReference: {fileID: 0}
+    - target: {fileID: 818238949043674031, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -17.024998
+      objectReference: {fileID: 0}
+    - target: {fileID: 818238949043674031, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 14.12729
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218404656531438444, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -15.239424
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218404656531438444, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.2638576
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218404656531438444, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -4.2628984
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431473606960340412, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 84.32597
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431473606960340412, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 125.28917
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431473606960340412, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -38.600548
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730254657036051906, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -12.662567
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730254657036051906, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 10.466555
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730254657036051906, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -14.534008
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806409827760995356, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3.59673
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806409827760995356, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3972282457891632485, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: gameSettings
-      value: 
-      objectReference: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}
-    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: maxCards
-      value: 15
+    - target: {fileID: 1806409827760995356, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 1166619370}
-    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: cardsSlots.Array.size
-      value: 5
+    - target: {fileID: 1950179417510633329, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -26.241478
       objectReference: {fileID: 0}
-    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: cardsSlots.Array.data[0]
-      value: 
-      objectReference: {fileID: 2026847408}
-    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: cardsSlots.Array.data[1]
-      value: 
-      objectReference: {fileID: 2043038991}
-    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: cardsSlots.Array.data[2]
-      value: 
-      objectReference: {fileID: 245798314}
-    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: cardsSlots.Array.data[3]
-      value: 
+    - target: {fileID: 1950179417510633329, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -71.05595
       objectReference: {fileID: 0}
-    - target: {fileID: 5135478775610306301, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: cardsSlots.Array.data[4]
-      value: 
+    - target: {fileID: 1950179417510633329, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 12.494267
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137677525671525113, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3.9191513
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137677525671525113, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -2.4426217
+      objectReference: {fileID: 0}
+    - target: {fileID: 2137677525671525113, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -7.524947
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138258422913623095, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 10.13027
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138258422913623095, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.3120613
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138258422913623095, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -5.999545
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189176663987380838, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -69.15729
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189176663987380838, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 27.725365
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189176663987380838, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15.968203
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272199206670454098, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -11.645617
+      objectReference: {fileID: 0}
+    - target: {fileID: 2272199206670454098, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 3.1164107
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287616860477387428, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -31.672821
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287616860477387428, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -42.759087
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287616860477387428, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -29.992977
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506914753514931878, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.8685135
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506914753514931878, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 10.33225
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506914753514931878, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -89.54331
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874084427100523218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -27.231192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874084427100523218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -5.900521
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874084427100523218, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 15.214266
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976734849561157995, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -51.444355
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976734849561157995, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -7.5944896
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976734849561157995, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 12.899135
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099085187076321314, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -6.061213
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099085187076321314, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -1.8333657
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099085187076321314, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.1781802
+      objectReference: {fileID: 0}
+    - target: {fileID: 3110334093284757256, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -14.428921
+      objectReference: {fileID: 0}
+    - target: {fileID: 3110334093284757256, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 2.102273
+      objectReference: {fileID: 0}
+    - target: {fileID: 3110334093284757256, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -7.9944663
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133613317091067906, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -10.452784
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133613317091067906, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 15.059399
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133613317091067906, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.9105967
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357644530695083146, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.49477905
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357644530695083146, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 12.379805
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357644530695083146, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 41.377136
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482077086241796052, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -14.990864
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625647748232283265, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 22.858263
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625647748232283265, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -8.289201
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625647748232283265, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15.976872
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802309164769804088, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -2.1539686
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802309164769804088, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.18073075
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802309164769804088, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -16.144772
+      objectReference: {fileID: 0}
+    - target: {fileID: 4192484037990286478, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -44.15669
+      objectReference: {fileID: 0}
+    - target: {fileID: 4192484037990286478, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -150.40585
+      objectReference: {fileID: 0}
+    - target: {fileID: 4192484037990286478, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 100.68446
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280272835074703383, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2.3009899
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280272835074703383, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.85719603
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280272835074703383, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 9.608385
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606945668489135963, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.25280925e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606945668489135963, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 1.3119787e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606945668489135963, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833758506714958886, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 21.44198
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833758506714958886, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -29.992748
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833758506714958886, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15.486786
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881716749127575076, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 6.940935
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881716749127575076, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -108.43387
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881716749127575076, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 60.861073
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971112991004817752, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971112991004817752, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971112991004817752, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161974781341148605, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 15.188383
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161974781341148605, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.51565343
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161974781341148605, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -86.42392
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213640768930513888, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.7492614
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213640768930513888, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 2.33547
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213640768930513888, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -99.1929
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374385892225395874, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -50.824154
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374385892225395874, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -21.872444
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374385892225395874, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -38.706646
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476412472571528659, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 12.223114
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476412472571528659, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -80.93917
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476412472571528659, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 77.66082
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632239508420794380, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -15.176946
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632239508420794380, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -6.5941925
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632239508420794380, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 49.128708
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810282874800965887, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -38.655964
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810282874800965887, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 4.347068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810282874800965887, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 26.573486
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914405835767383266, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -69.43883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914405835767383266, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -41.202282
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914405835767383266, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 77.886284
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917764798097501365, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30.570148
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917764798097501365, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -11.333242
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917764798097501365, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -3.1794224
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022480915507968857, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 71.67563
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022480915507968857, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 171.7724
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022480915507968857, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -169.61887
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081830461434196505, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -5.4378853
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081830461434196505, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 2.0935173
+      objectReference: {fileID: 0}
+    - target: {fileID: 6081830461434196505, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -9.313727
       objectReference: {fileID: 0}
     - target: {fileID: 6277302197274292131, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
       propertyPath: m_Name
       value: PlayerFSM
       objectReference: {fileID: 0}
-    - target: {fileID: 8164620939415149121, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 6279953911074956794, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 17.832401
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279953911074956794, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.41321933
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279953911074956794, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 38.11835
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302365289131844212, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.000062080195
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302365289131844212, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6330829297662683687, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 10.713004
+      objectReference: {fileID: 0}
+    - target: {fileID: 6330829297662683687, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 2.6011486
+      objectReference: {fileID: 0}
+    - target: {fileID: 6330829297662683687, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -179.88696
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635462140156623963, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 76.18641
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635462140156623963, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -21.764654
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635462140156623963, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 65.357376
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723040363650792579, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -56.62368
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723040363650792579, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 157.2441
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723040363650792579, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 6.9029794
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784418037875835964, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -34.554165
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784418037875835964, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -44.266888
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784418037875835964, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 22.509699
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338447325151614729, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 27.369791
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338447325151614729, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -4.413338
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338447325151614729, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -10.286749
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436335399543522812, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 14.954943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436335399543522812, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.5046822
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436335399543522812, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -5.7020144
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592198434653467729, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.1388271
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592198434653467729, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.65051824
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592198434653467729, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 86.74102
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761374012057517754, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.00018773063
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761374012057517754, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.000068328336
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761374012057517754, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -19.999992
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843574569623828958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -25.54028
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843574569623828958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 7.5246396
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843574569623828958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 71.82833
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093844102882985101, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.067362
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093844102882985101, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -1.1729801
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093844102882985101, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 19.632854
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128750717945805556, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.56391674
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128750717945805556, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.00006795516
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128750717945805556, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.5445668e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208781674809963958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 19.517647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208781674809963958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.36646193
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208781674809963958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.393754
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309518209412969623, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -44.19564
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309518209412969623, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -4.6727624
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309518209412969623, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 18.162895
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315854271342579155, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -8.3846
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315854271342579155, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 22.186789
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315854271342579155, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.595969
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392162564747549028, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 77.16092
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392162564747549028, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -128.12364
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392162564747549028, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 153.02147
+      objectReference: {fileID: 0}
+    - target: {fileID: 8410022458565074183, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -62.875507
+      objectReference: {fileID: 0}
+    - target: {fileID: 8410022458565074183, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 41.43109
+      objectReference: {fileID: 0}
+    - target: {fileID: 8410022458565074183, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -49.703156
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472509794777862005, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 28.289822
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472509794777862005, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -2.9621413
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472509794777862005, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -11.714932
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636217876079461601, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.1215086
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636217876079461601, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90.004845
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636217876079461601, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -20.45836
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640886213018784514, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 39.892174
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640886213018784514, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 1.4185536
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640886213018784514, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 11.779309
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805967071143780859, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -37.888844
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805967071143780859, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -18.255157
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805967071143780859, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.7181855
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807992165371643958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 8.667901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807992165371643958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -32.7172
+      objectReference: {fileID: 0}
+    - target: {fileID: 8807992165371643958, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -10.949035
+      objectReference: {fileID: 0}
+    - target: {fileID: 8825958668501167038, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 8.863028
+      objectReference: {fileID: 0}
+    - target: {fileID: 8825958668501167038, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -13.813518
+      objectReference: {fileID: 0}
+    - target: {fileID: 8825958668501167038, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -19.30849
+      objectReference: {fileID: 0}
+    - target: {fileID: 8942560342534503479, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.000068689835
+      objectReference: {fileID: 0}
+    - target: {fileID: 8942560342534503479, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.0000121118155
+      objectReference: {fileID: 0}
+    - target: {fileID: 8942560342534503479, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -9.999954
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992578740819184889, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -67.70354
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992578740819184889, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -166.445
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992578740819184889, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -173.8148
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001412893795246112, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -29.576073
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001412893795246112, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 30.567564
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001412893795246112, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -56.764057
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077532397184342941, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -21.811203
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077532397184342941, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -43.748726
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077532397184342941, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -17.42958
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3951936224142697399, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af6cde902b616b543ac26855d2094bd9, type: 3}
@@ -50276,17 +50946,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 40.9, y: 4.2, z: 28.6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2077532266 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f02112091b6e9b44b83bd884e88e8c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2094694282
 GameObject:
   m_ObjectHideFlags: 0
@@ -50334,10 +50993,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &2094694285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50774,10 +51433,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &2130340773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50936,15 +51595,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  roomSize: {x: 20, y: 20}
-  doorSize: {x: 4, y: 4}
-  cellSize: {x: 1, y: 1}
-  ObjectRoom:
-  - {fileID: 11400000, guid: 3755f392205ef5f4e8b70691b96cf05b, type: 2}
-  - {fileID: 11400000, guid: 4d80800bc501c91469fb48a690949b93, type: 2}
-  totalObjects: 10
-  wallSize: 1
 --- !u!114 &2137024541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50957,10 +51607,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c493dbc491bcc4c8b6c336acafb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorsUp: {fileID: 1644536418}
-  doorsDown: {fileID: 96742555}
-  doorsRight: {fileID: 1923875475}
-  doorsLeft: {fileID: 1907615303}
+  roomType: 0
+  doorsOpened: 0
+  doorColecctions: []
+  PlayerInteractNewDoor:
+    m_PersistentCalls:
+      m_Calls: []
+  doorAnimation: {fileID: 0}
+  navMeshSurface: {fileID: 0}
 --- !u!1 &2138793400
 GameObject:
   m_ObjectHideFlags: 0
@@ -51154,10 +51808,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fae1893f694bb4796b926792fc5327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
   OnPlayerInteractDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorDirection: 0
 --- !u!65 &2146533832
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51357,9 +52011,17 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1166619369}
+    - target: {fileID: 3397646400667044334, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -38.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 4218420525194753324, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_Name
       value: InGameCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218420525194753324, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4746470647555693661, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -51564,11 +52226,122 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8587051116987540109, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1557904437}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
+--- !u!1001 &6570595174384422706
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2396142538305487553, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_Name
+      value: PSSnow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513014762841397706, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2655624373d33ff4298dcaed8f9856f2, type: 3}
+--- !u!1001 &9175762863042985526
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874938374583353491, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8975328239650454277, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
+      propertyPath: m_Name
+      value: VFXMainCharacterSlash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f760f58bf7b05864b99e2c6813fbe854, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -51589,3 +52362,6 @@ SceneRoots:
   - {fileID: 289315443}
   - {fileID: 1895893876}
   - {fileID: 1203706986}
+  - {fileID: 166652895}
+  - {fileID: 9175762863042985526}
+  - {fileID: 6570595174384422706}

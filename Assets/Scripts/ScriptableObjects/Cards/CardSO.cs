@@ -21,6 +21,9 @@ public class CardSO : ScriptableObject
     [Header("Description")]
     public string description;
 
+    [Header("Tittle")]
+    public string tittle;
+
     [Header("Art")]
     public Sprite allCardSprite;
     
