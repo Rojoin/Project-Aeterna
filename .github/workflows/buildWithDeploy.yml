@@ -1,4 +1,4 @@
-
+name: Create build Windows
 
 env:
   itchio_channel: windows
@@ -8,7 +8,6 @@ env:
 on:
   release:
     types: [published]
-name: Create build Windows
 
 jobs:
   buildForWindows:
@@ -69,7 +68,7 @@ jobs:
     name: Discord Notification
     runs-on: ubuntu-latest
     steps:
-      name: Send Discord message
+    - name: Send Discord message
       uses: appleboy/discord-action@master
       with:
         webhook_id: ${{secrets.WEBHOOK_ID}}
