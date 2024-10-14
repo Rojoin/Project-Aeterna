@@ -1,0 +1,77 @@
+name: Create build Windows with Ubuntu🧐🙈
+
+env:
+  itchio_channel: windows
+  BuildName: Aeterna ${{github.event.release.tag_name}}
+  ReleaseBody: ${{github.event.release.body}}
+
+on:
+  release:
+    types: [ published ]
+
+
+jobs:
+  buildForWindows:
+    name: Build for Windows
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          lfs: false
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: Library-
+
+      - name: Build project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneWindows
+          buildName: ${{ env.BuildName }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.BuildName }}
+          path: build/StandaloneWindows
+  deploy:
+    needs: buildForWindows
+    name: Deploy to Itch.io
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.BuildName }}
+          path: build/StandaloneWindows
+      - name: Upload Build to itch.io project
+        uses: robpc/itchio-upload-action@v1
+        with:
+          path: build/StandaloneWindows
+          project: ${{ secrets.ITCHIO_PROJECT }}
+          channel: ${{ env.itchio_channel }}
+          version: ${{ github.event.release.tag_name }}
+          api-key: ${{ secrets.ITCHIO_API_KEY }}
+  discordMessage:
+    needs: deploy
+    name: Discord Notification
+    runs-on: ubuntu-latest
+    steps:
+      name: Send Discord message
+      uses: appleboy/discord-action@master
+      with:
+        webhook_id: ${{secrets.WEBHOOK_ID}}
+        webhook_token: ${{secrets.WEBHOOK_TOKEN}}
+        message: "@here ${{ env.BuildName}} is out on https://michibrujas.itch.io/aeterna n ${{env.ReleaseBody}}"
