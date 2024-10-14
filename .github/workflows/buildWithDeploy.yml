@@ -1,4 +1,4 @@
-name: Create build Windows
+
 
 env:
   itchio_channel: windows
@@ -7,8 +7,8 @@ env:
 
 on:
   release:
-    types: [ published ]
-
+    types: [published]
+name: Create build Windows
 
 jobs:
   buildForWindows:
