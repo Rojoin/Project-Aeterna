@@ -68,6 +68,7 @@ jobs:
     name: Discord Notification
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@master
     - name: Send Discord message
       uses: appleboy/discord-action@master
       with:
