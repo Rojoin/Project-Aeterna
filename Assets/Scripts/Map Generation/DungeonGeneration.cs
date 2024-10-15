@@ -326,7 +326,7 @@ public class DungeonGeneration : MonoBehaviour
     {
         foreach (DungeonRoom room in dungeonRooms)
         {
-            LevelRoomPropsSo currentRoom = chambersTypes[room.roomForm][Random.Range(0, chambersTypes[room.roomForm].Count)];
+            LevelRoomPropsSo currentRoom = chambersTypes[room.roomForm][randomGenerator.Next(0, chambersTypes[room.roomForm].Count)];
             GameObject prefab = currentRoom.levelRoom.roomPrefab;
             GameObject roomInstance = Instantiate(prefab,
                 new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
