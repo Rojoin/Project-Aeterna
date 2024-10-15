@@ -141,7 +141,7 @@ public class DungeonGeneration : MonoBehaviour
         {
             nCurrentRooms++;
             DungeonRoom currentRoom = pendingRooms.Dequeue();
-            int maxNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms) ? Random.Range(1, 4) : 0;
+            int maxNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms) ? randomGenerator.Next(1, 4) : 0;
 
             for (int i = 0; i < maxNeighbours; i++)
             {
@@ -271,7 +271,7 @@ public class DungeonGeneration : MonoBehaviour
     }
 
     private RoomDirection GetRandomDirection() =>
-        (RoomDirection)Random.Range(0, 4);
+        (RoomDirection)randomGenerator.Next(0, 4);
 
     private (DungeonRoom, bool) GenerateNeighbour(DungeonRoom room, RoomDirection direction)
     {
