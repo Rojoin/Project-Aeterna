@@ -74,4 +74,4 @@ jobs:
       with:
         webhook_id: ${{secrets.WEBHOOK_ID}}
         webhook_token: ${{secrets.WEBHOOK_TOKEN}}
-        message: "@here ${{ env.BuildName}} is out on https://michibrujas.itch.io/aeterna n ${{env.ReleaseBody}}"
+        message: "@here ${{ env.BuildName}} is out on https://michibrujas.itch.io/aeterna \n ${{env.ReleaseBody}}"
