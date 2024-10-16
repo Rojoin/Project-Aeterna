@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuffSystem : MonoBehaviour
@@ -61,13 +59,13 @@ public class BuffSystem : MonoBehaviour
                 break;
 
             case CardSO.CardType.AttackSpeed:
-                
-                if(card.isInverted) 
+
+                if (card.isInverted)
                 {
                     InvertedAttackSpeed(card);
                 }
 
-                else 
+                else
                 {
                     UpgradeAttackSpeed(card);
                 }
@@ -142,7 +140,7 @@ public class BuffSystem : MonoBehaviour
 
         else
             player.healingValue = defaultChance;
-        
+
     }
 
     private void UpgradeSpeed(CardSO card)
@@ -154,7 +152,7 @@ public class BuffSystem : MonoBehaviour
         player.speed += speed;
     }
 
-    private void InvertedSpeedCard(CardSO card) 
+    private void InvertedSpeedCard(CardSO card)
     {
         int randomNumber = Random.Range(0, 100);
 
@@ -165,7 +163,7 @@ public class BuffSystem : MonoBehaviour
 
         player.dashSpeed = resetDashSpeed;
 
-        if (randomNumber <= firstChance) 
+        if (randomNumber <= firstChance)
             player.dashSpeed += 1f;
 
         if (randomNumber > firstChance && randomNumber <= secondChance)
@@ -178,7 +176,7 @@ public class BuffSystem : MonoBehaviour
             player.dashSpeed += 4f;
 
         else
-            player.dashSpeed += 1f;        
+            player.dashSpeed += 1f;
     }
 
     private void UpgradeAttackSpeed(CardSO card)

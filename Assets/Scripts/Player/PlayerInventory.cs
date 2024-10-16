@@ -1,5 +1,3 @@
-using Character;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,7 +71,19 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddCard(CardSO newCard) 
     {
-        playerCardsInventory.Add(newCard);
+        CardSO card = newCard;
+
+        if (playerCardsInventory.Count > 0) 
+        {
+            card = CorruptCards(newCard);
+        }
+
+        else 
+        {
+            card = newCard;
+        }
+
+        playerCardsInventory.Add(card);
         currentCards++;
     }
 
@@ -91,6 +101,36 @@ public class PlayerInventory : MonoBehaviour
     public int GetMaxCardOnInventory() 
     {
         return maxCardOnInventory;
+    }
+
+    public CardSO CorruptCards(CardSO newCard) 
+    {
+        List<CardSO> inventory = playerCardsInventory;
+
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (newCard.isInverted && newCard.cardType == inventory[i].cardType) 
+            {
+                int newCardOnSlot = inventory[i].cardsOnSlot + 1;
+
+                inventory[i] = newCard;
+                inventory[i].cardsOnSlot = newCardOnSlot;
+
+                if (inventory[i].cardsOnSlot > 3) 
+                {
+                    inventory[i].cardsOnSlot = 3;
+                }
+
+                return inventory[i];
+            }
+
+            if(inventory[i].isInverted && newCard.cardType == inventory[i].cardType)
+            {
+                return inventory[i];
+            }
+        }
+
+        return newCard;
     }
 
     private void OnDisable()
