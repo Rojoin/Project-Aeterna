@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Enemy;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class DungeonGeneration : MonoBehaviour
@@ -44,8 +45,10 @@ public class DungeonGeneration : MonoBehaviour
     private Dictionary<(int, int), DungeonRoom> dungeonRoomsLayout = new();
     private Dictionary<RoomForm, List<LevelRoomPropsSo>> chambersTypes = new();
 
-    public static Action OnRequestPosition;
-    public static Action<Vector3> OnProvidePosition;
+    public Action OnRequestPosition;
+    public Action<Vector3> OnProvidePosition;
+
+    public UnityEvent<(int, int), int> OnSendChambersValue;
 
     private void Start()
     {
