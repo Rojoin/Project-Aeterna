@@ -16,6 +16,8 @@ namespace Enemy
         private List<BaseEnemy> enemyList = new List<BaseEnemy>();
         private List<Props> enemyToSpawnList = new List<Props>();
 
+        public VoidChannelSO ActiveSlowTime;
+
         public void OnEnterNewRoom()
         {
             Debug.Log("try spawn Enemies");
@@ -99,6 +101,10 @@ namespace Enemy
         public void CallEndRoom()
         {
             OnLastEnemyKilled?.Invoke();
+
+            if(GetComponent<RoomBehaviour>().roomType != RoomTypes.START)
+            ActiveSlowTime.RaiseEvent();
+
             roomClear = true;
         }
     }
