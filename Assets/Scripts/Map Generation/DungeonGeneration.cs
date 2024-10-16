@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Enemy;
+using Unity.AI.Navigation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -343,6 +344,15 @@ public class DungeonGeneration : MonoBehaviour
             roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
             room.dungeonRoomInstance = roomInstance;
             room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
+
+            if (currentRoom.navMeshData == null)
+            {
+                prefab.GetComponent<NavMeshSurface>().BuildNavMesh();
+            }
+            else
+            {
+                prefab.GetComponent<NavMeshSurface>().navMeshData = currentRoom.navMeshData;
+            }
         }
     }
 

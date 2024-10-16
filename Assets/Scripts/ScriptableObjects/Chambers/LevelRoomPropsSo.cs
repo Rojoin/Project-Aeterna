@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class LevelRoomPropsSo
@@ -12,6 +13,7 @@ public class LevelRoomPropsSo
         this.EnemyList = EnemyList;
     }
 
+    public NavMeshData navMeshData;
     public ChamberSO levelRoom;
     public List<Props> PropsList = new List<Props>();
     public List<Props> EnemyList = new List<Props>();

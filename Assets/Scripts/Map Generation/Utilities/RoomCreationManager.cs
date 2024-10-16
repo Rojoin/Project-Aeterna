@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using Palmmedia.ReportGenerator.Core;
+using Unity.AI.Navigation;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,6 +68,27 @@ public class RoomCreationManager : MonoBehaviour
             }
         }
 
+        var a = new LevelRoomPropsSo(BaseChamberSo.Chambers[chamberId], propsList, enemyList);
         levelRoomsSO.Chambers.Add(new LevelRoomPropsSo(BaseChamberSo.Chambers[chamberId], propsList, enemyList));
+
+        aaaaaa(a);
+    }
+
+    private void aaaaaa(LevelRoomPropsSo levelRoomPropsSo)
+    {
+        GameObject prefab = levelRoomPropsSo.levelRoom.roomPrefab;
+        GameObject roomInstance = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
+        
+        roomInstance.GetComponent<ProceduralRoomGeneration>().CreateRoomProps(levelRoomPropsSo);
+
+        roomInstance.GetComponent<NavMeshSurface>().BuildNavMesh();
+
+        levelRoomPropsSo.navMeshData = roomInstance.GetComponent<NavMeshSurface>().navMeshData;
+        
+        string path = "Assets/SavedNavMeshes/" + gameObject.name + "_NavMesh.asset";
+        AssetDatabase.CreateAsset( roomInstance.GetComponent<NavMeshSurface>().navMeshData, path);
+        AssetDatabase.SaveAssets();
+        
+        Destroy(roomInstance);
     }
 }
