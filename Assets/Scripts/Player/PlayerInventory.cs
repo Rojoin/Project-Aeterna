@@ -71,20 +71,16 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddCard(CardSO newCard) 
     {
-        CardSO card = newCard;
-
         if (playerCardsInventory.Count > 0) 
         {
-            card = CorruptCards(newCard);
+            CorruptCards(newCard);
         }
 
         else 
         {
-            card = newCard;
+            playerCardsInventory.Add(newCard);
+            currentCards++;
         }
-
-        playerCardsInventory.Add(card);
-        currentCards++;
     }
 
     public void RemoveCard(CardSO newCard) 
@@ -103,9 +99,11 @@ public class PlayerInventory : MonoBehaviour
         return maxCardOnInventory;
     }
 
-    public CardSO CorruptCards(CardSO newCard) 
+    public void CorruptCards(CardSO newCard) 
     {
         List<CardSO> inventory = playerCardsInventory;
+
+        CardSO card = newCard;
 
         for (int i = 0; i < inventory.Count; i++)
         {
@@ -121,16 +119,19 @@ public class PlayerInventory : MonoBehaviour
                     inventory[i].cardsOnSlot = 3;
                 }
 
-                return inventory[i];
+                card = inventory[i];
+                return;
             }
 
-            if(inventory[i].isInverted && newCard.cardType == inventory[i].cardType)
+            if(!newCard.isInverted && newCard.cardType == inventory[i].cardType)
             {
-                return inventory[i];
+                card = inventory[i];
+                return;
             }
         }
 
-        return newCard;
+        playerCardsInventory.Add(card);
+        currentCards++;
     }
 
     private void OnDisable()
