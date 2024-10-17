@@ -1,9 +1,6 @@
-using System;
+using InputControls;
 using System.Collections;
 using System.Collections.Generic;
-using InputControls;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -32,6 +29,7 @@ public class SelectCardMenu : MonoBehaviour
 
     [Header("Animations")]
     [SerializeField] private List<Animator> cardsAnimator;
+    [SerializeField] private Animator selectCardMenuAnimator;
 
     [Header("CardsGO")]
     [SerializeField] private List<GameObject> cardsGO;
@@ -222,11 +220,21 @@ public class SelectCardMenu : MonoBehaviour
         if (cardsToShow[cardSelected].cardsOnSlot < 3)
             buffSystem.CheckCardType(cardsToShow[cardSelected]);
 
-        ShowSelectCardMenu(false);
+        StartCoroutine(DesactiveSelectCardMenu(1));
 
         for (int i = 0;i < cardsToShow.Count; i++) 
         {
             cardsAnimator[i].SetBool("StartReverseMovement", false);
         }
+    }
+
+    private IEnumerator DesactiveSelectCardMenu(int time) 
+    {
+        selectCardMenuAnimator.SetBool("IsDesactive", true);
+
+        yield return new WaitForSeconds(time);
+
+        ShowSelectCardMenu(false);
+        selectCardMenuAnimator.SetBool("IsDesactive", false);
     }
 }

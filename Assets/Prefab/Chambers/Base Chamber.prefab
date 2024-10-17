@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 5
-  roomConfiner: {fileID: 1200269025268670105}
   doorsOpened: 0
   doorColecctions:
   - Changed: 0
@@ -65,6 +64,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   doorAnimation: {fileID: 2357739548588696867}
+  navMeshSurface: {fileID: 0}
 --- !u!114 &947269741992933388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,9 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f80c1c5c335f42ba7c438a73d6cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGrid: 1
-  chamberSO: {fileID: 11400000, guid: 64225a07b4365fa48907e1a7ba3820fb, type: 2}
-  unityGrid: {fileID: 5979964702661831869}
 --- !u!114 &2079708301825504416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,10 +90,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomClear: 0
+  FinalRoom: 0
   OnLastEnemyKilled:
     m_PersistentCalls:
       m_Calls: []
-  SpawnPoints: []
+  ActiveSlowTime: {fileID: 11400000, guid: 2522655614c3a4f4b91b9c246caa9733, type: 2}
 --- !u!95 &2357739548588696867
 Animator:
   serializedVersion: 5
@@ -191,11 +189,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6be711accbb2d7d4386b3d347718fc3e, type: 3}
---- !u!65 &1200269025268670105 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 3375499197660967585, guid: 6be711accbb2d7d4386b3d347718fc3e, type: 3}
-  m_PrefabInstance: {fileID: 4499123461548518456}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5074281309189054230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8654633172474508078, guid: 6be711accbb2d7d4386b3d347718fc3e, type: 3}
