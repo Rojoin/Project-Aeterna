@@ -48,7 +48,8 @@ public class DungeonGeneration : MonoBehaviour
     public Action OnRequestPosition;
     public Action<Vector3> OnProvidePosition;
 
-    public UnityEvent<(int, int), int> OnSendChambersValue;
+    public UnityEvent<Dictionary<(int, int), (RoomForm, float)>> OnSendChambersValue;
+    public UnityEvent<RoomDirection> OnChangeRoom;
 
     private void Start()
     {
@@ -90,9 +91,23 @@ public class DungeonGeneration : MonoBehaviour
         InstantiateDungeon();
         AssingRoomType();
 
+        SetRoomsLayout();
+        
         SetVisibleRooms();
 
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
+    }
+
+    public void SetRoomsLayout()
+    {
+        Dictionary<(int, int), (RoomForm, float)> roomForms = new();
+
+        foreach (KeyValuePair<(int, int),DungeonRoom> currentDungeon in dungeonRoomsLayout)
+        {
+            roomForms.Add(currentDungeon.Key, (currentDungeon.Value.roomForm, currentDungeon.Value.dungeonRoomInstance.transform.rotation.eulerAngles.y));
+        }
+
+        OnSendChambersValue.Invoke(roomForms);
     }
 
     private void SetRoomsDivision()
@@ -240,6 +255,7 @@ public class DungeonGeneration : MonoBehaviour
         {
             SetVisibleRooms();
         }
+        OnChangeRoom.Invoke(direction);
 
         yield return new WaitForSecondsRealtime(1);
         oldRoom.roomBehaviour.SetDoorCollisions(true);
