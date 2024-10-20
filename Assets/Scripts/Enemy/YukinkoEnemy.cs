@@ -21,7 +21,7 @@ public enum YukinkoStates
     Run = 16
 }
 
-public class ShootingEnemy : BaseEnemy, IMovevable
+public class YukinkoEnemy : BaseEnemy, IMovevable
 {
     [SerializeField] private BaseProjectile projectile;
     [SerializeField] private SkinnedMeshRenderer meshBody;
