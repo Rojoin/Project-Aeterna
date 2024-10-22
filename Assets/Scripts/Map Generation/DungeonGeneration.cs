@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Enemy;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class DungeonGeneration : MonoBehaviour
@@ -44,8 +45,11 @@ public class DungeonGeneration : MonoBehaviour
     private Dictionary<(int, int), DungeonRoom> dungeonRoomsLayout = new();
     private Dictionary<RoomForm, List<LevelRoomPropsSo>> chambersTypes = new();
 
-    public static Action OnRequestPosition;
-    public static Action<Vector3> OnProvidePosition;
+    public Action OnRequestPosition;
+    public Action<Vector3> OnProvidePosition;
+
+    public UnityEvent<Dictionary<(int, int), (RoomForm, float)>> OnSendChambersValue;
+    public UnityEvent<RoomDirection> OnChangeRoom;
 
     private void Start()
     {
@@ -87,9 +91,23 @@ public class DungeonGeneration : MonoBehaviour
         InstantiateDungeon();
         AssingRoomType();
 
+        SetRoomsLayout();
+        
         SetVisibleRooms();
 
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
+    }
+
+    public void SetRoomsLayout()
+    {
+        Dictionary<(int, int), (RoomForm, float)> roomForms = new();
+
+        foreach (KeyValuePair<(int, int),DungeonRoom> currentDungeon in dungeonRoomsLayout)
+        {
+            roomForms.Add(currentDungeon.Key, (currentDungeon.Value.roomForm, currentDungeon.Value.dungeonRoomInstance.transform.rotation.eulerAngles.y));
+        }
+
+        OnSendChambersValue.Invoke(roomForms);
     }
 
     private void SetRoomsDivision()
@@ -141,7 +159,7 @@ public class DungeonGeneration : MonoBehaviour
         {
             nCurrentRooms++;
             DungeonRoom currentRoom = pendingRooms.Dequeue();
-            int maxNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms) ? Random.Range(1, 4) : 0;
+            int maxNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms) ? randomGenerator.Next(1, 4) : 0;
 
             for (int i = 0; i < maxNeighbours; i++)
             {
@@ -237,6 +255,7 @@ public class DungeonGeneration : MonoBehaviour
         {
             SetVisibleRooms();
         }
+        OnChangeRoom.Invoke(direction);
 
         yield return new WaitForSecondsRealtime(1);
         oldRoom.roomBehaviour.SetDoorCollisions(true);
@@ -271,7 +290,7 @@ public class DungeonGeneration : MonoBehaviour
     }
 
     private RoomDirection GetRandomDirection() =>
-        (RoomDirection)Random.Range(0, 4);
+        (RoomDirection)randomGenerator.Next(0, 4);
 
     private (DungeonRoom, bool) GenerateNeighbour(DungeonRoom room, RoomDirection direction)
     {
@@ -326,7 +345,7 @@ public class DungeonGeneration : MonoBehaviour
     {
         foreach (DungeonRoom room in dungeonRooms)
         {
-            LevelRoomPropsSo currentRoom = chambersTypes[room.roomForm][Random.Range(0, chambersTypes[room.roomForm].Count)];
+            LevelRoomPropsSo currentRoom = chambersTypes[room.roomForm][randomGenerator.Next(0, chambersTypes[room.roomForm].Count)];
             GameObject prefab = currentRoom.levelRoom.roomPrefab;
             GameObject roomInstance = Instantiate(prefab,
                 new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
