@@ -3,30 +3,28 @@ using UnityEngine;
 
 public class PickUpManager : MonoBehaviour
 {
-    [Header("Prefab to spawn")]
-    [SerializeField]
+    [Header("Prefab to spawn")] [SerializeField]
     private GameObject pickUpPrefab;
 
-    [Header("Prefab to spawn")]
-    [SerializeField]
+    [Header("Prefab to spawn")] [SerializeField]
     private CharacterController player;
 
-    [Header("Select Card Menu")]
-    [SerializeField]
+    [Header("Select Card Menu")] [SerializeField]
     private SelectCardMenu selectCardMenu;
 
-    [Header("Restart time speed")]
-    [SerializeField]
+    [Header("Restart time speed")] [SerializeField]
     private float restartTimeSpeed = 0.4f;
 
-    [Header("NextCardIndicator")]
-    [SerializeField] private NextCardIndicator nextCardIndicator;
+    [Header("NextCardIndicator")] [SerializeField]
+    private NextCardIndicator nextCardIndicator;
 
     private GameObject prefab;
     private PickUpCollider pickUpCollider;
     private bool stopTime;
+    public float slowDownTime = 1.0f;
 
     public VoidChannelSO activeSlowTime;
+    public AnimationCurve slowTimeCurve;
 
     public void OnEnable()
     {
@@ -37,7 +35,9 @@ public class PickUpManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        prefab = Instantiate(pickUpPrefab, new Vector3(player.transform.position.x - 2f, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
+        prefab = Instantiate(pickUpPrefab,
+            new Vector3(player.transform.position.x - 2f, player.transform.position.y + 1, player.transform.position.z),
+            Quaternion.identity);
 
         pickUpCollider = prefab.GetComponent<PickUpCollider>();
         pickUpCollider.onPlayerInteractPickUp.AddListener(PlayerInteractPickUp);
@@ -45,27 +45,41 @@ public class PickUpManager : MonoBehaviour
 
     private void Update()
     {
-        RestartTime();
+        // RestartTime();
     }
 
     public void StartSlowTime()
     {
-        Time.timeScale = 0.1f;
-        stopTime = true;
+        StartCoroutine(SlowTime());
+    }
+
+    private IEnumerator SlowTime()
+    {
+        Debug.Log("Slow time");
+        float time = 0;
+        while (time < slowDownTime)
+        {
+            Time.timeScale = slowTimeCurve.Evaluate(time / slowDownTime);
+            time+= Time.unscaledDeltaTime;
+            Debug.Log(Time.timeScale);
+            yield return null;
+        }
+        Time.timeScale = 1;
+        stopTime = false;
     }
 
     public void RestartTime()
     {
-        if (stopTime)
-        {
-            Time.timeScale += restartTimeSpeed * Time.deltaTime;
-        }
-
-        if (Time.timeScale >= 1)
-        {
-            Time.timeScale = 1f;
-            stopTime = false;
-        }
+        // if (stopTime)
+        // {
+        //     Time.timeScale += restartTimeSpeed * Time.deltaTime;
+        // }
+        //
+        // if (Time.timeScale >= 1)
+        // {
+        //     Time.timeScale = 1f;
+        //     stopTime = false;
+        // }
     }
 
     public void PlayerInteractPickUp()
