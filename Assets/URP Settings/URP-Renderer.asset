@@ -268,7 +268,8 @@ MonoBehaviour:
   - {fileID: -6631840737172706824}
   - {fileID: -6729184901317452702}
   - {fileID: -418220119964487806}
-  m_RendererFeatureMap: adc0de57c6d2eee552bd3e7626cafd9d5bc299e5471bff7e7b62b7262661bacef829db8dfcf7f6a3621c0d29fc219da2826f9847042f32fa
+  - {fileID: 4778427281427824585}
+  m_RendererFeatureMap: adc0de57c6d2eee552bd3e7626cafd9d5bc299e5471bff7e7b62b7262661bacef829db8dfcf7f6a3621c0d29fc219da2826f9847042f32fac97f8a964b625042
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -307,6 +308,28 @@ MonoBehaviour:
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &4778427281427824585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980a78cc4df543b29a2663be288cd2f5, type: 3}
+  m_Name: versalBlurFeatureure
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  <PassIndex>k__BackingField: 0
+  injectionPoint: 600
+  <Intensity>k__BackingField: 0.412
+  downsample: 1.93
+  iterations: 6
+  scale: 1.05
+  scaleBlurWith: 0
+  scaleReferenceSize: 1080
+  shader: {fileID: 4800000, guid: bb11bdc2e8aaf4c80b5315f3778d7ad4, type: 3}
 --- !u!114 &9151062963448824411
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,11 +1,27 @@
 {
   "dependencies": {
+    "com.coffee.ui-effect": {
+      "version": "4.0.0-preview.10",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.nachoarrastua.channelso": {
       "version": "https://github.com/Rojoin/RojoinChannelSystem.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "b3cbaab01283a463379ead03d0e35effdfab863e"
+    },
+    "com.unify.unified-universal-blur": {
+      "version": "https://github.com/lukakldiashvili/Unified-Universal-Blur.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "7.0.0"
+      },
+      "hash": "0d608ea1c89f7d25e99fe3065033f2be2ee754c6"
     },
     "com.unity.2d.animation": {
       "version": "9.1.0",
@@ -21,7 +37,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.aseprite": {
-      "version": "1.1.2",
+      "version": "1.1.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -121,7 +137,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.13",
+      "version": "1.8.12",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -175,7 +191,7 @@
         "com.unity.2d.spriteshape": "9.0.2",
         "com.unity.2d.tilemap": "1.0.0",
         "com.unity.2d.tilemap.extras": "3.1.2",
-        "com.unity.2d.aseprite": "1.1.2"
+        "com.unity.2d.aseprite": "1.1.1"
       }
     },
     "com.unity.feature.development": {
@@ -184,7 +200,7 @@
       "source": "builtin",
       "dependencies": {
         "com.unity.ide.visualstudio": "2.0.22",
-        "com.unity.ide.rider": "3.0.28",
+        "com.unity.ide.rider": "3.0.27",
         "com.unity.ide.vscode": "1.2.5",
         "com.unity.editorcoroutines": "1.0.0",
         "com.unity.performance.profile-analyzer": "1.2.2",

@@ -125,11 +125,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8008970834563820836}
   - component: {fileID: 2136061228353986023}
-  - component: {fileID: 7909532028066547496}
+  - component: {fileID: 6718482615546056681}
   - component: {fileID: 4448414164253175429}
   - component: {fileID: 7086356068227015782}
   m_Layer: 0
-  m_Name: Yukinko_Enemy
+  m_Name: Yukinko_Tp_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,7 +175,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.28, y: 3.244741, z: 1.1200001}
   m_Center: {x: 0, y: 0.8226306, z: 0}
---- !u!114 &7909532028066547496
+--- !u!114 &6718482615546056681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,10 +184,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5365952018591506370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b8a64163f9f4c948018bb5ff1a0db5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 502790e6d6435734a8eaec130a030f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 15cb592cdbec28f4c857d9091130587a, type: 2}
+  config: {fileID: 11400000, guid: d1ab5ace04c122f4fbbb529b0e0a3c89, type: 2}
   healthBar: {fileID: 739050999826307102}
   OnHit:
     m_PersistentCalls:
@@ -238,6 +238,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   isAttacking: 0
   timeAfterDeactivate: 0.5
+  disappearSpeed: 5
   projectile: {fileID: 6506984150929025722}
   meshBody: {fileID: 5224128851236635458}
   meshFace: {fileID: 3055780812807144566}
@@ -257,6 +258,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _navMeshAgent: {fileID: 0}
+  hideTeleportGameObjects:
+  - {fileID: 7859369457774768461}
+  - {fileID: 4208597574113468495}
 --- !u!114 &4448414164253175429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,14 +377,22 @@ PrefabInstance:
     - target: {fileID: 908859627296851531, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
       propertyPath: baseEnemy
       value: 
-      objectReference: {fileID: 7909532028066547496}
+      objectReference: {fileID: 6718482615546056681}
     - target: {fileID: 908859627296851531, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
       propertyPath: OnAttack.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7909532028066547496}
+      objectReference: {fileID: 6718482615546056681}
+    - target: {fileID: 908859627296851531, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
+      propertyPath: OnAttack.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: YukinkoTpEnemy, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6339323918805337589, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
       propertyPath: m_Name
       value: YukinkoModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339323918805337589, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8411255404505336060, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
       propertyPath: m_LocalPosition.x
@@ -445,6 +457,11 @@ Transform:
 --- !u!95 &6603221452988284147 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7009995244861474891, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
+  m_PrefabInstance: {fileID: 4245728303949788344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7859369457774768461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6339323918805337589, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
   m_PrefabInstance: {fileID: 4245728303949788344}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8439787597547136298

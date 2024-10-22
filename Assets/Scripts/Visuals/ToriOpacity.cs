@@ -14,7 +14,6 @@ namespace Visuals
 
         private void FixedUpdate()
         {
-            Debug.Log("ToriOpacity OnEnable");
             Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
             
             if (screenPos.y < Screen.height * screenHeightThreshold)

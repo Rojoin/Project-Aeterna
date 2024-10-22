@@ -10,38 +10,42 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private VoidChannelSO moveCamera;
     [SerializeField] private GameObject gameOverScreen;
 
-    [Header("Reference: UI")]
-    [SerializeField] private GameObject SelectCardUI;
+    [Header("Reference: UI")] [SerializeField]
+    private GameObject SelectCardUI;
 
     private bool showCardMenu = false;
 
-    [Header("Reference: Player Inventory")]
-    [SerializeField] private PlayerInventory playerInventory;
+    [Header("Reference: Player Inventory")] [SerializeField]
+    private PlayerInventory playerInventory;
 
     private List<CardSO> allCards;
 
-    [Header("Reference: Selectable Cards")]
-    [SerializeField] private List<SelectableCardMovement> cardsMovements;
+    [Header("Reference: Selectable Cards")] [SerializeField]
+    private List<SelectableCardMovement> cardsMovements;
+
     [SerializeField] private List<SelectableCardDisplay> cardsDisplay;
 
-    [Header("Reference: Buff System")]
-    [SerializeField] private BuffSystem buffSystem;
+    [Header("Reference: Buff System")] [SerializeField]
+    private BuffSystem buffSystem;
 
-    [Header("Animations")]
-    [SerializeField] private List<Animator> cardsAnimator;
+    [Header("Animations")] [SerializeField]
+    private List<Animator> cardsAnimator;
+
+    private float timeUntilCardsShowUp = 0.20f;
+    private float timeBetweenCards = 0.10f;
+    private float timeUntilCardsDissapear = 0.10f;
+
     [SerializeField] private Animator selectCardMenuAnimator;
 
-    [Header("CardsGO")]
-    [SerializeField] private List<GameObject> cardsGO;
+    [Header("CardsGO")] [SerializeField] private List<GameObject> cardsGO;
 
-    [Header("Hud")]
-    [SerializeField] private GameObject hud;
+    [Header("Hud")] [SerializeField] private GameObject hud;
     [SerializeField] private GameObject objective;
 
     public List<CardSO> cardsToShow;
 
-    [Header("Setup: Cards")]
-    public int maxCardsToSelect = 3;
+    [Header("Setup: Cards")] public int maxCardsToSelect = 3;
+
 
     void Start()
     {
@@ -52,8 +56,10 @@ public class SelectCardMenu : MonoBehaviour
     private void OnEnable()
     {
         moveCamera.Subscribe(TurnGameOver);
-    }
 
+        selectCardMenuAnimator.SetTrigger("setStart");
+    }
+    
     private void OnDisable()
     {
         moveCamera.Unsubscribe(TurnGameOver);
@@ -89,6 +95,7 @@ public class SelectCardMenu : MonoBehaviour
     {
         ShowSelectCardMenu(true);
     }
+
     public void ShowSelectCardMenu(bool value)
     {
         hud.SetActive(!value);
@@ -148,7 +155,8 @@ public class SelectCardMenu : MonoBehaviour
                 cardsToShow.Add(playerInventory.GetInventory()[i]);
             }
 
-            if (cardsToShow.Count == 0 || playerInventory.GetInventory().Count != playerInventory.GetMaxCardOnInventory())
+            if (cardsToShow.Count == 0 ||
+                playerInventory.GetInventory().Count != playerInventory.GetMaxCardOnInventory())
             {
                 cardsToShow.Add(GetRandomCard(0, playerInventory.GetMaxCards()));
             }
@@ -222,13 +230,13 @@ public class SelectCardMenu : MonoBehaviour
 
         StartCoroutine(DesactiveSelectCardMenu(1));
 
-        for (int i = 0;i < cardsToShow.Count; i++) 
+        for (int i = 0; i < cardsToShow.Count; i++)
         {
             cardsAnimator[i].SetBool("StartReverseMovement", false);
         }
     }
 
-    private IEnumerator DesactiveSelectCardMenu(int time) 
+    private IEnumerator DesactiveSelectCardMenu(int time)
     {
         selectCardMenuAnimator.SetBool("IsDesactive", true);
 
