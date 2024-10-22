@@ -9,13 +9,12 @@ public class CardDisplay : MonoBehaviour
 {
     public Image allCardSprite;
 
+    public TextMeshProUGUI cardCounter;
+
     public void ShowCard(CardSO card) 
     {
-        // if (card.isInverted) 
-        // {
-        //     allCardSprite.rectTransform.rotation = new Quaternion(0, 0, 0, 0);
-        // }
-
         allCardSprite.sprite = card.allCardSprite;
+
+        cardCounter.text = card.cardsOnSlot.ToString();
     }
 }
