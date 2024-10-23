@@ -8,6 +8,8 @@ public class PlayerHud : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerInventory playerInventory;
 
+    [SerializeField] private List<GameObject> initalTemplate;
+
     [SerializeField] private List<GameObject> cardGO;
 
     [SerializeField] private List<CardDisplay> cardDisplay;
@@ -28,6 +30,7 @@ public class PlayerHud : MonoBehaviour
     {
         for (int i = 0; i < playerInventory.GetCurrentCards(); i++) 
         {
+            initalTemplate[i].SetActive(false);
             cardDisplay[i].ShowCard(invetory[i]);
             cardGO[i].SetActive(true);
         }
