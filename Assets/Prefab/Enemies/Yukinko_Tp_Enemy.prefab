@@ -261,6 +261,7 @@ MonoBehaviour:
   hideTeleportGameObjects:
   - {fileID: 7859369457774768461}
   - {fileID: 4208597574113468495}
+  hideTeleportCollider: {fileID: 0}
 --- !u!114 &4448414164253175429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +395,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8256240403241236474, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a0b3a0744295cd4aad8db4c9d25c5a2, type: 2}
     - target: {fileID: 8411255404505336060, guid: f9063ba86f1fc6c4f81b99a164898949, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -551,6 +556,14 @@ PrefabInstance:
     - target: {fileID: 650673881701034098, guid: 3a90877884631294598dbd7240114dd4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261909104637380340, guid: 3a90877884631294598dbd7240114dd4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157647596175218053, guid: 3a90877884631294598dbd7240114dd4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 27.4
       objectReference: {fileID: 0}
     - target: {fileID: 8112766672238588968, guid: 3a90877884631294598dbd7240114dd4, type: 3}
       propertyPath: m_Name
