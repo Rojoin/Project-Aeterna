@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using CustomChannels;
 using StateMachine;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -9,6 +11,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
     [Header("Data")]
     [SerializeField] private PlayerEntitySO player;
+    [SerializeField] private PlayerPortraitChannelSO ChangePortrait;
     [SerializeField] private Animator animator;
     [SerializeField] private VoidChannelSO MoveCamera;
     [SerializeField] private PlayerHealthBar healthBar;
@@ -27,6 +30,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         player.health = player.maxHealth;
         maxHealth = player.maxHealth;
         currentHealth = player.health;
+        ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
     }
 
     private void UpdatePlayerStacks()
@@ -39,6 +43,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     {
         player.health = newHealth;
         healthBar.FillAmount = currentHealth / maxHealth;
+        
     }
 
     public float GetHealth()
@@ -69,6 +74,10 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         UpdatePlayerStacks();
         selectCardMenu.ShowSelectCardMenu(false);
+        if (player.health > player.maxHealth/2)
+        {
+            ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
+        }
     }
 
     [ContextMenu("KillPlayer")]
@@ -96,6 +105,12 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         }
 
         OnPlayerHurt.Invoke();
+        if (currentHealth<player.maxHealth/2)
+        {
+            ChangePortrait.RaiseEvent(PlayerPortraitStates.LowHealth);
+        }
+        ChangePortrait.RaiseEvent(PlayerPortraitStates.Hit);
+
         animator.SetTrigger(IsHurt);
         healthBar.FillAmount = currentHealth / maxHealth;
 

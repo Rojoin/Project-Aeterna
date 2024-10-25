@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CustomChannels;
+using UI;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +14,7 @@ namespace Enemy
         public bool roomClear = false;
         public bool FinalRoom;
         public UnityEvent OnLastEnemyKilled;
+        public PlayerPortraitChannelSO ChangePortrait;
 
         private List<BaseEnemy> enemyList = new List<BaseEnemy>();
         private List<Props> enemyToSpawnList = new List<Props>();
@@ -26,6 +29,7 @@ namespace Enemy
             {
                 Debug.Log("Spawn Enemies");
                 SpawnEnemies();
+                ChangePortrait.RaiseEvent(PlayerPortraitStates.InBattle);
             }
         }
 
@@ -88,6 +92,7 @@ namespace Enemy
             {
                 Debug.Log("CallExploringMusic");
                 StartCoroutine(CallExploringMusic());
+                
                 CallEndRoom();
             }
         }
@@ -96,6 +101,7 @@ namespace Enemy
         {
             yield return new WaitForSecondsRealtime(1);
             AkSoundEngine.SetState("DeathFloorMusic", "Exploring");
+            ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
         }
 
         public void CallEndRoom()

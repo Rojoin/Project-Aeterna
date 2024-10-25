@@ -683,6 +683,8 @@ GameObject:
   - component: {fileID: 4988370172752562401}
   - component: {fileID: 605999348088787225}
   - component: {fileID: 2732497926242529521}
+  - component: {fileID: 4387095961973795710}
+  - component: {fileID: 2635259098985205662}
   m_Layer: 5
   m_Name: PortraitCharacter
   m_TagString: Untagged
@@ -706,8 +708,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -81.93872, y: -0.4942627}
-  m_SizeDelta: {x: 164, y: 188}
+  m_AnchoredPosition: {x: -63.05, y: -6.15}
+  m_SizeDelta: {x: 232.08, y: 246}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &605999348088787225
 CanvasRenderer:
@@ -737,7 +739,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -591835352764712193, guid: cfa7de713f437be4bb7d64e59b89d38f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e7f284428f24864593a08e4b5539e3f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -747,6 +749,76 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4387095961973795710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6608966008604938915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b2ed11d675446c5a49da1ea296d490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 1
+  m_ColorFactor: 0
+  m_BlurFactor: 1
+  m_EffectMode: 0
+  m_ColorMode: 1
+  m_BlurMode: 0
+  m_AdvancedBlur: 0
+--- !u!114 &2635259098985205662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6608966008604938915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011461a7eec4486ea0216465e825030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPortraitChangeChannel: {fileID: 11400000, guid: 46a99d5c006f2314586922abd69264a6, type: 2}
+  whiteEffectTime: 0.2
+  whiteAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9945552
+      value: -0.010367562
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  defaultPortrait: {fileID: 21300000, guid: 7e7f284428f24864593a08e4b5539e3f, type: 3}
+  inBattlePortrait: {fileID: 21300000, guid: a3139d7417a2d4b47a53b0f4139680e5, type: 3}
+  hitPortrait: {fileID: 21300000, guid: 43a057ac1e05fdc4eacbdb358f16152b, type: 3}
+  lowHealthPortrait: {fileID: 21300000, guid: 4ce5c58938fe4c84fba0fd54778aa57c, type: 3}
 --- !u!1 &8850175616205421860
 GameObject:
   m_ObjectHideFlags: 0
