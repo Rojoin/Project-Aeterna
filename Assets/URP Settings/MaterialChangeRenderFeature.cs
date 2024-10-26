@@ -7,7 +7,7 @@ public class MaterialChangeRenderFeature : ScriptableRendererFeature
     class MaterialChangeRenderPass : ScriptableRenderPass
     {
         private RenderTargetIdentifier source;
-        private RenderTargetHandle temporaryColorTexture;
+        private RTHandle temporaryColorTexture;
 
         public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
         {
