@@ -8,6 +8,7 @@ public class MiniMapManager : MonoBehaviour
 {
     [Header("Settings")] [SerializeField] private DungeonGeneration dungeonGeneration;
     [SerializeField] private RectTransform miniMapContainer;
+    [SerializeField] private RectTransform miniMapContent;
 
     [SerializeField] private int roomSize = 20;
     [SerializeField] private int roomSpacing = 5;
@@ -31,13 +32,12 @@ public class MiniMapManager : MonoBehaviour
     private Dictionary<(int, int), Image> roomData = new();
     private Dictionary<((int, int), (int, int)), Image> bridgeData = new();
 
-    private RectTransform miniMapContent;
 
     private void Start()
     {
-        miniMapContent = new GameObject("MiniMapContent").AddComponent<RectTransform>();
-        miniMapContent.SetParent(miniMapContainer, false);
-        miniMapContent.localScale = Vector3.one;
+        // miniMapContent = new GameObject("MiniMapContent").AddComponent<RectTransform>();
+        // miniMapContent.SetParent(miniMapContainer, false);
+        // miniMapContent.localScale = Vector3.one;
     }
 
     private void OnEnable()
@@ -87,7 +87,7 @@ public class MiniMapManager : MonoBehaviour
 
             CreateBridges(x, y);
         }
-        
+
         miniMapContent.Rotate(new Vector3(0, 0, -45));
     }
 
@@ -149,7 +149,7 @@ public class MiniMapManager : MonoBehaviour
         UpdateMap(finalDirection);
 
         Vector2 rotatedDirection = Quaternion.Euler(0, 0, -45) * finalDirection;
-        
+
         float offsetX = -rotatedDirection.x * (roomSize + roomSpacing);
         float offsetY = -rotatedDirection.y * (roomSize + roomSpacing);
 
