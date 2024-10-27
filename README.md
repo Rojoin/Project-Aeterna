@@ -9,10 +9,11 @@ Aeterna: Wielder of Fate is an action roguelike inspired by Japanese folklore an
 - **Enzo Coletta** - *Programming*
 - **Facundo Santos** - *Programming*
 - **Zoe Cazas Telias** - *Art*
--ç **Anastasia Genero** - *Art*
+- **Anastasia Genero** - *Art*
 - **Lara Menendez** - *Art*
 - **Francisco Minaverry** - *Game Design*
 - **Juan Sebastian Rey** - *Audio*
+- **Alan Ezequiel Aguirre** - *Audio*
 
 
 ## Links
