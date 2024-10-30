@@ -192,6 +192,7 @@ namespace Enemy
             {
                 animator?.SetTrigger(Hurt);
                 currentHealth -= damage;
+                ChangeOnHitColor();
                 OnHit.Invoke();
             }
 
