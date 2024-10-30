@@ -1,6 +1,5 @@
 using InputControls;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ChangeCurentCamera : MonoBehaviour
 {
@@ -48,7 +47,7 @@ public class ChangeCurentCamera : MonoBehaviour
 
     private void ResetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Exit()
