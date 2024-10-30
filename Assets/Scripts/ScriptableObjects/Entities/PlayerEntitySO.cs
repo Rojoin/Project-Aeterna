@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Create PlayerEntitySO", fileName = "PlayerEntitySO", order = 0)]
 public class PlayerEntitySO : EntitySO
@@ -22,6 +23,10 @@ public class PlayerEntitySO : EntitySO
     public float dashTimer = 0.5f;
     public float timebetweenDashes = 0.3f;
     public AnimationCurve dashCurve;
+     public float rumbleHittingEnemyDuration = 0.05f;
+     public float rumbleHittingEnemyForce = 0.1f;
+     public float rumbleBeingHittingDuration = 0.1f;
+     public float rumbleBeingHittingForce = 0.5f;
 
     private void OnEnable()
     {
