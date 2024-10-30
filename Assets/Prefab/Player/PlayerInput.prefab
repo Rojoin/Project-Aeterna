@@ -107,7 +107,19 @@ MonoBehaviour:
     m_ActionId: b3d604f8-d0b6-470d-ad19-99369810b0fc
     m_ActionName: Player/Fire[/DualSenseGamepadHID/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
+        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: eb34d9e1-4c07-4718-aa05-347f5379a858
     m_ActionName: Player/Interact[/Keyboard/e,/DualSenseGamepadHID/buttonSouth]
   - m_PersistentCalls:
@@ -234,6 +246,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 481a624b-1d93-4a22-a6c7-27a2516cb597
     m_ActionName: Player/SpecialAttack[/DualSenseGamepadHID/buttonSouth,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c95e19ff371e208408b7cf366f26e71c, type: 2}
+        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d021a648-0ddb-4bf9-8e50-ffd0845d49dc
+    m_ActionName: Player/AlternativeInteract[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player

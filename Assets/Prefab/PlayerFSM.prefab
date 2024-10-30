@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
+  ChangePortrait: {fileID: 0}
   animator: {fileID: 4241493471790223710}
   MoveCamera: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   healthBar: {fileID: 0}
@@ -508,6 +509,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  raycastDistance: 1
+  raycastOffset: {x: 0, y: 1, z: 0}
+  OnInteractChannel: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
+  OnAlternativeInteractChannel: {fileID: 11400000, guid: c95e19ff371e208408b7cf366f26e71c, type: 2}
 --- !u!114 &7113949663427211157
 MonoBehaviour:
   m_ObjectHideFlags: 0

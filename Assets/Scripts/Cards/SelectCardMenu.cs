@@ -2,6 +2,7 @@ using InputControls;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class SelectCardMenu : MonoBehaviour
@@ -9,6 +10,12 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private BoolChannelSO TogglePause;
     [SerializeField] private VoidChannelSO moveCamera;
     [SerializeField] private GameObject gameOverScreen;
+
+    [Header("Channel: UI")] [SerializeField]
+    private BoolChannelSO ToggleCardDialogCard;
+
+    [SerializeField] private BoolChannelSO ToggleCardDialogDoor;
+    [SerializeField] private VoidChannelSO InvokeCardChannel;
 
     [Header("Reference: UI")] [SerializeField]
     private GameObject SelectCardUI;
@@ -31,6 +38,9 @@ public class SelectCardMenu : MonoBehaviour
     [Header("Animations")] [SerializeField]
     private List<Animator> cardsAnimator;
 
+    [Header("Box")] [SerializeField] private CanvasGroup dialogBoxDoor;
+    [SerializeField] private CanvasGroup dialogBoxCard;
+
     private float timeUntilCardsShowUp = 0.20f;
     private float timeBetweenCards = 0.10f;
     private float timeUntilCardsDissapear = 0.10f;
@@ -51,18 +61,39 @@ public class SelectCardMenu : MonoBehaviour
     {
         ShowSelectCardMenu(false);
         allCards = playerInventory.GetAllCard();
+        ToggleDialogCard(false);
+        ToggleDialogDoor(false);
     }
 
     private void OnEnable()
     {
         moveCamera.Subscribe(TurnGameOver);
-
+        ToggleCardDialogCard.Subscribe(ToggleDialogCard);
+        ToggleCardDialogDoor.Subscribe(ToggleDialogDoor);
+        InvokeCardChannel.Subscribe(ShowSelectCardMenuDebug);
         selectCardMenuAnimator.SetTrigger("setStart");
     }
-    
+
     private void OnDisable()
     {
+        InvokeCardChannel.Unsubscribe(ShowSelectCardMenuDebug);
+        ToggleCardDialogCard.Unsubscribe(ToggleDialogCard);
+        ToggleCardDialogDoor.Unsubscribe(ToggleDialogDoor);
         moveCamera.Unsubscribe(TurnGameOver);
+    }
+
+    private void ToggleDialogCard(bool value)
+    {
+        dialogBoxCard.interactable = value;
+        dialogBoxCard.blocksRaycasts = !value;
+        dialogBoxCard.alpha = value ? 1 : 0;
+    }
+
+    private void ToggleDialogDoor(bool value)
+    {
+        dialogBoxDoor.interactable = value;
+        dialogBoxDoor.blocksRaycasts = !value;
+        dialogBoxDoor.alpha = value ? 1 : 0;
     }
 
     private void TurnGameOver()

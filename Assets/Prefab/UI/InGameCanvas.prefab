@@ -197,6 +197,8 @@ MonoBehaviour:
   TogglePause: {fileID: 11400000, guid: 1b2954b00e4549e4a8245a0eafdebf2e, type: 2}
   moveCamera: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
   gameOverScreen: {fileID: 816650882897271340}
+  ToggleCardDialogCard: {fileID: 11400000, guid: baa052d8c829c4a4090ed965bb78b073, type: 2}
+  ToggleCardDialogDoor: {fileID: 11400000, guid: f9158be6c38a2f445bf71b4081fbd157, type: 2}
   SelectCardUI: {fileID: 8381634620664140129}
   playerInventory: {fileID: 0}
   cardsMovements:
@@ -212,6 +214,8 @@ MonoBehaviour:
   - {fileID: 2230266321965076075}
   - {fileID: 1901987592664908111}
   - {fileID: 2786855861834783217}
+  dialogBoxDoor: {fileID: 4900094686801093558}
+  dialogBoxCard: {fileID: 3067844685682757538}
   selectCardMenuAnimator: {fileID: 899752590285760388}
   cardsGO: []
   hud: {fileID: 5250553791646526628}
@@ -835,6 +839,16 @@ PrefabInstance:
 --- !u!224 &222090976882290903 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5228090865234559801, guid: ac57503507708344db22d109fb9f03ee, type: 3}
+  m_PrefabInstance: {fileID: 5447365845978592238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &3067844685682757538 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 6992896275948960844, guid: ac57503507708344db22d109fb9f03ee, type: 3}
+  m_PrefabInstance: {fileID: 5447365845978592238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &4900094686801093558 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 1123731978205057112, guid: ac57503507708344db22d109fb9f03ee, type: 3}
   m_PrefabInstance: {fileID: 5447365845978592238}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7334812438864802545
