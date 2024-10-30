@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffe99b2086f40aab0901dfee3501ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: f20a34da03f8d5d4595e27a46ec2081c, type: 2}
+  config: {fileID: 0}
   healthBar: {fileID: 3812803643886177978}
   OnHit:
     m_PersistentCalls:
@@ -246,9 +246,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   animator: {fileID: 3186729395415073752}
-  timeAfterDeactivate: 0.5
-  damageCollision: {fileID: 5954918361966145970}
+  collider: {fileID: 0}
+  skin: {fileID: 4200894542153837152}
   isAttacking: 0
+  timeAfterDeactivate: 0.5
+  disappearSpeed: 5
+  damageCollision: {fileID: 5954918361966145970}
 --- !u!114 &7604371468768104932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,6 +721,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4985685306774696560, guid: 69d151779f7c37f4dae384dc485d7a96, type: 3}
   m_PrefabInstance: {fileID: 7568650876876911016}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &4200894542153837152 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6000391793332886472, guid: 69d151779f7c37f4dae384dc485d7a96, type: 3}
+  m_PrefabInstance: {fileID: 7568650876876911016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5244360144471451976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2436036304477984992, guid: 69d151779f7c37f4dae384dc485d7a96, type: 3}
@@ -740,7 +748,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace4518210814ae5808c66318d3f9c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dummyEnemy: {fileID: 5334585770487896076}
+  baseEnemy: {fileID: 0}
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &9066250171829251505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1502220544505191449, guid: 69d151779f7c37f4dae384dc485d7a96, type: 3}

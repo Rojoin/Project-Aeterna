@@ -18,6 +18,7 @@ public class EntitySO : ScriptableObject
 
     private float m_health;
     public float health;
+    public float colorshiftDuration = 0.1f;
 
     private void OnEnable()
     {

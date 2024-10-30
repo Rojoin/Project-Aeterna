@@ -7,14 +7,15 @@ namespace Enemy
 {
     public abstract class BaseEnemy : MonoBehaviour, IHealthSystem
     {
-        [FormerlySerializedAs("enemy")] [SerializeField]
-        protected EntitySO config;
+        [SerializeField] protected EntitySO config;
         [SerializeField]  protected CustomSlider healthBar;
         [SerializeField] public UnityEvent OnHit;
         [SerializeField] public UnityEvent OnDeath;
         [SerializeField] public UnityEvent<BaseEnemy> OnDeathRemove;
         [SerializeField] public Animator animator;
         [SerializeField] public BoxCollider collider;
+        [SerializeField] public SkinnedMeshRenderer skin;
+        private Material material;
         protected float currentHealth;
         protected float maxHealth;
         protected bool canAttack;
@@ -32,6 +33,7 @@ namespace Enemy
             Init();
             collider = GetComponent<BoxCollider>();
             OnDeath.AddListener(DeathBehaviour);
+            material = skin.materials[0];
         }
 
         private void OnDisable()
@@ -82,6 +84,7 @@ namespace Enemy
             else
             {
                 animator?.SetTrigger(Hurt);
+                ChangeOnHitColor();
                 currentHealth -= damage;
                 OnHit.Invoke();
             }
@@ -100,6 +103,11 @@ namespace Enemy
 
         private void OnTriggerEnter(Collider other)
         {
+        }
+
+        protected void ChangeOnHitColor()
+        {
+            gameObject.StartColorChange(material,config.colorshiftDuration);
         }
     }
 }
