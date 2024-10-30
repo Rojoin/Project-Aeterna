@@ -14,6 +14,7 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnAttackChannel;
         [SerializeField] private VoidChannelSO OnSpecialAttackChannel;
         [SerializeField] private VoidChannelSO OnInteractChannel;
+        [SerializeField] private VoidChannelSO OnAlternativeInteractChannel;
         [SerializeField] private VoidChannelSO OnChangeCameraChannel;
         [SerializeField] private VoidChannelSO OnResetLevel;
         [SerializeField] private VoidChannelSO OnBackInteractChannel;
@@ -36,6 +37,7 @@ namespace InputControls
 
         private void OnEnable()
         {
+            OnControlSchemeChange.RaiseEvent(false);
         }
 
         public void OnChangeInput(PlayerInput input)
@@ -105,6 +107,12 @@ namespace InputControls
             if (ctx.performed)
             {
                 OnInteractChannel.RaiseEvent();
+            }
+        } public void OnAlternativeInteract(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+                OnAlternativeInteractChannel.RaiseEvent();
             }
         }
 

@@ -252,22 +252,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67fec6be086983348911dd08fc742eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayerInteractPickUp:
+  onPlayerChooseCard:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 71eb9658e3618a145ba5ac5411567cfa, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 11400000, guid: 4dc25047abaa2a84c9e32fcfed8b5738, type: 2}
+        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
+        m_MethodName: RaiseEvent
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PlayerInteractPickUp
+          m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
-  selectCardMenu: {fileID: 0}
+        m_CallState: 2
+  onPlayerHealthPickUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 87008e18da9b2e945a201e4293ef6dfc, type: 2}
+        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  showTextBox: {fileID: 11400000, guid: baa052d8c829c4a4090ed965bb78b073, type: 2}
 --- !u!65 &8273290539911971977
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -283,11 +298,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &4808131363010813307
 Animator:

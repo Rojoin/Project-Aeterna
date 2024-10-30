@@ -40,7 +40,7 @@ public class PickUpManager : MonoBehaviour
             Quaternion.identity);
 
         pickUpCollider = prefab.GetComponent<PickUpCollider>();
-        pickUpCollider.onPlayerInteractPickUp.AddListener(PlayerInteractPickUp);
+        pickUpCollider.onPlayerChooseCard.AddListener(PlayerInteractPickUp);
     }
 
     private void Update()

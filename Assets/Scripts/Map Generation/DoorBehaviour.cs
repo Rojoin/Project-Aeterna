@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DoorBehaviour : MonoBehaviour
+public class DoorBehaviour : MonoBehaviour ,IInteractable
 {
     public UnityEvent<RoomDirection> OnPlayerInteractDoor;
     public RoomDirection doorDirection;
-
-    private void OnTriggerEnter(Collider other)
+    public BoolChannelSO toggleDialogBox;
+    
+    public void Interact(int interact)
     {
-        if (other.CompareTag("Player"))
-        {
-            OnPlayerInteractDoor?.Invoke(doorDirection);
-        }
+        OnPlayerInteractDoor?.Invoke(doorDirection);
+    }
+
+    public void ToggleDialogBox(bool value)
+    {
+        toggleDialogBox.RaiseEvent(value);
     }
 }

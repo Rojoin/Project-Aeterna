@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "AlternativeInteract",
+                    "type": "Button",
+                    "id": "d021a648-0ddb-4bf9-8e50-ffd0845d49dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "96cdc5ee-bb23-48c9-9a46-49bb8bf2ea37",
@@ -440,7 +449,7 @@
                 {
                     "name": "",
                     "id": "c199c421-a7d7-4f27-a6e7-449a54496b9a",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -665,6 +674,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpecialAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f3faf40f-357f-4ff8-b4ce-7c4f22be710e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "AlternativeInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e35ef0f0-3294-4dcb-8f3d-6da9f82a9637",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "AlternativeInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

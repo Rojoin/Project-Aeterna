@@ -8,7 +8,7 @@ namespace StateMachine
     {
         private const float angle = -45;
         private float rotationSpeed = 10f;
-        private static readonly int Blend = Animator.StringToHash("Blend");
+        protected static readonly int Blend = Animator.StringToHash("Blend");
 
         public PlayerMoveState(Action onMove, params object[] data) : base(onMove, data)
         {
@@ -44,6 +44,7 @@ namespace StateMachine
             }
         }
 
+        
 
         public override void Rotate(Vector3 newDirection)
         {

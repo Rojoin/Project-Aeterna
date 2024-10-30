@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Enemy;
+using StateMachine;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -240,6 +241,7 @@ public class DungeonGeneration : MonoBehaviour
         actualPlayerRoom.enemyManager.OnEnterNewRoom();
         
         player.enabled = false;
+        player.GetComponent<PlayerFSM>().ForceToIdle();
         player.transform.position = nextDoorPosition.position;
         player.enabled = true;
 

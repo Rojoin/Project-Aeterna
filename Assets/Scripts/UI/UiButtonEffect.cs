@@ -10,39 +10,41 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     public Action onButtonEnter;
     public Action onButtonExit;
-    
+
     [SerializeField] private bool modifyHitBox;
 
     [SerializeField] private float alphaRayCast = 0.1f;
 
-    [Header("Effect Scale:")]
-    [SerializeField] private float scaleSpeed = 3;
+    [Header("Effect Scale:")] [SerializeField]
+    private float scaleSpeed = 3;
 
     [SerializeField] private float scaleLimit = 1.2f;
     private bool increment = false;
     private Vector3 initialScale;
     private Vector3 scale;
 
-    [Header("Effect Image:")]
-    [SerializeField] private bool modifyImage;
+    [Header("Effect Image:")] [SerializeField]
+    private bool modifyImage;
+
     [SerializeField] private bool baseImageIsTransparent;
 
     [SerializeField] private Sprite imageDefault;
     [SerializeField] private Sprite imageHighlighted;
     [SerializeField] private Image currentImage;
 
-    [Header("Effect Color Text:")]
-    [SerializeField] private bool textHighlight;
+    [Header("Effect Color Text:")] [SerializeField]
+    private bool textHighlight;
 
     [SerializeField] private TextMeshProUGUI textToHighlight;
     [SerializeField] private Color colorHighlight;
     private Color colorNormal;
 
-    [Header("Other:")]
-    [SerializeField] private bool enableObject;
+    [Header("Other:")] [SerializeField] private bool enableObject;
     [SerializeField] private GameObject objectToEnable;
     [SerializeField] private Transform objectToRotate;
     [SerializeField] private float rotateSpeed;
+    [SerializeField] private float rumbleForceAmount = 0.1f;
+    [SerializeField] private float rumbleDuration = 0.05f;
 
     private void Awake()
     {
@@ -60,7 +62,6 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             if (!objectToEnable)
             {
-      
                 enableObject = false;
             }
         }
@@ -70,7 +71,6 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             if (!textToHighlight)
             {
                 textHighlight = false;
-               
             }
             else
                 colorNormal = textToHighlight.color;
@@ -119,7 +119,6 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         if (textHighlight)
             textToHighlight.color = colorHighlight;
-        
     }
 
     public void OnMouseExitButton()
@@ -198,6 +197,8 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnSelect(BaseEventData eventData)
     {
         OnMouseEnterButton();
+
+        gameObject.StartRumble(rumbleDuration, rumbleForceAmount);
     }
 
     public void OnDeselect(BaseEventData eventData)
