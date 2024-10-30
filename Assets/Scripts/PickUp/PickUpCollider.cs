@@ -25,7 +25,7 @@ public class PickUpCollider : MonoBehaviour, IInteractable
             default:
                 break;
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
 
