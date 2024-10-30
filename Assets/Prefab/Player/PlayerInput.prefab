@@ -108,10 +108,10 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/DualSenseGamepadHID/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
-        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
-        m_MethodName: RaiseEvent
-        m_Mode: 1
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -248,10 +248,10 @@ MonoBehaviour:
     m_ActionName: Player/SpecialAttack[/DualSenseGamepadHID/buttonSouth,/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: c95e19ff371e208408b7cf366f26e71c, type: 2}
-        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
-        m_MethodName: RaiseEvent
-        m_Mode: 1
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnAlternativeInteract
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -284,6 +284,7 @@ MonoBehaviour:
   OnAttackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
   OnSpecialAttackChannel: {fileID: 11400000, guid: 51fc7421b630d9d45b98b54803e090ee, type: 2}
   OnInteractChannel: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
+  OnAlternativeInteractChannel: {fileID: 11400000, guid: c95e19ff371e208408b7cf366f26e71c, type: 2}
   OnChangeCameraChannel: {fileID: 0}
   OnResetLevel: {fileID: 0}
   OnBackInteractChannel: {fileID: 11400000, guid: ee870a1ab6b1cf34285cd8d95c5bbee5, type: 2}
