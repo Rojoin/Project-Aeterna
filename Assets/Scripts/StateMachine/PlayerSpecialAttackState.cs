@@ -221,6 +221,7 @@ namespace StateMachine
                 float damage = attack.damage + player.specialAttackDamage;
                 damage = Mathf.Clamp(damage, 50, attack.damage + Mathf.Abs(player.specialAttackDamage));
                 healthSystem.ReceiveDamage(damage);
+                owner.StartRumble(player.rumbleHittingEnemyDuration,player.rumbleHittingEnemyForce);
                 OnAttackConnected?.Invoke(other.transform.position);
             }
         }
