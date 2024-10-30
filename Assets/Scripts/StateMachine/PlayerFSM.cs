@@ -30,14 +30,15 @@ namespace StateMachine
 
     public class PlayerFSM : MonoBehaviour
     {
-        [Header("Channels")]
-        [SerializeField] protected Vector2ChannelSO OnMoveChannel;
+        [Header("Channels")] [SerializeField] protected Vector2ChannelSO OnMoveChannel;
         [SerializeField] protected VoidChannelSO AttackChannel;
         [SerializeField] protected VoidChannelSO SpecialAttackChannel;
         [SerializeField] protected VoidChannelSO DashChannel;
         [SerializeField] protected VoidChannelSO AutomatedMovementChannel;
-        [Header("References")]
-        [SerializeField] protected GameSettings gameSettings;
+
+        [Header("References")] [SerializeField]
+        protected GameSettings gameSettings;
+
         [SerializeField] protected PlayerEntitySO player;
         [SerializeField] protected Animator _playerAnimatorController;
         [SerializeField] protected CharacterController _characterController;
@@ -45,14 +46,18 @@ namespace StateMachine
         [SerializeField] private AttackSO specialAttack;
         [SerializeField] private AttackCollision _attackCollider;
         [SerializeField] private ParticleSystem specialAttackVFX;
-        [Header("Unity Events")]
-        [SerializeField] private UnityEvent onMove;
+
+        [Header("Unity Events")] [SerializeField]
+        private UnityEvent onMove;
+
         [SerializeField] private UnityEvent onDash;
         [SerializeField] private UnityEvent onEndDash;
         [SerializeField] private UnityEvent OnSpecialAttack;
         [SerializeField] private UnityEvent<float> OnSpecialAttackTimerUpdate;
-        [Header("Raycast Settings")]
-        [SerializeField] protected float raycastDistance = 10.0f;
+
+        [Header("Raycast Settings")] [SerializeField]
+        protected float raycastDistance = 10.0f;
+
         [SerializeField] protected Vector3 raycastOffset;
         private bool _isGettingInteractable = false;
         private IInteractable interactable = null;
@@ -67,11 +72,26 @@ namespace StateMachine
         private void OnEnable()
         {
             speed = player.speed;
+            InitFSM();
+
+            AttackChannel.Subscribe(ChangeFromAttack);
+            SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
+            DashChannel.Subscribe(ChangeFromDashStart);
+            AutomatedMovementChannel.Subscribe(ChangeToAutomatedMovement);
+
+            OnInteractChannel.Subscribe(SetInteract);
+            OnAlternativeInteractChannel.Subscribe(SetAlternativeInteract);
+            specialAttackTimer = specialAttack.timeUntilComboEnds;
+        }
+
+        private void InitFSM()
+        {
             fsm = new(Enum.GetNames(typeof(PlayerStates)).Length, Enum.GetNames(typeof(PlayerFlags)).Length);
             int idleState = fsm.AddNewState(new PlayerMoveState(ActivateOnMoveEffects, this.gameObject,
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player));
-            int automatedMoveState = fsm.AddNewState(new PlayerAutomatedMoveState(ActivateOnMoveEffects, this.gameObject,
+            int automatedMoveState = fsm.AddNewState(new PlayerAutomatedMoveState(ActivateOnMoveEffects,
+                this.gameObject,
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player));
             int attackState = fsm.AddNewState(new PlayerAttackState(ChangeFromEndAttack, ActivateOnMoveEffects,
@@ -105,15 +125,7 @@ namespace StateMachine
             fsm.SetTranstions(attackState, PlayerFlags.ForceIdle, idleState);
             fsm.SetTranstions(specialState, PlayerFlags.ForceIdle, idleState);
             fsm.SetTranstions(dashState, PlayerFlags.OnDashEnd, idleState);
-            AttackChannel.Subscribe(ChangeFromAttack);
-            SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
-            DashChannel.Subscribe(ChangeFromDashStart);
-            AutomatedMovementChannel.Subscribe(ChangeToAutomatedMovement);
-
-            OnInteractChannel.Subscribe(SetInteract);
-            OnAlternativeInteractChannel.Subscribe(SetAlternativeInteract);
             fsm.SetDefaultState(idleState);
-            specialAttackTimer = specialAttack.timeUntilComboEnds;
         }
 
         private void ActivateOnDashEffects()
