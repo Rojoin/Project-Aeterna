@@ -6,6 +6,7 @@ using Enemy;
 using StateMachine;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class DungeonGeneration : MonoBehaviour
@@ -50,7 +51,8 @@ public class DungeonGeneration : MonoBehaviour
     public Action<Vector3> OnProvidePosition;
 
     public UnityEvent<Dictionary<(int, int), (RoomForm, float)>> OnSendChambersValue;
-    public UnityEvent<RoomDirection> OnChangeRoom;
+    public UnityEvent<RoomDirection> OnStartChangeRoom;
+    public UnityEvent OnEndChangeRoom;
 
     private void Start()
     {
@@ -203,6 +205,7 @@ public class DungeonGeneration : MonoBehaviour
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)
     {
+        OnStartChangeRoom.Invoke(direction);
         StartCoroutine(DisableTransition(direction));
     }
 
@@ -257,7 +260,7 @@ public class DungeonGeneration : MonoBehaviour
         {
             SetVisibleRooms();
         }
-        OnChangeRoom.Invoke(direction);
+        OnEndChangeRoom.Invoke();
 
         yield return new WaitForSecondsRealtime(1);
         oldRoom.roomBehaviour.SetDoorCollisions(true);
