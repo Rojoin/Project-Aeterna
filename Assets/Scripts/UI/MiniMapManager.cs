@@ -6,22 +6,25 @@ using UnityEngine.UI;
 
 public class MiniMapManager : MonoBehaviour
 {
-    [Header("Settings")] [SerializeField] private DungeonGeneration dungeonGeneration;
+    [Header("Settings")][SerializeField] private DungeonGeneration dungeonGeneration;
     [SerializeField] private RectTransform miniMapContainer;
     [SerializeField] private RectTransform miniMapContent;
 
     [SerializeField] private int roomSize = 20;
     [SerializeField] private int roomSpacing = 5;
 
-    [Header("Spite Player")] [SerializeField]
+    [Header("Spite Player")]
+    [SerializeField]
     private Sprite playerPositionSprite;
 
-    [Header("Spite Room")] [SerializeField]
+    [Header("Spite Room")]
+    [SerializeField]
     private Sprite hideRoomSprite;
 
     [SerializeField] private Sprite revealedRoomSprite;
 
-    [Header("Spite Tunnel")] [SerializeField]
+    [Header("Spite Tunnel")]
+    [SerializeField]
     private Sprite hideBridgeSprite;
 
     [SerializeField] private Sprite revealedBridgeSprite;
@@ -129,7 +132,7 @@ public class MiniMapManager : MonoBehaviour
 
     public void MoveMiniMap(RoomDirection direction)
     {
-        Vector2 finalDirection = Vector2.one;
+        Vector2 finalDirection = Vector2.zero;
         switch (direction)
         {
             case RoomDirection.UP:
@@ -146,6 +149,7 @@ public class MiniMapManager : MonoBehaviour
                 break;
         }
 
+
         UpdateMap(finalDirection);
 
         Vector2 rotatedDirection = Quaternion.Euler(0, 0, -45) * finalDirection;
@@ -159,9 +163,13 @@ public class MiniMapManager : MonoBehaviour
     private void UpdateMap(Vector2 finalDirection)
     {
         (int, int) lasPlayerPosition = playerPosition;
+
         playerPosition = (playerPosition.Item1 + (int)finalDirection.x, playerPosition.Item2 + (int)finalDirection.y);
 
-        roomData[lasPlayerPosition].sprite = revealedRoomSprite;
+        //Debug.LogError(playerPosition.Item1 + "," + playerPosition.Item2 + " -> " + finalDirection.x + "," + finalDirection.y);
+        Debug.LogError(lasPlayerPosition.Item1 + " + " + lasPlayerPosition.Item2 + " / " + playerPosition.Item1 + " + " + playerPosition.Item2);
+
+       roomData[lasPlayerPosition].sprite = revealedRoomSprite;
         roomData[playerPosition].sprite = playerPositionSprite;
 
         if (bridgeData.ContainsKey((playerPosition, lasPlayerPosition)))
