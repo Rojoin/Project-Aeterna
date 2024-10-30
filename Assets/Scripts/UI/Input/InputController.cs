@@ -36,6 +36,7 @@ namespace InputControls
 
         private void OnEnable()
         {
+            OnControlSchemeChange.RaiseEvent(false);
         }
 
         public void OnChangeInput(PlayerInput input)
