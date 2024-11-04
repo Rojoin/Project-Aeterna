@@ -160,9 +160,6 @@ public class MiniMapManager : MonoBehaviour
 
         playerPosition = (playerPosition.Item1 + (int)finalDirection.x, playerPosition.Item2 + (int)finalDirection.y);
 
-        Debug.LogError(lasPlayerPosition.Item1 + " + " + lasPlayerPosition.Item2 + " / " + playerPosition.Item1 +
-                       " + " + playerPosition.Item2);
-
         roomData[lasPlayerPosition].sprite = revealedRoomSprite;
         roomData[playerPosition].sprite = playerPositionSprite;
 
