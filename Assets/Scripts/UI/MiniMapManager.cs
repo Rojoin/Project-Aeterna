@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -32,24 +33,20 @@ public class MiniMapManager : MonoBehaviour
     private Dictionary<(int, int), Image> roomData = new();
     private Dictionary<((int, int), (int, int)), Image> bridgeData = new();
 
-
-    private void Start()
-    {
-        // miniMapContent = new GameObject("MiniMapContent").AddComponent<RectTransform>();
-        // miniMapContent.SetParent(miniMapContainer, false);
-        // miniMapContent.localScale = Vector3.one;
-    }
+    private Vector2 finalDirection = Vector2.zero;
 
     private void OnEnable()
     {
         dungeonGeneration.OnSendChambersValue.AddListener(SetMiniMapValues);
-        dungeonGeneration.OnChangeRoom.AddListener(MoveMiniMap);
+        dungeonGeneration.OnStartChangeRoom.AddListener(MoveMiniMap);
+        dungeonGeneration.OnEndChangeRoom.AddListener(UpdateMap);
     }
 
     private void OnDisable()
     {
         dungeonGeneration.OnSendChambersValue.AddListener(SetMiniMapValues);
-        dungeonGeneration.OnChangeRoom.AddListener(MoveMiniMap);
+        dungeonGeneration.OnStartChangeRoom.AddListener(MoveMiniMap);
+        dungeonGeneration.OnEndChangeRoom.AddListener(UpdateMap);
     }
 
     private void SetMiniMapValues(Dictionary<(int, int), (RoomForm, float)> newValues)
@@ -129,7 +126,7 @@ public class MiniMapManager : MonoBehaviour
 
     public void MoveMiniMap(RoomDirection direction)
     {
-        Vector2 finalDirection = Vector2.one;
+        finalDirection = Vector2.zero;
         switch (direction)
         {
             case RoomDirection.UP:
@@ -145,8 +142,12 @@ public class MiniMapManager : MonoBehaviour
                 finalDirection = new Vector2(-1, 0);
                 break;
         }
+    }
 
-        UpdateMap(finalDirection);
+    private void UpdateMap()
+    {
+        if (finalDirection == Vector2.zero)
+            return;
 
         Vector2 rotatedDirection = Quaternion.Euler(0, 0, -45) * finalDirection;
 
@@ -154,11 +155,9 @@ public class MiniMapManager : MonoBehaviour
         float offsetY = -rotatedDirection.y * (roomSize + roomSpacing);
 
         miniMapContent.anchoredPosition += new Vector2(offsetX, offsetY);
-    }
 
-    private void UpdateMap(Vector2 finalDirection)
-    {
         (int, int) lasPlayerPosition = playerPosition;
+
         playerPosition = (playerPosition.Item1 + (int)finalDirection.x, playerPosition.Item2 + (int)finalDirection.y);
 
         roomData[lasPlayerPosition].sprite = revealedRoomSprite;
@@ -172,5 +171,7 @@ public class MiniMapManager : MonoBehaviour
         {
             bridgeData[(lasPlayerPosition, playerPosition)].sprite = revealedBridgeSprite;
         }
+
+        finalDirection = Vector2.zero;
     }
 }
