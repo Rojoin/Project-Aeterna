@@ -294,9 +294,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
-  ChangePortrait: {fileID: 0}
+  ChangePortrait: {fileID: 11400000, guid: 46a99d5c006f2314586922abd69264a6, type: 2}
   animator: {fileID: 4241493471790223710}
   MoveCamera: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
+  skin: {fileID: 2145138514065475441}
   healthBar: {fileID: 0}
   selectCardMenu: {fileID: 0}
   rumbleDuration: 0.1
@@ -1932,6 +1933,11 @@ PrefabInstance:
 --- !u!4 &980067415721566176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9079201566075216794, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+  m_PrefabInstance: {fileID: 8099208977273961594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &2145138514065475441 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7900223848651455243, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
   m_PrefabInstance: {fileID: 8099208977273961594}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &4241493471790223710 stripped

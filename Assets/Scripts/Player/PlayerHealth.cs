@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] private PlayerPortraitChannelSO ChangePortrait;
     [SerializeField] private Animator animator;
     [SerializeField] private VoidChannelSO MoveCamera;
+    [SerializeField] private SkinnedMeshRenderer skin;
+    private Material material;
     [SerializeField] private PlayerHealthBar healthBar;
     [SerializeField] private SelectCardMenu selectCardMenu;
     [SerializeField] float rumbleDuration = 0.1f;
@@ -30,6 +32,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         maxHealth = player.maxHealth;
         currentHealth = player.health;
         ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
+        material = skin.materials[1];
     }
 
     private void UpdatePlayerStacks()
@@ -104,7 +107,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
             currentHealth -= damage;
         }
 
-        gameObject.StartRumble(player.rumbleBeingHittingDuration,player.rumbleBeingHittingForce);
+        gameObject.StartRumble(player.rumbleBeingHittingDuration, player.rumbleBeingHittingForce);
+        gameObject.StartColorChange(material, player.colorshiftDuration);
         OnPlayerHurt.Invoke();
         if (currentHealth < player.maxHealth / 2)
         {

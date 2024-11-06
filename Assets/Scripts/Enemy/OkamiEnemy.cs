@@ -7,13 +7,14 @@ namespace Enemy
 {
     public class OkamiEnemy : BaseEnemy, IMovevable
     {
-        private enum OkamiStates
+        enum OkamiStates
         {
             Searching,
             Chasing,
             Preparing,
-            Attacking
+            Attack
         }
+
 
         public AttackCollision damageCollision;
 
@@ -21,96 +22,110 @@ namespace Enemy
         private OkamiStates currentState = OkamiStates.Searching;
         private float currentMovementSpeed;
         private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
-
         [SerializeField] private SkinnedMeshRenderer meshBody;
         [SerializeField] private SkinnedMeshRenderer meshFace;
-        [SerializeField] private NavMeshAgent navMeshAgent;
-
         private Transform playerPosition;
-        private Transform currentObjective;
+        private float attackTimerlife = 0;
         private Material materialBody;
         private Material materialFace;
-        
-        private float attackLifeTimer = 0f;
-
+        [SerializeField] private NavMeshAgent _navMeshAgent;
         private static readonly int IsWalking = Animator.StringToHash("isWalking");
+        private Transform currentObjective;
+
 
         protected override void Init()
         {
             base.Init();
             enemyConfig = config as OkamiSo;
             damageCollision.OnTriggerEnterObject.AddListener(DamageEnemy);
+            currentMovementSpeed = enemyConfig.chasingMoveSpeed;
             materialBody = meshBody.material;
             materialFace = meshFace.material;
             animator.SetTrigger(IsIdle);
-            SetMovementSpeed(enemyConfig.chasingMoveSpeed);
         }
+
 
         protected override void ValidateMethod()
         {
-            enemyConfig = config as OkamiSo;
-            if (enemyConfig == null) config = null;
+            if (config.GetType() != typeof(OkamiSo))
+            {
+                config = null;
+            }
+            else
+            {
+                enemyConfig = config as OkamiSo;
+            }
         }
 
-        private void OnDisable() => damageCollision.OnTriggerEnterObject.RemoveListener(DamageEnemy);
-
-        private void DamageEnemy(GameObject target)
+        private void OnDisable()
         {
-            if (target.TryGetComponent<IHealthSystem>(out var entity))
+            damageCollision.OnTriggerEnterObject.RemoveListener(DamageEnemy);
+        }
+
+        private void DamageEnemy(GameObject arg0)
+        {
+            if (arg0.TryGetComponent<IHealthSystem>(out var entity))
             {
                 entity.ReceiveDamage(config.damage);
             }
         }
 
-        private void Update()
+        protected void Update()
         {
             if (IsDead()) return;
+            _navMeshAgent.speed = currentMovementSpeed;
 
-            navMeshAgent.speed = currentMovementSpeed;
             switch (currentState)
             {
                 case OkamiStates.Searching:
                     DetectEntity();
                     break;
                 case OkamiStates.Chasing:
-                    ChaseEntity();
+                    ChasingEntity();
                     break;
                 case OkamiStates.Preparing:
                     PrepareAttack();
                     break;
-                case OkamiStates.Attacking:
-                    ExecuteAttack();
+                case OkamiStates.Attack:
+                    AttackEntity();
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
-        private void DetectEntity()
+        protected void DetectEntity()
         {
-            animator.SetTrigger(IsWalking);
-            var hitColliders = Physics.OverlapSphere(transform.position, enemyConfig.detectionRange);
-            foreach (var hitCollider in hitColliders)
+            int layerMask = 1 << gameObject.layer;
+            layerMask = ~layerMask;
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyConfig.detectionRange);
+            foreach (Collider hitCollider in hitColliders)
             {
                 if (hitCollider.CompareTag("Player"))
                 {
-                    SetTarget(hitCollider.transform);
+                    currentObjective = hitCollider.gameObject.transform;
+                    Vector3 direction = currentObjective.position - transform.position;
+                    direction.y = 0;
+
+                    if (direction != Vector3.zero)
+                    {
+                        Quaternion targetRotation = Quaternion.LookRotation(direction);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
+                    }
+
+                    playerPosition = hitCollider.gameObject.transform;
+                    _navMeshAgent.SetDestination(playerPosition.position);
                     currentState = OkamiStates.Chasing;
+                    animator.SetTrigger(IsWalking);
                     break;
                 }
             }
         }
 
-        private void SetTarget(Transform target)
+        private void ChasingEntity()
         {
-            playerPosition = target;
-            currentObjective = target;
-            navMeshAgent.SetDestination(playerPosition.position);
-            FaceTarget();
-        }
-
-        private void ChaseEntity()
-        {
-            SetMovementSpeed(enemyConfig.chasingMoveSpeed);
-            navMeshAgent.SetDestination(playerPosition.position);
+            currentMovementSpeed = enemyConfig.chasingMoveSpeed;
+            _navMeshAgent.SetDestination(playerPosition.position);
 
             if (Vector3.Distance(transform.position, playerPosition.position) <= enemyConfig.attackRange)
             {
@@ -120,12 +135,20 @@ namespace Enemy
 
         private void PrepareAttack()
         {
-            if (attackTimer >= enemyConfig.attackSpeed)
+            _navMeshAgent.isStopped = true;
+            if (attackTimer > enemyConfig.attackSpeed)
             {
                 attackTimer = 0;
-                currentState = OkamiStates.Attacking;
-                navMeshAgent.isStopped = false;
-                FaceTarget();
+                _navMeshAgent.isStopped = false;
+                currentState = OkamiStates.Attack;
+                Vector3 direction = currentObjective.position - transform.position;
+                direction.y = 0;
+
+                if (direction != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
+                }
             }
             else
             {
@@ -133,53 +156,61 @@ namespace Enemy
             }
         }
 
-        private void ExecuteAttack()
+        public void AttackEntity()
         {
-            SetMovementSpeed(enemyConfig.attackMoveSpeed);
-            navMeshAgent.SetDestination(playerPosition.position);
+            currentMovementSpeed = enemyConfig.attackMoveSpeed;
+            _navMeshAgent.SetDestination(playerPosition.position);
 
-            if (attackLifeTimer >= enemyConfig.attackTime)
+
+            if (Vector3.Distance(transform.position, playerPosition.position) <= 3 ||
+                attackTimerlife >= enemyConfig.attackTime)
             {
-                animator.SetTrigger(AttackAnim);
-                attackLifeTimer = 0;
+                animator?.SetTrigger(AttackAnim);
+                attackTimerlife = 0;
                 AkSoundEngine.PostEvent("Okami_Attack", gameObject);
                 currentState = OkamiStates.Chasing;
             }
             else
             {
-                attackLifeTimer += Time.deltaTime;
+                attackTimerlife += Time.deltaTime;
             }
         }
 
         public override void ReceiveDamage(float damage)
         {
-            currentHealth -= damage;
-            OnHit.Invoke();
-            if (currentHealth <= 0)
+            if (currentHealth <= 0 || currentHealth <= damage)
             {
-                HandleDeath();
+                animator.SetTrigger(Dead);
+                currentHealth = 0;
+                OnHit.Invoke();
+                OnDeath.Invoke();
+                OnDeathRemove.Invoke(this);
+                collider.enabled = false;
+                _navMeshAgent.isStopped = true;
             }
             else
             {
-                animator.SetTrigger(Hurt);
-                healthBar.FillAmount = currentHealth / maxHealth;
+                animator?.SetTrigger(Hurt);
+                currentHealth -= damage;
+                ChangeOnHitColor();
+                OnHit.Invoke();
             }
+
+            float healthNormalize = currentHealth / maxHealth;
+            healthBar.FillAmount = healthNormalize;
+            // animator?.SetFloat(Damage, healthNormalize);
         }
 
-        private void HandleDeath()
+        public override void DeathBehaviour()
         {
-            animator.SetTrigger(Dead);
-            OnDeath.Invoke();
-            OnDeathRemove.Invoke(this);
-            navMeshAgent.isStopped = true;
-            collider.enabled = false;
             StartCoroutine(OnDeathMaterialAnimation());
         }
 
         private IEnumerator OnDeathMaterialAnimation()
         {
             float heightValue = materialBody.GetFloat(CutOffHeight);
-            const float endAnimation = -5.0f;
+            float endAnimation = -5.0f;
+            materialFace = meshFace.material;
             while (heightValue > endAnimation)
             {
                 heightValue -= Time.deltaTime * disappearSpeed;
@@ -188,21 +219,19 @@ namespace Enemy
                 yield return null;
             }
 
+            materialBody.SetFloat(CutOffHeight, heightValue);
+            materialFace.SetFloat(CutOffHeight, heightValue);
             gameObject.SetActive(false);
         }
 
-        private void FaceTarget()
+        protected void OnDrawGizmosSelected()
         {
-            Vector3 direction = currentObjective.position - transform.position;
-            direction.y = 0;
-            if (direction != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction),
-                    Time.deltaTime * 5);
-            }
-        }
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, enemyConfig.attackRange);
 
-        private void SetMovementSpeed(float speed) => currentMovementSpeed = speed;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, enemyConfig.detectionRange);
+        }
 
         public void Move(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
         {
@@ -211,24 +240,16 @@ namespace Enemy
 
         private IEnumerator MoveByAttack(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
         {
-            navMeshAgent.isStopped = true;
+            _navMeshAgent.isStopped = true;
             float timer = 0f;
             while (timer < maxTime)
             {
                 timer += Time.deltaTime;
-                navMeshAgent.Move(direction * (speed * curve.Evaluate(timer / maxTime) * Time.deltaTime));
+                _navMeshAgent.Move(direction * (speed * curve.Evaluate(timer / maxTime) * Time.deltaTime));
                 yield return null;
             }
 
-            navMeshAgent.isStopped = false;
-        }
-
-        protected void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, enemyConfig.attackRange);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, enemyConfig.detectionRange);
+            _navMeshAgent.isStopped = false;
         }
     }
 }

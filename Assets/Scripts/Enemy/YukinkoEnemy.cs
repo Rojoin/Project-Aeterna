@@ -92,6 +92,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
             {
                 animator.SetTrigger(Hurt);
                 currentHealth -= damage;
+                ChangeOnHitColor();
                 OnHit.Invoke();
             }
         }
