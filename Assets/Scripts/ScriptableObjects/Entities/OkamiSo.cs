@@ -7,6 +7,7 @@ public class OkamiSo : EntitySO
     public float attackRange;
 
     public float attackSpeed;
+    public float damageRange;
     
     public float attackTime;
     
