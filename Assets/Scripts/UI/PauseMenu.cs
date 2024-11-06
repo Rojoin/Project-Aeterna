@@ -1,6 +1,7 @@
 using InputControls;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -30,6 +31,11 @@ public class PauseMenu : MonoBehaviour
         canvas.alpha = isPaused ? 1.0f : 0;
         canvas.interactable = isPaused;
         canvas.blocksRaycasts = isPaused;
+    }
+
+    public void QuitGame() 
+    {
+        Application.Quit();
     }
 
     private void OnDisable()
