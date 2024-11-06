@@ -26,6 +26,9 @@ public class CardSO : ScriptableObject
 
     [Header("Art")]
     public Sprite allCardSprite;
+    public Sprite cardFrame;
+    public Sprite cardAccumulatedFrame;
+    public Sprite cardCompleteFrame;
     
     public Sprite artMidground_0;
     public Vector3 newPosition0 = new Vector3(0, 0, 75);
