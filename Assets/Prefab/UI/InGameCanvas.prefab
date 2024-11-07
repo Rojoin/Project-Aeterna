@@ -306,11 +306,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 839588763805806274, guid: 6bf1f7c8e97e02746bf2849e7c540a94, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 839588763805806274, guid: 6bf1f7c8e97e02746bf2849e7c540a94, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -62
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 839588763805806274, guid: 6bf1f7c8e97e02746bf2849e7c540a94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -327,6 +327,22 @@ PrefabInstance:
     - target: {fileID: 5890106872118312280, guid: 6bf1f7c8e97e02746bf2849e7c540a94, type: 3}
       propertyPath: m_Name
       value: CardCounterUIParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404230051850371818, guid: 6bf1f7c8e97e02746bf2849e7c540a94, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590662019161638367, guid: 6bf1f7c8e97e02746bf2849e7c540a94, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 5204553308578828246}
+    - target: {fileID: 7208392404558533390, guid: 6bf1f7c8e97e02746bf2849e7c540a94, type: 3}
+      propertyPath: m_AutoScalingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350383240460886400, guid: 6bf1f7c8e97e02746bf2849e7c540a94, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -565,6 +581,14 @@ PrefabInstance:
       propertyPath: m_ParticleSystems.Array.data[0]
       value: 
       objectReference: {fileID: 8815306602748676588}
+    - target: {fileID: 5135322584418481069, guid: 01d62f65562f9714da262dcc2b3501c4, type: 3}
+      propertyPath: m_ParticleSystems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135322584418481069, guid: 01d62f65562f9714da262dcc2b3501c4, type: 3}
+      propertyPath: m_ParticleSystems.Array.data[0]
+      value: 
+      objectReference: {fileID: 8815306602748676588}
     - target: {fileID: 5243152127285726347, guid: 01d62f65562f9714da262dcc2b3501c4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -647,11 +671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7318451397518741292, guid: 01d62f65562f9714da262dcc2b3501c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50.999634
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7318451397518741292, guid: 01d62f65562f9714da262dcc2b3501c4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -17.999939
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8750232853945453290, guid: 01d62f65562f9714da262dcc2b3501c4, type: 3}
       propertyPath: m_Name
@@ -858,7 +882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4175663034007372680, guid: d474e8beabe10ad47b09f58b1c763e11, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 11.000122
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4407139474203995697, guid: d474e8beabe10ad47b09f58b1c763e11, type: 3}
       propertyPath: m_Pivot.x
@@ -978,7 +1002,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1268873022872904592, guid: d474e8beabe10ad47b09f58b1c763e11, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8728239561835570805}
+      addedObject: {fileID: 8791939529390974315}
   m_SourcePrefab: {fileID: 100100000, guid: d474e8beabe10ad47b09f58b1c763e11, type: 3}
 --- !u!114 &21291112978684933 stripped
 MonoBehaviour:
@@ -1076,7 +1100,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1268873022872904592, guid: d474e8beabe10ad47b09f58b1c763e11, type: 3}
   m_PrefabInstance: {fileID: 7334812438864802545}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &8728239561835570805
+--- !u!225 &8791939529390974315
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
