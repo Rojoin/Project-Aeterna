@@ -74,7 +74,7 @@ namespace Enemy
         {
             if (IsDead()) return;
             _navMeshAgent.speed = currentMovementSpeed;
-
+            attackTimer += Time.deltaTime;
             switch (currentState)
             {
                 case OkamiStates.Searching:
@@ -89,8 +89,7 @@ namespace Enemy
                     PrepareAttack();
                     break;
                 case OkamiStates.Attack:
-                    Move();
-                    AttackEntity();
+                    WaitAfterAttack();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -126,7 +125,8 @@ namespace Enemy
 
         private void ChasingEntity()
         {
-            if (Vector3.Distance(transform.position, playerPosition.position) <= enemyConfig.attackRange)
+            if (Vector3.Distance(transform.position, playerPosition.position) <= enemyConfig.attackRange &&
+                attackTimer > enemyConfig.attackSpeed)
             {
                 currentState = OkamiStates.Preparing;
             }
@@ -134,15 +134,9 @@ namespace Enemy
 
         private void PrepareAttack()
         {
-            if (attackTimer > enemyConfig.attackSpeed)
-            {
-                attackTimer = 0;
-                currentState = OkamiStates.Attack;
-            }
-            else
-            {
-                attackTimer += Time.deltaTime;
-            }
+            attackTimer = 0;
+            currentState = OkamiStates.Attack;
+            AttackEntity();
         }
 
         private void OrientateFace()
@@ -165,18 +159,27 @@ namespace Enemy
 
         public void AttackEntity()
         {
-            if (Vector3.Distance(transform.position, playerPosition.position) <= 3 ||
-                attackTimerlife >= enemyConfig.attackTime)
+            animator?.SetTrigger(AttackAnim);
+            AkSoundEngine.PostEvent("Okami_Attack", gameObject);
+        }
+
+        private void WaitAfterAttack()
+        {
+            attackTimerlife -= Time.deltaTime;
+            if (attackTimerlife < 0)
             {
-                animator?.SetTrigger(AttackAnim);
-                attackTimerlife = 0;
-                AkSoundEngine.PostEvent("Okami_Attack", gameObject);
-                currentState = OkamiStates.Chasing;
+                attackTimerlife = enemyConfig.delayAfterAttack;
+                currentState = OkamiStates.Searching;
             }
-            else
+            else if (attackTimerlife > enemyConfig.timeUntilAttackIsLockOn)
             {
-                attackTimerlife += Time.deltaTime;
+                OrientateFace();
             }
+        }
+
+        private void DelayUntilChase()
+        {
+            currentState = OkamiStates.Chasing;
         }
 
         public override void ReceiveDamage(float damage)
