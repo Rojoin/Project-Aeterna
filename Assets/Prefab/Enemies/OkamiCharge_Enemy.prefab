@@ -193,12 +193,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5634934617283220431}
-  - component: {fileID: 7946078008784294838}
+  - component: {fileID: 4356590063594770173}
   - component: {fileID: 1999588720240191051}
   - component: {fileID: 2944804324486348584}
   - component: {fileID: -5797396021568235125}
   m_Layer: 0
-  m_Name: Okami_Enemy
+  m_Name: OkamiCharge_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ Transform:
   - {fileID: 943963237089726273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
---- !u!114 &7946078008784294838
+--- !u!114 &4356590063594770173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,10 +231,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6195564338604677980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e2bdd36b9965cc4db6627462beba031, type: 3}
+  m_Script: {fileID: 11500000, guid: cc8198fc06b14b944988b55ca8d21837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 2919f8acd403a81498e89173da6085e4, type: 2}
+  config: {fileID: 11400000, guid: b2b204ba45e80dd40b24b2826bcdbab2, type: 2}
   healthBar: {fileID: 3421522751202032388}
   OnHit:
     m_PersistentCalls:
@@ -489,10 +489,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3752457913520641799, guid: 71872873dcad0ca4097f8e04ce802c51, type: 3}
-      propertyPath: baseEnemy
-      value: 
-      objectReference: {fileID: 7946078008784294838}
     - target: {fileID: 8234277550044532779, guid: 71872873dcad0ca4097f8e04ce802c51, type: 3}
       propertyPath: m_Name
       value: OkamiModel
@@ -1163,6 +1159,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: -1289463017442685896, guid: 1235d20d750ef6245b271cd7bbac17ab, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce085eef053878f45ba875a021c77bdc, type: 2}
     - target: {fileID: -974574197573453736, guid: 1235d20d750ef6245b271cd7bbac17ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -0
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace4518210814ae5808c66318d3f9c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseEnemy: {fileID: 7946078008784294838}
+  baseEnemy: {fileID: 0}
   OnAttack:
     m_PersistentCalls:
       m_Calls:

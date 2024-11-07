@@ -5,12 +5,13 @@ using UnityEngine.AI;
 
 namespace Enemy
 {
-    public class OkamiEnemy : BaseEnemy, IMovevable
+    public class OkamiCharge : BaseEnemy, IMovevable
     {
         enum OkamiStates
         {
             Searching,
             Chasing,
+            Orbit,
             Preparing,
             Attack
         }
@@ -18,7 +19,7 @@ namespace Enemy
 
         public AttackCollision damageCollision;
 
-        private OkamiSo enemyConfig;
+        private OkamiChargeSo enemyConfig;
         private OkamiStates currentState = OkamiStates.Searching;
         private float currentMovementSpeed;
         private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
@@ -26,6 +27,8 @@ namespace Enemy
         [SerializeField] private SkinnedMeshRenderer meshFace;
         private Transform playerPosition;
         private float attackTimerlife = 0;
+        private float orbitTimerlife = 0;
+        private float rotationSpeed = 4;
         private Material materialBody;
         private Material materialFace;
         [SerializeField] private NavMeshAgent _navMeshAgent;
@@ -36,7 +39,7 @@ namespace Enemy
         protected override void Init()
         {
             base.Init();
-            enemyConfig = config as OkamiSo;
+            enemyConfig = config as OkamiChargeSo;
             damageCollision.OnTriggerEnterObject.AddListener(DamageEnemy);
             currentMovementSpeed = enemyConfig.chasingMoveSpeed;
             materialBody = meshBody.material;
@@ -47,13 +50,13 @@ namespace Enemy
 
         protected override void ValidateMethod()
         {
-            if (config.GetType() != typeof(OkamiSo))
+            if (config.GetType() != typeof(OkamiChargeSo))
             {
                 config = null;
             }
             else
             {
-                enemyConfig = config as OkamiSo;
+                enemyConfig = config as OkamiChargeSo;
             }
         }
 
@@ -82,8 +85,11 @@ namespace Enemy
                     Move();
                     ChasingEntity();
                     break;
+                case OkamiStates.Orbit:
+                    OrbitPlayer();
+                    break;
                 case OkamiStates.Preparing:
-                    OrientateFace();
+                    OrientateFace(playerPosition.position);
                     PrepareAttack();
                     break;
                 case OkamiStates.Attack:
@@ -122,14 +128,36 @@ namespace Enemy
             }
         }
 
+        private void OrbitPlayer()
+        {
+            orbitTimerlife += Time.deltaTime;
+
+            if (orbitTimerlife >= enemyConfig.timeUntilAttack)
+            {
+                currentState = OkamiStates.Preparing;
+                orbitTimerlife = 0;
+            }
+            else
+            {
+                Vector3 orbitPosition = playerPosition.position +
+                                        new Vector3(Mathf.Sin(Time.time * enemyConfig.orbitSpeed), 0,
+                                            Mathf.Cos(Time.time * enemyConfig.orbitSpeed)) * enemyConfig.orbitRadius;
+
+                _navMeshAgent.isStopped = false;
+                _navMeshAgent.SetDestination(orbitPosition);
+
+                OrientateFace(orbitPosition);
+            }
+        }
+
         private void ChasingEntity()
         {
             _navMeshAgent.isStopped = false;
 
-            if (Vector3.Distance(transform.position, playerPosition.position) <= enemyConfig.attackRange &&
+            if (Vector3.Distance(transform.position, playerPosition.position) <= enemyConfig.orbitRadius &&
                 attackTimer > enemyConfig.attackSpeed)
             {
-                currentState = OkamiStates.Preparing;
+                currentState = OkamiStates.Orbit;
                 _navMeshAgent.isStopped = true;
             }
         }
@@ -141,15 +169,16 @@ namespace Enemy
             AttackEntity();
         }
 
-        private void OrientateFace()
+        private void OrientateFace(Vector3 targetPosition)
         {
-            Vector3 direction = currentObjective.position - transform.position;
+            Vector3 direction = targetPosition - transform.position;
             direction.y = 0;
 
             if (direction != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
+                transform.rotation =
+                    Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
         }
 
@@ -175,7 +204,7 @@ namespace Enemy
             }
             else if (attackTimerlife > enemyConfig.timeUntilAttackIsLockOn)
             {
-                OrientateFace();
+                OrientateFace(playerPosition.position);
             }
             else
             {
