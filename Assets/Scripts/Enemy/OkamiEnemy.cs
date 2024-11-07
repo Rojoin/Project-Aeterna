@@ -81,12 +81,15 @@ namespace Enemy
                     DetectEntity();
                     break;
                 case OkamiStates.Chasing:
+                    Move();
                     ChasingEntity();
                     break;
                 case OkamiStates.Preparing:
+                    OrientateFace();
                     PrepareAttack();
                     break;
                 case OkamiStates.Attack:
+                    Move();
                     AttackEntity();
                     break;
                 default:
@@ -114,7 +117,6 @@ namespace Enemy
                     }
 
                     playerPosition = hitCollider.gameObject.transform;
-                    _navMeshAgent.SetDestination(playerPosition.position);
                     currentState = OkamiStates.Chasing;
                     animator.SetTrigger(IsWalking);
                     break;
@@ -124,9 +126,6 @@ namespace Enemy
 
         private void ChasingEntity()
         {
-            currentMovementSpeed = enemyConfig.chasingMoveSpeed;
-            _navMeshAgent.SetDestination(playerPosition.position);
-
             if (Vector3.Distance(transform.position, playerPosition.position) <= enemyConfig.attackRange)
             {
                 currentState = OkamiStates.Preparing;
@@ -135,20 +134,10 @@ namespace Enemy
 
         private void PrepareAttack()
         {
-            _navMeshAgent.isStopped = true;
             if (attackTimer > enemyConfig.attackSpeed)
             {
                 attackTimer = 0;
-                _navMeshAgent.isStopped = false;
                 currentState = OkamiStates.Attack;
-                Vector3 direction = currentObjective.position - transform.position;
-                direction.y = 0;
-
-                if (direction != Vector3.zero)
-                {
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
-                }
             }
             else
             {
@@ -156,12 +145,26 @@ namespace Enemy
             }
         }
 
+        private void OrientateFace()
+        {
+            Vector3 direction = currentObjective.position - transform.position;
+            direction.y = 0;
+
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
+            }
+        }
+
+        private void Move()
+        {
+            currentMovementSpeed = enemyConfig.chasingMoveSpeed;
+            _navMeshAgent.SetDestination(playerPosition.position);
+        }
+
         public void AttackEntity()
         {
-            currentMovementSpeed = enemyConfig.attackMoveSpeed;
-            _navMeshAgent.SetDestination(playerPosition.position);
-
-
             if (Vector3.Distance(transform.position, playerPosition.position) <= 3 ||
                 attackTimerlife >= enemyConfig.attackTime)
             {
