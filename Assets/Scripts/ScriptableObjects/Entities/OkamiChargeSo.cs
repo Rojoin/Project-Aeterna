@@ -3,5 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Create OkamiChargeSo", fileName = "OkamiChargeSo")]
 public class OkamiChargeSo : OkamiSo
 {
-    public int totalAttacks;
+    public float orbitRadius = 5f;
+    public float orbitSpeed = 2f;
+    public float timeUntilAttack = 2f;
 }

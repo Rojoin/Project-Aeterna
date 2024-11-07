@@ -10,6 +10,8 @@ public class OkamiSo : EntitySO
     public float attackTime;
     
     public float chasingMoveSpeed;
+    public float attackMoveSpeed;
+    
     public float delayAfterAttack = 1.09f;
     public float timeUntilAttackIsLockOn = 0.2f;
 }

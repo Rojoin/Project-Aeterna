@@ -72,8 +72,6 @@ namespace Enemy
 
         protected void Update()
         {
-            if (IsDead()) return;
-            _navMeshAgent.speed = currentMovementSpeed;
             attackTimer += Time.deltaTime;
             switch (currentState)
             {
@@ -117,6 +115,7 @@ namespace Enemy
 
                     playerPosition = hitCollider.gameObject.transform;
                     currentState = OkamiStates.Chasing;
+                    currentMovementSpeed = enemyConfig.chasingMoveSpeed;
                     animator.SetTrigger(IsWalking);
                     break;
                 }
@@ -125,10 +124,13 @@ namespace Enemy
 
         private void ChasingEntity()
         {
+            _navMeshAgent.isStopped = false;
+
             if (Vector3.Distance(transform.position, playerPosition.position) <= enemyConfig.attackRange &&
                 attackTimer > enemyConfig.attackSpeed)
             {
                 currentState = OkamiStates.Preparing;
+                _navMeshAgent.isStopped = true;
             }
         }
 
@@ -153,7 +155,7 @@ namespace Enemy
 
         private void Move()
         {
-            currentMovementSpeed = enemyConfig.chasingMoveSpeed;
+            _navMeshAgent.speed = currentMovementSpeed;
             _navMeshAgent.SetDestination(playerPosition.position);
         }
 
@@ -174,6 +176,12 @@ namespace Enemy
             else if (attackTimerlife > enemyConfig.timeUntilAttackIsLockOn)
             {
                 OrientateFace();
+            }
+            else
+            {
+                _navMeshAgent.isStopped = false;
+                currentMovementSpeed = enemyConfig.attackMoveSpeed;
+                Move();
             }
         }
 
@@ -204,7 +212,6 @@ namespace Enemy
 
             float healthNormalize = currentHealth / maxHealth;
             healthBar.FillAmount = healthNormalize;
-            // animator?.SetFloat(Damage, healthNormalize);
         }
 
         public override void DeathBehaviour()

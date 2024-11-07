@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de46220c3b537324393ab2485f3a95ed, type: 3}
   m_Name: OkamiChargeSo
   m_EditorClassIdentifier: 
-  damage: 10
-  speed: 30
+  damage: 15
+  speed: 70
   maxSpeed: 600
   isDead: 0
   health: 400
@@ -22,6 +22,10 @@ MonoBehaviour:
   attackRange: 4
   attackSpeed: 1
   attackTime: 0
-  chasingMoveSpeed: 10
-  attackMoveSpeed: 10
-  totalAttacks: 3
+  chasingMoveSpeed: 15
+  attackMoveSpeed: 30
+  delayAfterAttack: 1.5
+  timeUntilAttackIsLockOn: 0.73
+  orbitRadius: 5
+  orbitSpeed: 4
+  timeUntilAttack: 4
