@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 2, z: 2.6508482}
+  m_Center: {x: 0, y: 0, z: 0.3254242}
 --- !u!114 &8958226352109852514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,8 +259,10 @@ MonoBehaviour:
       m_Calls: []
   animator: {fileID: 2642034884974727041}
   collider: {fileID: 0}
+  skin: {fileID: 540332138003561140}
   isAttacking: 0
   timeAfterDeactivate: 0.5
+  disappearSpeed: 5
   damageCollision: {fileID: 8958226352109852514}
   meshBody: {fileID: 540332138003561140}
   meshFace: {fileID: 9045755786198768972}

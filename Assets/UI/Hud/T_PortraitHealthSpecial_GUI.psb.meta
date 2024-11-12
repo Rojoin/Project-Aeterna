@@ -101,8 +101,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 658
-      y: 375
+      x: 4
+      y: 416
       width: 101
       height: 79
     spriteID: a1aae7a205f86c64da38807c5e46d3fa
@@ -113,7 +113,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 658, y: 375}
+    uvTransform: {x: 4, y: 416}
     spritePosition: {x: 50, y: 30}
   - name: HealthBarFillLine
     originalName: 
@@ -143,7 +143,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 218
       y: 396
       width: 101
       height: 79
@@ -155,7 +155,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 1, y: 395}
+    uvTransform: {x: 215, y: 395}
     spritePosition: {x: 50, y: 30}
   - name: HealthBarBGLine
     originalName: 
@@ -199,7 +199,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 18, y: 7}
-  - name: PortraitFrame
+  - name: portrait_prota
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -207,6 +207,27 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
+      y: 179
+      width: 206
+      height: 229
+    spriteID: a67cced2a6437964baa40a1dfab01f14
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 173}
+    spritePosition: {x: 55, y: 38}
+  - name: PortraitFrame
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 218
       y: 179
       width: 209
       height: 209
@@ -218,29 +239,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 179}
+    uvTransform: {x: 218, y: 179}
     spritePosition: {x: 45, y: 48}
-  - name: PortraitCharacter
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 658
-      y: 179
-      width: 164
-      height: 188
-    spriteID: b88eaeaf85d5a6045a9928a7b5d5f128
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 658, y: 179}
-    spritePosition: {x: 48, y: 51}
   - name: PortraitBG
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -248,7 +248,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 221
+      x: 435
       y: 179
       width: 209
       height: 209
@@ -260,7 +260,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 221, y: 179}
+    uvTransform: {x: 435, y: 179}
     spritePosition: {x: 45, y: 48}
   - name: SpecialBarFill
     originalName: 
@@ -269,7 +269,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 438
+      x: 652
       y: 372
       width: 178
       height: 134
@@ -281,7 +281,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 438, y: 372}
+    uvTransform: {x: 652, y: 372}
     spritePosition: {x: 100, y: 133}
   - name: SpecialBarBG
     originalName: 
@@ -290,8 +290,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 830
-      y: 179
+      x: 838
+      y: 372
       width: 178
       height: 134
     spriteID: daccde56fd47bba4a9459d19fcde6dbc
@@ -302,7 +302,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 828, y: 174}
+    uvTransform: {x: 836, y: 367}
     spritePosition: {x: 100, y: 133}
   - name: SpecialBarFrame
     originalName: 
@@ -311,7 +311,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 438
+      x: 652
       y: 179
       width: 212
       height: 185
@@ -323,7 +323,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 438, y: 179}
+    uvTransform: {x: 652, y: 179}
     spritePosition: {x: 74, y: 88}
   characterData:
     bones: []
@@ -367,7 +367,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: a1aae7a205f86c64da38807c5e46d3fa
     layerID: 44
-    mosaicPosition: {x: 658, y: 375}
+    mosaicPosition: {x: 4, y: 416}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -387,7 +387,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: f56af590a6b1eaa45a46e23b2e68446e
     layerID: 33
-    mosaicPosition: {x: 4, y: 396}
+    mosaicPosition: {x: 218, y: 396}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -411,23 +411,23 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
+  - name: portrait_prota
+    spriteName: portrait_prota
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a67cced2a6437964baa40a1dfab01f14
+    layerID: 77
+    mosaicPosition: {x: 4, y: 179}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: PortraitFrame
     spriteName: PortraitFrame
     isGroup: 0
     parentIndex: -1
     spriteID: 8aaa219aecd347e4494f412e23f85956
     layerID: 14
-    mosaicPosition: {x: 4, y: 179}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: PortraitCharacter
-    spriteName: PortraitCharacter
-    isGroup: 0
-    parentIndex: -1
-    spriteID: b88eaeaf85d5a6045a9928a7b5d5f128
-    layerID: 47
-    mosaicPosition: {x: 658, y: 179}
+    mosaicPosition: {x: 218, y: 179}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -437,7 +437,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: e6ec34f785ec7c84fa37fefef5aae4c0
     layerID: 11
-    mosaicPosition: {x: 221, y: 179}
+    mosaicPosition: {x: 435, y: 179}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -447,7 +447,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: f32fcf34031cbc6458d45af53d33dbf2
     layerID: 7
-    mosaicPosition: {x: 438, y: 372}
+    mosaicPosition: {x: 652, y: 372}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -457,7 +457,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: daccde56fd47bba4a9459d19fcde6dbc
     layerID: 46
-    mosaicPosition: {x: 830, y: 179}
+    mosaicPosition: {x: 838, y: 372}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -467,7 +467,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: bcac808678f58fd41aa7099c0d8c6418
     layerID: 5
-    mosaicPosition: {x: 438, y: 179}
+    mosaicPosition: {x: 652, y: 179}
     flatten: 0
     isImported: 1
     isVisible: 1

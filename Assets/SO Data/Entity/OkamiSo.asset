@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dadf3daa98bc4ef68dd940388f30dc88, type: 3}
   m_Name: OkamiSo
   m_EditorClassIdentifier: 
-  damage: 10
-  speed: 30
+  damage: 15
+  speed: 70
   maxSpeed: 600
   isDead: 0
   health: 400
+  colorshiftDuration: 0.5
   detectionRange: 20
-  attackRange: 3
+  attackRange: 4
   attackSpeed: 1
-  attackTime: 3
-  chasingMoveSpeed: 10
-  attackMoveSpeed: 10
+  attackTime: 0
+  chasingMoveSpeed: 15
+  attackMoveSpeed: 28
+  delayAfterAttack: 1.5
+  timeUntilAttackIsLockOn: 0.91

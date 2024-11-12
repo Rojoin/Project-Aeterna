@@ -14,6 +14,8 @@ namespace StateMachine
         OnDashStart,
         OnDashEnd,
         OnSpecialAttack,
+        OnAutomatingStart,
+        ForceIdle,
         Pause
     }
 
@@ -22,38 +24,74 @@ namespace StateMachine
         Move,
         Attack,
         SpecialAttack,
+        AutomatedMovement,
         Dash
     }
 
     public class PlayerFSM : MonoBehaviour
     {
-        [SerializeField] protected Animator _playerAnimatorController;
-        [SerializeField] protected CharacterController _characterController;
-        [SerializeField] protected Vector2ChannelSO OnMoveChannel;
+        [Header("Channels")] [SerializeField] protected Vector2ChannelSO OnMoveChannel;
         [SerializeField] protected VoidChannelSO AttackChannel;
         [SerializeField] protected VoidChannelSO SpecialAttackChannel;
         [SerializeField] protected VoidChannelSO DashChannel;
-        [SerializeField] protected GameSettings gameSettings;
+        [SerializeField] protected VoidChannelSO AutomatedMovementChannel;
+
+        [Header("References")] [SerializeField]
+        protected GameSettings gameSettings;
+
         [SerializeField] protected PlayerEntitySO player;
+        [SerializeField] protected Animator _playerAnimatorController;
+        [SerializeField] protected CharacterController _characterController;
         [SerializeField] private List<AttackSO> comboList;
         [SerializeField] private AttackSO specialAttack;
         [SerializeField] private AttackCollision _attackCollider;
-        [SerializeField] private UnityEvent onMove;
+        [SerializeField] private ParticleSystem specialAttackVFX;
+
+        [Header("Unity Events")] [SerializeField]
+        private UnityEvent onMove;
+
         [SerializeField] private UnityEvent onDash;
         [SerializeField] private UnityEvent onEndDash;
-        [SerializeField] private ParticleSystem specialAttackVFX;
         [SerializeField] private UnityEvent OnSpecialAttack;
         [SerializeField] private UnityEvent<float> OnSpecialAttackTimerUpdate;
+
+        [Header("Raycast Settings")] [SerializeField]
+        protected float raycastDistance = 10.0f;
+
+        [SerializeField] protected Vector3 raycastOffset;
+        private bool _isGettingInteractable = false;
+        private IInteractable interactable = null;
         protected float speed;
         private FSM fsm;
         private Vector2 moveDir;
         private float specialAttackTimer = 0;
 
+        public VoidChannelSO OnInteractChannel;
+        public VoidChannelSO OnAlternativeInteractChannel;
+
         private void OnEnable()
         {
             speed = player.speed;
+            InitFSM();
+
+            AttackChannel.Subscribe(ChangeFromAttack);
+            SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
+            DashChannel.Subscribe(ChangeFromDashStart);
+            AutomatedMovementChannel.Subscribe(ChangeToAutomatedMovement);
+
+            OnInteractChannel.Subscribe(SetInteract);
+            OnAlternativeInteractChannel.Subscribe(SetAlternativeInteract);
+            specialAttackTimer = specialAttack.timeUntilComboEnds;
+        }
+
+        private void InitFSM()
+        {
             fsm = new(Enum.GetNames(typeof(PlayerStates)).Length, Enum.GetNames(typeof(PlayerFlags)).Length);
             int idleState = fsm.AddNewState(new PlayerMoveState(ActivateOnMoveEffects, this.gameObject,
+                _playerAnimatorController,
+                _characterController, OnMoveChannel, player));
+            int automatedMoveState = fsm.AddNewState(new PlayerAutomatedMoveState(ActivateOnMoveEffects,
+                this.gameObject,
                 _playerAnimatorController,
                 _characterController, OnMoveChannel, player));
             int attackState = fsm.AddNewState(new PlayerAttackState(ChangeFromEndAttack, ActivateOnMoveEffects,
@@ -78,12 +116,16 @@ namespace StateMachine
             fsm.SetTranstions(attackState, PlayerFlags.EndAttack, idleState);
             fsm.SetTranstions(specialState, PlayerFlags.EndAttack, idleState);
             fsm.SetTranstions(idleState, PlayerFlags.OnDashStart, dashState);
+            fsm.SetTranstions(idleState, PlayerFlags.OnAutomatingStart, automatedMoveState);
+            fsm.SetTranstions(attackState, PlayerFlags.OnAutomatingStart, automatedMoveState);
+            fsm.SetTranstions(specialState, PlayerFlags.OnAutomatingStart, automatedMoveState);
+            fsm.SetTranstions(dashState, PlayerFlags.OnAutomatingStart, automatedMoveState);
+            fsm.SetTranstions(automatedMoveState, PlayerFlags.ForceIdle, idleState);
+            fsm.SetTranstions(dashState, PlayerFlags.ForceIdle, idleState);
+            fsm.SetTranstions(attackState, PlayerFlags.ForceIdle, idleState);
+            fsm.SetTranstions(specialState, PlayerFlags.ForceIdle, idleState);
             fsm.SetTranstions(dashState, PlayerFlags.OnDashEnd, idleState);
-            AttackChannel.Subscribe(ChangeFromAttack);
-            SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
-            DashChannel.Subscribe(ChangeFromDashStart);
             fsm.SetDefaultState(idleState);
-            specialAttackTimer = specialAttack.timeUntilComboEnds;
         }
 
         private void ActivateOnDashEffects()
@@ -97,6 +139,16 @@ namespace StateMachine
             fsm.OnTriggerState(PlayerFlags.OnDashEnd);
         }
 
+        public void ForceToIdle()
+        {
+            fsm.OnTriggerState(PlayerFlags.ForceIdle);
+        }
+
+        private void ChangeToAutomatedMovement()
+        {
+            fsm.OnTriggerState(PlayerFlags.OnAutomatingStart);
+        }
+
         private void ChangeFromDashStart()
         {
             fsm.OnTriggerState(PlayerFlags.OnDashStart);
@@ -104,8 +156,42 @@ namespace StateMachine
 
         private void Update()
         {
+            _isGettingInteractable =
+                IsGettingInteractable();
+
             fsm.Update(Time.deltaTime);
             UpdateSpecialAttackTimer();
+        }
+
+        private bool IsGettingInteractable()
+        {
+            var a = Physics.Raycast(transform.position + raycastOffset, transform.forward, out RaycastHit hit,
+                raycastDistance);
+            if (!a)
+            {
+                if (interactable != null)
+                {
+                    interactable?.ToggleDialogBox(false);
+                    interactable = null;
+                }
+
+                return false;
+            }
+
+            var interactable1 = hit.collider.GetComponent<IInteractable>();
+            if (interactable1 != null)
+            {
+                interactable = interactable1;
+                interactable?.ToggleDialogBox(true);
+                return true;
+            }
+            else if (interactable != null)
+            {
+                interactable?.ToggleDialogBox(false);
+                interactable = null;
+            }
+
+            return false;
         }
 
         private void UpdateSpecialAttackTimer()
@@ -160,6 +246,17 @@ namespace StateMachine
             ChangeFromEndAttack();
         }
 
+        public void SetInteract() => SetInteractable(0);
+        public void SetAlternativeInteract() => SetInteractable(1);
+
+        private void SetInteractable(int value)
+        {
+            if (_isGettingInteractable)
+            {
+                interactable.Interact(value);
+            }
+        }
+
         private void MoveDirection(Vector2 newMoveDir)
         {
             moveDir = newMoveDir;
@@ -170,7 +267,17 @@ namespace StateMachine
             fsm.OnDestroy();
             AttackChannel.Unsubscribe(ChangeFromAttack);
             SpecialAttackChannel.Unsubscribe(ChangeFromSpecialAttack);
+            AutomatedMovementChannel.Unsubscribe(ChangeToAutomatedMovement);
             DashChannel.Unsubscribe(ChangeFromDashStart);
+            OnInteractChannel.Unsubscribe(SetInteract);
+            OnAlternativeInteractChannel.Unsubscribe(SetAlternativeInteract);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position + raycastOffset,
+                transform.position + raycastOffset + transform.forward * raycastDistance);
         }
     }
 }

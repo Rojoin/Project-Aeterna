@@ -316,7 +316,7 @@ namespace StateMachine
                         healthSystem.ReceiveDamage(
                             comboList[comboCounter].damage + player.damage);
                     }
-
+                    owner.StartRumble(player.rumbleHittingEnemyDuration,player.rumbleHittingEnemyForce);
                     if (other.TryGetComponent<IMovevable>(out var movevable) &&
                         comboList[comboCounter].attackMovementType == AttackMovementTypes.Forward)
                     {

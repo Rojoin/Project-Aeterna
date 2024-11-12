@@ -40,7 +40,6 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
     public UnityEvent OnAttack = new();
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private List<GameObject> hideTeleportGameObjects;
-    [SerializeField] private BoxCollider hideTeleportCollider;
 
     protected override void ValidateMethod()
     {
@@ -79,6 +78,7 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         {
             animator.SetTrigger(Hurt);
             currentHealth -= damage;
+            ChangeOnHitColor();
             OnHit.Invoke();
         }
 
@@ -257,8 +257,6 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         {
             o.SetActive(state);
         }
-
-        hideTeleportCollider.enabled = state;
     }
 
     protected void OnDrawGizmosSelected()

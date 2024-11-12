@@ -294,10 +294,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
+  ChangePortrait: {fileID: 11400000, guid: 46a99d5c006f2314586922abd69264a6, type: 2}
   animator: {fileID: 4241493471790223710}
   MoveCamera: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
+  skin: {fileID: 2145138514065475441}
   healthBar: {fileID: 0}
   selectCardMenu: {fileID: 0}
+  rumbleDuration: 0.1
   OnPlayerHurt:
     m_PersistentCalls:
       m_Calls:
@@ -382,20 +385,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec0f165451340c7993a1206099ba66c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAnimatorController: {fileID: 4241493471790223710}
-  _characterController: {fileID: 6572671916540871610}
   OnMoveChannel: {fileID: 11400000, guid: 2bd7e0755fcc8014bb81d352bf091fec, type: 2}
   AttackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
   SpecialAttackChannel: {fileID: 11400000, guid: 51fc7421b630d9d45b98b54803e090ee, type: 2}
   DashChannel: {fileID: 11400000, guid: 4312eae7dc310ef4bb5f7cbd39742da4, type: 2}
+  AutomatedMovementChannel: {fileID: 11400000, guid: fc88078d087a7cf45bf19950df837729, type: 2}
   gameSettings: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}
+  _playerAnimatorController: {fileID: 4241493471790223710}
+  _characterController: {fileID: 6572671916540871610}
   comboList:
   - {fileID: 11400000, guid: 6035da61ecfe4264d8df90e2c1734a00, type: 2}
   - {fileID: 11400000, guid: 7c95df3b3eca2b1468d82933f7c363a3, type: 2}
   - {fileID: 11400000, guid: 287c39144bb0b0842a45dd4e357d8666, type: 2}
   specialAttack: {fileID: 11400000, guid: fa6b1a916ec14d24fb91c6b6ecd2c6db, type: 2}
   _attackCollider: {fileID: 5988611204825936752}
+  specialAttackVFX: {fileID: 3211712372965045916}
   onMove:
     m_PersistentCalls:
       m_Calls:
@@ -477,7 +482,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  specialAttackVFX: {fileID: 3211712372965045916}
   OnSpecialAttack:
     m_PersistentCalls:
       m_Calls:
@@ -508,6 +512,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  raycastDistance: 1
+  raycastOffset: {x: 0, y: 1, z: 0}
+  OnInteractChannel: {fileID: 11400000, guid: 58c12ce64eecf0b49932c3e152afa6e4, type: 2}
+  OnAlternativeInteractChannel: {fileID: 11400000, guid: c95e19ff371e208408b7cf366f26e71c, type: 2}
 --- !u!114 &7113949663427211157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,6 +1933,11 @@ PrefabInstance:
 --- !u!4 &980067415721566176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9079201566075216794, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
+  m_PrefabInstance: {fileID: 8099208977273961594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &2145138514065475441 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7900223848651455243, guid: 4f78af99107ed4546921b912ec6abb4e, type: 3}
   m_PrefabInstance: {fileID: 8099208977273961594}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &4241493471790223710 stripped

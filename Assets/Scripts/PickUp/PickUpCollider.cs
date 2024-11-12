@@ -1,20 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PickUpCollider : MonoBehaviour
+public class PickUpCollider : MonoBehaviour, IInteractable
 {
-    public UnityEvent onPlayerInteractPickUp;
+    public UnityEvent onPlayerChooseCard;
+    public UnityEvent onPlayerHealthPickUp;
+    public BoolChannelSO showTextBox;
+    
 
-    public SelectCardMenu selectCardMenu;
-
-    private void OnTriggerEnter(Collider other)
+    public void ToggleDialogBox(bool interact)
     {
-        if (other.CompareTag("Player"))
-        {
-            onPlayerInteractPickUp.Invoke();
-            Destroy(gameObject);
-        }
+        showTextBox.RaiseEvent(interact);
     }
+    public void Interact(int interact)
+    {
+        switch (interact)
+        {
+            case 0:
+                onPlayerChooseCard.Invoke();
+                break;
+            case 1:
+                onPlayerHealthPickUp.Invoke();
+                break;
+            default:
+                break;
+        }
+        gameObject.SetActive(false);
+    }
+}
+
+public interface IInteractable
+{ 
+    void Interact(int interact);
+    void ToggleDialogBox(bool value);
 }
