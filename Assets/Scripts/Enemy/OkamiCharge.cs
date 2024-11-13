@@ -13,7 +13,8 @@ namespace Enemy
             Chasing,
             Orbit,
             Preparing,
-            Attack
+            Attack,
+            Dead
         }
 
 
@@ -95,8 +96,8 @@ namespace Enemy
                 case OkamiStates.Attack:
                     WaitAfterAttack();
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                case OkamiStates.Dead:
+                    break;
             }
         }
 
@@ -139,8 +140,7 @@ namespace Enemy
             }
             else
             {
-                Vector3 orbitPosition = playerPosition.position +
-                                        new Vector3(Mathf.Sin(Time.time * enemyConfig.orbitSpeed), 0,
+                Vector3 orbitPosition = playerPosition.position + new Vector3(Mathf.Sin(Time.time * enemyConfig.orbitSpeed), 0,
                                             Mathf.Cos(Time.time * enemyConfig.orbitSpeed)) * enemyConfig.orbitRadius;
 
                 _navMeshAgent.isStopped = false;
@@ -230,6 +230,8 @@ namespace Enemy
                 OnDeathRemove.Invoke(this);
                 collider.enabled = false;
                 _navMeshAgent.isStopped = true;
+                healthBar.gameObject.SetActive(false);
+                currentState = OkamiStates.Dead;
             }
             else
             {

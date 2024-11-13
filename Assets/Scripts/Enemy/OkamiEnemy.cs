@@ -12,7 +12,8 @@ namespace Enemy
             Searching,
             Chasing,
             Preparing,
-            Attack
+            Attack,
+            Dead
         }
 
 
@@ -89,8 +90,8 @@ namespace Enemy
                 case OkamiStates.Attack:
                     WaitAfterAttack();
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                case OkamiStates.Dead:
+                    break;
             }
         }
 
@@ -161,6 +162,8 @@ namespace Enemy
 
         public void AttackEntity()
         {
+            if (currentState == OkamiStates.Dead)
+                return;
             animator?.SetTrigger(AttackAnim);
             AkSoundEngine.PostEvent("Okami_Attack", gameObject);
         }
@@ -201,6 +204,8 @@ namespace Enemy
                 OnDeathRemove.Invoke(this);
                 collider.enabled = false;
                 _navMeshAgent.isStopped = true;
+                healthBar.gameObject.SetActive(false);
+                currentState = OkamiStates.Dead;
             }
             else
             {

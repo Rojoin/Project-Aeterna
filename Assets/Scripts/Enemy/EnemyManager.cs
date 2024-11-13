@@ -15,6 +15,7 @@ namespace Enemy
         public bool FinalRoom;
         public UnityEvent OnLastEnemyKilled;
         public PlayerPortraitChannelSO ChangePortrait;
+        public Vector3ChannelSO SpawnParticleChannel;
 
         private List<BaseEnemy> enemyList = new List<BaseEnemy>();
         private List<Props> enemyToSpawnList = new List<Props>();
@@ -23,11 +24,9 @@ namespace Enemy
 
         public void OnEnterNewRoom()
         {
-            Debug.Log("try spawn Enemies");
 
             if (!roomClear)
             {
-                Debug.Log("Spawn Enemies");
                 SpawnEnemies();
                 ChangePortrait.RaiseEvent(PlayerPortraitStates.InBattle);
             }
@@ -77,8 +76,9 @@ namespace Enemy
             {
                 enemyList.Remove(enemy);
                 enemy.OnDeathRemove.RemoveListener(RemoveEnemy);
-
-                EndChamber();
+                
+                
+                EndChamber(enemy);
             }
             else
             {
@@ -86,13 +86,14 @@ namespace Enemy
             }
         }
 
-        private void EndChamber()
+        private void EndChamber(BaseEnemy enemy = null)
         {
             if (enemyList.Count <= 0)
             {
+                SpawnParticleChannel.RaiseEvent(enemy.transform.position);
                 Debug.Log("CallExploringMusic");
                 StartCoroutine(CallExploringMusic());
-                
+
                 CallEndRoom();
             }
         }
@@ -108,8 +109,8 @@ namespace Enemy
         {
             OnLastEnemyKilled?.Invoke();
 
-            if(GetComponent<RoomBehaviour>().roomType != RoomTypes.START)
-            ActiveSlowTime.RaiseEvent();
+            if (GetComponent<RoomBehaviour>().roomType != RoomTypes.START)
+                ActiveSlowTime.RaiseEvent();
 
             roomClear = true;
         }
