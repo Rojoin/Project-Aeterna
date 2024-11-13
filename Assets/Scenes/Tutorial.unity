@@ -249,10 +249,13 @@ MonoBehaviour:
     loadingBarPrefab: {fileID: 0}
     loadingBarVisibility: 0
   startGameButton: {fileID: 1762727566}
+  optionsButton: {fileID: 0}
+  backOptionsButton: {fileID: 0}
   creditsButton: {fileID: 1655429280}
   backCreditsButton: {fileID: 1655429280}
   exitButton: {fileID: 648303407}
   menuCanvas: {fileID: 1257805139}
+  optionsCanvas: {fileID: 0}
   creditsCanvas: {fileID: 1257805139}
   versionNumber: {fileID: 1377799447}
 --- !u!1 &433490921
@@ -1512,11 +1515,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 283587978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &1655429276
 GameObject:
   m_ObjectHideFlags: 0
