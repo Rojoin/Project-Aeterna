@@ -98,6 +98,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
                 OnDeathRemove.Invoke(this);
                 collider.enabled = false;
                 _navMeshAgent.isStopped = true;
+                healthBar.gameObject.SetActive(false);
             }
             else
             {
