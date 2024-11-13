@@ -20,6 +20,7 @@ namespace ScriptableObjects.Entities
         public int hitsUntilCounterAttack = 3;
         [FormerlySerializedAs("escapeDistance")] public float maxEscapeDistance = 30;
         public float minEscapeDistance = 10;
+        public float timeUntilShieldFullyAppears = 0.5f;
 
 
         private void OnValidate()
