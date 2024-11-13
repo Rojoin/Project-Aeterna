@@ -83,8 +83,6 @@ namespace StateMachine
             // }
 
             timeBetweenCombo = 0;
-
-            Debug.Log("The attack has been Initiated");
             ActivateCollider(attack);
             _playerAnimatorController.speed = player.attackSpeed;
             _playerAnimatorController.CrossFade(attack.animationName, 0,
@@ -149,10 +147,6 @@ namespace StateMachine
                         direction = new Vector3(direction.x, 0, direction.z);
                         Rotate(direction);
                     }
-                    else
-                    {
-                        Debug.Log("No target in the area.");
-                    }
                 }
             }
         }
@@ -190,7 +184,6 @@ namespace StateMachine
                 {
                     EndAttackState();
                     // StopAttack();
-                    Debug.Log("Finish attack");
                 }
             }
         }
@@ -206,7 +199,7 @@ namespace StateMachine
         {
             if (!other.CompareTag("Player") && other.TryGetComponent<IHealthSystem>(out var healthSystem))
             {
-                Debug.Log("Exit attack.");
+
             }
         }
 

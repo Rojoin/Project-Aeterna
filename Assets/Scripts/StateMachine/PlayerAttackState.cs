@@ -97,7 +97,6 @@ namespace StateMachine
             if (isAttacking)
             {
                 isInputBuffered = true;
-                Debug.Log("Input has been Buffered");
                 return;
             }
 
@@ -113,7 +112,6 @@ namespace StateMachine
             if (realtimeSinceStartup < timeUntilAttackEnds)
             {
                 comboCounter++;
-                Debug.Log($"Going to Attack:{comboCounter}");
                 if (comboCounter >= comboList.Count)
                 {
                     comboCounter = 0;
@@ -123,8 +121,7 @@ namespace StateMachine
             {
                 comboCounter = 0;
             }
-
-            Debug.Log($"Attack:{comboCounter}");
+            
 
             SetAttackParametters(comboList[comboCounter]);
             _playerAnimatorController.speed = player.attackSpeed;
@@ -133,7 +130,6 @@ namespace StateMachine
 
             CheckTarget();
             // lastClickedTime = Time.realtimeSinceStartup;
-            Debug.Log($"Current clicked time is {lastClickedTime}");
         }
 
         public void SetAttackParametters(AttackSO attacksParams)
@@ -192,10 +188,6 @@ namespace StateMachine
                         direction = (currentTarget.transform.position - owner.transform.position).normalized;
                         direction = new Vector3(direction.x, 0, direction.z);
                         Rotate(direction);
-                    }
-                    else
-                    {
-                        Debug.Log("No target in the area.");
                     }
                 }
             }
@@ -263,7 +255,6 @@ namespace StateMachine
                 {
                     EndAttackState();
                     // StopAttack();
-                    Debug.Log("Finish attack");
                 }
 
                 float normalizedTime = (attackTimer / comboList[comboCounter].attackTime);
@@ -293,7 +284,7 @@ namespace StateMachine
         {
             if (!other.CompareTag("Player") && other.TryGetComponent<IHealthSystem>(out var healthSystem))
             {
-                Debug.Log("Exit attack.");
+   
             }
         }
 
@@ -303,7 +294,7 @@ namespace StateMachine
             {
                 if (!currentlyHitted.Contains(healthSystem))
                 {
-                    Debug.Log("Enter attack.");
+       
                     if (player.hasReverseTheStars && comboCounter == comboList.Count - 1)
                     {
                         healthSystem.ReceiveDamage(
@@ -324,10 +315,7 @@ namespace StateMachine
 
                     currentlyHitted.Add(healthSystem);
                 }
-                else
-                {
-                    Debug.Log("AttackMissed");
-                }
+ 
             }
         }
 

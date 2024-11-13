@@ -26,8 +26,7 @@ public class EntitySO : ScriptableObject
         //m_health = health;
         // m_speed = speed;
         isDead = false;
-
-        Debug.Log(nameof(EntitySO) + "enable");
+        
     }
 
     private void OnDisable()

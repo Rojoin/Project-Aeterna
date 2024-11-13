@@ -210,13 +210,8 @@ namespace StateMachine
         {
             if (specialAttackTimer > specialAttack.timeUntilComboEnds)
             {
-                Debug.Log($"Execute Special Attack Input");
                 fsm.OnTriggerState(PlayerFlags.OnSpecialAttack);
                 specialAttackTimer = 0;
-            }
-            else
-            {
-                Debug.Log($"The time was:{specialAttackTimer}");
             }
         }
 

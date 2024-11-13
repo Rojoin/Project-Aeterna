@@ -91,7 +91,6 @@ namespace Enemy
                     WaitAfterAttack();
                     break;
                 case OkamiStates.Dead:
-                    Debug.Log($"I´m Dead");
                     break;
             }
         }

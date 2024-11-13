@@ -107,7 +107,6 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (doorsOpened)
         {
-            Debug.Log("Player Interact door");
             PlayerInteractNewDoor.Invoke(direction);
         }
     }

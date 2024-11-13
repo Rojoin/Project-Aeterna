@@ -24,11 +24,9 @@ namespace Enemy
 
         public void OnEnterNewRoom()
         {
-            Debug.Log("try spawn Enemies");
 
             if (!roomClear)
             {
-                Debug.Log("Spawn Enemies");
                 SpawnEnemies();
                 ChangePortrait.RaiseEvent(PlayerPortraitStates.InBattle);
             }

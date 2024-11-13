@@ -55,13 +55,11 @@ public class PickUpManager : MonoBehaviour
 
     private IEnumerator SlowTime()
     {
-        Debug.Log("Slow time");
         float time = 0;
         while (time < slowDownTime)
         {
             Time.timeScale = slowTimeCurve.Evaluate(time / slowDownTime);
             time+= Time.unscaledDeltaTime;
-            Debug.Log(Time.timeScale);
             yield return null;
         }
         Time.timeScale = 1;
