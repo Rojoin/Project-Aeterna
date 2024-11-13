@@ -8,10 +8,7 @@ public static class ChangeColorOnHit
 
     public static void StartColorChange(this GameObject instance, Material materialToChange, float duration)
     {
-        if (Gamepad.current != null)
-        {
-            instance.GetComponent<MonoBehaviour>().StartCoroutine(ColorChangeCorroutine(duration, materialToChange));
-        }
+        instance.GetComponent<MonoBehaviour>().StartCoroutine(ColorChangeCorroutine(duration, materialToChange));
     }
 
     private static IEnumerator ColorChangeCorroutine(float colorShiftDuration, Material material)
