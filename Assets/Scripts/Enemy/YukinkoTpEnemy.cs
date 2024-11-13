@@ -80,12 +80,12 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
             currentHealth -= damage;
             ChangeOnHitColor();
             OnHit.Invoke();
+            ChangeVisibleTpGameObjects(false);
         }
 
         float healthNormalize = currentHealth / maxHealth;
         healthBar.FillAmount = healthNormalize;
-        
-        ChangeVisibleTpGameObjects(false);
+
     }
 
     protected override void Init()
@@ -253,6 +253,7 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
     private void ChangeVisibleTpGameObjects(bool state)
     {
+        collider.enabled = state;
         foreach (GameObject o in hideTeleportGameObjects)
         {
             o.SetActive(state);
