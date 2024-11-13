@@ -98,6 +98,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
                 OnDeathRemove.Invoke(this);
                 collider.enabled = false;
                 _navMeshAgent.isStopped = true;
+                healthBar.gameObject.SetActive(false);
             }
             else
             {
@@ -152,7 +153,6 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
             {
                 states = states &= ~YukinkoStates.Run;
                 animator.SetTrigger(IsIdle);
-                Debug.Log("Exit Running");
                 states = states | YukinkoStates.Idle;
             }
         }
