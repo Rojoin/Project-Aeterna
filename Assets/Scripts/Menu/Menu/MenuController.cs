@@ -14,13 +14,13 @@ namespace Menu
     {
         [SerializeField] private SceneChangeData GoToGame;
         [SerializeField] private Button startGameButton;
-        //[SerializeField] private Button optionsButton;
-        //[SerializeField] private Button backOptionsButton;
+        [SerializeField] private Button optionsButton;
+        [SerializeField] private Button backOptionsButton;
         [SerializeField] private Button creditsButton;
         [SerializeField] private Button backCreditsButton;
         [SerializeField] private Button exitButton;
         [SerializeField] private CanvasGroup menuCanvas;
-        //[SerializeField] private CanvasGroup optionsCanvas;
+        [SerializeField] private CanvasGroup optionsCanvas;
         [SerializeField] private CanvasGroup creditsCanvas;
         [SerializeField] private TextMeshProUGUI versionNumber;
         private bool isOptionsActive;
@@ -31,8 +31,8 @@ namespace Menu
             Cursor.visible = true;
             versionNumber.text = $"{Application.version}";
             startGameButton.onClick.AddListener(StartGame);
-            //optionsButton.onClick.AddListener(OptionsToggle);
-            //backOptionsButton.onClick.AddListener(OptionsToggle);
+            optionsButton.onClick.AddListener(OptionsToggle);
+            backOptionsButton.onClick.AddListener(OptionsToggle);
             creditsButton.onClick.AddListener(HowToToggle);
             backCreditsButton.onClick.AddListener(HowToToggle);
             exitButton.onClick.AddListener(ExitGame);
@@ -52,8 +52,8 @@ namespace Menu
         private void OnDestroy()
         {
             startGameButton.onClick.RemoveListener(StartGame);
-            //optionsButton.onClick.RemoveListener(OptionsToggle);
-            //backOptionsButton.onClick.RemoveListener(OptionsToggle);
+            optionsButton.onClick.RemoveListener(OptionsToggle);
+            backOptionsButton.onClick.RemoveListener(OptionsToggle);
             creditsButton.onClick.RemoveListener(HowToToggle);
             backCreditsButton.onClick.RemoveListener(HowToToggle);
             exitButton.onClick.RemoveListener(ExitGame);
@@ -67,7 +67,7 @@ namespace Menu
         private void OptionsToggle()
         {
             isOptionsActive = !isOptionsActive;
-            //SetCanvasVisibility(optionsCanvas, isOptionsActive);
+            SetCanvasVisibility(optionsCanvas, isOptionsActive);
             menuCanvas.blocksRaycasts = !isOptionsActive;
             if (!isOptionsActive)
             {
