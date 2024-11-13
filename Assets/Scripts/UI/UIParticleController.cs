@@ -27,11 +27,9 @@ namespace UI
         {
             Vector2 screenPosition = Camera.main.WorldToScreenPoint(obj);
 
-          
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(), screenPosition,Camera.main ,out Vector2 canvasPosition);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPosition, null, out var uiPosition);
 
-
-            rectTransform.anchoredPosition = canvasPosition;
+            rectTransform.localPosition = uiPosition;
             particleSystem.Play();
         }
     }
