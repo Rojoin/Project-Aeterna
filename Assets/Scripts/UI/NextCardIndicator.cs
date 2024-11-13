@@ -9,8 +9,15 @@ public class NextCardIndicator : MonoBehaviour
 
     [SerializeField] private List<GameObject> toChange;
 
-    public void CheckNextCard(int toNextCard) 
+    [SerializeField] private float timeUntilChange;
+    public void CheckNextCard(int toNextCard)
     {
+        StartCoroutine(ShowStar(toNextCard));
+    }
+
+    private IEnumerator ShowStar(int toNextCard)
+    {
+        yield return new WaitForSeconds(timeUntilChange);
         switch (toNextCard) 
         {
             case 1:

@@ -261,7 +261,7 @@ public class SelectCardMenu : MonoBehaviour
 
         StartCoroutine(DesactiveSelectCardMenu(1));
 
-        for (int i = 0; i < cardsToShow.Count; i++)
+        for (int i = 0; i < cardsAnimator.Count; i++)
         {
             cardsAnimator[i].SetBool("StartReverseMovement", false);
         }
