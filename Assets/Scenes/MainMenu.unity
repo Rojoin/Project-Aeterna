@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 84406160}
   - component: {fileID: 84406159}
   - component: {fileID: 84406158}
+  - component: {fileID: 84406161}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -243,6 +244,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84406156}
   m_CullTransparentMesh: 1
+--- !u!114 &84406161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84406156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifyHitBox: 0
+  alphaRayCast: 0.1
+  scaleSpeed: 3
+  scaleLimit: 1.2
+  modifyImage: 1
+  baseImageIsTransparent: 0
+  imageDefault: {fileID: 21300000, guid: ef35efa9b12cd8c4da7611f7de5b5f96, type: 3}
+  imageHighlighted: {fileID: 21300000, guid: 0af54c13557180348b278a1afe719de4, type: 3}
+  currentImage: {fileID: 0}
+  textHighlight: 0
+  textToHighlight: {fileID: 0}
+  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
+  enableObject: 0
+  objectToEnable: {fileID: 0}
+  objectToRotate: {fileID: 0}
+  rotateSpeed: 0
+  rumbleForceAmount: 0.1
+  rumbleDuration: 0.05
 --- !u!1 &95298977
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +974,7 @@ GameObject:
   - component: {fileID: 519312707}
   - component: {fileID: 519312706}
   - component: {fileID: 519312705}
+  - component: {fileID: 519312708}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -1051,6 +1083,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519312703}
   m_CullTransparentMesh: 1
+--- !u!114 &519312708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519312703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifyHitBox: 0
+  alphaRayCast: 0.1
+  scaleSpeed: 3
+  scaleLimit: 1.2
+  modifyImage: 1
+  baseImageIsTransparent: 0
+  imageDefault: {fileID: 21300000, guid: 1d2c66dd5f6da1c4192993ce2fdc1861, type: 3}
+  imageHighlighted: {fileID: 21300000, guid: 8de78cf335563ea4f95b2bc89ec5dc7b, type: 3}
+  currentImage: {fileID: 0}
+  textHighlight: 0
+  textToHighlight: {fileID: 0}
+  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
+  enableObject: 0
+  objectToEnable: {fileID: 0}
+  objectToRotate: {fileID: 0}
+  rotateSpeed: 0
+  rumbleForceAmount: 0.1
+  rumbleDuration: 0.05
 --- !u!1 &605910357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,6 +1862,7 @@ GameObject:
   - component: {fileID: 1762727568}
   - component: {fileID: 1762727567}
   - component: {fileID: 1762727566}
+  - component: {fileID: 1762727569}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -1908,6 +1971,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762727564}
   m_CullTransparentMesh: 1
+--- !u!114 &1762727569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762727564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifyHitBox: 0
+  alphaRayCast: 0.1
+  scaleSpeed: 3
+  scaleLimit: 1.2
+  modifyImage: 1
+  baseImageIsTransparent: 0
+  imageDefault: {fileID: 21300000, guid: 23d72d4cb36189f4a91546226c0cb148, type: 3}
+  imageHighlighted: {fileID: 21300000, guid: 9ff87ff4c0fbd704db7e3cec75ec7abf, type: 3}
+  currentImage: {fileID: 0}
+  textHighlight: 0
+  textToHighlight: {fileID: 0}
+  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
+  enableObject: 0
+  objectToEnable: {fileID: 0}
+  objectToRotate: {fileID: 0}
+  rotateSpeed: 0
+  rumbleForceAmount: 0.1
+  rumbleDuration: 0.05
 --- !u!1 &1764904042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,6 +2508,7 @@ GameObject:
   - component: {fileID: 2085404014}
   - component: {fileID: 2085404013}
   - component: {fileID: 2085404015}
+  - component: {fileID: 2085404016}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -2523,6 +2617,36 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2085404016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085404011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifyHitBox: 0
+  alphaRayCast: 0.1
+  scaleSpeed: 3
+  scaleLimit: 1.2
+  modifyImage: 1
+  baseImageIsTransparent: 0
+  imageDefault: {fileID: 21300000, guid: 33949a983cc89214fbb576333207b54d, type: 3}
+  imageHighlighted: {fileID: 21300000, guid: 495e2b4740e33f841bb83b68f299fd78, type: 3}
+  currentImage: {fileID: 0}
+  textHighlight: 0
+  textToHighlight: {fileID: 0}
+  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
+  enableObject: 0
+  objectToEnable: {fileID: 0}
+  objectToRotate: {fileID: 0}
+  rotateSpeed: 0
+  rumbleForceAmount: 0.1
+  rumbleDuration: 0.05
 --- !u!1001 &5307556946120445742
 PrefabInstance:
   m_ObjectHideFlags: 0
