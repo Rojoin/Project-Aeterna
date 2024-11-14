@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 761596987833286894, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8400000, guid: b0e57183494f244498ad61bbc9b61769, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 761596987833286894, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 0
@@ -163,10 +163,10 @@ PrefabInstance:
     - target: {fileID: 4610753144933997836, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8400000, guid: b0e57183494f244498ad61bbc9b61769, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4610753144933997836, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
       propertyPath: near clip plane
-      value: -5.12
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 4610753144933997836, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
       propertyPath: orthographic size
@@ -178,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4610753144933997836, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 1
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5657846359803697576, guid: b59b6a4d6d5099142ac32b957ce392e1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2252,7 +2252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1267755961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2484,7 +2484,7 @@ Transform:
   m_GameObject: {fileID: 1374607598}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3017,7 +3017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387299858582288128, guid: ad5290da12986aa46951fe3fc1d0c733, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5033131140491711133, guid: ad5290da12986aa46951fe3fc1d0c733, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4303,13 +4303,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8097408125366268405, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 242196536764500918, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
+      propertyPath: m_Lens.NearClipPlane
+      value: -8.1
       objectReference: {fileID: 0}
-    - target: {fileID: 8097408125366268405, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+    - target: {fileID: 1113316743500390350, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503652950479371303, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8533366314051106492, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
       propertyPath: m_Name
