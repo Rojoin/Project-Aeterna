@@ -1,3 +1,5 @@
+using CustomSceneSwitcher.Switcher;
+using CustomSceneSwitcher.Switcher.Data;
 using InputControls;
 using System;
 using UnityEngine;
@@ -5,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private SceneChangeData GoToGame;
     [SerializeField] private bool isPaused;
     [SerializeField] private CanvasGroup canvas;
 
@@ -31,6 +34,20 @@ public class PauseMenu : MonoBehaviour
         canvas.alpha = isPaused ? 1.0f : 0;
         canvas.interactable = isPaused;
         canvas.blocksRaycasts = isPaused;
+    }
+
+    public void GoMenu()
+    {
+        isPaused = false;
+
+        Time.timeScale = !isPaused ? 1.0f : 0f;
+        InputController.IsGamePaused = isPaused;
+
+        canvas.alpha = isPaused ? 1.0f : 0;
+        canvas.interactable = isPaused;
+        canvas.blocksRaycasts = isPaused;
+
+        SceneSwitcher.ChangeScene(GoToGame);
     }
 
     public void QuitGame() 
