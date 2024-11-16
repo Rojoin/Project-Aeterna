@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ namespace Settings
         private Resolution currentResolution;
 
         [SerializeField] private Toggle shouldGridReset;
+        //[SerializeField] private PlayerStats playerStats;
         private int currentResolutionIndex = 0;
 
         private void Awake()
