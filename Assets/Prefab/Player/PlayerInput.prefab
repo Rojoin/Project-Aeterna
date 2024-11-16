@@ -128,10 +128,10 @@ MonoBehaviour:
     m_ActionName: Player/Back[/Keyboard/q,/DualSenseGamepadHID/buttonEast]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: ee870a1ab6b1cf34285cd8d95c5bbee5, type: 2}
-        m_TargetAssemblyTypeName: VoidChannelSO, RojoinChannels
-        m_MethodName: RaiseEvent
-        m_Mode: 1
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -290,6 +290,7 @@ MonoBehaviour:
   OnBackInteractChannel: {fileID: 11400000, guid: ee870a1ab6b1cf34285cd8d95c5bbee5, type: 2}
   OnHudToggleChannel: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
   OnDashChannel: {fileID: 11400000, guid: 4312eae7dc310ef4bb5f7cbd39742da4, type: 2}
+  OnPauseChannel: {fileID: 11400000, guid: e3026a457fb953b49bd8c1c088d6da04, type: 2}
   OnControlSchemeChange: {fileID: 11400000, guid: 31cb41d326db3c84586e863551aec40b, type: 2}
   gameSettings: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}

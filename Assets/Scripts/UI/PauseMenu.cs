@@ -26,7 +26,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = !isPaused;
 
         Time.timeScale = !isPaused ? 1.0f : 0f;
-        InputController.IsGamePaused = !isPaused;
+        InputController.IsGamePaused = isPaused;
 
         canvas.alpha = isPaused ? 1.0f : 0;
         canvas.interactable = isPaused;
