@@ -106,7 +106,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{0779495C-D8A2-DF17-A673-7647C40F9F17}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{74947E82-6086-3C40-AF06-6786EDC00E54}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -134,6 +134,10 @@
 					<ShortName>a.wav</ShortName>
 					<CachePath>SFX/a_818F3B66.wem</CachePath>
 				</File>
+				<File Id="97293026" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Yukinko_TP.wav</ShortName>
+					<CachePath>SFX/Yukinko_TP_818F3B66.wem</CachePath>
+				</File>
 				<File Id="108385202" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Snow1 5-Audio.wav</ShortName>
 					<CachePath>SFX/Snow1 5-Audio_818F3B66.wem</CachePath>
@@ -149,6 +153,10 @@
 				<File Id="266888604" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DASH FX-inputdash - v1.wav</ShortName>
 					<CachePath>SFX/DASH FX-inputdash - v1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="276093354" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Add point card.wav</ShortName>
+					<CachePath>SFX/Add point card_818F3B66.wem</CachePath>
 				</File>
 				<File Id="301685552" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Drs_Table_Close_01.wav</ShortName>
@@ -169,6 +177,10 @@
 				<File Id="369799898" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>c.wav</ShortName>
 					<CachePath>SFX/c_818F3B66.wem</CachePath>
+				</File>
+				<File Id="378976887" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>When Shield is hited.wav</ShortName>
+					<CachePath>SFX/When Shield is hited_818F3B66.wem</CachePath>
 				</File>
 				<File Id="414238328" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>b.wav</ShortName>
@@ -193,6 +205,10 @@
 				<File Id="531096102" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enojado_muierte 1.wav</ShortName>
 					<CachePath>SFX/Enojado_muierte 1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="557424383" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Select.wav</ShortName>
+					<CachePath>SFX/Select_818F3B66.wem</CachePath>
 				</File>
 				<File Id="606299963" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Snow1 8-Audio.wav</ShortName>
@@ -303,6 +319,11 @@
 						<MediaRef Id="987444625"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1889019163" Name="NewCardAdded" DurationType="OneShot" DurationMin="2.9846485" DurationMax="2.9846485">
+					<MediaRefs>
+						<MediaRef Id="276093354"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1219344685" Name="Okami_Attack" DurationType="OneShot" DurationMin="2.3596857" DurationMax="2.387104">
 					<MediaRefs>
 						<MediaRef Id="679832367"/>
@@ -364,11 +385,21 @@
 						<MediaRef Id="977828449"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2774129122" Name="UI_Select" DurationType="OneShot" DurationMin="2" DurationMax="2">
+					<MediaRefs>
+						<MediaRef Id="557424383"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2759476964" Name="Yukinko_Attack" DurationType="OneShot" DurationMin="1.3272349" DurationMax="1.8860418">
 					<MediaRefs>
 						<MediaRef Id="142539276"/>
 						<MediaRef Id="803712041"/>
 						<MediaRef Id="886773806"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1966917113" Name="Yukinko_CoveredHit" DurationType="OneShot" DurationMin="1.4030162" DurationMax="1.6878636">
+					<MediaRefs>
+						<MediaRef Id="378976887"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="1827819594" Name="Yukinko_Dead" DurationType="OneShot" DurationMin="0.6564853" DurationMax="1.1814102">
@@ -384,8 +415,13 @@
 						<MediaRef Id="785073113"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="24515932" Name="Yukinko_Tp" DurationType="OneShot" DurationMin="2.0012245" DurationMax="2.0012245">
+					<MediaRefs>
+						<MediaRef Id="97293026"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{06F41C3E-3D38-E83A-03BC-79C93EA42946}</FileHash>
+	<FileHash>{47559A26-5C14-8178-ACCA-B4ACB1B7AD99}</FileHash>
 </SoundBanksInfo>

@@ -17,6 +17,7 @@ namespace AK
         static const AkUniqueID CARDS_SHOW_PLAY = 1511560907U;
         static const AkUniqueID DOOR_CLOSE = 128625444U;
         static const AkUniqueID DOOR_OPEN = 535830432U;
+        static const AkUniqueID NEWCARDADDED = 1889019163U;
         static const AkUniqueID OKAMI_ATTACK = 1219344685U;
         static const AkUniqueID PLAY_DEFAULTMUSIC = 1857418338U;
         static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
@@ -30,9 +31,12 @@ namespace AK
         static const AkUniqueID SET_DEATHMUSIC = 1819564765U;
         static const AkUniqueID SET_EXPLORINGMUSIC = 881121579U;
         static const AkUniqueID STOP_DEFAULTMUSIC = 502652540U;
+        static const AkUniqueID UI_SELECT = 2774129122U;
         static const AkUniqueID YUKINKO_ATTACK = 2759476964U;
+        static const AkUniqueID YUKINKO_COVEREDHIT = 1966917113U;
         static const AkUniqueID YUKINKO_DEAD = 1827819594U;
         static const AkUniqueID YUKINKO_HIT = 2316635047U;
+        static const AkUniqueID YUKINKO_TP = 24515932U;
     } // namespace EVENTS
 
     namespace STATES
