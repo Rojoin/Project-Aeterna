@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,13 +5,10 @@ namespace Enemy
 {
     public class DummyEnemy : BaseEnemy
     {
-        
         public AttackCollision damageCollision;
-     
- 
-
+        public bool canReceiveDamage = true;
         private DummySO enemyConfig;
-
+        private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
         protected override void Init()
         {
             base.Init();
@@ -20,7 +16,7 @@ namespace Enemy
             damageCollision.OnTriggerEnterObject.AddListener(DamageEnemy);
         }
 
-        
+
         protected override void ValidateMethod()
         {
             if (config.GetType() != typeof(DummySO))
@@ -31,6 +27,35 @@ namespace Enemy
             {
                 enemyConfig = config as DummySO;
             }
+        }
+
+        public override void ReceiveDamage(float damage)
+        {
+            if (!canReceiveDamage)
+            {
+                return;
+            }
+
+            if (currentHealth <= 0 || currentHealth <= damage)
+            {
+                animator?.SetTrigger(Dead);
+                currentHealth = 0;
+                OnHit.Invoke();
+                OnDeath.Invoke();
+                OnDeathRemove.Invoke(this);
+                healthBar.gameObject.SetActive(false);
+            }
+            else
+            {
+                animator?.SetTrigger(Hurt);
+                ChangeOnHitColor();
+                currentHealth -= damage;
+                OnHit.Invoke();
+            }
+
+            float healthNormalize = currentHealth / maxHealth;
+            healthBar.FillAmount = healthNormalize;
+            animator?.SetFloat(Damage, healthNormalize);
         }
 
         private void OnDisable()
@@ -96,7 +121,28 @@ namespace Enemy
         {
             isAttacking = false;
         }
-        
+
+        private IEnumerator OnDeathMaterialAnimation()
+        {
+            float heightValue = material.GetFloat(CutOffHeight);
+            float endAnimation = -5.0f;
+            animator.SetTrigger(Dead);
+            while (heightValue > endAnimation)
+            {
+                heightValue -= Time.deltaTime * disappearSpeed;
+                material.SetFloat(CutOffHeight, heightValue);
+                yield return null;
+            }
+
+            material.SetFloat(CutOffHeight, heightValue);
+            gameObject.SetActive(false);
+        }
+
+        public override void DeathBehaviour()
+        {
+            StartCoroutine(OnDeathMaterialAnimation());
+        }
+
         protected void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;

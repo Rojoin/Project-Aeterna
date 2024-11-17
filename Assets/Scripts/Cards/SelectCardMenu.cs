@@ -15,6 +15,7 @@ public class SelectCardMenu : MonoBehaviour
     private BoolChannelSO ToggleCardDialogCard;
 
     [SerializeField] private BoolChannelSO ToggleCardDialogDoor;
+    [SerializeField] private VoidChannelSO OnTutorialComplete;
     [SerializeField] private VoidChannelSO InvokeCardChannel;
 
     [Header("Reference: UI")] [SerializeField]
@@ -38,8 +39,10 @@ public class SelectCardMenu : MonoBehaviour
     [Header("Animations")] [SerializeField]
     private List<Animator> cardsAnimator;
 
-    [Header("Box")] [SerializeField] private CanvasGroup dialogBoxDoor;
+    [Header("Box")] 
+    [SerializeField] private CanvasGroup dialogBoxDoor;
     [SerializeField] private CanvasGroup dialogBoxCard;
+    [SerializeField] private CanvasGroup tutorialBox;
 
     private float timeUntilCardsShowUp = 0.20f;
     private float timeBetweenCards = 0.10f;
@@ -71,11 +74,13 @@ public class SelectCardMenu : MonoBehaviour
         ToggleCardDialogCard.Subscribe(ToggleDialogCard);
         ToggleCardDialogDoor.Subscribe(ToggleDialogDoor);
         InvokeCardChannel.Subscribe(ShowSelectCardMenuDebug);
+        OnTutorialComplete.Subscribe(ChangeTutorialManager);
         selectCardMenuAnimator.SetTrigger("setStart");
     }
 
     private void OnDisable()
     {
+        OnTutorialComplete.Unsubscribe(ChangeTutorialManager);
         InvokeCardChannel.Unsubscribe(ShowSelectCardMenuDebug);
         ToggleCardDialogCard.Unsubscribe(ToggleDialogCard);
         ToggleCardDialogDoor.Unsubscribe(ToggleDialogDoor);
@@ -87,6 +92,12 @@ public class SelectCardMenu : MonoBehaviour
         dialogBoxCard.interactable = value;
         dialogBoxCard.blocksRaycasts = !value;
         dialogBoxCard.alpha = value ? 1 : 0;
+    }  
+    private void ChangeTutorialManager()
+    {
+        tutorialBox.interactable = false;
+        tutorialBox.blocksRaycasts = false;
+        tutorialBox.alpha = 0;
     }
 
     private void ToggleDialogDoor(bool value)

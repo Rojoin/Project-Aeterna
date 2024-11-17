@@ -189,6 +189,7 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         float heightValue = materialBody.GetFloat(CutOffHeight);
         float endAnimation = -5.0f;
         materialFace = meshFace.material;
+        animator.SetTrigger(Dead);
         while (heightValue > endAnimation)
         {
             heightValue -= Time.deltaTime * disappearSpeed;
