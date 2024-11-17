@@ -33,6 +33,7 @@ namespace AK
         static const AkUniqueID SET_GAMEPLAY_DEATHMUSIC = 3961518606U;
         static const AkUniqueID SET_GAMEPLAY_EXPLORINGMUSIC = 2016296512U;
         static const AkUniqueID STOP_GAMEPLAY_DEFAULTMUSIC = 898535195U;
+        static const AkUniqueID STOP_MENU_MUSIC = 3945748993U;
         static const AkUniqueID UI_SELECT = 2774129122U;
         static const AkUniqueID YUKINKO_ATTACK = 2759476964U;
         static const AkUniqueID YUKINKO_COVEREDHIT = 1966917113U;
@@ -60,7 +61,10 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID MASTERAUDIO = 2938085603U;
+        static const AkUniqueID MUSICAUDIO = 583157220U;
         static const AkUniqueID PLAYBACKSPEED = 1897326479U;
+        static const AkUniqueID SFXAUDIO = 904185180U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS

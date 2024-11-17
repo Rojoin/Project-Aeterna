@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{4D61A992-899B-25BF-7D44-F602E597C755}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{F5D9D909-29DE-719B-F6DE-7E7B12380593}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -24,7 +24,10 @@
 				<Bus Id="3991942870" Name="Music"/>
 			</Busses>
 			<GameParameters>
+				<GameParameter Id="583157220" Name="MusicAudio"/>
+				<GameParameter Id="904185180" Name="SFXAudio"/>
 				<GameParameter Id="1897326479" Name="PlayBackSpeed"/>
+				<GameParameter Id="2938085603" Name="MasterAudio"/>
 			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="69122470" Name="DeathFloorMusic">
@@ -37,10 +40,14 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3427827313" Type="User" Language="SFX" Hash="{3F3AD7D6-F4AA-ADB1-C032-F3B41B7D331D}">
+		<SoundBank Id="3427827313" Type="User" Language="SFX" Hash="{08153232-55EC-620C-7FBF-76B9734CC084}">
 			<ShortName>MusicSoundBank</ShortName>
 			<Path>MusicSoundBank.bnk</Path>
 			<Media>
+				<File Id="340919541" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>main music_aeterna_V1.wav</ShortName>
+					<CachePath>SFX/main music_aeterna_V1_FBC78EF0.wem</CachePath>
+				</File>
 				<File Id="353056499" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>MIX BUSdeathfloorBGM142bpm.wav</ShortName>
 					<CachePath>SFX/MIX BUSdeathfloorBGM142bpm_FBC78EF0.wem</CachePath>
@@ -77,7 +84,11 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
-				<Event Id="2228153899" Name="Play_Menu_Music" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2228153899" Name="Play_Menu_Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="340919541"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="320826874" Name="Set_Gameplay_CombatMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0">
 					<ActionSetState>
 						<ActionSetStateEntry GroupId="69122470" Id="2764240573" Name="Combat"/>
@@ -94,6 +105,7 @@
 					</ActionSetState>
 				</Event>
 				<Event Id="898535195" Name="Stop_Gameplay_DefaultMusic" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3945748993" Name="Stop_Menu_Music" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="1897326479" Name="PlayBackSpeed"/>
@@ -431,5 +443,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{F12DFF44-1BCC-0709-91D8-367DB760E275}</FileHash>
+	<FileHash>{3F14A806-1E90-BCA7-F4BF-592F00036E91}</FileHash>
 </SoundBanksInfo>

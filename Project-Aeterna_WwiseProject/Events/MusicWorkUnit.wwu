@@ -76,7 +76,27 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Play_Menu_Music" ID="{E67E8E79-BF4B-48E8-AF11-ACE3AFF9CEB3}"/>
+						<Event Name="Play_Menu_Music" ID="{E67E8E79-BF4B-48E8-AF11-ACE3AFF9CEB3}">
+							<ChildrenList>
+								<Action Name="" ID="{761DDEF3-3A82-4336-B2F0-B6CB59DE62C8}" ShortID="702324744">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MenuMusic" ID="{55CFE758-C463-4307-A61D-E596B3A04723}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_Menu_Music" ID="{B1366343-7E50-441E-9E7D-AB6D70AFE738}">
+							<ChildrenList>
+								<Action Name="" ID="{AEB55317-97CD-4B2A-9F1D-5542859561E6}" ShortID="856958896">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="3"/>
+									</PropertyList>
+									<ReferenceList/>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
