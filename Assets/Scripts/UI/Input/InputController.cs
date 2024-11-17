@@ -108,7 +108,8 @@ namespace InputControls
             {
                 OnInteractChannel.RaiseEvent();
             }
-        } public void OnAlternativeInteract(InputAction.CallbackContext ctx)
+        } 
+        public void OnAlternativeInteract(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
             {
