@@ -471,6 +471,127 @@
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Yukinko_CoverHit" ID="{18BEFCF7-33F5-4C90-80A5-994A24D77022}" ShortID="132848037">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="When Shield is hited_00" ID="{163EAA79-57E8-4860-A9C1-D94302A7C8C6}" ShortID="413801103">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="When Shield is hited" ID="{BB2FCF8C-9911-4A44-AFAD-65CD12BF5066}">
+											<Language>SFX</Language>
+											<AudioFile>When Shield is hited.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="378976887"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="When Shield is hited" ID="{BB2FCF8C-9911-4A44-AFAD-65CD12BF5066}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="When Shield is hited_01" ID="{2472B76A-A2A9-44F4-8D8F-192FBCF5E758}" ShortID="284884153">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-170</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="When Shield is hited" ID="{0418B993-2A13-41E6-B21B-C16AA105CBD5}">
+											<Language>SFX</Language>
+											<AudioFile>When Shield is hited.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="378976887"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="When Shield is hited" ID="{0418B993-2A13-41E6-B21B-C16AA105CBD5}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="When Shield is hited_02" ID="{83EFF024-4AED-4EB7-BE27-B303E38D3032}" ShortID="475756799">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>150</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="When Shield is hited" ID="{44272764-1B2C-488D-9E65-B45EFA855762}">
+											<Language>SFX</Language>
+											<AudioFile>When Shield is hited.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="378976887"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="When Shield is hited" ID="{44272764-1B2C-488D-9E65-B45EFA855762}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<Sound Name="Yukinko_TP" ID="{267D8D91-3FC2-43F9-905A-FD5AD9E7CDBD}" ShortID="287261273">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Yukinko_TP" ID="{F63F5480-C9F8-4E95-A36E-BC18A8459050}">
+									<Language>SFX</Language>
+									<AudioFile>Yukinko_TP.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="97293026"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Yukinko_TP" ID="{F63F5480-C9F8-4E95-A36E-BC18A8459050}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{7515299F-41EC-454E-AF5E-7D4A675BEB8C}" ShortID="13075865">
@@ -1280,6 +1401,10 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Cards" ID="{DAD0371A-2FD3-4C90-9ABF-C505FAE5C781}" ShortID="83088656">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="11"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
 					<ChildrenList>
 						<RandomSequenceContainer Name="ShowCard" ID="{213B7EFF-EE50-471A-BD58-2E7A25573AED}" ShortID="42680674">
 							<PropertyList>
@@ -1398,6 +1523,58 @@
 								</Reference>
 							</ReferenceList>
 						</RandomSequenceContainer>
+						<Sound Name="Add point card" ID="{4054D03D-977D-41A0-BB42-A8190D18D46D}" ShortID="24118529">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Add point card" ID="{051FD1FA-0B6C-4965-9813-92E1B0A8E8C9}">
+									<Language>SFX</Language>
+									<AudioFile>Add point card.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="276093354"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Add point card" ID="{051FD1FA-0B6C-4965-9813-92E1B0A8E8C9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="UI" ID="{30ACDFA7-D0C8-422C-8F80-F719EF379491}" ShortID="878430130">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="19"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Sound Name="Select" ID="{B28BB6D4-F580-4E08-98E0-1EDC08D52CF9}" ShortID="515142435">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Select" ID="{D4F3624C-1377-4588-8C2E-6FEA1AFC6871}">
+									<Language>SFX</Language>
+									<AudioFile>Select.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="557424383"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Select" ID="{D4F3624C-1377-4588-8C2E-6FEA1AFC6871}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
