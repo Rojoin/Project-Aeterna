@@ -20,7 +20,8 @@ namespace AK
         static const AkUniqueID DOOR_OPEN = 535830432U;
         static const AkUniqueID NEWCARDADDED = 1889019163U;
         static const AkUniqueID OKAMI_ATTACK = 1219344685U;
-        static const AkUniqueID PLAY_DEFAULTMUSIC = 1857418338U;
+        static const AkUniqueID PLAY_GAMEPLAY_DEFAULTMUSIC = 4267938381U;
+        static const AkUniqueID PLAY_MENU_MUSIC = 2228153899U;
         static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
         static const AkUniqueID PLAYER_DASH = 2394582229U;
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
@@ -28,10 +29,10 @@ namespace AK
         static const AkUniqueID PLAYER_SPECIALATTACK = 3430919778U;
         static const AkUniqueID PLAYER_WALK_LEVEL1 = 3808387538U;
         static const AkUniqueID PROYECTILE_HIT = 2964619405U;
-        static const AkUniqueID SET_COMBATMUSIC = 1226438939U;
-        static const AkUniqueID SET_DEATHMUSIC = 1819564765U;
-        static const AkUniqueID SET_EXPLORINGMUSIC = 881121579U;
-        static const AkUniqueID STOP_DEFAULTMUSIC = 502652540U;
+        static const AkUniqueID SET_GAMEPLAY_COMBATMUSIC = 320826874U;
+        static const AkUniqueID SET_GAMEPLAY_DEATHMUSIC = 3961518606U;
+        static const AkUniqueID SET_GAMEPLAY_EXPLORINGMUSIC = 2016296512U;
+        static const AkUniqueID STOP_GAMEPLAY_DEFAULTMUSIC = 898535195U;
         static const AkUniqueID UI_SELECT = 2774129122U;
         static const AkUniqueID YUKINKO_ATTACK = 2759476964U;
         static const AkUniqueID YUKINKO_COVEREDHIT = 1966917113U;
@@ -72,6 +73,8 @@ namespace AK
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID SFX = 393239870U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES
