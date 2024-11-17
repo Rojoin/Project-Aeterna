@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Enemy
@@ -7,7 +8,7 @@ namespace Enemy
         public AttackCollision damageCollision;
         public bool canReceiveDamage = true;
         private DummySO enemyConfig;
-
+        private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
         protected override void Init()
         {
             base.Init();
@@ -119,6 +120,27 @@ namespace Enemy
         public void OnAttackAnimationEnd()
         {
             isAttacking = false;
+        }
+
+        private IEnumerator OnDeathMaterialAnimation()
+        {
+            float heightValue = material.GetFloat(CutOffHeight);
+            float endAnimation = -5.0f;
+            animator.SetTrigger(Dead);
+            while (heightValue > endAnimation)
+            {
+                heightValue -= Time.deltaTime * disappearSpeed;
+                material.SetFloat(CutOffHeight, heightValue);
+                yield return null;
+            }
+
+            material.SetFloat(CutOffHeight, heightValue);
+            gameObject.SetActive(false);
+        }
+
+        public override void DeathBehaviour()
+        {
+            StartCoroutine(OnDeathMaterialAnimation());
         }
 
         protected void OnDrawGizmosSelected()

@@ -15,7 +15,7 @@ namespace Enemy
         [SerializeField] public Animator animator;
         [SerializeField] public BoxCollider collider;
         [SerializeField] public SkinnedMeshRenderer skin;
-        private Material material;
+        protected Material material;
         protected float currentHealth;
         protected float maxHealth;
         protected bool canAttack;

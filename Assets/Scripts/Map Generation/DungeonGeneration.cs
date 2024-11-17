@@ -342,8 +342,7 @@ public class DungeonGeneration : MonoBehaviour
         
         dungeonRooms[0].roomBehaviour.roomType = RoomTypes.START;
         actualPlayerRoom = dungeonRooms[0];
-        dungeonRooms[0].roomBehaviour.SetRoomDoorState(true);
-        dungeonRooms[0].enemyManager.CallEndRoom();
+
     }
 
     private void InstantiateDungeon()
@@ -419,5 +418,10 @@ public class DungeonGeneration : MonoBehaviour
         {
             roomBehaviour.SetDoorDirection(from, to);
         }
+    }
+
+    public void CallEndRoom()
+    {
+        actualPlayerRoom.enemyManager.CallEndRoom();
     }
 }
