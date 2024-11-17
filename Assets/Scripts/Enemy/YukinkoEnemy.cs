@@ -86,6 +86,8 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
                 isAttacking = false;
                 StartCoroutine(DeactivateShieldAnimation());
             }
+
+            AkSoundEngine.PostEvent("Yukinko_CoveredHit", gameObject);
         }
         else
         {
@@ -107,6 +109,8 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
                 ChangeOnHitColor();
                 OnHit.Invoke();
             }
+            
+            AkSoundEngine.PostEvent("Yukinko_Hit", gameObject);
         }
 
         float healthNormalize = currentHealth / maxHealth;

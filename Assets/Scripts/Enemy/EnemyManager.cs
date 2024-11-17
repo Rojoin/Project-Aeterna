@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using CustomChannels;
 using UI;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
-using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -24,7 +22,6 @@ namespace Enemy
 
         public void OnEnterNewRoom()
         {
-
             if (!roomClear)
             {
                 SpawnEnemies();
@@ -76,8 +73,8 @@ namespace Enemy
             {
                 enemyList.Remove(enemy);
                 enemy.OnDeathRemove.RemoveListener(RemoveEnemy);
-                
-                
+
+
                 EndChamber(enemy);
             }
             else
@@ -91,6 +88,7 @@ namespace Enemy
             if (enemyList.Count <= 0)
             {
                 SpawnParticleChannel.RaiseEvent(enemy.transform.position);
+                AkSoundEngine.PostEvent("NewCardAdded", gameObject);
                 Debug.Log("CallExploringMusic");
                 StartCoroutine(CallExploringMusic());
 

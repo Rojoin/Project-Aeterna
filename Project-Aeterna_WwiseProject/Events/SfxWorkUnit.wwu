@@ -148,6 +148,28 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="Yukinko_CoveredHit" ID="{66D9E740-1D7C-41DC-82E6-397AF3F20A4B}">
+									<ChildrenList>
+										<Action Name="" ID="{B39791FA-32E5-4098-AF8B-855CA68DD368}" ShortID="94159455">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Yukinko_CoverHit" ID="{18BEFCF7-33F5-4C90-80A5-994A24D77022}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Yukinko_Tp" ID="{ACA2BEF2-1790-4CA8-BB60-0D97A74EAF44}">
+									<ChildrenList>
+										<Action Name="" ID="{DF048487-35D5-4F76-B73B-B68A90290264}" ShortID="944188646">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Yukinko_TP" ID="{267D8D91-3FC2-43F9-905A-FD5AD9E7CDBD}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Enviroment" ID="{1F209F26-2FF7-487D-9848-1A4B857F00FA}" ShortID="463920395">
@@ -203,6 +225,43 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="SelectCard" ID="{1A5B2170-2736-4B04-AB15-DDF7A52FB004}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="NewCardAdded" ID="{B348CFE7-9294-4BDE-A4A1-88DBDC441C42}">
+									<ChildrenList>
+										<Action Name="" ID="{75362881-3750-4D36-9315-674186229627}" ShortID="217398043">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Add point card" ID="{4054D03D-977D-41A0-BB42-A8190D18D46D}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Cards_Show_Deck" ID="{C9A0184B-A26A-4562-A8F2-CB917F640122}">
+									<ChildrenList>
+										<Action Name="" ID="{C28D1A86-DA95-477E-BAA8-E2C7C006E26A}" ShortID="309724461">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Select" ID="{B28BB6D4-F580-4E08-98E0-1EDC08D52CF9}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="UI" ID="{083A6E59-2AD4-4B27-BA3C-992689B6ED3D}" ShortID="159226606">
+							<ChildrenList>
+								<Event Name="UI_Select" ID="{F469C6FF-703C-48B0-8B30-50CBB0617ABC}">
+									<ChildrenList>
+										<Action Name="" ID="{2B9EAE60-FC05-4315-BCA7-F332FEB34171}" ShortID="320869666">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Select" ID="{B28BB6D4-F580-4E08-98E0-1EDC08D52CF9}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
