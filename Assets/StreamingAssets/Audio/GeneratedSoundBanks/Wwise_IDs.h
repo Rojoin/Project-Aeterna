@@ -35,6 +35,7 @@ namespace AK
         static const AkUniqueID STOP_GAMEPLAY_DEFAULTMUSIC = 898535195U;
         static const AkUniqueID STOP_MENU_MUSIC = 3945748993U;
         static const AkUniqueID UI_SELECT = 2774129122U;
+        static const AkUniqueID UI_UNSELECT = 491060007U;
         static const AkUniqueID YUKINKO_ATTACK = 2759476964U;
         static const AkUniqueID YUKINKO_COVEREDHIT = 1966917113U;
         static const AkUniqueID YUKINKO_DEAD = 1827819594U;

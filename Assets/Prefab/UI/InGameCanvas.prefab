@@ -39,6 +39,7 @@ RectTransform:
   - {fileID: 222090976882290903}
   - {fileID: 2959135860489725380}
   - {fileID: 3513488543230068651}
+  - {fileID: 501341315722758542}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -126,6 +127,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 816650882897271340}
   ToggleCardDialogCard: {fileID: 11400000, guid: baa052d8c829c4a4090ed965bb78b073, type: 2}
   ToggleCardDialogDoor: {fileID: 11400000, guid: f9158be6c38a2f445bf71b4081fbd157, type: 2}
+  OnTutorialComplete: {fileID: 0}
   InvokeCardChannel: {fileID: 11400000, guid: 4dc25047abaa2a84c9e32fcfed8b5738, type: 2}
   SelectCardUI: {fileID: 8381634620664140129}
   playerInventory: {fileID: 0}
@@ -144,6 +146,7 @@ MonoBehaviour:
   - {fileID: 2786855861834783217}
   dialogBoxDoor: {fileID: 4900094686801093558}
   dialogBoxCard: {fileID: 3067844685682757538}
+  tutorialBox: {fileID: 0}
   selectCardMenuAnimator: {fileID: 899752590285760388}
   cardsGO: []
   hud: {fileID: 5250553791646526628}
@@ -805,16 +808,68 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8842714958902882208, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842714958902882208, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842714958902882208, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3758105164425229317}
+    - target: {fileID: 8842714958902882208, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842714958902882208, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnPlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842714958902882208, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SwBasic, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842714958902882208, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8525606392424625451, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3758105164425229317}
   m_SourcePrefab: {fileID: 100100000, guid: aee0b176269e28243acdbcc16de76418, type: 3}
 --- !u!224 &501341315722758542 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4330809459885677328, guid: aee0b176269e28243acdbcc16de76418, type: 3}
   m_PrefabInstance: {fileID: 4246682273677759134}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5529917662924515253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8525606392424625451, guid: aee0b176269e28243acdbcc16de76418, type: 3}
+  m_PrefabInstance: {fileID: 4246682273677759134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3758105164425229317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5529917662924515253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: UI_UnSelect
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &5447365845978592238
 PrefabInstance:
   m_ObjectHideFlags: 0

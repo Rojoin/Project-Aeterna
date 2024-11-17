@@ -91,9 +91,13 @@
 							<ChildrenList>
 								<Action Name="" ID="{AEB55317-97CD-4B2A-9F1D-5542859561E6}" ShortID="856958896">
 									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="3"/>
+										<Property Name="ActionType" Type="int16" Value="2"/>
 									</PropertyList>
-									<ReferenceList/>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="MenuMusic" ID="{55CFE758-C463-4307-A61D-E596B3A04723}" WorkUnitID="{FFFB7795-6C6D-471B-AA46-D6AF597BECE1}"/>
+										</Reference>
+									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
