@@ -106,7 +106,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{74947E82-6086-3C40-AF06-6786EDC00E54}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{3F7B40EF-50D0-9400-49A3-6501E290DCD9}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -301,6 +301,11 @@
 			</Media>
 			<Events>
 				<Event Id="2114297034" Name="Cards_Select_Play" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="32826058" Name="Cards_Show_Deck" DurationType="OneShot" DurationMin="2" DurationMax="2">
+					<MediaRefs>
+						<MediaRef Id="557424383"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1511560907" Name="Cards_Show_Play" DurationType="OneShot" DurationMin="1.1892071" DurationMax="1.3079659">
 					<MediaRefs>
 						<MediaRef Id="88278307"/>
@@ -423,5 +428,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{260F6321-1537-030D-0C92-8F3BA73278D8}</FileHash>
+	<FileHash>{F406D830-E183-300D-9742-9772FBD7073C}</FileHash>
 </SoundBanksInfo>

@@ -14,6 +14,7 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID CARDS_SELECT_PLAY = 2114297034U;
+        static const AkUniqueID CARDS_SHOW_DECK = 32826058U;
         static const AkUniqueID CARDS_SHOW_PLAY = 1511560907U;
         static const AkUniqueID DOOR_CLOSE = 128625444U;
         static const AkUniqueID DOOR_OPEN = 535830432U;
