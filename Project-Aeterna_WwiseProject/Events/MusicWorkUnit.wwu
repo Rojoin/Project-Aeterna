@@ -9,7 +9,7 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Event Name="Play_DefaultMusic" ID="{9C61792F-0014-42DC-80A1-4BE9B64EF60F}">
+						<Event Name="Play_Gameplay_DefaultMusic" ID="{9C61792F-0014-42DC-80A1-4BE9B64EF60F}">
 							<ChildrenList>
 								<Action Name="" ID="{C0A68A74-1035-4297-A251-DBF31662B6DC}" ShortID="296014262">
 									<ReferenceList>
@@ -20,7 +20,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Stop_DefaultMusic" ID="{3054C68A-ABBC-42A0-B824-658FA8FF88D2}">
+						<Event Name="Stop_Gameplay_DefaultMusic" ID="{3054C68A-ABBC-42A0-B824-658FA8FF88D2}">
 							<ChildrenList>
 								<Action Name="" ID="{8ECBBEDB-F02C-4EC6-B940-AD35755AF35E}" ShortID="14137711">
 									<PropertyList>
@@ -34,7 +34,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Set_CombatMusic" ID="{0EA3129E-A52C-44E3-954C-D565CBDAC96B}">
+						<Event Name="Set_Gameplay_CombatMusic" ID="{0EA3129E-A52C-44E3-954C-D565CBDAC96B}">
 							<ChildrenList>
 								<Action Name="" ID="{9033F112-3DFC-4186-8C31-56ED5B484B06}" ShortID="248592335">
 									<PropertyList>
@@ -48,7 +48,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Set_DeathMusic" ID="{0A1D6AF5-B7F7-4126-84F6-19CF9FFED0AB}">
+						<Event Name="Set_Gameplay_DeathMusic" ID="{0A1D6AF5-B7F7-4126-84F6-19CF9FFED0AB}">
 							<ChildrenList>
 								<Action Name="" ID="{9B6511D9-EF65-4DF7-BC6B-F9288C99AC90}" ShortID="41583060">
 									<PropertyList>
@@ -62,7 +62,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Set_ExploringMusic" ID="{DCDBF204-D532-4097-8987-5F231C01D2A7}">
+						<Event Name="Set_Gameplay_ExploringMusic" ID="{DCDBF204-D532-4097-8987-5F231C01D2A7}">
 							<ChildrenList>
 								<Action Name="" ID="{E3BF16C9-D18E-4E5B-87F6-2A4A31630A3A}" ShortID="176614365">
 									<PropertyList>
@@ -76,6 +76,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Play_Menu_Music" ID="{E67E8E79-BF4B-48E8-AF11-ACE3AFF9CEB3}"/>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

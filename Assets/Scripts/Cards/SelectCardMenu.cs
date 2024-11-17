@@ -143,6 +143,11 @@ public class SelectCardMenu : MonoBehaviour
         hud.SetActive(!value);
         objective.SetActive(!value);
 
+        if (value)
+        {
+            AkSoundEngine.PostEvent("Cards_Show_Deck", gameObject);
+        }
+        
         showCardMenu = value;
         SelectCardUI.SetActive(value);
         TogglePause.RaiseEvent(value);
