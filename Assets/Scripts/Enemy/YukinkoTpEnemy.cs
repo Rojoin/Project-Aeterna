@@ -73,6 +73,7 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
             OnDeathRemove.Invoke(this);
             collider.enabled = false;
             _navMeshAgent.isStopped = true;
+            healthBar.gameObject.SetActive(false);
         }
         else
         {
@@ -80,12 +81,12 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
             currentHealth -= damage;
             ChangeOnHitColor();
             OnHit.Invoke();
+            ChangeVisibleTpGameObjects(false);
         }
 
         float healthNormalize = currentHealth / maxHealth;
         healthBar.FillAmount = healthNormalize;
-        
-        ChangeVisibleTpGameObjects(false);
+
     }
 
     protected override void Init()
@@ -253,6 +254,7 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
     private void ChangeVisibleTpGameObjects(bool state)
     {
+        collider.enabled = state;
         foreach (GameObject o in hideTeleportGameObjects)
         {
             o.SetActive(state);

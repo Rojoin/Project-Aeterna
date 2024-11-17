@@ -26,18 +26,26 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
     [SerializeField] private BaseProjectile projectile;
     [SerializeField] private SkinnedMeshRenderer meshBody;
     [SerializeField] private SkinnedMeshRenderer meshFace;
+
+    [FormerlySerializedAs("shield")] [SerializeField]
+    private MeshRenderer meshShield;
+
     private FSM _fsm;
     private Material materialBody;
     private Material materialFace;
+    private Material materialShield;
     private ShootingEnemySO enemyConfig;
     private Transform target;
     private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
     private float defenseModeTimer = 0.0f;
     private int hitWhileBlocking = 0;
     private float canEnterDefenseModeTimer = 0.0f;
+    private float shieldMaxStrength = -0.2f;
+    private float shieldMinStrength = 1.2f;
     private static readonly int IsExitingDefense = Animator.StringToHash("isExitingDefense");
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsEnteringDefense = Animator.StringToHash("isEnteringDefense");
+    private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
     private YukinkoStates states = YukinkoStates.Idle;
     public UnityEvent OnAttack = new();
     [SerializeField] private NavMeshAgent _navMeshAgent;
@@ -63,17 +71,20 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
             OnHit.Invoke();
             isAttacking = true;
             hitWhileBlocking++;
+            ChangeShieldColor();
             if (hitWhileBlocking >= enemyConfig.hitsUntilCounterAttack)
             {
                 states = states | YukinkoStates.Attack;
                 DetectEntity();
                 hitWhileBlocking = 0;
                 states = states | YukinkoStates.Run;
-                _navMeshAgent.SetDestination(GetRandomPointOnNavMesh(transform.position, enemyConfig.maxEscapeDistance,enemyConfig.minEscapeDistance));
+                _navMeshAgent.SetDestination(GetRandomPointOnNavMesh(transform.position, enemyConfig.maxEscapeDistance,
+                    enemyConfig.minEscapeDistance));
                 animator.SetTrigger(IsWalking);
                 states = states &= ~YukinkoStates.Defense;
                 defenseModeTimer = 0;
                 isAttacking = false;
+                StartCoroutine(DeactivateShieldAnimation());
             }
         }
         else
@@ -87,6 +98,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
                 OnDeathRemove.Invoke(this);
                 collider.enabled = false;
                 _navMeshAgent.isStopped = true;
+                healthBar.gameObject.SetActive(false);
             }
             else
             {
@@ -101,6 +113,11 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
         healthBar.FillAmount = healthNormalize;
     }
 
+    private void ChangeShieldColor()
+    {
+        gameObject.StartColorChange(materialShield, config.colorshiftDuration);
+    }
+
     protected override void Init()
     {
         base.Init();
@@ -108,6 +125,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
         projectile.SetSettings(enemyConfig);
         materialBody = meshBody.material;
         materialFace = meshFace.material;
+        materialShield = meshShield.material;
         OnHit.AddListener(ResetDefenseMode);
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
@@ -135,7 +153,6 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
             {
                 states = states &= ~YukinkoStates.Run;
                 animator.SetTrigger(IsIdle);
-                Debug.Log("Exit Running");
                 states = states | YukinkoStates.Idle;
             }
         }
@@ -155,6 +172,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
             if (canEnterDefenseModeTimer > enemyConfig.timeUntilBlock)
             {
                 animator.SetTrigger(IsEnteringDefense);
+                StartCoroutine(ActivateShieldAnimation());
                 states &= ~YukinkoStates.CanEnterDefense;
                 states |= YukinkoStates.Defense;
                 canEnterDefenseModeTimer = 0;
@@ -168,6 +186,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
             {
                 states = states &= ~YukinkoStates.Defense;
                 animator.SetTrigger(IsExitingDefense);
+                StartCoroutine(DeactivateShieldAnimation());
                 defenseModeTimer = 0;
             }
         }
@@ -249,6 +268,31 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
         materialBody.SetFloat(CutOffHeight, heightValue);
         materialFace.SetFloat(CutOffHeight, heightValue);
         gameObject.SetActive(false);
+    }
+
+    private IEnumerator ActivateShieldAnimation()
+    {
+        var timer = 0.0f;
+        while (timer < enemyConfig.timeUntilShieldFullyAppears)
+        {
+            timer += Time.deltaTime;
+            float dissolveStrengh = Mathf.Lerp(shieldMinStrength, shieldMaxStrength, timer);
+            materialShield.SetFloat(Dissolve, dissolveStrengh);
+            yield return null;
+        }
+        materialShield.SetFloat(Dissolve, shieldMaxStrength);
+    }
+    private IEnumerator DeactivateShieldAnimation()
+    {
+        var timer = 0.0f;
+        while (timer < enemyConfig.timeUntilShieldFullyAppears)
+        {
+            timer += Time.deltaTime;
+            float dissolveStrengh = Mathf.Lerp(shieldMaxStrength, shieldMinStrength, timer);
+            materialShield.SetFloat(Dissolve, dissolveStrengh);
+            yield return null;
+        }
+        materialShield.SetFloat(Dissolve, shieldMinStrength);
     }
 
     public void SendProjectile()

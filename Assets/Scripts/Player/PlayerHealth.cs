@@ -12,11 +12,14 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] private PlayerPortraitChannelSO ChangePortrait;
     [SerializeField] private Animator animator;
     [SerializeField] private VoidChannelSO MoveCamera;
+    [SerializeField] private VoidChannelSO OnHealth;
     [SerializeField] private SkinnedMeshRenderer skin;
     private Material material;
     [SerializeField] private PlayerHealthBar healthBar;
     [SerializeField] private SelectCardMenu selectCardMenu;
     [SerializeField] float rumbleDuration = 0.1f;
+
+    const int healingValue = 100;
 
     private float currentHealth;
     private float maxHealth;
@@ -25,6 +28,11 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     private static readonly int IsHurt = Animator.StringToHash("isHurt");
     public UnityEvent OnPlayerHurt;
     private bool isInvencible;
+
+    private void OnEnable()
+    {
+        OnHealth.Subscribe(HealthPlayer);
+    }
 
     private void Start()
     {
@@ -57,20 +65,20 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         maxHealth += newMaxHealth;
         currentHealth += newMaxHealth;
         healthBar.FillAmount = currentHealth / maxHealth;
+        UpdatePlayerStacks();
+        if (player.health > player.maxHealth / 2)
+        {
+            ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
+        }
     }
 
     public void HealthPlayer()
     {
+        currentHealth += healingValue + player.healingValue;
+
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
-            healthBar.FillAmount = currentHealth;
-        }
-
-        else
-        {
-            currentHealth += player.healingValue;
-            healthBar.FillAmount = currentHealth;
         }
 
         UpdatePlayerStacks();
@@ -79,6 +87,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
         }
+
+        healthBar.FillAmount = currentHealth;
     }
 
     [ContextMenu("KillPlayer")]
@@ -165,5 +175,10 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             return false;
         }
+    }
+
+    private void OnDisable()
+    {
+        OnHealth.Unsubscribe(HealthPlayer);
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 839588763805806274}
   - component: {fileID: 8640315388805966473}
   - component: {fileID: 7208392404558533390}
+  - component: {fileID: 6590662019161638367}
   m_Layer: 5
   m_Name: CardCounterUIParticle
   m_TagString: Untagged
@@ -74,6 +75,19 @@ MonoBehaviour:
   m_UseCustomView: 0
   m_CustomViewSize: 10
   m_Maskable: 1
+--- !u!114 &6590662019161638367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890106872118312280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d25298549c4396a5429e2047b401fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnParticleCalled: {fileID: 11400000, guid: c9c6bc1b698bed948a4537964008c0c9, type: 2}
 --- !u!1 &8108346765450826839
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,13 +114,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8108346765450826839}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 839588763805806274}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6404230051850371818
 ParticleSystem:
   m_ObjectHideFlags: 0

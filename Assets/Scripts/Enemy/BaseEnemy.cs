@@ -80,6 +80,7 @@ namespace Enemy
                 OnDeath.Invoke();
                 OnDeathRemove.Invoke(this);
                 Invoke(nameof(DeathBehaviour), timeAfterDeactivate);
+                healthBar.gameObject.SetActive(false);
             }
             else
             {
