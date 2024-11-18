@@ -7,23 +7,23 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler , IDeselectHandler
+public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler,
+    IDeselectHandler
 {
-    [Header("References")]
-    [SerializeField] private GameManager gameManager;
+    [Header("References")] [SerializeField]
+    private GameManager gameManager;
 
     [SerializeField] private GameObject cardInformation;
 
     [SerializeField] private GameSettings gameSettings;
 
-    [Header("Setup")]
-    [SerializeField] private float minRotation;
+    [Header("Setup")] [SerializeField] private float minRotation;
     [SerializeField] private float maxRotation;
 
     [SerializeField] private float rotationSpeed;
 
-    [Header("Setup: for controller")]
-    [SerializeField] private float xCardRotation;
+    [Header("Setup: for controller")] [SerializeField]
+    private float xCardRotation;
 
     [SerializeField] private Button button;
 
@@ -144,15 +144,7 @@ public class SelectableCardMovement : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public bool IsSelected()
     {
-        if (isSelected)
-        {
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
+        return isSelected;
     }
 
     public void OnSelect(BaseEventData eventData)

@@ -64,11 +64,34 @@ namespace Enemy
                 ChangeOnHitColor();
                 currentHealth -= damage;
                 OnHit.Invoke();
+                LookAtEnemy();
             }
 
             float healthNormalize = currentHealth / maxHealth;
             healthBar.FillAmount = healthNormalize;
             animator?.SetFloat(Damage, healthNormalize);
+        }
+
+        private void LookAtEnemy()
+        {
+            int layerMask = 1 << gameObject.layer;
+            layerMask = ~layerMask;
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, enemyConfig.attackRange);
+            foreach (Collider hitCollider in hitColliders)
+            {
+                if (hitCollider.CompareTag("Player"))
+                {
+                    Transform currentObjective = hitCollider.gameObject.transform;
+                    Vector3 direction = currentObjective.position - transform.position;
+                    direction.y = 0;
+
+                    if (direction != Vector3.zero)
+                    {
+                        Quaternion targetRotation = Quaternion.LookRotation(direction);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 1);
+                    }
+                }
+            }
         }
 
         private void OnDisable()
