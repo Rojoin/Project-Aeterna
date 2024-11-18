@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5488851170272422622}
   - component: {fileID: 2596648921131716709}
   - component: {fileID: 612350480232095631}
+  - component: {fileID: 7253291729269894926}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -93,3 +94,42 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7253291729269894926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603496569926382663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a938051573aa445ab8bd551d282e1bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 11400000, guid: 2bd7e0755fcc8014bb81d352bf091fec, type: 2}
+  attackChannel: {fileID: 11400000, guid: 18149bb368d5dcc41ae9a5dce4bff517, type: 2}
+  SpecialAttack: {fileID: 11400000, guid: 51fc7421b630d9d45b98b54803e090ee, type: 2}
+  DashChannel: {fileID: 11400000, guid: 4312eae7dc310ef4bb5f7cbd39742da4, type: 2}
+  OnTutorialComplete: {fileID: 11400000, guid: 9bd7e4b07cdb3ca448d8db52736335f3, type: 2}
+  moveIcon: {fileID: 0}
+  dashIcon: {fileID: 0}
+  attackIcon: {fileID: 0}
+  specialIcon: {fileID: 0}
+  completedSprite: {fileID: 21300000, guid: 7a4c33ae1b27cea40b7dad7afe45b5be, type: 3}
+  _enemy: {fileID: 0}
+  OnTutorialFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DungeonGeneration, Assembly-CSharp
+        m_MethodName: CallEndRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  count: 0

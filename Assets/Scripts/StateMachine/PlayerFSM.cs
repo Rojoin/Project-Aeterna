@@ -181,6 +181,10 @@ namespace StateMachine
             var interactable1 = hit.collider.GetComponent<IInteractable>();
             if (interactable1 != null)
             {
+                if (interactable1 == interactable)
+                {
+                    return true;
+                }
                 interactable = interactable1;
                 interactable?.ToggleDialogBox(true);
                 return true;

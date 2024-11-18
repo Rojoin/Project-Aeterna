@@ -16,25 +16,38 @@ public class CardDisplay : MonoBehaviour
         cardFrame.enabled = false;
     }
 
-    public void ShowCard(CardSO card) 
+    public void ShowCard(CardSO card)
     {
-        allCardSprite.enabled = true;
-        cardFrame.enabled = true;
-        allCardSprite.sprite = card.allCardSprite;
-        cardFrame.sprite = card.cardFrame;
+        switch (card.cardsOnSlot)
+        {
+            case 1:
+                allCardSprite.enabled = true;
+                cardFrame.enabled = true;
+                allCardSprite.sprite = card.allCardSprite;
+                cardFrame.sprite = card.cardFrame;
 
-        if (card.cardsOnSlot == 2)
-        {
-            accumulatedCard.enabled = true;
-            accumulatedCard.sprite = card.cardAccumulatedFrame;
-            completedCard.enabled = false;
-        }
-        else if (card.cardsOnSlot == 3)
-        {
-            accumulatedCard.enabled = true;
-            accumulatedCard.sprite = card.cardCompleteFrame;
-            completedCard.sprite = card.cardCompleteFrame;
-            completedCard.enabled = true;
+                accumulatedCard.enabled = false;
+                completedCard.enabled = false;
+                break;
+            case 2:
+                allCardSprite.enabled = true;
+                cardFrame.enabled = true;
+                allCardSprite.sprite = card.allCardSprite;
+                cardFrame.sprite = card.cardFrame;
+                accumulatedCard.enabled = true;
+                accumulatedCard.sprite = card.cardAccumulatedFrame;
+                completedCard.enabled = false;
+                break;
+            case 3:
+                allCardSprite.enabled = true;
+                cardFrame.enabled = true;
+                allCardSprite.sprite = card.allCardSprite;
+                cardFrame.sprite = card.cardFrame;
+                accumulatedCard.enabled = true;
+                accumulatedCard.sprite = card.cardCompleteFrame;
+                completedCard.sprite = card.cardCompleteFrame;
+                completedCard.enabled = true;
+                break;
         }
     }
 }

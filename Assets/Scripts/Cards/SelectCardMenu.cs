@@ -39,14 +39,15 @@ public class SelectCardMenu : MonoBehaviour
     [Header("Animations")] [SerializeField]
     private List<Animator> cardsAnimator;
 
-    [Header("Box")] 
-    [SerializeField] private CanvasGroup dialogBoxDoor;
+    [Header("Box")] [SerializeField] private CanvasGroup dialogBoxDoor;
     [SerializeField] private CanvasGroup dialogBoxCard;
     [SerializeField] private CanvasGroup tutorialBox;
+    [SerializeField] private CanvasGroup objectiveBox;
 
     private float timeUntilCardsShowUp = 0.20f;
     private float timeBetweenCards = 0.10f;
     private float timeUntilCardsDissapear = 0.10f;
+    private float timeUntilMenuAppears = 0.50f;
 
     [SerializeField] private Animator selectCardMenuAnimator;
 
@@ -64,8 +65,10 @@ public class SelectCardMenu : MonoBehaviour
     {
         ShowSelectCardMenu(false);
         allCards = playerInventory.GetAllCard();
-        ToggleDialogCard(false);
-        ToggleDialogDoor(false);
+        dialogBoxCard.SetCanvas(false);
+        dialogBoxDoor.SetCanvas(false);
+        objectiveBox.SetCanvas(false);
+        StartCoroutine(tutorialBox.FadeCanvas(true, timeUntilMenuAppears));
     }
 
     private void OnEnable()
@@ -87,24 +90,21 @@ public class SelectCardMenu : MonoBehaviour
         moveCamera.Unsubscribe(TurnGameOver);
     }
 
+
     private void ToggleDialogCard(bool value)
     {
-        dialogBoxCard.interactable = value;
-        dialogBoxCard.blocksRaycasts = !value;
-        dialogBoxCard.alpha = value ? 1 : 0;
-    }  
+        StartCoroutine(dialogBoxCard.FadeCanvas(value, timeUntilMenuAppears));
+    }
+
     private void ChangeTutorialManager()
     {
-        tutorialBox.interactable = false;
-        tutorialBox.blocksRaycasts = false;
-        tutorialBox.alpha = 0;
+        StartCoroutine(tutorialBox.FadeCanvas(false, timeUntilMenuAppears));
+        StartCoroutine(objectiveBox.FadeCanvas(true, timeUntilCardsDissapear));
     }
 
     private void ToggleDialogDoor(bool value)
     {
-        dialogBoxDoor.interactable = value;
-        dialogBoxDoor.blocksRaycasts = !value;
-        dialogBoxDoor.alpha = value ? 1 : 0;
+        StartCoroutine(dialogBoxDoor.FadeCanvas(value, timeUntilMenuAppears));
     }
 
     private void TurnGameOver()
@@ -147,7 +147,7 @@ public class SelectCardMenu : MonoBehaviour
         {
             AkSoundEngine.PostEvent("Cards_Show_Deck", gameObject);
         }
-        
+
         showCardMenu = value;
         SelectCardUI.SetActive(value);
         TogglePause.RaiseEvent(value);
@@ -291,5 +291,54 @@ public class SelectCardMenu : MonoBehaviour
 
         ShowSelectCardMenu(false);
         selectCardMenuAnimator.SetBool("IsDesactive", false);
+    }
+}
+
+public static class CanvasUtilities
+{
+    public static IEnumerator FadeCanvas(this CanvasGroup canvasGroup, bool value, float time)
+    {
+        var timer = 0.0f;
+        if (value)
+        {
+            float alpha = 0;
+            while (timer < time)
+            {
+                timer += Time.deltaTime;
+                alpha = timer / time;
+                canvasGroup.SetCanvas(false, alpha);
+                yield return null;
+            }
+
+            canvasGroup.SetCanvas(true, 1);
+        }
+        else
+        {
+            timer = time;
+            float alpha = 0;
+            while (timer > 0)
+            {
+                timer -= Time.deltaTime;
+                alpha = timer / time;
+                canvasGroup.SetCanvas(false, alpha);
+                yield return null;
+            }
+
+            canvasGroup.SetCanvas(false, 0);
+        }
+    }
+
+    public static void SetCanvas(this CanvasGroup canvasGroup, bool value = true)
+    {
+        canvasGroup.interactable = value;
+        canvasGroup.blocksRaycasts = !value;
+        canvasGroup.alpha = value ? 1 : 0;
+    }
+
+    public static void SetCanvas(this CanvasGroup canvasGroup, bool value, float alpha)
+    {
+        canvasGroup.interactable = value;
+        canvasGroup.blocksRaycasts = !value;
+        canvasGroup.alpha = alpha;
     }
 }

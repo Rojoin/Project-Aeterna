@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Enemy
 {
@@ -9,11 +10,21 @@ namespace Enemy
         public bool canReceiveDamage = true;
         private DummySO enemyConfig;
         private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
+        private float shieldMaxStrength = -0.2f;
+        private float shieldMinStrength = 1.2f;
+        private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
+        public UnityEvent OnHitShield;
+        [SerializeField] private MeshRenderer meshShield;
+        private Material materialShield;
+
         protected override void Init()
         {
             base.Init();
             enemyConfig = config as DummySO;
             damageCollision.OnTriggerEnterObject.AddListener(DamageEnemy);
+            materialShield = meshShield.material;
+            canReceiveDamage = false;
+            StartCoroutine(ActivateShieldAnimation());
         }
 
 
@@ -33,6 +44,8 @@ namespace Enemy
         {
             if (!canReceiveDamage)
             {
+                gameObject.StartColorChange(materialShield, config.colorshiftDuration);
+                OnHitShield.Invoke();
                 return;
             }
 
@@ -147,6 +160,40 @@ namespace Enemy
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, enemyConfig.attackRange);
+        }
+
+        private IEnumerator ActivateShieldAnimation()
+        {
+            var timer = 0.0f;
+            while (timer < enemyConfig.timeUntilShieldFullyAppears)
+            {
+                timer += Time.deltaTime;
+                float dissolveStrengh = Mathf.Lerp(shieldMinStrength, shieldMaxStrength, timer);
+                materialShield.SetFloat(Dissolve, dissolveStrengh);
+                yield return null;
+            }
+
+            materialShield.SetFloat(Dissolve, shieldMaxStrength);
+        }
+
+        public void DeactivateShield()
+        {
+            StartCoroutine(DeactivateShieldAnimation());
+        }
+
+        private IEnumerator DeactivateShieldAnimation()
+        {
+            var timer = 0.0f;
+            while (timer < enemyConfig.timeUntilShieldFullyAppears)
+            {
+                timer += Time.deltaTime;
+                float dissolveStrengh = Mathf.Lerp(shieldMaxStrength, shieldMinStrength, timer);
+                materialShield.SetFloat(Dissolve, dissolveStrengh);
+                yield return null;
+            }
+
+            materialShield.SetFloat(Dissolve, shieldMinStrength);
+            canReceiveDamage = true;
         }
     }
 }

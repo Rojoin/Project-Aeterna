@@ -1,4 +1,5 @@
 ﻿using System;
+using Coffee.UIEffects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +11,7 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     public Action onButtonEnter;
     public Action onButtonExit;
+    public bool shouldOscureWhenDeselect = false;
 
     [SerializeField] private bool modifyHitBox;
 
@@ -31,6 +33,7 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private Sprite imageDefault;
     [SerializeField] private Sprite imageHighlighted;
     [SerializeField] private Image currentImage;
+    [SerializeField] private UIShiny uiShiny;
 
     [Header("Effect Color Text:")] [SerializeField]
     private bool textHighlight;
@@ -45,11 +48,16 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float rumbleForceAmount = 0.1f;
     [SerializeField] private float rumbleDuration = 0.05f;
+    private float alpha = 0.5f;
 
     private void Awake()
     {
         increment = false;
         initialScale = transform.localScale;
+        if (currentImage)
+        {
+            alpha = currentImage.color.a;
+        }
 
         if (modifyHitBox)
             GetComponent<Image>().alphaHitTestMinimumThreshold = alphaRayCast;
@@ -114,6 +122,12 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             currentImage.color = Color.white;
         }
 
+        if (shouldOscureWhenDeselect)
+        {
+            currentImage.color = Color.clear;
+            uiShiny.Play();
+        }
+
         if (enableObject)
             objectToEnable.SetActive(true);
 
@@ -133,6 +147,14 @@ public class UiButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             {
                 currentImage.color = Color.clear;
             }
+        }
+
+        if (shouldOscureWhenDeselect)
+        {
+            Color color = Color.black;
+            color.a = alpha;
+            currentImage.color = color;
+            uiShiny.Stop();
         }
 
         if (enableObject)

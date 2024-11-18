@@ -14,7 +14,7 @@ namespace Tutorial
         [SerializeField] private VoidChannelSO SpecialAttack;
         [SerializeField] private VoidChannelSO DashChannel;
         [SerializeField] private VoidChannelSO OnTutorialComplete;
- 
+
 
         [SerializeField] private Image moveIcon;
         [SerializeField] private Image dashIcon;
@@ -22,21 +22,19 @@ namespace Tutorial
         [SerializeField] private Image specialIcon;
         [SerializeField] private Sprite completedSprite;
 
-        [SerializeField]  private DummyEnemy _enemy;
+        [SerializeField] private DummyEnemy _enemy;
         public UnityEvent OnTutorialFinished;
         public int count = 0;
 
 
         private void OnEnable()
         {
-            
-            _enemy.canReceiveDamage = false;
             playerMovement?.Subscribe(OnTutorialCompletedAction);
-           attackChannel?.Subscribe(OnAttackCompletedAction);
-           SpecialAttack?.Subscribe(OnSpecialCompletedAction);
-           DashChannel?.Subscribe(OnDashCompletedAction);
-           count = 0; 
-           _enemy.OnDeath?.AddListener(OnEnemyDeath);
+            attackChannel?.Subscribe(OnAttackCompletedAction);
+            SpecialAttack?.Subscribe(OnSpecialCompletedAction);
+            DashChannel?.Subscribe(OnDashCompletedAction);
+            count = 0;
+            _enemy.OnDeath?.AddListener(OnEnemyDeath);
         }
 
         private void OnTutorialCompletedAction(Vector2 movementValue = default)
@@ -44,22 +42,22 @@ namespace Tutorial
             playerMovement.Unsubscribe(OnTutorialCompletedAction);
             moveIcon.sprite = completedSprite;
             CheckTutorialCondition();
+        }
 
-        }     
         private void OnDashCompletedAction()
         {
             DashChannel.Unsubscribe(OnDashCompletedAction);
             dashIcon.sprite = completedSprite;
             CheckTutorialCondition();
+        }
 
-        }  
         private void OnSpecialCompletedAction()
         {
             SpecialAttack.Unsubscribe(OnSpecialCompletedAction);
             specialIcon.sprite = completedSprite;
             CheckTutorialCondition();
+        }
 
-        } 
         private void OnAttackCompletedAction()
         {
             attackChannel.Unsubscribe(OnAttackCompletedAction);
@@ -69,7 +67,6 @@ namespace Tutorial
 
         private void OnDisable()
         {
-
         }
 
         public void OnEnemyDeath()
@@ -84,7 +81,7 @@ namespace Tutorial
             count++;
             if (count >= 4)
             {
-                _enemy.canReceiveDamage = true; 
+                _enemy.DeactivateShield();
             }
         }
     }

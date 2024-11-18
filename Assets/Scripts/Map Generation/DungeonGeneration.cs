@@ -39,7 +39,7 @@ public class DungeonGeneration : MonoBehaviour
     [SerializeField] private NextCardIndicator nextCardIndicator;
 
     private int nCurrentRooms;
-    private int roomsCounter = 0;
+    private int roomsCounter = 3;
     private DungeonRoom actualPlayerRoom;
 
     private Queue<DungeonRoom> pendingRooms = new();

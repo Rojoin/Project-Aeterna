@@ -403,17 +403,6 @@ MonoBehaviour:
   unloadTriggerList: 958ca0ea
   bankNameInternal: 
   valueGuidInternal: 
---- !u!114 &287707469 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1036340956698318952, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &358245680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -540,17 +529,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7337490271031681339, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
   m_PrefabInstance: {fileID: 5693371484574524226}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &433211697 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 93379991154190046, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &536771342
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,17 +758,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec1998bf803f2c34ab5b35303acf4059, type: 3}
---- !u!114 &824840956 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8413796614387090867, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &863621173
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,11 +876,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!225 &963038957 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 7743879590200568191, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1090447491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,17 +1323,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9183385606015275576, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
   m_PrefabInstance: {fileID: 5087615115885202192}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1706315713 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5479139688960700970, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-  m_PrefabInstance: {fileID: 5693371484574524226}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1784881845 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8215772057215560431, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -1541,10 +1492,10 @@ MonoBehaviour:
   SpecialAttack: {fileID: 11400000, guid: 51fc7421b630d9d45b98b54803e090ee, type: 2}
   DashChannel: {fileID: 11400000, guid: 4312eae7dc310ef4bb5f7cbd39742da4, type: 2}
   OnTutorialComplete: {fileID: 11400000, guid: 9bd7e4b07cdb3ca448d8db52736335f3, type: 2}
-  moveIcon: {fileID: 287707469}
-  dashIcon: {fileID: 1706315713}
-  attackIcon: {fileID: 824840956}
-  specialIcon: {fileID: 433211697}
+  moveIcon: {fileID: 0}
+  dashIcon: {fileID: 0}
+  attackIcon: {fileID: 0}
+  specialIcon: {fileID: 0}
   completedSprite: {fileID: 21300000, guid: 7a4c33ae1b27cea40b7dad7afe45b5be, type: 3}
   _enemy: {fileID: 151148762}
   OnTutorialFinished:
@@ -2792,10 +2743,6 @@ PrefabInstance:
       propertyPath: buffSystem
       value: 
       objectReference: {fileID: 1166619382}
-    - target: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
-      propertyPath: tutorialBox
-      value: 
-      objectReference: {fileID: 963038957}
     - target: {fileID: 4915741395421501163, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
       propertyPath: playerInventory
       value: 

@@ -5,4 +5,5 @@ public class DummySO : EntitySO
 {
     public float attackSpeed = 2.0f;
     public float attackRange = 2.0f;
+    public float timeUntilShieldFullyAppears = 0.5f; 
 }
