@@ -62,6 +62,11 @@ namespace CustomSceneSwitcher.Switcher
                 }
 
                 _changeSceneOperation.allowSceneActivation = true;
+                isChangingScene = false;
+            }
+            else
+            {
+                Debug.LogWarning("Still change scene.");
             }
         }
 

@@ -14,7 +14,7 @@ public class DungeonGeneration : MonoBehaviour
     [Header("Scriptable Objects")] [SerializeField]
     private LevelRoomsSO levelRoom;
 
-    [Header("Channels")] [SerializeField] private VoidChannelSO OnEnd;
+    [Header("Channels")] [SerializeField] private BoolChannelSO OnEnd;
     // [SerializeField] private EnemyLevelSO enemyLevelSo;
 
     [Header("Grid Settings")] [SerializeField]
@@ -251,9 +251,9 @@ public class DungeonGeneration : MonoBehaviour
         if (actualPlayerRoom.roomBehaviour.roomType == RoomTypes.BOSS)
         {
             foreach (DungeonRoom room in dungeonRooms)
-                room.dungeonRoomInstance.SetActive(true);
+                room.dungeonRoomInstance.SetActive(false);
 
-            OnEnd.RaiseEvent();
+            OnEnd.RaiseEvent(true);
             player.gameObject.SetActive(false);
         }
         else

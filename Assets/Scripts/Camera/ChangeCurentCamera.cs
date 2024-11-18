@@ -21,9 +21,9 @@ public class ChangeCurentCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        onChangeCameraChannel.Subscribe(ChangeCamera);
-        onResetSceneChannel.Subscribe(ResetScene);
-        onExitChannel.Subscribe(Exit);
+        onChangeCameraChannel?.Subscribe(ChangeCamera);
+        onResetSceneChannel?.Subscribe(ResetScene);
+        onExitChannel?.Subscribe(Exit);
      
         skyboxMaterialRange = skyboxMaterialRangeMin;
     }
@@ -32,9 +32,9 @@ public class ChangeCurentCamera : MonoBehaviour
 
     private void OnDisable()
     {
-        onChangeCameraChannel.Unsubscribe(ChangeCamera);
-        onResetSceneChannel.Unsubscribe(ResetScene);
-        onExitChannel.Unsubscribe(Exit);
+        onChangeCameraChannel?.Unsubscribe(ChangeCamera);
+        onResetSceneChannel?.Unsubscribe(ResetScene);
+        onExitChannel?.Unsubscribe(Exit);
     }
 
     private void ChangeCamera()

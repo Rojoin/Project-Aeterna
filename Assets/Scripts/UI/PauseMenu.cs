@@ -3,13 +3,21 @@ using CustomSceneSwitcher.Switcher.Data;
 using InputControls;
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private SceneChangeData GoToGame;
+    [FormerlySerializedAs("GoToGame")] [SerializeField]
+    private SceneChangeData GoToMenu;
+
+    [SerializeField] private SceneChangeData GameScene;
     [SerializeField] private bool isPaused;
+    [SerializeField] private float timeUntilShow = 0.2f;
     [SerializeField] private CanvasGroup canvas;
+    [SerializeField] private Button firstButton;
 
     [SerializeField] private VoidChannelSO OnPauseChannel;
 
@@ -28,12 +36,18 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = !isPaused;
 
+        if (isPaused)
+        {
+            EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
+        }
+
         Time.timeScale = !isPaused ? 1.0f : 0f;
         InputController.IsGamePaused = isPaused;
 
-        canvas.alpha = isPaused ? 1.0f : 0;
-        canvas.interactable = isPaused;
-        canvas.blocksRaycasts = isPaused;
+        StartCoroutine(canvas.FadeCanvas(isPaused, timeUntilShow));
+        // canvas.alpha = isPaused ? 1.0f : 0;
+        // canvas.interactable = isPaused;
+        // canvas.blocksRaycasts = isPaused;
     }
 
     public void GoMenu()
@@ -47,10 +61,24 @@ public class PauseMenu : MonoBehaviour
         canvas.interactable = isPaused;
         canvas.blocksRaycasts = isPaused;
 
-        SceneSwitcher.ChangeScene(GoToGame);
+        SceneSwitcher.ChangeScene(GoToMenu);
     }
 
-    public void QuitGame() 
+    public void Retry()
+    {
+        isPaused = false;
+
+        Time.timeScale = !isPaused ? 1.0f : 0f;
+        InputController.IsGamePaused = isPaused;
+
+        canvas.alpha = isPaused ? 1.0f : 0;
+        canvas.interactable = isPaused;
+        canvas.blocksRaycasts = isPaused;
+
+        SceneSwitcher.ChangeScene(GameScene);
+    }
+
+    public void QuitGame()
     {
         Application.Quit();
     }

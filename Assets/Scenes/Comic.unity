@@ -393,9 +393,9 @@ MonoBehaviour:
     sceneReference:
       sceneAsset: {fileID: 102900000, guid: 21cd5a486c728a24b887f87e08329ff5, type: 3}
       scenePath: Assets/Scenes/Level1.unity
-    transitionControlPrefab: {fileID: 0}
-    transitionSpeed: 0
-    minTransitionTime: 0
+    transitionControlPrefab: {fileID: 7606104316507084454, guid: 446595120ecd3884288d97150211d853, type: 3}
+    transitionSpeed: 1
+    minTransitionTime: 2
     loadingBarPrefab: {fileID: 0}
     loadingBarVisibility: 0
 --- !u!1 &433490921
@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldOscureWhenDeselect: 0
   modifyHitBox: 0
   alphaRayCast: 0.1
   scaleSpeed: 3
@@ -1399,6 +1400,7 @@ MonoBehaviour:
   imageDefault: {fileID: 21300000, guid: 23d72d4cb36189f4a91546226c0cb148, type: 3}
   imageHighlighted: {fileID: 21300000, guid: 9ff87ff4c0fbd704db7e3cec75ec7abf, type: 3}
   currentImage: {fileID: 0}
+  uiShiny: {fileID: 0}
   textHighlight: 0
   textToHighlight: {fileID: 0}
   colorHighlight: {r: 0, g: 0, b: 0, a: 0}

@@ -2,14 +2,16 @@ using InputControls;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class SelectCardMenu : MonoBehaviour
 {
     [SerializeField] private BoolChannelSO TogglePause;
-    [SerializeField] private VoidChannelSO moveCamera;
+    [SerializeField] private BoolChannelSO moveCamera;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject winScreen;
 
     [Header("Channel: UI")] [SerializeField]
     private BoolChannelSO ToggleCardDialogCard;
@@ -107,9 +109,16 @@ public class SelectCardMenu : MonoBehaviour
         StartCoroutine(dialogBoxDoor.FadeCanvas(value, timeUntilMenuAppears));
     }
 
-    private void TurnGameOver()
+    private void TurnGameOver(bool value)
     {
-        gameOverScreen.SetActive(true);
+        if (value)
+        {
+            gameOverScreen.SetActive(true);
+        }
+        else
+        {
+            winScreen.SetActive(true);
+        }
     }
 
     private void Update()
@@ -134,7 +143,8 @@ public class SelectCardMenu : MonoBehaviour
 
     [ContextMenu("TestCard")]
     public void ShowSelectCardMenuDebug()
-    {
+    { 
+        EventSystem.current.SetSelectedGameObject(cardsMovements[0].gameObject);
         ShowSelectCardMenu(true);
     }
 
@@ -304,7 +314,7 @@ public static class CanvasUtilities
             float alpha = 0;
             while (timer < time)
             {
-                timer += Time.deltaTime;
+                timer += Time.unscaledDeltaTime;
                 alpha = timer / time;
                 canvasGroup.SetCanvas(false, alpha);
                 yield return null;
@@ -318,7 +328,7 @@ public static class CanvasUtilities
             float alpha = 0;
             while (timer > 0)
             {
-                timer -= Time.deltaTime;
+                timer -= Time.unscaledDeltaTime;
                 alpha = timer / time;
                 canvasGroup.SetCanvas(false, alpha);
                 yield return null;
@@ -331,14 +341,14 @@ public static class CanvasUtilities
     public static void SetCanvas(this CanvasGroup canvasGroup, bool value = true)
     {
         canvasGroup.interactable = value;
-        canvasGroup.blocksRaycasts = !value;
+        canvasGroup.blocksRaycasts = value;
         canvasGroup.alpha = value ? 1 : 0;
     }
 
     public static void SetCanvas(this CanvasGroup canvasGroup, bool value, float alpha)
     {
         canvasGroup.interactable = value;
-        canvasGroup.blocksRaycasts = !value;
+        canvasGroup.blocksRaycasts = value;
         canvasGroup.alpha = alpha;
     }
 }

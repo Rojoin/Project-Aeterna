@@ -37,6 +37,14 @@ namespace Tutorial
             _enemy.OnDeath?.AddListener(OnEnemyDeath);
         }
 
+        private void OnDestroy()
+        {
+            playerMovement?.Unsubscribe(OnTutorialCompletedAction);
+            attackChannel?.Unsubscribe(OnAttackCompletedAction);
+            SpecialAttack?.Unsubscribe(OnSpecialCompletedAction);
+            DashChannel?.Unsubscribe(OnDashCompletedAction);
+        }
+
         private void OnTutorialCompletedAction(Vector2 movementValue = default)
         {
             playerMovement.Unsubscribe(OnTutorialCompletedAction);

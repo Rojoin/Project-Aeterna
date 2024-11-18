@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [Header("Data")] [SerializeField] private PlayerEntitySO player;
     [SerializeField] private PlayerPortraitChannelSO ChangePortrait;
     [SerializeField] private Animator animator;
-    [SerializeField] private VoidChannelSO MoveCamera;
+    [SerializeField] private BoolChannelSO onDeath;
     [SerializeField] private VoidChannelSO OnHealth;
     [SerializeField] private SkinnedMeshRenderer skin;
     private Material material;
@@ -109,7 +109,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             currentHealth = 0;
             AkSoundEngine.SetState("DeathFloorMusic", "Death");
-            MoveCamera.RaiseEvent();
+            onDeath.RaiseEvent(true);
             gameObject.SetActive(false);
         }
         else
