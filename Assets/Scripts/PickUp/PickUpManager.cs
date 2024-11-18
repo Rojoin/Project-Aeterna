@@ -82,7 +82,6 @@ public class PickUpManager : MonoBehaviour
 
     public void PlayerInteractPickUp()
     {
-        Debug.Log("Evento LLamado");
         nextCardIndicator.RestartIndicatorCard();
         selectCardMenu.ShowSelectCardMenu(true);
     }

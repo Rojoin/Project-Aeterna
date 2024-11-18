@@ -780,6 +780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 240239483230483703}
   - component: {fileID: 8348865846585661269}
+  - component: {fileID: 6395588579269016245}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -830,9 +831,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.90734386, b: 0.7783019, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0.90588236, b: 0.7764706, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -855,10 +856,42 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6395588579269016245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3452121753876096648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldOscureWhenDeselect: 0
+  modifyHitBox: 0
+  alphaRayCast: 0.1
+  scaleSpeed: 3
+  scaleLimit: 2.6
+  modifyImage: 0
+  baseImageIsTransparent: 0
+  imageDefault: {fileID: 0}
+  imageHighlighted: {fileID: 0}
+  currentImage: {fileID: 0}
+  uiShiny: {fileID: 0}
+  textHighlight: 0
+  textToHighlight: {fileID: 0}
+  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
+  enableObject: 0
+  objectToEnable: {fileID: 0}
+  objectToRotate: {fileID: 0}
+  rotateSpeed: 0
+  rumbleForceAmount: 0.1
+  rumbleDuration: 0.05
 --- !u!1 &3541013642089388017
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9213188051119159093}
   - component: {fileID: 457913608274853413}
+  - component: {fileID: 967364824302933147}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -919,9 +953,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.90734386, b: 0.7783019, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0.90588236, b: 0.7764706, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -944,10 +978,42 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &967364824302933147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541013642089388017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldOscureWhenDeselect: 0
+  modifyHitBox: 0
+  alphaRayCast: 0.1
+  scaleSpeed: 3
+  scaleLimit: 2.6
+  modifyImage: 0
+  baseImageIsTransparent: 0
+  imageDefault: {fileID: 0}
+  imageHighlighted: {fileID: 0}
+  currentImage: {fileID: 0}
+  uiShiny: {fileID: 0}
+  textHighlight: 0
+  textToHighlight: {fileID: 0}
+  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
+  enableObject: 0
+  objectToEnable: {fileID: 0}
+  objectToRotate: {fileID: 0}
+  rotateSpeed: 0
+  rumbleForceAmount: 0.1
+  rumbleDuration: 0.05
 --- !u!1 &3582496630296758906
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +1024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7692998157835388904}
   - component: {fileID: 2848402443041769662}
+  - component: {fileID: 6158991900524218841}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -1008,9 +1075,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.90734386, b: 0.7783019, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0.90588236, b: 0.7764706, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1033,10 +1100,42 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6158991900524218841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582496630296758906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce01f32f365b7b7469d18c0ef669b4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldOscureWhenDeselect: 0
+  modifyHitBox: 0
+  alphaRayCast: 0.1
+  scaleSpeed: 3
+  scaleLimit: 2.6
+  modifyImage: 0
+  baseImageIsTransparent: 0
+  imageDefault: {fileID: 0}
+  imageHighlighted: {fileID: 0}
+  currentImage: {fileID: 0}
+  uiShiny: {fileID: 0}
+  textHighlight: 0
+  textToHighlight: {fileID: 0}
+  colorHighlight: {r: 0, g: 0, b: 0, a: 0}
+  enableObject: 0
+  objectToEnable: {fileID: 0}
+  objectToRotate: {fileID: 0}
+  rotateSpeed: 0
+  rumbleForceAmount: 0.1
+  rumbleDuration: 0.05
 --- !u!1 &3667100895387090580
 GameObject:
   m_ObjectHideFlags: 0

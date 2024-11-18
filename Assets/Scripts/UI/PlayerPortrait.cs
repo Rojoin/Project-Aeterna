@@ -39,7 +39,7 @@ namespace UI
             OnPortraitChangeChannel.Subscribe(ChangePortrait);
         }
 
-        void ONDisable()
+        void OnDisable()
         {
             OnPortraitChangeChannel.Unsubscribe(ChangePortrait);
         }

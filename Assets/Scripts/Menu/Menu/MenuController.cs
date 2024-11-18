@@ -23,6 +23,8 @@ namespace Menu
         [SerializeField] private CanvasGroup optionsCanvas;
         [SerializeField] private CanvasGroup creditsCanvas;
         [SerializeField] private TextMeshProUGUI versionNumber;
+        [SerializeField] private BoolChannelSO onControllerChange;
+        [SerializeField] private EventSystem eventSystem;
         private bool isOptionsActive;
         private bool isHowToPlayActive;
 
@@ -36,15 +38,37 @@ namespace Menu
             creditsButton.onClick.AddListener(HowToToggle);
             backCreditsButton.onClick.AddListener(HowToToggle);
             exitButton.onClick.AddListener(ExitGame);
+            onControllerChange.Subscribe(SetButton);
             isOptionsActive = false;
             isHowToPlayActive = false;
+        }
+
+        private void SetButton(bool value)
+        {
+            if (!value)
+            {
+                return;
+            }
+
+            if (!isOptionsActive && !isHowToPlayActive)
+            {
+                EventSystem.current.SetSelectedGameObject(startGameButton.gameObject);
+            }
+            else if (!isOptionsActive && isHowToPlayActive)
+            {
+                EventSystem.current.SetSelectedGameObject(backCreditsButton.gameObject);
+            }
+            else if (isOptionsActive)
+            {
+                EventSystem.current.SetSelectedGameObject(backOptionsButton.gameObject);
+            }
         }
 
         private IEnumerator Start()
         {
             yield return null;
             yield return null;
-            EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(startGameButton.gameObject);
+            EventSystem.current.SetSelectedGameObject(startGameButton.gameObject);
             startGameButton.Select();
             yield break;
         }
@@ -57,6 +81,7 @@ namespace Menu
             creditsButton.onClick.RemoveListener(HowToToggle);
             backCreditsButton.onClick.RemoveListener(HowToToggle);
             exitButton.onClick.RemoveListener(ExitGame);
+            onControllerChange.Unsubscribe(SetButton);
         }
 
         private void ExitGame()
@@ -68,10 +93,15 @@ namespace Menu
         {
             isOptionsActive = !isOptionsActive;
             SetCanvasVisibility(optionsCanvas, isOptionsActive);
-            menuCanvas.blocksRaycasts = !isOptionsActive;
+            // menuCanvas.blocksRaycasts = !isOptionsActive;
             if (!isOptionsActive)
             {
-                EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(startGameButton.gameObject);
+                eventSystem.SetSelectedGameObject(startGameButton.gameObject);
+            }
+            else
+            {
+                eventSystem.SetSelectedGameObject(backOptionsButton.gameObject);
+                backOptionsButton.Select();
             }
         }
 
@@ -79,10 +109,15 @@ namespace Menu
         {
             isHowToPlayActive = !isHowToPlayActive;
             SetCanvasVisibility(creditsCanvas, isHowToPlayActive);
-            menuCanvas.blocksRaycasts = !isHowToPlayActive;
+            // menuCanvas.blocksRaycasts = !isHowToPlayActive;
             if (!isHowToPlayActive)
             {
-                EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(startGameButton.gameObject);
+                eventSystem.SetSelectedGameObject(startGameButton.gameObject);
+            }
+            else
+            {
+                eventSystem.SetSelectedGameObject(backCreditsButton.gameObject);
+                backCreditsButton.Select();
             }
         }
 
@@ -96,14 +131,6 @@ namespace Menu
             canvas.alpha = state ? 1 : 0;
             canvas.interactable = state;
             canvas.blocksRaycasts = state;
-            if (state)
-            {
-                Button currentbutton = canvas.GetComponentInChildren<Button>();
-                if (currentbutton)
-                {
-                    EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(currentbutton.gameObject);
-                }
-            }
         }
     }
 }

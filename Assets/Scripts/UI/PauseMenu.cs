@@ -41,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         if (isOptionsActive)
         {
             isOptionsActive = false;
+            EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
             return;
         }
         isPaused = !isPaused;
@@ -63,6 +64,10 @@ public class PauseMenu : MonoBehaviour
         if (isOptionsActive)
         {
             EventSystem.current.SetSelectedGameObject(firstButtonOptions);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
         }
     }
     public void GoMenu()

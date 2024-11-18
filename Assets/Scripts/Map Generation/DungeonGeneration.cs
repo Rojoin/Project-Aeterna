@@ -15,6 +15,7 @@ public class DungeonGeneration : MonoBehaviour
     private LevelRoomsSO levelRoom;
 
     [Header("Channels")] [SerializeField] private BoolChannelSO OnEnd;
+    [Header("Channels")] [SerializeField] private VoidChannelSO OnPlayerHealth;
     // [SerializeField] private EnemyLevelSO enemyLevelSo;
 
     [Header("Grid Settings")] [SerializeField]
@@ -71,11 +72,13 @@ public class DungeonGeneration : MonoBehaviour
     private void OnEnable()
     {
         OnRequestPosition += ProvidePosition;
+        OnPlayerHealth.Subscribe(UpdateOnPlayerHealth);
     }
 
     private void OnDisable()
     {
         OnRequestPosition -= ProvidePosition;
+        OnPlayerHealth.Unsubscribe(UpdateOnPlayerHealth);
         foreach (DungeonRoom room in dungeonRooms)
         {
             room.roomBehaviour.PlayerInteractNewDoor.RemoveListener(TranslatePlayerToNewRoom);
@@ -206,6 +209,11 @@ public class DungeonGeneration : MonoBehaviour
             StartCoroutine(pickUpManager.SpawnPickUp(1));
             roomsCounter = 0;
         }
+    }
+
+    private void UpdateOnPlayerHealth()
+    {
+        nextCardIndicator.RestartIndicatorCard();
     }
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)

@@ -210,6 +210,10 @@ namespace StateMachine
             fsm.OnTriggerState(PlayerFlags.Attack);
         }
 
+        public void ResetSpecialAttack()
+        {
+            specialAttackTimer = specialAttack.timeUntilComboEnds;
+        }
         private void ChangeFromSpecialAttack()
         {
             if (specialAttackTimer > specialAttack.timeUntilComboEnds)

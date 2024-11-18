@@ -11,6 +11,7 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private BoolChannelSO TogglePause;
     [SerializeField] private BoolChannelSO moveCamera;
     [SerializeField] private CanvasGroup gameOverScreen;
+    [SerializeField] private GameObject gameOverButton;
     [SerializeField] private CanvasGroup winScreen;
     [SerializeField] private PauseMenu pause;
 
@@ -117,6 +118,7 @@ public class SelectCardMenu : MonoBehaviour
         {
             Time.timeScale = 0;
             StartCoroutine(gameOverScreen.FadeCanvas(true, timeUntilCardsDissapear));
+            EventSystem.current.SetSelectedGameObject(gameOverButton);
         }
         else
         {
