@@ -718,6 +718,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1890668579282090726}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: UI_Select
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5249919849607656546}
         m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
         m_MethodName: OnPlayAudio
@@ -840,6 +852,7 @@ GameObject:
   - component: {fileID: 4235098193977049917}
   - component: {fileID: 2939753838027884420}
   - component: {fileID: 4668215665087432997}
+  - component: {fileID: 1890668579282090726}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -947,7 +960,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4235098193977049917}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1890668579282090726}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: UI_Select
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4668215665087432997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,6 +1003,22 @@ MonoBehaviour:
   rotateSpeed: 0
   rumbleForceAmount: 0.1
   rumbleDuration: 0.05
+--- !u!114 &1890668579282090726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148378685567270813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: 
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1155062458751033334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1202,7 @@ GameObject:
   - component: {fileID: 8544605448408434499}
   - component: {fileID: 1142574154424695952}
   - component: {fileID: 2165074645548991990}
+  - component: {fileID: 2147277142282456617}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -1268,7 +1310,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8544605448408434499}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1890668579282090726}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: UI_Select
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2165074645548991990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,6 +1353,22 @@ MonoBehaviour:
   rotateSpeed: 0
   rumbleForceAmount: 0.1
   rumbleDuration: 0.05
+--- !u!114 &2147277142282456617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431507443587768422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: 
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1499161187582643136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2738,6 +2808,7 @@ GameObject:
   - component: {fileID: 4380672927153210741}
   - component: {fileID: 7740010420313846591}
   - component: {fileID: 7654924971364133227}
+  - component: {fileID: 5965350284606593448}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -2845,7 +2916,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4380672927153210741}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1890668579282090726}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: UI_Select
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7654924971364133227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2876,6 +2959,22 @@ MonoBehaviour:
   rotateSpeed: 0
   rumbleForceAmount: 0.1
   rumbleDuration: 0.05
+--- !u!114 &5965350284606593448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180617383244777104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: 
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2210418024686646039
 GameObject:
   m_ObjectHideFlags: 0
@@ -6208,6 +6307,7 @@ GameObject:
   - component: {fileID: 6564747784653934484}
   - component: {fileID: 5517969027676928771}
   - component: {fileID: 1400271382244789270}
+  - component: {fileID: 5301557696209872828}
   m_Layer: 5
   m_Name: BackCreditsButton
   m_TagString: Untagged
@@ -6315,7 +6415,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6564747784653934484}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5301557696209872828}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: UI_UnSelect
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1400271382244789270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6346,6 +6458,22 @@ MonoBehaviour:
   rotateSpeed: 0
   rumbleForceAmount: 0.1
   rumbleDuration: 0.05
+--- !u!114 &5301557696209872828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5732973530642735796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: UI_UnSelect
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5853137229379206324
 GameObject:
   m_ObjectHideFlags: 0
@@ -6359,6 +6487,7 @@ GameObject:
   - component: {fileID: 5098390615696115196}
   - component: {fileID: 7853597421417290928}
   - component: {fileID: 6855257395069421953}
+  - component: {fileID: 6573204187018279351}
   m_Layer: 5
   m_Name: BackOptionsButton
   m_TagString: Untagged
@@ -6466,7 +6595,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5098390615696115196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6573204187018279351}
+        m_TargetAssemblyTypeName: SwBasic, Assembly-CSharp
+        m_MethodName: OnPlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: UI_UnSelect
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6855257395069421953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6497,6 +6638,22 @@ MonoBehaviour:
   rotateSpeed: 0
   rumbleForceAmount: 0.1
   rumbleDuration: 0.05
+--- !u!114 &6573204187018279351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853137229379206324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b926153dd5404989268404a00ba79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: UI_UnSelect
+  onPlayAudioEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5861025520812484946
 GameObject:
   m_ObjectHideFlags: 0

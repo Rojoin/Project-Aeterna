@@ -261,7 +261,18 @@
 										<Action Name="" ID="{2B9EAE60-FC05-4315-BCA7-F332FEB34171}" ShortID="320869666">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="Select" ID="{B28BB6D4-F580-4E08-98E0-1EDC08D52CF9}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+													<ObjectRef Name="SelectButton" ID="{5EFA5111-82BE-4C00-92B6-92CE4970A737}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="UI_UnSelect" ID="{D9295F91-A2EA-4C5D-BE30-DF1E8B89BD44}">
+									<ChildrenList>
+										<Action Name="" ID="{64F303BC-FC2E-448B-AE09-6DC511F1FE0C}" ShortID="601876625">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="UnSelectButton" ID="{12C026CE-8450-47AF-BD91-3B5E57F955B9}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -269,6 +280,31 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="Play_StormSound" ID="{F81543C3-73B7-4DA1-A9A9-587C71AAED58}">
+							<ChildrenList>
+								<Action Name="" ID="{8CEDECA2-6C0E-4B7F-A17A-8C792B542949}" ShortID="496674306">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Rain Storm sound effect" ID="{AD4944C3-D32A-42DD-956C-F00C9F629A0C}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_StormSound" ID="{2EBC6458-5728-42BC-8C0F-E9E2260A9358}">
+							<ChildrenList>
+								<Action Name="" ID="{E4391585-0745-483B-9D33-ADFD6796C08F}" ShortID="294929939">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Rain Storm sound effect" ID="{AD4944C3-D32A-42DD-956C-F00C9F629A0C}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
