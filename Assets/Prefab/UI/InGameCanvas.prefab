@@ -127,7 +127,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 816650882897271340}
   ToggleCardDialogCard: {fileID: 11400000, guid: baa052d8c829c4a4090ed965bb78b073, type: 2}
   ToggleCardDialogDoor: {fileID: 11400000, guid: f9158be6c38a2f445bf71b4081fbd157, type: 2}
-  OnTutorialComplete: {fileID: 0}
+  OnTutorialComplete: {fileID: 11400000, guid: 9bd7e4b07cdb3ca448d8db52736335f3, type: 2}
   InvokeCardChannel: {fileID: 11400000, guid: 4dc25047abaa2a84c9e32fcfed8b5738, type: 2}
   SelectCardUI: {fileID: 8381634620664140129}
   playerInventory: {fileID: 0}
@@ -146,7 +146,8 @@ MonoBehaviour:
   - {fileID: 2786855861834783217}
   dialogBoxDoor: {fileID: 4900094686801093558}
   dialogBoxCard: {fileID: 3067844685682757538}
-  tutorialBox: {fileID: 0}
+  tutorialBox: {fileID: 7743879590200568191}
+  objectiveBox: {fileID: 8705067063226409378}
   selectCardMenuAnimator: {fileID: 899752590285760388}
   cardsGO: []
   hud: {fileID: 5250553791646526628}
@@ -329,6 +330,11 @@ PrefabInstance:
 --- !u!224 &3513488543230068651 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3625152370098278813, guid: ac70e4291952f63408216f43ff803ae9, type: 3}
+  m_PrefabInstance: {fileID: 183886625267095094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &7743879590200568191 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 7636559724899532617, guid: ac70e4291952f63408216f43ff803ae9, type: 3}
   m_PrefabInstance: {fileID: 183886625267095094}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2501230534505646854
@@ -571,6 +577,11 @@ RectTransform:
 --- !u!1 &5286804885869595844 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7764165104832393151, guid: bd9caec8a16afe64b99755998c952787, type: 3}
+  m_PrefabInstance: {fileID: 2513389086313161595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &8705067063226409378 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 6498630842164314841, guid: bd9caec8a16afe64b99755998c952787, type: 3}
   m_PrefabInstance: {fileID: 2513389086313161595}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3581105735313188430
