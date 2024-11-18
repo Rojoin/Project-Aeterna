@@ -1642,6 +1642,46 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
+				<Sound Name="Rain Storm sound effect" ID="{AD4944C3-D32A-42DD-956C-F00C9F629A0C}" ShortID="705932723">
+					<PropertyList>
+						<Property Name="Lowpass" Type="int16">
+							<ValueList>
+								<Value>30</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-2</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Rain Storm sound effect" ID="{4C2C8D0F-1971-4E25-8D6B-1CBAEF3656ED}">
+							<PropertyList>
+								<Property Name="FadeInDuration" Type="Real64" Value="11.0859078514387"/>
+								<Property Name="FadeOutDuration" Type="Real64" Value="5.41540109012549"/>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+								<Property Name="TrimBegin" Type="Real64" Value="10.1087487015676"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>Rain Storm sound effect.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="153982596"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Rain Storm sound effect" ID="{4C2C8D0F-1971-4E25-8D6B-1CBAEF3656ED}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

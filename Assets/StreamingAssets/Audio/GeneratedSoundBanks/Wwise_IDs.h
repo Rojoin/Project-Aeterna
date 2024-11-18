@@ -22,6 +22,7 @@ namespace AK
         static const AkUniqueID OKAMI_ATTACK = 1219344685U;
         static const AkUniqueID PLAY_GAMEPLAY_DEFAULTMUSIC = 4267938381U;
         static const AkUniqueID PLAY_MENU_MUSIC = 2228153899U;
+        static const AkUniqueID PLAY_STORMSOUND = 4143195186U;
         static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
         static const AkUniqueID PLAYER_DASH = 2394582229U;
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
@@ -34,6 +35,7 @@ namespace AK
         static const AkUniqueID SET_GAMEPLAY_EXPLORINGMUSIC = 2016296512U;
         static const AkUniqueID STOP_GAMEPLAY_DEFAULTMUSIC = 898535195U;
         static const AkUniqueID STOP_MENU_MUSIC = 3945748993U;
+        static const AkUniqueID STOP_STORMSOUND = 2527860648U;
         static const AkUniqueID UI_SELECT = 2774129122U;
         static const AkUniqueID UI_UNSELECT = 491060007U;
         static const AkUniqueID YUKINKO_ATTACK = 2759476964U;

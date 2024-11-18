@@ -280,6 +280,31 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="Play_StormSound" ID="{F81543C3-73B7-4DA1-A9A9-587C71AAED58}">
+							<ChildrenList>
+								<Action Name="" ID="{8CEDECA2-6C0E-4B7F-A17A-8C792B542949}" ShortID="496674306">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Rain Storm sound effect" ID="{AD4944C3-D32A-42DD-956C-F00C9F629A0C}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_StormSound" ID="{2EBC6458-5728-42BC-8C0F-E9E2260A9358}">
+							<ChildrenList>
+								<Action Name="" ID="{E4391585-0745-483B-9D33-ADFD6796C08F}" ShortID="294929939">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Rain Storm sound effect" ID="{AD4944C3-D32A-42DD-956C-F00C9F629A0C}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

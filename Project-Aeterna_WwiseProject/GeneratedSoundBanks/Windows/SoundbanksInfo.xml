@@ -121,7 +121,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{C6A9DDF4-DB40-F51C-C6D1-DBCC0046AA64}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{2EE2F32B-9E4A-6FCF-F3D6-D81EBA7079F1}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -164,6 +164,10 @@
 				<File Id="142539276" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>YUKINKO atack v2 SFX.wav</ShortName>
 					<CachePath>SFX/YUKINKO atack v2 SFX_818F3B66.wem</CachePath>
+				</File>
+				<File Id="153982596" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Rain Storm sound effect.wav</ShortName>
+					<CachePath>SFX/Rain Storm sound effect_FF881A24.wem</CachePath>
 				</File>
 				<File Id="266888604" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>DASH FX-inputdash - v1.wav</ShortName>
@@ -358,6 +362,11 @@
 						<MediaRef Id="972032177"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="4143195186" Name="Play_StormSound" DurationType="OneShot" DurationMin="49.938053" DurationMax="49.938053">
+					<MediaRefs>
+						<MediaRef Id="153982596"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="4161660071" Name="Player_Attack_Sword" DurationType="OneShot" DurationMin="1.2200419" DurationMax="1.4342177">
 					<MediaRefs>
 						<MediaRef Id="40101356"/>
@@ -413,6 +422,7 @@
 						<MediaRef Id="977828449"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2527860648" Name="Stop_StormSound" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2774129122" Name="UI_Select" DurationType="OneShot" DurationMin="3" DurationMax="3">
 					<MediaRefs>
 						<MediaRef Id="759969774"/>
@@ -456,5 +466,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{101BEF0D-50A5-7FF6-4A4F-BC5645224C2D}</FileHash>
+	<FileHash>{88AA2A08-77C5-9605-99A0-A0D690DF076A}</FileHash>
 </SoundBanksInfo>
