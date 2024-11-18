@@ -19,6 +19,7 @@ namespace Menu
         [SerializeField] private Button creditsButton;
         [SerializeField] private Button backCreditsButton;
         [SerializeField] private Button exitButton;
+        [SerializeField] private Scrollbar scrollbar;
         [SerializeField] private CanvasGroup menuCanvas;
         [SerializeField] private CanvasGroup optionsCanvas;
         [SerializeField] private CanvasGroup creditsCanvas;
@@ -118,6 +119,7 @@ namespace Menu
             {
                 eventSystem.SetSelectedGameObject(backCreditsButton.gameObject);
                 backCreditsButton.Select();
+                scrollbar.value = 1;
             }
         }
 
