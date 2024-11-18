@@ -15,15 +15,19 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private SceneChangeData GameScene;
     [SerializeField] private bool isPaused;
+    [SerializeField] private bool isOptionsActive;
     [SerializeField] private float timeUntilShow = 0.2f;
     [SerializeField] private CanvasGroup canvas;
+    [SerializeField] private CanvasGroup optionsCanvas;
     [SerializeField] private Button firstButton;
+    [SerializeField] private GameObject firstButtonOptions;
 
     [SerializeField] private VoidChannelSO OnPauseChannel;
 
     private void OnEnable()
     {
         isPaused = false;
+        isOptionsActive = false;
         OnPauseChannel.Subscribe(PauseLogic);
     }
 
@@ -34,6 +38,11 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseLogic()
     {
+        if (isOptionsActive)
+        {
+            isOptionsActive = false;
+            return;
+        }
         isPaused = !isPaused;
 
         if (isPaused)
@@ -45,11 +54,17 @@ public class PauseMenu : MonoBehaviour
         InputController.IsGamePaused = isPaused;
 
         StartCoroutine(canvas.FadeCanvas(isPaused, timeUntilShow));
-        // canvas.alpha = isPaused ? 1.0f : 0;
-        // canvas.interactable = isPaused;
-        // canvas.blocksRaycasts = isPaused;
     }
 
+    public void ToggleOptions()
+    {
+        isOptionsActive = !isOptionsActive;
+        optionsCanvas.SetCanvas(isOptionsActive);
+        if (isOptionsActive)
+        {
+            EventSystem.current.SetSelectedGameObject(firstButtonOptions);
+        }
+    }
     public void GoMenu()
     {
         isPaused = false;
@@ -63,6 +78,7 @@ public class PauseMenu : MonoBehaviour
 
         SceneSwitcher.ChangeScene(GoToMenu);
     }
+    
 
     public void Retry()
     {

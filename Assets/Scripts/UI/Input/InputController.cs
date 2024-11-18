@@ -49,9 +49,11 @@ namespace InputControls
                 OnControlSchemeChange.RaiseEvent(true);
                 Debug.Log("Using Gamepad:" + inputCurrentControlScheme);
                 gameSettings.isUsingController = true;
+                Cursor.visible = false;
             }
             else
             {
+                Cursor.visible = true;
                 OnControlSchemeChange.RaiseEvent(false);
                 gameSettings.isUsingController = false;
                 Debug.Log("Using Mouse & Keywoard");

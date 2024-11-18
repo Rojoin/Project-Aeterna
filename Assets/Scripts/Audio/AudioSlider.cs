@@ -7,11 +7,17 @@ public class AudioSlider : MonoBehaviour
     public string Id;
     public Slider slider;
 
+
     private void Awake()
     {
         slider = GetComponentInChildren<Slider>();
+        if (PlayerPrefs.HasKey(Id))
+        {
+            slider.value = PlayerPrefs.GetFloat(Id, slider.value);
+        }
         slider.onValueChanged.AddListener(SetNewSliderValue);
     }
+
     public void SetNewSliderValue(float sliderValue)
     {
         AkSoundEngine.SetRTPCValue(SetRTPC.Name, sliderValue);

@@ -35,8 +35,9 @@ public class DungeonGeneration : MonoBehaviour
     private int seed = -1;
 
     private System.Random randomGenerator;
-    [Header("NextCardIndicator")]
-    [SerializeField] private NextCardIndicator nextCardIndicator;
+
+    [Header("NextCardIndicator")] [SerializeField]
+    private NextCardIndicator nextCardIndicator;
 
     private int nCurrentRooms;
     private int roomsCounter = 3;
@@ -78,7 +79,7 @@ public class DungeonGeneration : MonoBehaviour
         foreach (DungeonRoom room in dungeonRooms)
         {
             room.roomBehaviour.PlayerInteractNewDoor.RemoveListener(TranslatePlayerToNewRoom);
-            
+
             if (room.enemyManager)
                 room.enemyManager.OnLastEnemyKilled.RemoveListener(OpenDungeonRoom);
         }
@@ -95,7 +96,7 @@ public class DungeonGeneration : MonoBehaviour
         AssingRoomType();
 
         SetRoomsLayout();
-        
+
         SetVisibleRooms();
 
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
@@ -105,9 +106,11 @@ public class DungeonGeneration : MonoBehaviour
     {
         Dictionary<(int, int), (RoomForm, float)> roomForms = new();
 
-        foreach (KeyValuePair<(int, int),DungeonRoom> currentDungeon in dungeonRoomsLayout)
+        foreach (KeyValuePair<(int, int), DungeonRoom> currentDungeon in dungeonRoomsLayout)
         {
-            roomForms.Add(currentDungeon.Key, (currentDungeon.Value.roomForm, currentDungeon.Value.dungeonRoomInstance.transform.rotation.eulerAngles.y));
+            roomForms.Add(currentDungeon.Key,
+                (currentDungeon.Value.roomForm,
+                    currentDungeon.Value.dungeonRoomInstance.transform.rotation.eulerAngles.y));
         }
 
         OnSendChambersValue.Invoke(roomForms);
@@ -162,7 +165,9 @@ public class DungeonGeneration : MonoBehaviour
         {
             nCurrentRooms++;
             DungeonRoom currentRoom = pendingRooms.Dequeue();
-            int maxNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms) ? randomGenerator.Next(1, 4) : 0;
+            int maxNeighbours = (nCurrentRooms + pendingRooms.Count < levelRoom.maxRooms)
+                ? randomGenerator.Next(1, 4)
+                : 0;
 
             for (int i = 0; i < maxNeighbours; i++)
             {
@@ -231,18 +236,18 @@ public class DungeonGeneration : MonoBehaviour
         transitionGO.SetActive(true);
         actualPlayerRoom.roomBehaviour.SetDoorCollisions(false);
         DungeonRoom oldRoom = actualPlayerRoom;
-        
+
         yield return new WaitForSecondsRealtime(1);
 
         actualPlayerRoom = GetNeighbourDirection(direction, actualPlayerRoom);
 
         camera.transform.position =
             actualPlayerRoom.dungeonRoomInstance.transform.position + new Vector3(6.24f, 4.67f, -6.24f);
-        
+
         RoomDirection oppositeDirection = GetOppositeDirection(direction);
         Transform nextDoorPosition = actualPlayerRoom.roomBehaviour.GetDoorDirection(oppositeDirection);
         actualPlayerRoom.enemyManager.OnEnterNewRoom();
-        
+
         player.enabled = false;
         player.GetComponent<PlayerFSM>().ForceToIdle();
         player.transform.position = nextDoorPosition.position;
@@ -252,14 +257,13 @@ public class DungeonGeneration : MonoBehaviour
         {
             foreach (DungeonRoom room in dungeonRooms)
                 room.dungeonRoomInstance.SetActive(false);
-
-            OnEnd.RaiseEvent(true);
-            player.gameObject.SetActive(false);
+            WinGame();
         }
         else
         {
             SetVisibleRooms();
         }
+
         OnEndChangeRoom.Invoke();
 
         yield return new WaitForSecondsRealtime(1);
@@ -339,17 +343,17 @@ public class DungeonGeneration : MonoBehaviour
                 dungeonRooms[i].roomBehaviour.roomType = RoomTypes.ENEMIES;
             }
         }
-        
+
         dungeonRooms[0].roomBehaviour.roomType = RoomTypes.START;
         actualPlayerRoom = dungeonRooms[0];
-
     }
 
     private void InstantiateDungeon()
     {
         foreach (DungeonRoom room in dungeonRooms)
         {
-            LevelRoomPropsSo currentRoom = chambersTypes[room.roomForm][randomGenerator.Next(0, chambersTypes[room.roomForm].Count)];
+            LevelRoomPropsSo currentRoom =
+                chambersTypes[room.roomForm][randomGenerator.Next(0, chambersTypes[room.roomForm].Count)];
             GameObject prefab = currentRoom.levelRoom.roomPrefab;
             GameObject roomInstance = Instantiate(prefab,
                 new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
@@ -357,10 +361,10 @@ public class DungeonGeneration : MonoBehaviour
 
             room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
             room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
-            
+
             room.proceduralRoomGeneration.CreateRoomProps(currentRoom);
 
-            SetEnemyManager(room, roomInstance,currentRoom);
+            SetEnemyManager(room, roomInstance, currentRoom);
 
             room.roomBehaviour.StartRoom();
             roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
@@ -372,7 +376,7 @@ public class DungeonGeneration : MonoBehaviour
     private void SetEnemyManager(DungeonRoom room, GameObject roomInstance, LevelRoomPropsSo levelRoomProps)
     {
         room.enemyManager = roomInstance.GetComponent<EnemyManager>();
-         room.enemyManager.SetEnemyRoomStats(levelRoomProps);
+        room.enemyManager.SetEnemyRoomStats(levelRoomProps);
         room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
         room.roomBehaviour.SetRoomDoorState(false);
     }
@@ -423,5 +427,12 @@ public class DungeonGeneration : MonoBehaviour
     public void CallEndRoom()
     {
         actualPlayerRoom.enemyManager.CallEndRoom();
+    }
+
+    [ContextMenu("Win Game")]
+    private void WinGame()
+    {
+        OnEnd.RaiseEvent(false);
+        player.gameObject.SetActive(false);
     }
 }
