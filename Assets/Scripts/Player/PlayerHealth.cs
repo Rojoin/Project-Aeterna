@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using CustomChannels;
 using StateMachine;
@@ -8,6 +9,7 @@ using UnityEngine.Serialization;
 
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
+    private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
     [Header("Data")] [SerializeField] private PlayerEntitySO player;
     [SerializeField] private PlayerPortraitChannelSO ChangePortrait;
     [SerializeField] private Animator animator;
@@ -18,7 +20,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] private PlayerHealthBar healthBar;
     [SerializeField] private SelectCardMenu selectCardMenu;
     [SerializeField] float rumbleDuration = 0.1f;
-
+    [SerializeField] protected float disappearSpeed = 5.0f;
     const int healingValue = 100;
 
     private float currentHealth;
@@ -28,6 +30,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     private static readonly int IsHurt = Animator.StringToHash("isHurt");
     public UnityEvent OnPlayerHurt;
     private bool isInvencible;
+    private static readonly int Dead = Animator.StringToHash("isDead");
 
     private void OnEnable()
     {
@@ -109,26 +112,26 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             currentHealth = 0;
             AkSoundEngine.SetState("DeathFloorMusic", "Death");
-            onDeath.RaiseEvent(true);
-            gameObject.SetActive(false);
+
+            DeathBehaviour();
         }
         else
         {
             currentHealth -= damage;
+
+            gameObject.StartRumble(player.rumbleBeingHittingDuration, player.rumbleBeingHittingForce);
+            gameObject.StartColorChange(material, player.colorshiftDuration);
+            OnPlayerHurt.Invoke();
+            if (currentHealth < player.maxHealth / 2)
+            {
+                ChangePortrait.RaiseEvent(PlayerPortraitStates.LowHealth);
+            }
+
+            ChangePortrait.RaiseEvent(PlayerPortraitStates.Hit);
+
+            animator.SetTrigger(IsHurt);
+            healthBar.FillAmount = currentHealth / maxHealth;
         }
-
-        gameObject.StartRumble(player.rumbleBeingHittingDuration, player.rumbleBeingHittingForce);
-        gameObject.StartColorChange(material, player.colorshiftDuration);
-        OnPlayerHurt.Invoke();
-        if (currentHealth < player.maxHealth / 2)
-        {
-            ChangePortrait.RaiseEvent(PlayerPortraitStates.LowHealth);
-        }
-
-        ChangePortrait.RaiseEvent(PlayerPortraitStates.Hit);
-
-        animator.SetTrigger(IsHurt);
-        healthBar.FillAmount = currentHealth / maxHealth;
 
         UpdatePlayerStacks();
     }
@@ -180,5 +183,27 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     private void OnDisable()
     {
         OnHealth.Unsubscribe(HealthPlayer);
+    }
+
+    public void DeathBehaviour()
+    {
+        animator.SetTrigger(Dead);
+        StartCoroutine(OnDeathMaterialAnimation());
+    }
+
+    private IEnumerator OnDeathMaterialAnimation()
+    {
+        float heightValue = material.GetFloat(CutOffHeight);
+        float endAnimation = -5.0f;
+        while (heightValue > endAnimation)
+        {
+            heightValue -= Time.deltaTime * disappearSpeed;
+            material.SetFloat(CutOffHeight, heightValue);
+            yield return null;
+        }
+
+        material.SetFloat(CutOffHeight, heightValue);
+        gameObject.SetActive(false);
+        onDeath.RaiseEvent(true);
     }
 }

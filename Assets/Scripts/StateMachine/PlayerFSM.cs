@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace StateMachine
 {
@@ -35,6 +37,7 @@ namespace StateMachine
         [SerializeField] protected VoidChannelSO SpecialAttackChannel;
         [SerializeField] protected VoidChannelSO DashChannel;
         [SerializeField] protected VoidChannelSO AutomatedMovementChannel;
+        [SerializeField] protected BoolChannelSO OnDeathChannel;
 
         [Header("References")] [SerializeField]
         protected GameSettings gameSettings;
@@ -78,10 +81,15 @@ namespace StateMachine
             SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
             DashChannel.Subscribe(ChangeFromDashStart);
             AutomatedMovementChannel.Subscribe(ChangeToAutomatedMovement);
-
+            OnDeathChannel.Subscribe(OnDeath);
             OnInteractChannel.Subscribe(SetInteract);
             OnAlternativeInteractChannel.Subscribe(SetAlternativeInteract);
             specialAttackTimer = specialAttack.timeUntilComboEnds;
+        }
+
+        private void OnDeath(bool value)
+        {
+            InputControls.InputController.IsGamePaused = true;
         }
 
         private void InitFSM()
@@ -185,6 +193,7 @@ namespace StateMachine
                 {
                     return true;
                 }
+
                 interactable = interactable1;
                 interactable?.ToggleDialogBox(true);
                 return true;
@@ -214,6 +223,7 @@ namespace StateMachine
         {
             specialAttackTimer = specialAttack.timeUntilComboEnds;
         }
+
         private void ChangeFromSpecialAttack()
         {
             if (specialAttackTimer > specialAttack.timeUntilComboEnds)
@@ -274,6 +284,7 @@ namespace StateMachine
             DashChannel.Unsubscribe(ChangeFromDashStart);
             OnInteractChannel.Unsubscribe(SetInteract);
             OnAlternativeInteractChannel.Unsubscribe(SetAlternativeInteract);
+            OnDeathChannel.Unsubscribe(OnDeath);
         }
 
         private void OnDrawGizmos()
