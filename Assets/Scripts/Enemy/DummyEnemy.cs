@@ -187,7 +187,7 @@ namespace Enemy
 
         private IEnumerator ActivateShieldAnimation()
         {
-            var timer = 0.0f;
+            float timer = 0.0f;
             while (timer < enemyConfig.timeUntilShieldFullyAppears)
             {
                 timer += Time.deltaTime;
@@ -206,7 +206,7 @@ namespace Enemy
 
         private IEnumerator DeactivateShieldAnimation()
         {
-            var timer = 0.0f;
+            float timer = 0.0f;
             while (timer < enemyConfig.timeUntilShieldFullyAppears)
             {
                 timer += Time.deltaTime;

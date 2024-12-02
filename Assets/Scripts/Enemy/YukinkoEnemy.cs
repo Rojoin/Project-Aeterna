@@ -276,7 +276,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
 
     private IEnumerator ActivateShieldAnimation()
     {
-        var timer = 0.0f;
+        float timer = 0.0f;
         while (timer < enemyConfig.timeUntilShieldFullyAppears)
         {
             timer += Time.deltaTime;
@@ -288,7 +288,7 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
     }
     private IEnumerator DeactivateShieldAnimation()
     {
-        var timer = 0.0f;
+        float timer = 0.0f;
         while (timer < enemyConfig.timeUntilShieldFullyAppears)
         {
             timer += Time.deltaTime;

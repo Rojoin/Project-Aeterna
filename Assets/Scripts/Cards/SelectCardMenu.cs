@@ -319,7 +319,7 @@ public static class CanvasUtilities
 {
     public static IEnumerator FadeCanvas(this CanvasGroup canvasGroup, bool value, float time)
     {
-        var timer = 0.0f;
+        float timer = 0.0f;
         if (value)
         {
             float alpha = 0;

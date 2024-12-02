@@ -165,7 +165,7 @@ namespace StateMachine
 
         private bool IsGettingInteractable()
         {
-            var a = Physics.Raycast(transform.position + raycastOffset, transform.forward, out RaycastHit hit,
+            bool a = Physics.Raycast(transform.position + raycastOffset, transform.forward, out RaycastHit hit,
                 raycastDistance);
             if (!a)
             {
