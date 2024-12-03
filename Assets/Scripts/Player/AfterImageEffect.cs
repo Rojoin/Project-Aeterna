@@ -35,7 +35,7 @@ public class AfterImageEffect : MonoBehaviour
         // }
     }
 
-    // Initialize the object pool for afterimages
+  
     void InitializePool()
     {
         afterImagePool = new GameObject[poolSize];

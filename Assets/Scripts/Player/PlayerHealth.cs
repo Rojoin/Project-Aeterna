@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] private SelectCardMenu selectCardMenu;
     [SerializeField] float rumbleDuration = 0.1f;
     [SerializeField] protected float disappearSpeed = 5.0f;
+    [SerializeField] protected ParticleSystem vfxAura;
     const int healingValue = 100;
 
     private float currentHealth;
@@ -90,7 +91,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
         }
-
+        vfxAura?.Play();
         healthBar.FillAmount = currentHealth;
     }
 

@@ -4,6 +4,8 @@ public class BuffSystem : MonoBehaviour
 {
     [Header("Entity")]
     [SerializeField] private PlayerEntitySO player;
+    [Header("Particle")]
+    [SerializeField] private ParticleSystem vfxAura;
 
     private float resetDashSpeed;
 
@@ -72,6 +74,8 @@ public class BuffSystem : MonoBehaviour
 
                 break;
         }
+
+        vfxAura?.Play();
     }
 
     private void UpgradeAttack(CardSO card)
