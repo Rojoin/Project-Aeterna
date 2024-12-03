@@ -212,19 +212,19 @@ namespace StateMachine
 
         private void UpdateSpecialAttackTimer()
         {
-            float specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
             if (specialAttackTimer < specialAttack.timeUntilComboEnds)
             {
+                float specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
                 specialAttackTimer += Time.deltaTime;
-                specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
+                // specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
+                OnSpecialAttackTimerUpdate.Invoke(specialAttackTimeUntilComboEnds);
                 if (specialAttackTimer >= specialAttack.timeUntilComboEnds)
                 {
-                    Debug.Log($"VFXAURAPLAY");
                     vfxSpecialAura?.Play();
+                    OnSpecialAttackTimerUpdate.Invoke(1);
                 }
-            }
 
-            OnSpecialAttackTimerUpdate.Invoke(specialAttackTimeUntilComboEnds);
+            }
         }
 
 
