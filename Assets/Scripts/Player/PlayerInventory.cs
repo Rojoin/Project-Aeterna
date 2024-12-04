@@ -134,6 +134,14 @@ public class PlayerInventory : MonoBehaviour
         currentCards++;
     }
 
+    public void ResetCardsStats() 
+    {
+        for (int i = 0;i < allCards.Count; i++) 
+        {
+            allCards[i].ResetStacks();
+        }
+    }
+
     private void OnDisable()
     {
         ClearInventory();

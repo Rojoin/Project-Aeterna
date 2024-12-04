@@ -75,13 +75,13 @@ public class CardSO : ScriptableObject
 
     public void ResetStacks()
     {
-        cardsOnSlot = m_cardsOnSlot;
+        cardsOnSlot = 0;
         slotIndex = -1;
     }
 
-    private void OnEnable()
+    public void ResetSlotIndex()
     {
-        cardsOnSlot = m_cardsOnSlot;
+        slotIndex = -1;
     }
 
     private void OnDisable()
