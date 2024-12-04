@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class SelectCardMenu : MonoBehaviour
 {
+    [SerializeField] private PlayerEntitySO player;
     [SerializeField] private BoolChannelSO TogglePause;
     [SerializeField] private BoolChannelSO moveCamera;
     [SerializeField] private CanvasGroup gameOverScreen;
@@ -118,6 +119,8 @@ public class SelectCardMenu : MonoBehaviour
         {
             Time.timeScale = 0;
             playerInventory.ResetCardsStats();
+            player.ResetPlayerStats();
+
             StartCoroutine(gameOverScreen.FadeCanvas(true, timeUntilCardsDissapear));
             EventSystem.current.SetSelectedGameObject(gameOverButton);
         }

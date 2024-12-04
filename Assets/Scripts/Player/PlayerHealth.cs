@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] float rumbleDuration = 0.1f;
     [SerializeField] protected float disappearSpeed = 5.0f;
     [SerializeField] protected ParticleSystem vfxAura;
-    [SerializeField] private PlayerInventory playerInventory;
 
     const int healingValue = 100;
 

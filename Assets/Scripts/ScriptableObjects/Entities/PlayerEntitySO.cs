@@ -34,6 +34,11 @@ public class PlayerEntitySO : EntitySO
 
     private void OnDisable()
     {
+        ResetPlayerStats();
+    }
+
+    public void ResetPlayerStats() 
+    {
         hasReverseTheStars = false;
         maxHealth = m_maxHealth;
         healingValue = 0;
