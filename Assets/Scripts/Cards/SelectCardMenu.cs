@@ -117,6 +117,7 @@ public class SelectCardMenu : MonoBehaviour
         if (value)
         {
             Time.timeScale = 0;
+            playerInventory.ResetCardsStats();
             StartCoroutine(gameOverScreen.FadeCanvas(true, timeUntilCardsDissapear));
             EventSystem.current.SetSelectedGameObject(gameOverButton);
         }
@@ -301,6 +302,11 @@ public class SelectCardMenu : MonoBehaviour
         for (int i = 0; i < cardsAnimator.Count; i++)
         {
             cardsAnimator[i].SetBool("StartReverseMovement", false);
+        }
+
+        for (int i = 0; i < allCards.Count; i++)
+        {
+            allCards[i].ResetSlotIndex();
         }
     }
 
