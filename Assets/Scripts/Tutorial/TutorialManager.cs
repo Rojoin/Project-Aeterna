@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Enemy;
+﻿using Enemy;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace Tutorial
 {
@@ -16,11 +13,11 @@ namespace Tutorial
         [SerializeField] private VoidChannelSO OnTutorialComplete;
 
 
-        [SerializeField] private Image moveIcon;
-        [SerializeField] private Image dashIcon;
-        [SerializeField] private Image attackIcon;
-        [SerializeField] private Image specialIcon;
-        [SerializeField] private Sprite completedSprite;
+        [SerializeField] private Animator moveObjective;
+        [SerializeField] private Animator dashObjective;
+        [SerializeField] private Animator attackObjective;
+        [SerializeField] private Animator specialObjective;
+
 
         [SerializeField] private DummyEnemy _enemy;
         public UnityEvent OnTutorialFinished;
@@ -48,28 +45,28 @@ namespace Tutorial
         private void OnTutorialCompletedAction(Vector2 movementValue = default)
         {
             playerMovement.Unsubscribe(OnTutorialCompletedAction);
-            moveIcon.sprite = completedSprite;
+            moveObjective.enabled = true;
             CheckTutorialCondition();
         }
 
         private void OnDashCompletedAction()
         {
             DashChannel.Unsubscribe(OnDashCompletedAction);
-            dashIcon.sprite = completedSprite;
+            dashObjective.enabled = true;
             CheckTutorialCondition();
         }
 
         private void OnSpecialCompletedAction()
         {
             SpecialAttack.Unsubscribe(OnSpecialCompletedAction);
-            specialIcon.sprite = completedSprite;
+            specialObjective.enabled = true;
             CheckTutorialCondition();
         }
 
         private void OnAttackCompletedAction()
         {
             attackChannel.Unsubscribe(OnAttackCompletedAction);
-            attackIcon.sprite = completedSprite;
+            attackObjective.enabled = true;
             CheckTutorialCondition();
         }
 

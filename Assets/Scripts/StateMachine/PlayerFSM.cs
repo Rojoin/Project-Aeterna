@@ -50,6 +50,8 @@ namespace StateMachine
         [SerializeField] private AttackCollision _attackCollider;
         [SerializeField] private ParticleSystem specialAttackVFX;
 
+        [Header("Particles")] [SerializeField] private ParticleSystem vfxSpecialAura;
+
         [Header("Unity Events")] [SerializeField]
         private UnityEvent onMove;
 
@@ -154,6 +156,7 @@ namespace StateMachine
 
         private void ChangeToAutomatedMovement()
         {
+            onEndDash.Invoke();
             fsm.OnTriggerState(PlayerFlags.OnAutomatingStart);
         }
 
@@ -209,8 +212,19 @@ namespace StateMachine
 
         private void UpdateSpecialAttackTimer()
         {
-            specialAttackTimer += Time.deltaTime;
-            OnSpecialAttackTimerUpdate.Invoke(specialAttackTimer / specialAttack.timeUntilComboEnds);
+            if (specialAttackTimer < specialAttack.timeUntilComboEnds)
+            {
+                float specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
+                specialAttackTimer += Time.deltaTime;
+                // specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
+                OnSpecialAttackTimerUpdate.Invoke(specialAttackTimeUntilComboEnds);
+                if (specialAttackTimer >= specialAttack.timeUntilComboEnds)
+                {
+                    vfxSpecialAura?.Play();
+                    OnSpecialAttackTimerUpdate.Invoke(1);
+                }
+
+            }
         }
 
 
@@ -226,10 +240,15 @@ namespace StateMachine
 
         private void ChangeFromSpecialAttack()
         {
-            if (specialAttackTimer > specialAttack.timeUntilComboEnds)
+            if (specialAttackTimer >= specialAttack.timeUntilComboEnds)
             {
                 fsm.OnTriggerState(PlayerFlags.OnSpecialAttack);
                 specialAttackTimer = 0;
+                OnSpecialAttackTimerUpdate.Invoke(0);
+            }
+            else
+            {
+                //TODO: Add BadSound
             }
         }
 
@@ -259,6 +278,8 @@ namespace StateMachine
             ChangeFromEndAttack();
         }
 
+        #region Interact
+
         public void SetInteract() => SetInteractable(0);
         public void SetAlternativeInteract() => SetInteractable(1);
 
@@ -269,6 +290,8 @@ namespace StateMachine
                 interactable.Interact(value);
             }
         }
+
+        #endregion
 
         private void MoveDirection(Vector2 newMoveDir)
         {

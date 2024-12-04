@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Coffee.UIEffects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +7,9 @@ public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] private Image circleBar;
     [SerializeField] private Image normalBar;
+    [SerializeField] private UIShiny specialBarShinny;
+    [SerializeField] private Image specialBar;
+    [SerializeField] private FloatChannelSO specialBarChannel;
 
     [SerializeField] private PlayerEntitySO player;
 
@@ -23,6 +26,30 @@ public class PlayerHealthBar : MonoBehaviour
         {
             fillAmount = value;
             UpdateSlider();
+        }
+    }
+
+    private void OnEnable()
+    {
+       specialBarChannel.Subscribe(UpdateSpecialSlider);
+       specialBarShinny.Play();
+    } 
+    private void OnDisable()
+    {
+       specialBarChannel.Unsubscribe(UpdateSpecialSlider);
+    }
+
+    private void UpdateSpecialSlider(float obj)
+    {
+        specialBar.fillAmount = obj;
+        if (obj >= 1)
+        {
+            specialBar.fillAmount = 1;
+            specialBarShinny.Play();
+        }
+        else
+        {
+            specialBarShinny.Stop();
         }
     }
 
