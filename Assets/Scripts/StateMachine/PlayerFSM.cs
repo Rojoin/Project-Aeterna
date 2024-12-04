@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using InputControls;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace StateMachine
 {
@@ -91,7 +90,7 @@ namespace StateMachine
 
         private void OnDeath(bool value)
         {
-            InputControls.InputController.IsGamePaused = true;
+            InputController.IsGamePaused = true;
         }
 
         private void InitFSM()
@@ -216,7 +215,6 @@ namespace StateMachine
             {
                 float specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
                 specialAttackTimer += Time.deltaTime;
-                // specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
                 OnSpecialAttackTimerUpdate.Invoke(specialAttackTimeUntilComboEnds);
                 if (specialAttackTimer >= specialAttack.timeUntilComboEnds)
                 {
@@ -255,7 +253,6 @@ namespace StateMachine
         private void ChangeFromEndAttack()
         {
             fsm.OnTriggerState(PlayerFlags.EndAttack);
-            // _playerAnimatorController.CrossFade("NormalStatus", 0.75f, 0, 0);
         }
 
         private void ActivateOnMoveEffects()
