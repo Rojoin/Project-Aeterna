@@ -89,6 +89,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
         }
+
         vfxAura?.Play();
         healthBar.FillAmount = currentHealth;
     }
@@ -96,14 +97,14 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [ContextMenu("KillPlayer")]
     private void TestDead()
     {
-        Invoke(nameof(KillPlayer),0.5f);
+        Invoke(nameof(KillPlayer), 0.5f);
     }
 
     private void KillPlayer()
     {
         ReceiveDamage(1000000);
     }
-    
+
 
     public void ReceiveDamage(float damage)
     {
@@ -112,12 +113,11 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
             return;
         }
 
-
         if (currentHealth <= 0 || currentHealth <= damage)
         {
             currentHealth = 0;
             AkSoundEngine.SetState("DeathFloorMusic", "Death");
-
+            isInvencible = true;
             DeathBehaviour();
         }
 
@@ -211,6 +211,5 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         material.SetFloat(CutOffHeight, heightValue);
         gameObject.SetActive(false);
-
     }
 }
