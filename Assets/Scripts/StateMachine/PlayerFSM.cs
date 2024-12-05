@@ -58,6 +58,7 @@ namespace StateMachine
         [SerializeField] private UnityEvent onEndDash;
         [SerializeField] private UnityEvent OnSpecialAttack;
         [SerializeField] private UnityEvent<float> OnSpecialAttackTimerUpdate;
+        protected CapsuleCollider playerCollision;
 
         [Header("Raycast Settings")] [SerializeField]
         protected float raycastDistance = 10.0f;
@@ -77,7 +78,7 @@ namespace StateMachine
         {
             speed = player.speed;
             InitFSM();
-
+            playerCollision = gameObject.GetComponent<CapsuleCollider>();
             AttackChannel.Subscribe(ChangeFromAttack);
             SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
             DashChannel.Subscribe(ChangeFromDashStart);
@@ -91,6 +92,7 @@ namespace StateMachine
         private void OnDeath(bool value)
         {
             InputController.IsGamePaused = true;
+            playerCollision.enabled = false;
         }
 
         private void InitFSM()
@@ -221,7 +223,6 @@ namespace StateMachine
                     vfxSpecialAura?.Play();
                     OnSpecialAttackTimerUpdate.Invoke(1);
                 }
-
             }
         }
 

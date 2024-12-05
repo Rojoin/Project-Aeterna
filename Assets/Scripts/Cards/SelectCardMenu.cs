@@ -14,37 +14,39 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private CanvasGroup gameOverScreen;
     [SerializeField] private GameObject gameOverButton;
     [SerializeField] private CanvasGroup winScreen;
+    [SerializeField] private CanvasGroup playerHud;
     [SerializeField] private PauseMenu pause;
 
-    [Header("Channel: UI")] [SerializeField]
-    private BoolChannelSO ToggleCardDialogCard;
+    [Header("Channel: UI")] 
+    [SerializeField] private BoolChannelSO ToggleCardDialogCard;
 
     [SerializeField] private BoolChannelSO ToggleCardDialogDoor;
     [SerializeField] private VoidChannelSO OnTutorialComplete;
     [SerializeField] private VoidChannelSO InvokeCardChannel;
 
-    [Header("Reference: UI")] [SerializeField]
-    private GameObject SelectCardUI;
+    [Header("Reference: UI")] 
+    [SerializeField] private GameObject SelectCardUI;
 
     private bool showCardMenu = false;
 
-    [Header("Reference: Player Inventory")] [SerializeField]
-    private PlayerInventory playerInventory;
+    [Header("Reference: Player Inventory")] 
+    [SerializeField] private PlayerInventory playerInventory;
 
     private List<CardSO> allCards;
 
-    [Header("Reference: Selectable Cards")] [SerializeField]
-    private List<SelectableCardMovement> cardsMovements;
+    [Header("Reference: Selectable Cards")] 
+    [SerializeField] private List<SelectableCardMovement> cardsMovements;
 
     [SerializeField] private List<SelectableCardDisplay> cardsDisplay;
 
-    [Header("Reference: Buff System")] [SerializeField]
-    private BuffSystem buffSystem;
+    [Header("Reference: Buff System")] 
+    [SerializeField] private BuffSystem buffSystem;
 
-    [Header("Animations")] [SerializeField]
-    private List<Animator> cardsAnimator;
+    [Header("Animations")] 
+    [SerializeField] private List<Animator> cardsAnimator;
 
-    [Header("Box")] [SerializeField] private CanvasGroup dialogBoxDoor;
+    [Header("Box")]
+    [SerializeField] private CanvasGroup dialogBoxDoor;
     [SerializeField] private CanvasGroup dialogBoxCard;
     [SerializeField] private CanvasGroup tutorialBox;
     [SerializeField] private CanvasGroup objectiveBox;
@@ -54,10 +56,12 @@ public class SelectCardMenu : MonoBehaviour
     private float timeUntilCardsDissapear = 0.10f;
     private float timeUntilMenuAppears = 0.50f;
     private float timeUntilGoBackToMenu = 5.0f;
+    [SerializeField] private float timeUntilGameOverAppears = 5.0f;
 
     [SerializeField] private Animator selectCardMenuAnimator;
 
-    [Header("CardsGO")] [SerializeField] private List<GameObject> cardsGO;
+    [Header("CardsGO")]
+    [SerializeField] private List<GameObject> cardsGO;
 
     [Header("Hud")] [SerializeField] private GameObject hud;
     [SerializeField] private GameObject objective;
@@ -117,18 +121,30 @@ public class SelectCardMenu : MonoBehaviour
     {
         if (value)
         {
-            Time.timeScale = 0;
+            playerHud.SetCanvas(false);
+            dialogBoxDoor.SetCanvas(false);
+            dialogBoxCard.SetCanvas(false);
+            tutorialBox.SetCanvas(false);
+            objectiveBox.SetCanvas(false);
             playerInventory.ResetCardsStats();
             player.ResetPlayerStats();
-
-            StartCoroutine(gameOverScreen.FadeCanvas(true, timeUntilCardsDissapear));
+            StartCoroutine(ActivateGameOver());
             EventSystem.current.SetSelectedGameObject(gameOverButton);
         }
         else
         {
             StartCoroutine(winScreen.FadeCanvas(true, timeUntilCardsDissapear));
+            playerInventory.ResetCardsStats();
+            player.ResetPlayerStats();
             Invoke(nameof(GoBackToMenu),timeUntilGoBackToMenu);
         }
+    }
+    private IEnumerator ActivateGameOver()
+    {
+        yield return new WaitForSecondsRealtime(timeUntilGameOverAppears);
+        Time.timeScale = 0;
+        StartCoroutine(gameOverScreen.FadeCanvas(true, timeUntilCardsDissapear));
+        EventSystem.current.SetSelectedGameObject(gameOverButton);
     }
 
     private void GoBackToMenu()
@@ -165,6 +181,7 @@ public class SelectCardMenu : MonoBehaviour
     public void ShowSelectCardMenu(bool value)
     {
         EventSystem.current.SetSelectedGameObject(cardsMovements[0].gameObject);
+        Time.timeScale = 1;
         hud.SetActive(!value);
         objective.SetActive(!value);
 

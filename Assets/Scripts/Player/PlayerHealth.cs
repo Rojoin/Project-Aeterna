@@ -1,11 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using CustomChannels;
-using StateMachine;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 {
@@ -97,10 +94,16 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     }
 
     [ContextMenu("KillPlayer")]
+    private void TestDead()
+    {
+        Invoke(nameof(KillPlayer),0.5f);
+    }
+
     private void KillPlayer()
     {
         ReceiveDamage(1000000);
     }
+    
 
     public void ReceiveDamage(float damage)
     {
@@ -191,6 +194,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     public void DeathBehaviour()
     {
         animator.SetTrigger(Dead);
+        onDeath.RaiseEvent(true);
         StartCoroutine(OnDeathMaterialAnimation());
     }
 
@@ -207,6 +211,6 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         material.SetFloat(CutOffHeight, heightValue);
         gameObject.SetActive(false);
-        onDeath.RaiseEvent(true);
+
     }
 }
