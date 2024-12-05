@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0296496, g: 0.075280175, b: 0.09377345, a: 1}
+  m_IndirectSpecularColor: {r: 0.029646697, g: 0.07528485, b: 0.09377709, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -955,7 +955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5191031799692572741, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.64
+      value: -3.86
       objectReference: {fileID: 0}
     - target: {fileID: 5191031799692572741, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -963,7 +963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5191031799692572741, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5191031799692572741, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5334585770487896076, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
   m_PrefabInstance: {fileID: 1092153343}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1194739708}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ffe99b2086f40aab0901dfee3501ee0, type: 3}
@@ -1052,6 +1052,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7f6835d4085a44e9c40d6b5e45df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1194739708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2987170732086015747, guid: d2f669a757c808f40ab4e9ab5497a87f, type: 3}
+  m_PrefabInstance: {fileID: 1092153343}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1208945867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5609208275798538367, guid: adc9474626d2a274f8bf3b0ff1828041, type: 3}
@@ -1345,6 +1350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelRoom: {fileID: 11400000, guid: 8681534b1596ea244a068ab522b76c3b, type: 2}
+  tutorialLevelRoom: {fileID: 11400000, guid: c8dbb446daa9f134bb3e98d509e253cf, type: 2}
   OnEnd: {fileID: 11400000, guid: 1c2d594ea3ba212459936604f35b83fc, type: 2}
   OnPlayerHealth: {fileID: 11400000, guid: 87008e18da9b2e945a201e4293ef6dfc, type: 2}
   gapBetweenRooms: {x: 40, y: 40}
@@ -1364,6 +1370,7 @@ MonoBehaviour:
   OnEndChangeRoom:
     m_PersistentCalls:
       m_Calls: []
+  Dummy: {fileID: 1194739708}
 --- !u!1001 &2050413946
 PrefabInstance:
   m_ObjectHideFlags: 0

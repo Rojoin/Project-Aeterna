@@ -28,7 +28,7 @@ public enum RoomForm
     I,
     L,
     T,
-    X
+    X,
 }
 
 public enum RoomDirection

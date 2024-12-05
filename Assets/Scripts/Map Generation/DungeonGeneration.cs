@@ -6,7 +6,6 @@ using Enemy;
 using StateMachine;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class DungeonGeneration : MonoBehaviour
@@ -14,9 +13,10 @@ public class DungeonGeneration : MonoBehaviour
     [Header("Scriptable Objects")] [SerializeField]
     private LevelRoomsSO levelRoom;
 
+    [SerializeField] private TutorialLevelRoomsSO tutorialLevelRoom;
+
     [Header("Channels")] [SerializeField] private BoolChannelSO OnEnd;
     [Header("Channels")] [SerializeField] private VoidChannelSO OnPlayerHealth;
-    // [SerializeField] private EnemyLevelSO enemyLevelSo;
 
     [Header("Grid Settings")] [SerializeField]
     private Vector2 gapBetweenRooms;
@@ -48,6 +48,7 @@ public class DungeonGeneration : MonoBehaviour
     private List<DungeonRoom> dungeonRooms = new();
     private Dictionary<(int, int), DungeonRoom> dungeonRoomsLayout = new();
     private Dictionary<RoomForm, List<LevelRoomPropsSo>> chambersTypes = new();
+    private Dictionary<RoomForm, List<TutorialRoom>> tutorialChambersTypes = new();
 
     public Action OnRequestPosition;
     public Action<Vector3> OnProvidePosition;
@@ -55,6 +56,7 @@ public class DungeonGeneration : MonoBehaviour
     public UnityEvent<Dictionary<(int, int), (RoomForm, float)>> OnSendChambersValue;
     public UnityEvent<RoomDirection> OnStartChangeRoom;
     public UnityEvent OnEndChangeRoom;
+    [SerializeField] private GameObject Dummy;
 
     private void Start()
     {
@@ -90,17 +92,17 @@ public class DungeonGeneration : MonoBehaviour
 
     private void GenerateDungeon()
     {
-        SetRoomsDivision();
+            SetRoomsDivision();
 
-        GenerateDungeonLayout();
-        CreateRoomConnections();
+            GenerateDungeonLayout();
+            CreateRoomConnections();
 
-        InstantiateDungeon();
-        AssingRoomType();
+            InstantiateDungeon();
+            AssingRoomType();
 
-        SetRoomsLayout();
+            SetRoomsLayout();
 
-        SetVisibleRooms();
+            SetVisibleRooms();
 
         Debug.Log(" === DUNGEON HAS BEEN GENERATED === ");
     }
@@ -127,6 +129,14 @@ public class DungeonGeneration : MonoBehaviour
                 chambersTypes[chamber.levelRoom.roomForm] = new List<LevelRoomPropsSo>();
 
             chambersTypes[chamber.levelRoom.roomForm].Add(chamber);
+        }
+
+        foreach (TutorialRoom chamber in tutorialLevelRoom.Chambers)
+        {
+            if (!tutorialChambersTypes.ContainsKey(chamber.levelRoom.roomForm))
+                tutorialChambersTypes[chamber.levelRoom.roomForm] = new List<TutorialRoom>();
+
+            tutorialChambersTypes[chamber.levelRoom.roomForm].Add(chamber);
         }
     }
 
@@ -358,27 +368,81 @@ public class DungeonGeneration : MonoBehaviour
 
     private void InstantiateDungeon()
     {
+        LevelRoomPropsSo currentRoom;
+        TutorialRoom tutorialRoom;
+
         foreach (DungeonRoom room in dungeonRooms)
         {
-            LevelRoomPropsSo currentRoom =
-                chambersTypes[room.roomForm][randomGenerator.Next(0, chambersTypes[room.roomForm].Count)];
-            GameObject prefab = currentRoom.levelRoom.roomPrefab;
-            GameObject roomInstance = Instantiate(prefab,
-                new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
-                Quaternion.identity, transform);
+            if (room == dungeonRooms[0])
+            {
+                tutorialRoom =
+                    tutorialChambersTypes[room.roomForm][
+                        randomGenerator.Next(0, tutorialChambersTypes[room.roomForm].Count)];
 
-            room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
-            room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
+                InstantiateFirstChamber(room, tutorialRoom);
+            }
+            else
+            {
+                currentRoom = chambersTypes[room.roomForm][randomGenerator.Next(0, chambersTypes[room.roomForm].Count)];
 
-            room.proceduralRoomGeneration.CreateRoomProps(currentRoom);
-
-            SetEnemyManager(room, roomInstance, currentRoom);
-
-            room.roomBehaviour.StartRoom();
-            roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
-            room.dungeonRoomInstance = roomInstance;
-            room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
+                InstantiateChamber(room, currentRoom);
+            }
         }
+    }
+
+    private void InstantiateFirstChamber(DungeonRoom room, TutorialRoom tutorialRoom)
+    {
+        GameObject prefab = tutorialRoom.levelRoom.roomPrefab;
+        GameObject roomInstance = Instantiate(prefab,
+            new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
+            Quaternion.identity, transform);
+
+        room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
+        room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
+
+        room.enemyManager = roomInstance.GetComponent<EnemyManager>();
+        room.enemyManager.OnLastEnemyKilled.AddListener(OpenDungeonRoom);
+        room.roomBehaviour.SetRoomDoorState(false);
+
+
+        room.roomBehaviour.StartRoom();
+        roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
+        room.dungeonRoomInstance = roomInstance;
+        room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
+
+        DummySpawnPosition selectedPosition = null;
+
+        foreach (var spawnPosition in tutorialRoom.DummyPositions)
+        {
+            if (spawnPosition.chamberRotation == roomInstance.transform.rotation.eulerAngles.y)
+            {
+                selectedPosition = spawnPosition;
+                break;
+            }
+        }
+
+        Dummy.transform.position = selectedPosition.position;
+        Dummy.transform.rotation = Quaternion.Euler(selectedPosition.rotation);
+    }
+
+    private void InstantiateChamber(DungeonRoom room, LevelRoomPropsSo currentRoom)
+    {
+        GameObject prefab = currentRoom.levelRoom.roomPrefab;
+        GameObject roomInstance = Instantiate(prefab,
+            new Vector3(room.xPosition * gapBetweenRooms.x, 0, room.zPosition * gapBetweenRooms.y),
+            Quaternion.identity, transform);
+
+        room.roomBehaviour = roomInstance.GetComponent<RoomBehaviour>();
+        room.proceduralRoomGeneration = roomInstance.GetComponent<ProceduralRoomGeneration>();
+
+        room.proceduralRoomGeneration.CreateRoomProps(currentRoom);
+
+        SetEnemyManager(room, roomInstance, currentRoom);
+
+        room.roomBehaviour.StartRoom();
+        roomInstance.transform.Rotate(0, GetFinalRoomRotation(room), 0);
+        room.dungeonRoomInstance = roomInstance;
+        room.roomBehaviour.PlayerInteractNewDoor.AddListener(TranslatePlayerToNewRoom);
     }
 
     private void SetEnemyManager(DungeonRoom room, GameObject roomInstance, LevelRoomPropsSo levelRoomProps)
