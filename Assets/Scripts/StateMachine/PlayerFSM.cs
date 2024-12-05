@@ -71,6 +71,7 @@ namespace StateMachine
         private Vector2 moveDir;
         private float specialAttackTimer = 0;
 
+
         public VoidChannelSO OnInteractChannel;
         public VoidChannelSO OnAlternativeInteractChannel;
 
@@ -215,13 +216,13 @@ namespace StateMachine
         {
             if (specialAttackTimer < specialAttack.timeUntilComboEnds)
             {
+                specialAttackTimer = Mathf.Min(specialAttackTimer + Time.deltaTime, specialAttack.timeUntilComboEnds);
                 float specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
-                specialAttackTimer += Time.deltaTime;
                 OnSpecialAttackTimerUpdate.Invoke(specialAttackTimeUntilComboEnds);
                 if (specialAttackTimer >= specialAttack.timeUntilComboEnds)
                 {
-                    vfxSpecialAura?.Play();
                     OnSpecialAttackTimerUpdate.Invoke(1);
+                    vfxSpecialAura?.Play();
                 }
             }
         }
