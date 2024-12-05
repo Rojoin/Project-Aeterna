@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
 
     public GameObject DeathCamera;
     public List<GameObject> CommonCameras;
+    [SerializeField][Range(0.1f,1f)]private float timeScale = 0.7f;
 
     private void OnEnable()
     {
@@ -36,6 +37,7 @@ public class CameraController : MonoBehaviour
             }
 
             DeathCamera.SetActive(true);
+            Time.timeScale = timeScale;
         }
     }
 }
