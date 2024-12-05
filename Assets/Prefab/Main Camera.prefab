@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1622786478566641045}
   - component: {fileID: 4916967246372944326}
   - component: {fileID: 1498335017401910214}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ Camera:
   m_GameObject: {fileID: 2098925978423658083}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -72,15 +72,15 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -5.12
-  far clip plane: 1000
+  near clip plane: 0.01
+  far clip plane: 70
   field of view: 60
   orthographic: 1
   orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 524288
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -151,13 +151,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbd1f455ab433f41a4561a5e7e5a518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onChangeCameraChannel: {fileID: 11400000, guid: ae1e6e65f49e5124c86b5651e79ec423, type: 2}
-  onResetSceneChannel: {fileID: 11400000, guid: fdf873835f0c8644fa75bc9a213b7046, type: 2}
-  onExitChannel: {fileID: 11400000, guid: ee870a1ab6b1cf34285cd8d95c5bbee5, type: 2}
-  skybox: {fileID: 0}
-  rotationSpeed: 1
-  MapCamera: {fileID: 0}
-  MainCamera: {fileID: 0}
+  onChangeCameraChannel: {fileID: 11400000, guid: 1c2d594ea3ba212459936604f35b83fc, type: 2}
+  DeathCamera: {fileID: 3595086617573675707}
+  CommonCameras:
+  - {fileID: 9195514716826846434}
+  - {fileID: 7610637300622903384}
+  timeScale: 0.7
 --- !u!114 &2239695282216615512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +176,7 @@ MonoBehaviour:
   isStaticObject: 0
   m_positionOffsetData:
     KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
+    positionOffset: {x: -0.015392029, y: -0.7685098, z: 0.42432132}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
 --- !u!114 &1622786478566641045
@@ -254,7 +253,7 @@ GameObject:
   - component: {fileID: 940429570383714200}
   - component: {fileID: 2982873975725097969}
   - component: {fileID: 8002280030954931833}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: ViewOnlyCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,8 +268,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3595086617573675707}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.055861473, y: 0.088003635, z: 10.016614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -307,15 +306,15 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -5.12
-  far clip plane: 1000
+  near clip plane: -6.13
+  far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 11
+  orthographic size: 3.92
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 264192
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -623,7 +622,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2147628663
+    m_Bits: 2147630711
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -666,7 +665,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

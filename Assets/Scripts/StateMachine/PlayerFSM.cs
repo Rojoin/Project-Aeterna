@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using InputControls;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace StateMachine
 {
@@ -59,6 +58,7 @@ namespace StateMachine
         [SerializeField] private UnityEvent onEndDash;
         [SerializeField] private UnityEvent OnSpecialAttack;
         [SerializeField] private UnityEvent<float> OnSpecialAttackTimerUpdate;
+        protected CapsuleCollider playerCollision;
 
         [Header("Raycast Settings")] [SerializeField]
         protected float raycastDistance = 10.0f;
@@ -71,6 +71,7 @@ namespace StateMachine
         private Vector2 moveDir;
         private float specialAttackTimer = 0;
 
+
         public VoidChannelSO OnInteractChannel;
         public VoidChannelSO OnAlternativeInteractChannel;
 
@@ -78,7 +79,7 @@ namespace StateMachine
         {
             speed = player.speed;
             InitFSM();
-
+            playerCollision = gameObject.GetComponent<CapsuleCollider>();
             AttackChannel.Subscribe(ChangeFromAttack);
             SpecialAttackChannel.Subscribe(ChangeFromSpecialAttack);
             DashChannel.Subscribe(ChangeFromDashStart);
@@ -91,7 +92,8 @@ namespace StateMachine
 
         private void OnDeath(bool value)
         {
-            InputControls.InputController.IsGamePaused = true;
+            InputController.IsGamePaused = true;
+            playerCollision.enabled = false;
         }
 
         private void InitFSM()
@@ -214,16 +216,14 @@ namespace StateMachine
         {
             if (specialAttackTimer < specialAttack.timeUntilComboEnds)
             {
+                specialAttackTimer = Mathf.Min(specialAttackTimer + Time.deltaTime, specialAttack.timeUntilComboEnds);
                 float specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
-                specialAttackTimer += Time.deltaTime;
-                // specialAttackTimeUntilComboEnds = specialAttackTimer / specialAttack.timeUntilComboEnds;
                 OnSpecialAttackTimerUpdate.Invoke(specialAttackTimeUntilComboEnds);
                 if (specialAttackTimer >= specialAttack.timeUntilComboEnds)
                 {
-                    vfxSpecialAura?.Play();
                     OnSpecialAttackTimerUpdate.Invoke(1);
+                    vfxSpecialAura?.Play();
                 }
-
             }
         }
 
@@ -255,7 +255,6 @@ namespace StateMachine
         private void ChangeFromEndAttack()
         {
             fsm.OnTriggerState(PlayerFlags.EndAttack);
-            // _playerAnimatorController.CrossFade("NormalStatus", 0.75f, 0, 0);
         }
 
         private void ActivateOnMoveEffects()
