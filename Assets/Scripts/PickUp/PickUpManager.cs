@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PickUpManager : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class PickUpManager : MonoBehaviour
     public VoidChannelSO OnPickUpSpawning;
     public AnimationCurve slowTimeCurve;
 
+    public int maxSpawnPoint = 10;
+    public int minSpawnPoint = 5;
+
     public void OnEnable()
     {
         activeSlowTime.Subscribe(StartSlowTime);
@@ -43,8 +47,10 @@ public class PickUpManager : MonoBehaviour
         OnPickUpSpawning.RaiseEvent();
         yield return new WaitForSeconds(timeUntilCardAppears);
 
+        Vector3 newPickUpPos = new Vector3(GetRandomPointOnNavMesh(player.transform.position, maxSpawnPoint, minSpawnPoint).x, 1, GetRandomPointOnNavMesh(player.transform.position, maxSpawnPoint, minSpawnPoint).z);
+
         prefab = Instantiate(pickUpPrefab,
-            new Vector3(player.transform.position.x - 2f, player.transform.position.y + 1, player.transform.position.z),
+            newPickUpPos,
             Quaternion.identity);
 
         pickUpCollider = prefab.GetComponent<PickUpCollider>();
@@ -98,5 +104,21 @@ public class PickUpManager : MonoBehaviour
     private void OnDisable()
     {
         activeSlowTime.Unsubscribe(StartSlowTime);
+    }
+
+    private Vector3 GetRandomPointOnNavMesh(Vector3 center, float maxDistance, float minDistance)
+    {
+        NavMeshHit hit;
+        Vector3 randomDirection;
+
+        do
+        {
+            randomDirection = Random.insideUnitSphere * maxDistance;
+            randomDirection += center;
+
+        } while (!NavMesh.SamplePosition(randomDirection, out hit, maxDistance, NavMesh.AllAreas) ||
+                 Vector3.Distance(center, hit.position) < minDistance);
+
+        return hit.position;
     }
 }
