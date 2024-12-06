@@ -1,5 +1,4 @@
-﻿using System;
-using Coffee.UIExtensions;
+﻿using Coffee.UIExtensions;
 using UnityEngine;
 
 namespace UI
@@ -23,6 +22,7 @@ namespace UI
             OnParticleCalled.Unsubscribe(SpawnParticle);
         }
 
+        
         private void SpawnParticle(Vector3 obj)
         {
             Vector2 screenPosition = Camera.main.WorldToScreenPoint(obj);

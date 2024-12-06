@@ -24,15 +24,22 @@ public class PickUpManager : MonoBehaviour
     public float slowDownTime = 1.0f;
 
     public VoidChannelSO activeSlowTime;
+    public Vector3ChannelSO OnSpawnPickUpLocation;
+    public VoidChannelSO OnPickUpSpawning;
     public AnimationCurve slowTimeCurve;
 
     public void OnEnable()
     {
         activeSlowTime.Subscribe(StartSlowTime);
     }
-
+[ContextMenu("Create PickUp")]
+    private void TestPickUp()
+    {
+        StartCoroutine(SpawnPickUp(1));
+    }
     public IEnumerator SpawnPickUp(int time)
     {
+        OnPickUpSpawning.RaiseEvent();
         yield return new WaitForSeconds(time);
 
         prefab = Instantiate(pickUpPrefab,
@@ -40,6 +47,7 @@ public class PickUpManager : MonoBehaviour
             Quaternion.identity);
 
         pickUpCollider = prefab.GetComponent<PickUpCollider>();
+        OnSpawnPickUpLocation.RaiseEvent(prefab.transform.position);
         pickUpCollider.onPlayerChooseCard.AddListener(PlayerInteractPickUp);
     }
 
