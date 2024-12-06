@@ -26,7 +26,7 @@ namespace UI
         private void SpawnParticle(Vector3 obj)
         {
             Vector2 screenPosition = Camera.main.WorldToScreenPoint(obj);
-
+            rectTransform.localPosition = new Vector3(0, 0, 0); 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPosition, null, out var uiPosition);
 
             rectTransform.localPosition = uiPosition;
