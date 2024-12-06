@@ -19,8 +19,6 @@ public class PickUpManager : MonoBehaviour
     [Header("NextCardIndicator")] [SerializeField]
     private NextCardIndicator nextCardIndicator;
 
-    [SerializeField] private NavMeshAgent _navMeshAgent;
-
     private GameObject prefab;
     private PickUpCollider pickUpCollider;
     private bool stopTime;
@@ -32,7 +30,7 @@ public class PickUpManager : MonoBehaviour
     public VoidChannelSO OnPickUpSpawning;
     public AnimationCurve slowTimeCurve;
 
-    public int maxSpawnPoint = 20;
+    public int maxSpawnPoint = 10;
     public int minSpawnPoint = 5;
 
     public void OnEnable()
