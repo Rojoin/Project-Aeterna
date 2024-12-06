@@ -22,6 +22,7 @@ public class PickUpManager : MonoBehaviour
     private PickUpCollider pickUpCollider;
     private bool stopTime;
     public float slowDownTime = 1.0f;
+    public float timeUntilCardAppears = 0.5f;
 
     public VoidChannelSO activeSlowTime;
     public Vector3ChannelSO OnSpawnPickUpLocation;
@@ -35,12 +36,12 @@ public class PickUpManager : MonoBehaviour
 [ContextMenu("Create PickUp")]
     private void TestPickUp()
     {
-        StartCoroutine(SpawnPickUp(1));
+        StartCoroutine(SpawnPickUp());
     }
-    public IEnumerator SpawnPickUp(int time)
+    public IEnumerator SpawnPickUp()
     {
         OnPickUpSpawning.RaiseEvent();
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(timeUntilCardAppears);
 
         prefab = Instantiate(pickUpPrefab,
             new Vector3(player.transform.position.x - 2f, player.transform.position.y + 1, player.transform.position.z),
