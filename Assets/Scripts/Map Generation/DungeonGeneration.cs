@@ -216,7 +216,7 @@ public class DungeonGeneration : MonoBehaviour
 
         if (roomsCounter >= 3)
         {
-            StartCoroutine(pickUpManager.SpawnPickUp(1));
+            StartCoroutine(pickUpManager.SpawnPickUp());
             roomsCounter = 0;
         }
     }
