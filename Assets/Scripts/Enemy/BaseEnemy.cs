@@ -28,6 +28,8 @@ namespace Enemy
         protected static readonly int Damage = Animator.StringToHash("Damage");
         [SerializeField] float timeAfterDeactivate = 0.50f;
         [SerializeField] protected float disappearSpeed = 5.0f;
+        
+        protected bool isActivated = false;
         private void OnEnable()
         {
             Init();
@@ -40,6 +42,11 @@ namespace Enemy
         {
             OnDeath.RemoveAllListeners();
             OnHit.RemoveAllListeners();
+        }
+        
+        public void ActivateEnemy()
+        {
+            isActivated = true;
         }
 
         private void OnValidate()

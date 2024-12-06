@@ -67,6 +67,21 @@ namespace Enemy
             EndChamber();
         }
 
+        public void ActivateEnemies(float timeToActivate)
+        {
+            StartCoroutine(ActivateEnemiesTimer(timeToActivate));
+        }
+
+        private IEnumerator ActivateEnemiesTimer(float timeToActivate)
+        {
+            yield return new WaitForSecondsRealtime(timeToActivate);
+            
+            foreach (BaseEnemy currentEnemy in enemyList)
+            {
+                currentEnemy.ActivateEnemy();
+            }
+        }
+
         private void RemoveEnemy(BaseEnemy enemy)
         {
             if (enemyList.Contains(enemy))

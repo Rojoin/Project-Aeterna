@@ -283,6 +283,7 @@ public class DungeonGeneration : MonoBehaviour
         }
 
         OnEndChangeRoom.Invoke();
+        actualPlayerRoom.enemyManager.ActivateEnemies(1f);
 
         yield return new WaitForSecondsRealtime(1);
         oldRoom.roomBehaviour.SetDoorCollisions(true);
