@@ -70,6 +70,8 @@ MonoBehaviour:
   nextCardIndicator: {fileID: 0}
   slowDownTime: 1
   activeSlowTime: {fileID: 11400000, guid: 2522655614c3a4f4b91b9c246caa9733, type: 2}
+  OnSpawnPickUpLocation: {fileID: 11400000, guid: b68a4d8aec794f748b20e7d753f9d81c, type: 2}
+  OnPickUpSpawning: {fileID: 11400000, guid: 9fa65d47fd694b642879fe1b139b1476, type: 2}
   slowTimeCurve:
     serializedVersion: 2
     m_Curve:
@@ -111,11 +113,10 @@ MonoBehaviour:
   SpecialAttack: {fileID: 11400000, guid: 51fc7421b630d9d45b98b54803e090ee, type: 2}
   DashChannel: {fileID: 11400000, guid: 4312eae7dc310ef4bb5f7cbd39742da4, type: 2}
   OnTutorialComplete: {fileID: 11400000, guid: 9bd7e4b07cdb3ca448d8db52736335f3, type: 2}
-  moveIcon: {fileID: 0}
-  dashIcon: {fileID: 0}
-  attackIcon: {fileID: 0}
-  specialIcon: {fileID: 0}
-  completedSprite: {fileID: 21300000, guid: 7a4c33ae1b27cea40b7dad7afe45b5be, type: 3}
+  moveObjective: {fileID: 0}
+  dashObjective: {fileID: 0}
+  attackObjective: {fileID: 0}
+  specialObjective: {fileID: 0}
   _enemy: {fileID: 0}
   OnTutorialFinished:
     m_PersistentCalls:
