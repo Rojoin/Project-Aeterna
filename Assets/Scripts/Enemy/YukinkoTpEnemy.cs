@@ -80,17 +80,24 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         }
         else
         {
+            // FBX en la posicion actual
             ParticleSystem particleAtCurrent = Instantiate(tpVFX, currentPosition, Quaternion.identity);
-            ParticleSystem particleAtTeleport = Instantiate(tpVFX, teleportPosition, Quaternion.identity);
-        
             StartCoroutine(DestroyParticleAfterPlay(particleAtCurrent));
+        
+            //tp
+            ChangeVisibleTpGameObjects(false);
+            _navMeshAgent.enabled = false;
+            transform.position = teleportPosition;
+            _navMeshAgent.enabled = true; 
+
+            // FBX en la nueva posicion
+            ParticleSystem particleAtTeleport = Instantiate(tpVFX, teleportPosition, Quaternion.identity);
             StartCoroutine(DestroyParticleAfterPlay(particleAtTeleport));
-            
+        
             animator.SetTrigger(Hurt);
             currentHealth -= damage;
             ChangeOnHitColor();
             OnHit.Invoke();
-            ChangeVisibleTpGameObjects(false);
         }
 
         float healthNormalize = currentHealth / maxHealth;
@@ -238,7 +245,6 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
     public void Move(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
     {
-        //Maybe change that when is blocking cannot be moved
         StartCoroutine(MoveByAttack(direction, speed, maxTime, curve));
     }
 
@@ -276,6 +282,9 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         {
             o.SetActive(state);
         }
+        
+        meshBody.enabled = state;
+        meshFace.enabled = state;
     }
 
     protected void OnDrawGizmosSelected()
