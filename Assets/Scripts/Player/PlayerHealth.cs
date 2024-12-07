@@ -1,5 +1,5 @@
-using System.Collections;
 using CustomChannels;
+using System.Collections;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -84,6 +84,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     {
         currentHealth += healingValue + player.healingValue;
 
+        OverlayManager();
+
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
@@ -121,6 +123,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         if (currentHealth <= 0 || currentHealth <= damage)
         {
+            OverlayManager();
+
             currentHealth = 0;
             AkSoundEngine.SetState("DeathFloorMusic", "Death");
             isInvencible = true;
@@ -131,7 +135,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             currentHealth -= damage;
 
-            OverlayManager();
+            StartCoroutine(SpawnOverlay(0.5f));
 
             gameObject.StartRumble(player.rumbleBeingHittingDuration, player.rumbleBeingHittingForce);
             gameObject.StartColorChange(material, player.colorshiftDuration);
@@ -242,5 +246,14 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         yield return new WaitForSeconds(time);
         Time.timeScale = 1;
 
+    }
+
+    private IEnumerator SpawnOverlay(float time) 
+    {
+        overlay.SetActive(true);
+        
+        yield return new WaitForSeconds(time);
+
+        OverlayManager();
     }
 }
