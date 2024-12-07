@@ -148,7 +148,8 @@ public class YukinkoEnemy : BaseEnemy, IMovevable
 
     protected void Update()
     {
-        if (IsDead()) return;
+        if (!isActivated || IsDead()) return;
+
         _navMeshAgent.speed = enemyConfig.speed;
 
         if (states.HasFlag(YukinkoStates.Run))

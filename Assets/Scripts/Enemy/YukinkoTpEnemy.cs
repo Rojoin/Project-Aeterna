@@ -24,22 +24,20 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
     [SerializeField] private BaseProjectile projectile;
     [SerializeField] private SkinnedMeshRenderer meshBody;
     [SerializeField] private SkinnedMeshRenderer meshFace;
+    [SerializeField] private float timeAfterTeleport = 0.5f;
     private FSM _fsm;
     private Material materialBody;
     private Material materialFace;
     private ShootingEnemySO enemyConfig;
     private Transform target;
     private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
-    private float defenseModeTimer = 0.0f;
-    private int hitWhileBlocking = 0;
-    private float canEnterDefenseModeTimer = 0.0f;
-    private static readonly int IsExitingDefense = Animator.StringToHash("isExitingDefense");
+    private float teleportTimer = 0.0f;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
-    private static readonly int IsEnteringDefense = Animator.StringToHash("isEnteringDefense");
     private YukinkoTpStates states = YukinkoTpStates.Idle;
     public UnityEvent OnAttack = new();
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private List<GameObject> hideTeleportGameObjects;
+    [SerializeField] private ParticleSystem tpVFX;
 
     protected override void ValidateMethod()
     {
@@ -58,10 +56,12 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
     public override void ReceiveDamage(float damage)
     {
         OnHit.Invoke();
-
+        
+        Vector3 currentPosition = transform.position;
+        Vector3 teleportPosition = GetRandomPointOnNavMesh(currentPosition, enemyConfig.maxEscapeDistance, enemyConfig.minEscapeDistance);
+        
         states = YukinkoTpStates.Teleport;
-        _navMeshAgent.SetDestination(GetRandomPointOnNavMesh(transform.position, enemyConfig.maxEscapeDistance,
-            enemyConfig.minEscapeDistance));
+        _navMeshAgent.SetDestination(teleportPosition);
         animator.SetTrigger(IsWalking);
 
         if (currentHealth <= 0 || currentHealth <= damage)
@@ -77,11 +77,24 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         }
         else
         {
+            // FBX en la posicion actual
+            ParticleSystem particleAtCurrent = Instantiate(tpVFX, currentPosition, Quaternion.identity);
+            StartCoroutine(DestroyParticleAfterPlay(particleAtCurrent));
+        
+            //tp
+            ChangeVisibleTpGameObjects(false);
+            _navMeshAgent.enabled = false;
+            transform.position = teleportPosition;
+            _navMeshAgent.enabled = true; 
+
+            // FBX en la nueva posicion
+            ParticleSystem particleAtTeleport = Instantiate(tpVFX, teleportPosition, Quaternion.identity);
+            StartCoroutine(DestroyParticleAfterPlay(particleAtTeleport));
+        
             animator.SetTrigger(Hurt);
             currentHealth -= damage;
             ChangeOnHitColor();
             OnHit.Invoke();
-            ChangeVisibleTpGameObjects(false);
         }
 
         float healthNormalize = currentHealth / maxHealth;
@@ -89,6 +102,12 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
     }
 
+    private IEnumerator DestroyParticleAfterPlay(ParticleSystem particle)
+    {
+        yield return new WaitUntil(() => !particle.isPlaying);
+        Destroy(particle.gameObject);
+    }
+    
     protected override void Init()
     {
         base.Init();
@@ -101,13 +120,16 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
     protected void Update()
     {
-        if (IsDead()) return;
+        if (!isActivated || IsDead()) return;
+        
         _navMeshAgent.speed = enemyConfig.speed;
 
         if (states.HasFlag(YukinkoTpStates.Teleport))
         {
-            if (HasReachedDestination())
+            teleportTimer += Time.deltaTime;
+            if ( teleportTimer >= timeAfterTeleport)
             {
+                teleportTimer = 0;
                 ChangeVisibleTpGameObjects(true);
                 states = YukinkoTpStates.Attack;
                 attackTimer = enemyConfig.timeBetweenAttacks + 1;
@@ -222,7 +244,6 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
     public void Move(Vector3 direction, float speed, float maxTime, AnimationCurve curve)
     {
-        //Maybe change that when is blocking cannot be moved
         StartCoroutine(MoveByAttack(direction, speed, maxTime, curve));
     }
 
@@ -260,6 +281,9 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         {
             o.SetActive(state);
         }
+        
+        meshBody.enabled = state;
+        meshFace.enabled = state;
     }
 
     protected void OnDrawGizmosSelected()

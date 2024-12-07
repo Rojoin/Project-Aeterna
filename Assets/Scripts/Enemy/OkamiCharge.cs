@@ -76,6 +76,8 @@ namespace Enemy
 
         protected void Update()
         {
+            if (!isActivated || IsDead()) return;
+
             attackTimer += Time.deltaTime;
             switch (currentState)
             {
