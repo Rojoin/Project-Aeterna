@@ -40,6 +40,7 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
     public UnityEvent OnAttack = new();
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private List<GameObject> hideTeleportGameObjects;
+    [SerializeField] private ParticleSystem tpVFX;
 
     protected override void ValidateMethod()
     {
@@ -58,10 +59,12 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
     public override void ReceiveDamage(float damage)
     {
         OnHit.Invoke();
-
+        
+        Vector3 currentPosition = transform.position;
+        Vector3 teleportPosition = GetRandomPointOnNavMesh(currentPosition, enemyConfig.maxEscapeDistance, enemyConfig.minEscapeDistance);
+        
         states = YukinkoTpStates.Teleport;
-        _navMeshAgent.SetDestination(GetRandomPointOnNavMesh(transform.position, enemyConfig.maxEscapeDistance,
-            enemyConfig.minEscapeDistance));
+        _navMeshAgent.SetDestination(teleportPosition);
         animator.SetTrigger(IsWalking);
 
         if (currentHealth <= 0 || currentHealth <= damage)
@@ -77,6 +80,12 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         }
         else
         {
+            ParticleSystem particleAtCurrent = Instantiate(tpVFX, currentPosition, Quaternion.identity);
+            ParticleSystem particleAtTeleport = Instantiate(tpVFX, teleportPosition, Quaternion.identity);
+        
+            StartCoroutine(DestroyParticleAfterPlay(particleAtCurrent));
+            StartCoroutine(DestroyParticleAfterPlay(particleAtTeleport));
+            
             animator.SetTrigger(Hurt);
             currentHealth -= damage;
             ChangeOnHitColor();
@@ -89,6 +98,12 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
     }
 
+    private IEnumerator DestroyParticleAfterPlay(ParticleSystem particle)
+    {
+        yield return new WaitUntil(() => !particle.isPlaying);
+        Destroy(particle.gameObject);
+    }
+    
     protected override void Init()
     {
         base.Init();
