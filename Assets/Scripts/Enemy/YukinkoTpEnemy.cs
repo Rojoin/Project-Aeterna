@@ -24,18 +24,15 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
     [SerializeField] private BaseProjectile projectile;
     [SerializeField] private SkinnedMeshRenderer meshBody;
     [SerializeField] private SkinnedMeshRenderer meshFace;
+    [SerializeField] private float timeAfterTeleport = 0.5f;
     private FSM _fsm;
     private Material materialBody;
     private Material materialFace;
     private ShootingEnemySO enemyConfig;
     private Transform target;
     private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
-    private float defenseModeTimer = 0.0f;
-    private int hitWhileBlocking = 0;
-    private float canEnterDefenseModeTimer = 0.0f;
-    private static readonly int IsExitingDefense = Animator.StringToHash("isExitingDefense");
+    private float teleportTimer = 0.0f;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
-    private static readonly int IsEnteringDefense = Animator.StringToHash("isEnteringDefense");
     private YukinkoTpStates states = YukinkoTpStates.Idle;
     public UnityEvent OnAttack = new();
     [SerializeField] private NavMeshAgent _navMeshAgent;
@@ -129,8 +126,10 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
         if (states.HasFlag(YukinkoTpStates.Teleport))
         {
-            if (HasReachedDestination())
+            teleportTimer += Time.deltaTime;
+            if ( teleportTimer >= timeAfterTeleport)
             {
+                teleportTimer = 0;
                 ChangeVisibleTpGameObjects(true);
                 states = YukinkoTpStates.Attack;
                 attackTimer = enemyConfig.timeBetweenAttacks + 1;

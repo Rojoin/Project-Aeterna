@@ -43,7 +43,7 @@ namespace Enemy
             OnDeath.RemoveAllListeners();
             OnHit.RemoveAllListeners();
         }
-        
+        [ContextMenu("Activate Enemy")]
         public void ActivateEnemy()
         {
             isActivated = true;
