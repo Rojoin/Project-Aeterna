@@ -1,5 +1,4 @@
-﻿using System;
-using Coffee.UIExtensions;
+﻿using Coffee.UIExtensions;
 using UnityEngine;
 
 namespace UI
@@ -23,10 +22,11 @@ namespace UI
             OnParticleCalled.Unsubscribe(SpawnParticle);
         }
 
+        
         private void SpawnParticle(Vector3 obj)
         {
             Vector2 screenPosition = Camera.main.WorldToScreenPoint(obj);
-
+            rectTransform.localPosition = new Vector3(0, 0, 0); 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPosition, null, out var uiPosition);
 
             rectTransform.localPosition = uiPosition;
