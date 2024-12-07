@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class CardSO : ScriptableObject
@@ -20,7 +21,6 @@ public class CardSO : ScriptableObject
 
     [Header("Description")]
     public string description;
-    public string shortDescription;
 
     [Header("Tittle")]
     public string tittle;

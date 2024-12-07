@@ -171,7 +171,19 @@ MonoBehaviour:
     m_ActionId: c8e7d1b7-6c1b-4c3c-a062-6f4e900b86ad
     m_ActionName: Player/CameraMove[/DualSenseGamepadHID/rightStick,/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5116400276696402719}
+        m_TargetAssemblyTypeName: InputControls.InputController, Assembly-CSharp
+        m_MethodName: OnToggleCardInformationMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 41850591-c88a-47b0-9278-75c885a384fa
     m_ActionName: Player/OpenHud[/Keyboard/tab,/SwitchProControllerHID/select]
   - m_PersistentCalls:
@@ -291,6 +303,7 @@ MonoBehaviour:
   OnHudToggleChannel: {fileID: 11400000, guid: f1ca3e5baa438be4696524912b12ed01, type: 2}
   OnDashChannel: {fileID: 11400000, guid: 4312eae7dc310ef4bb5f7cbd39742da4, type: 2}
   OnPauseChannel: {fileID: 11400000, guid: e3026a457fb953b49bd8c1c088d6da04, type: 2}
+  OnToggleCardInformationMenuChannel: {fileID: 11400000, guid: ac520a6747b9cd9488ecb634a27d54e8, type: 2}
   OnControlSchemeChange: {fileID: 11400000, guid: 31cb41d326db3c84586e863551aec40b, type: 2}
   gameSettings: {fileID: 11400000, guid: 039ee6976d7813d4cbbbf52c531d49a8, type: 2}
   player: {fileID: 11400000, guid: 9fdf610469e6a59498cbe93d2f649a93, type: 2}

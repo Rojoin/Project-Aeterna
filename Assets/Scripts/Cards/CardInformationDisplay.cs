@@ -32,11 +32,11 @@ public class CardInformationDisplay : MonoBehaviour
         }
     }
 
-    public void ShowCardDescription(CardSO card) 
+    public void ShowCardDescription(string text) 
     {
-        if(card != null) 
+        if(text != null) 
         {
-            description.text = card.shortDescription;
+            description.text = text;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace InputControls
         [SerializeField] private VoidChannelSO OnHudToggleChannel;
         [SerializeField] private VoidChannelSO OnDashChannel;
         [SerializeField] private VoidChannelSO OnPauseChannel;
+        [SerializeField] private VoidChannelSO OnToggleCardInformationMenuChannel;
         [SerializeField] private BoolChannelSO OnControlSchemeChange;
         [SerializeField] private GameSettings gameSettings;
         [SerializeField] private PlayerEntitySO player;
@@ -101,6 +102,14 @@ namespace InputControls
             if (ctx.performed)
             {
                 OnPauseChannel.RaiseEvent();
+            }
+        }
+
+        public void OnToggleCardInformationMenu(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+            {
+                OnToggleCardInformationMenuChannel.RaiseEvent();
             }
         }
 
