@@ -305,7 +305,11 @@ SubShader {
 			clip(faceColor.a - 0.001);
 		#endif
 
-  		return faceColor * input.color.a;
+  		#if UNITY_COLORSPACE_GAMMA
+return faceColor * input.color.a;
+#else
+return fixed4(GammaToLinearSpace(faceColor.rgb), faceColor.a) * input.color.a;
+#endif
 		}
 
 		ENDCG
