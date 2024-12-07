@@ -164,8 +164,10 @@ public class BuffSystem : MonoBehaviour
 
     public string GetShortDescription(CardSO card)
     {
-        string greenHex = "00dc7a";
-        string redHex = "e7423c";
+        string greenHex = "00ff8c";
+        //string greenHex = "00dc7a";
+        string redHex = "ff4941";
+        //string redHex = "e7423c";
 
         switch (card.cardType)
         {

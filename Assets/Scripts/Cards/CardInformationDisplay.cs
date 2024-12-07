@@ -8,6 +8,7 @@ public class CardInformationDisplay : MonoBehaviour
 {
     public Image frame;
     public Image cardArt;
+    public GameObject textBox;
 
     public Sprite invertedFrame;
     public Sprite normalFrame;
@@ -18,6 +19,9 @@ public class CardInformationDisplay : MonoBehaviour
     {
         if (card != null) 
         {
+            frame.enabled = true;
+            textBox.SetActive(true);
+
             if (card.isInverted)
             {
                 frame.sprite = invertedFrame;
@@ -30,6 +34,12 @@ public class CardInformationDisplay : MonoBehaviour
 
             cardArt.sprite = card.allCardSprite;
         }
+
+        if (card == null) 
+        {
+            frame.enabled = false;
+            textBox.SetActive(false);
+        }
     }
 
     public void ShowCardDescription(string text) 
@@ -38,5 +48,10 @@ public class CardInformationDisplay : MonoBehaviour
         {
             description.text = text;
         }
+    }
+
+    private void OnEnable()
+    {
+        ShowCardImage(null);
     }
 }
