@@ -1,5 +1,3 @@
-#if UNITY_EDITOR
-
 /*******************************************************************************
 
 The content of this file includes portions of the proprietary AUDIOKINETIC Wwise
@@ -2189,5 +2187,3 @@ public class AkWaapiUtilities
 	}
 
 }
-
-#endif

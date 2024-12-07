@@ -1,4 +1,5 @@
 using UnityEngine;
+using static CardSO;
 
 public class BuffSystem : MonoBehaviour
 {
@@ -122,29 +123,7 @@ public class BuffSystem : MonoBehaviour
 
     private void InvertedHealthCard(CardSO card)
     {
-        int randomNumber = Random.Range(0, 100);
-
-        int defaultChance = 10;
-        int firstChance = 15;
-        int secondChance = 20;
-        int thirdChance = 25;
-        int fourthChance = 30;
-
-        if (randomNumber <= firstChance)
-            player.healingValue = firstChance;
-
-        if (randomNumber > firstChance && randomNumber <= secondChance)
-            player.healingValue = secondChance;
-
-        if (randomNumber > secondChance && randomNumber <= thirdChance)
-            player.healingValue = thirdChance;
-
-        if (randomNumber > thirdChance && randomNumber <= fourthChance)
-            player.healingValue = fourthChance;
-
-        else
-            player.healingValue = defaultChance;
-
+        player.healingValue += 10;
     }
 
     private void UpgradeSpeed(CardSO card)
@@ -158,29 +137,7 @@ public class BuffSystem : MonoBehaviour
 
     private void InvertedSpeedCard(CardSO card)
     {
-        int randomNumber = Random.Range(0, 100);
-
-        int firstChance = 15;
-        int secondChance = 20;
-        int thirdChance = 25;
-        int fourthChance = 30;
-
-        player.dashSpeed = resetDashSpeed;
-
-        if (randomNumber <= firstChance)
-            player.dashSpeed += 1f;
-
-        if (randomNumber > firstChance && randomNumber <= secondChance)
-            player.dashSpeed += 2f;
-
-        if (randomNumber > secondChance && randomNumber <= thirdChance)
-            player.dashSpeed += 3f;
-
-        if (randomNumber > thirdChance && randomNumber <= fourthChance)
-            player.dashSpeed += 4f;
-
-        else
-            player.dashSpeed += 1f;
+        player.dashSpeed += 3f;
     }
 
     private void UpgradeAttackSpeed(CardSO card)
@@ -203,5 +160,69 @@ public class BuffSystem : MonoBehaviour
         damage *= card.cardsOnSlot;
 
         player.theStarDamage += damage;
+    }
+
+    public string GetShortDescription(CardSO card)
+    {
+        string greenHex = "00ff8c";
+        //string greenHex = "00dc7a";
+        string redHex = "ff4941";
+        //string redHex = "e7423c";
+
+        switch (card.cardType)
+        {
+            case CardType.Attack when card.isInverted:
+
+                return $"<color=#{greenHex}>+{card.damage * card.cardsOnSlot}</color> Physical Damage\n <color=#{redHex}>{card.removeSpecialDamage * card.cardsOnSlot}</color> Magical Damage";
+
+                break;
+
+            case CardType.Attack:
+
+                return $"<color=#{greenHex}>+{card.damage * card.cardsOnSlot}</color> Physical Damage";
+
+                break;
+
+            case CardType.Health when card.isInverted:
+
+                float healingValue = player.healingValue;
+
+                return $"<color=#{greenHex}>%{healingValue}</color> Healing Recieved";
+
+                break;
+
+            case CardType.Health:
+
+                return $"<color=#{greenHex}>+{card.health * card.cardsOnSlot}</color> Max Health";
+
+                break;
+
+            case CardType.Speed when card.isInverted:
+
+                return $"<color=#{greenHex}>+{player.dashSpeed}</color> Dash Speed";
+
+
+                break;
+
+            case CardType.Speed:
+
+                return $"<color=#{greenHex}>+{card.speed * card.cardsOnSlot}</color> Movement Speed";
+
+                break;
+
+            case CardType.AttackSpeed when card.isInverted:
+
+                return $"<color=#{greenHex}>+{player.theStarDamage}</color> Damage in the last attack of the combo";
+
+                break;
+
+            case CardType.AttackSpeed:
+
+                return $"<color=#{greenHex}>+{card.attackSpeed * card.cardsOnSlot}</color> Attack Speed";
+
+                break;
+        }
+
+        return "Error";
     }
 }

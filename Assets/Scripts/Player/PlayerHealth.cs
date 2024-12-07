@@ -1,5 +1,5 @@
-using System.Collections;
 using CustomChannels;
+using System.Collections;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,7 +19,12 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] float rumbleDuration = 0.1f;
     [SerializeField] protected float disappearSpeed = 5.0f;
     [SerializeField] protected ParticleSystem vfxAura;
+
+    [Header("Timer when take damage")]
     [SerializeField] private float freceTimeTimer = 0.3f;
+
+    [Header("Overlay")]
+    [SerializeField] private GameObject overlay;
 
     const int healingValue = 100;
 
@@ -79,6 +84,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     {
         currentHealth += healingValue + player.healingValue;
 
+        OverlayManager();
+
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
@@ -116,6 +123,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         if (currentHealth <= 0 || currentHealth <= damage)
         {
+            OverlayManager();
+
             currentHealth = 0;
             AkSoundEngine.SetState("DeathFloorMusic", "Death");
             isInvencible = true;
@@ -125,6 +134,8 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         else
         {
             currentHealth -= damage;
+
+            StartCoroutine(SpawnOverlay(0.5f));
 
             gameObject.StartRumble(player.rumbleBeingHittingDuration, player.rumbleBeingHittingForce);
             gameObject.StartColorChange(material, player.colorshiftDuration);
@@ -216,11 +227,33 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         gameObject.SetActive(false);
     }
 
+    private void OverlayManager() 
+    {
+        if (currentHealth <= maxHealth / 2)
+        {
+            overlay.SetActive(true);
+        }
+
+        else 
+        {
+            overlay.SetActive(false);
+        }  
+    }
+
     private IEnumerator FreceTime(float time) 
     {
         Time.timeScale = 0.5f;
         yield return new WaitForSeconds(time);
         Time.timeScale = 1;
 
+    }
+
+    private IEnumerator SpawnOverlay(float time) 
+    {
+        overlay.SetActive(true);
+        
+        yield return new WaitForSeconds(time);
+
+        OverlayManager();
     }
 }

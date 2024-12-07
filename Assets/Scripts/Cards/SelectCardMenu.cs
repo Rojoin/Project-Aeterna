@@ -16,6 +16,7 @@ public class SelectCardMenu : MonoBehaviour
     [SerializeField] private CanvasGroup winScreen;
     [SerializeField] private CanvasGroup playerHud;
     [SerializeField] private PauseMenu pause;
+    [SerializeField] private CardInformationMenu cardInformationMenu;
 
     [Header("Channel: UI")] 
     [SerializeField] private BoolChannelSO ToggleCardDialogCard;
@@ -74,6 +75,11 @@ public class SelectCardMenu : MonoBehaviour
     void Start()
     {
         ShowSelectCardMenu(false);
+
+        cardInformationMenu = GetComponent<CardInformationMenu>();
+
+        cardInformationMenu.Toggle(false);
+
         allCards = playerInventory.GetAllCard();
         dialogBoxCard.SetCanvas(false);
         dialogBoxDoor.SetCanvas(false);
@@ -121,6 +127,7 @@ public class SelectCardMenu : MonoBehaviour
     {
         if (value)
         {
+            cardInformationMenu.Toggle(false);
             playerHud.SetCanvas(false);
             dialogBoxDoor.SetCanvas(false);
             dialogBoxCard.SetCanvas(false);
