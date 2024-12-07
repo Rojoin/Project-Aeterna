@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] float rumbleDuration = 0.1f;
     [SerializeField] protected float disappearSpeed = 5.0f;
     [SerializeField] protected ParticleSystem vfxAura;
+    [SerializeField] private float freceTimeTimer = 0.3f;
 
     const int healingValue = 100;
 
@@ -127,7 +128,9 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
             gameObject.StartRumble(player.rumbleBeingHittingDuration, player.rumbleBeingHittingForce);
             gameObject.StartColorChange(material, player.colorshiftDuration);
+            StartCoroutine(FreceTime(freceTimeTimer));
             OnPlayerHurt.Invoke();
+
             if (currentHealth < player.maxHealth / 2)
             {
                 ChangePortrait.RaiseEvent(PlayerPortraitStates.LowHealth);
@@ -211,5 +214,13 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         material.SetFloat(CutOffHeight, heightValue);
         gameObject.SetActive(false);
+    }
+
+    private IEnumerator FreceTime(float time) 
+    {
+        Time.timeScale = 0.5f;
+        yield return new WaitForSeconds(time);
+        Time.timeScale = 1;
+
     }
 }
