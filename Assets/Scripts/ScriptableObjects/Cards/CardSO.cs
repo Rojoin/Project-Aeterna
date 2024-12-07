@@ -20,6 +20,7 @@ public class CardSO : ScriptableObject
 
     [Header("Description")]
     public string description;
+    public string shortDescription;
 
     [Header("Tittle")]
     public string tittle;
