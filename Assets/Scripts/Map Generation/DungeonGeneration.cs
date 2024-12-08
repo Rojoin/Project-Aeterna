@@ -223,7 +223,7 @@ public class DungeonGeneration : MonoBehaviour
 
     private void UpdateOnPlayerHealth()
     {
-        nextCardIndicator.RestartIndicatorCard();
+       // nextCardIndicator.RestartIndicatorCard();
     }
 
     private void TranslatePlayerToNewRoom(RoomDirection direction)

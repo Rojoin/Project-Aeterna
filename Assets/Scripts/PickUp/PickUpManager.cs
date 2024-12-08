@@ -97,7 +97,7 @@ public class PickUpManager : MonoBehaviour
 
     public void PlayerInteractPickUp()
     {
-        nextCardIndicator.RestartIndicatorCard();
+        //nextCardIndicator.RestartIndicatorCard();
         selectCardMenu.ShowSelectCardMenu(true);
     }
 
