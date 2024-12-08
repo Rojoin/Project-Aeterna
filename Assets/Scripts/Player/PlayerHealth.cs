@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     private static readonly int CutOffHeight = Shader.PropertyToID("_Cutoff_Height");
     [Header("Data")] [SerializeField] private PlayerEntitySO player;
     [SerializeField] private PlayerPortraitChannelSO ChangePortrait;
+   
     [SerializeField] private Animator animator;
     [SerializeField] private BoolChannelSO onDeath;
     [SerializeField] private VoidChannelSO OnHealth;
@@ -20,12 +21,12 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] protected float disappearSpeed = 5.0f;
     [SerializeField] protected ParticleSystem vfxAura;
 
-    [Header("Timer when take damage")]
-    [SerializeField] private float freceTimeTimer = 0.3f;
+    [Header("Timer when take damage")] [SerializeField]
+    private float freceTimeTimer = 0.3f;
 
-    [Header("Overlay")]
-    [SerializeField] private GameObject overlay;
-
+    [Header("Overlay")] 
+    [SerializeField] private VoidChannelSO OnHit;
+    [SerializeField] private BoolChannelSO OnLowHealth;
     const int healingValue = 100;
 
     private float currentHealth;
@@ -82,7 +83,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
     public void HealthPlayer()
     {
-        currentHealth += healingValue + player.healingValue;
+        currentHealth += healingValue + (healingValue * player.healingValue / 100);
 
         OverlayManager();
 
@@ -123,8 +124,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
 
         if (currentHealth <= 0 || currentHealth <= damage)
         {
-            OverlayManager();
-
+            OnLowHealth.RaiseEvent(false);
             currentHealth = 0;
             AkSoundEngine.SetState("DeathFloorMusic", "Death");
             isInvencible = true;
@@ -135,8 +135,9 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             currentHealth -= damage;
 
-            StartCoroutine(SpawnOverlay(0.5f));
-
+            // StartCoroutine(SpawnOverlay(0.5f));
+            OnHit.RaiseEvent();
+            OverlayManager();
             gameObject.StartRumble(player.rumbleBeingHittingDuration, player.rumbleBeingHittingForce);
             gameObject.StartColorChange(material, player.colorshiftDuration);
             StartCoroutine(FreceTime(freceTimeTimer));
@@ -227,33 +228,21 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         gameObject.SetActive(false);
     }
 
-    private void OverlayManager() 
+    private void OverlayManager()
     {
-        if (currentHealth <= maxHealth / 2)
-        {
-            overlay.SetActive(true);
-        }
-
-        else 
-        {
-            overlay.SetActive(false);
-        }  
+        OnLowHealth.RaiseEvent(currentHealth <= maxHealth / 2);
     }
 
-    private IEnumerator FreceTime(float time) 
+    private IEnumerator FreceTime(float time)
     {
         Time.timeScale = 0.5f;
         yield return new WaitForSeconds(time);
         Time.timeScale = 1;
-
     }
 
-    private IEnumerator SpawnOverlay(float time) 
+    private IEnumerator SpawnOverlay(float time)
     {
-        overlay.SetActive(true);
-        
         yield return new WaitForSeconds(time);
-
         OverlayManager();
     }
 }
