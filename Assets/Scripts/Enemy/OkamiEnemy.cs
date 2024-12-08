@@ -43,6 +43,7 @@ namespace Enemy
             materialBody = meshBody.material;
             materialFace = meshFace.material;
             animator.SetTrigger(IsIdle);
+            attackTimerlife = enemyConfig.delayAfterAttack;
         }
 
 
@@ -119,7 +120,7 @@ namespace Enemy
                     playerPosition = hitCollider.gameObject.transform;
                     currentState = OkamiStates.Chasing;
                     currentMovementSpeed = enemyConfig.chasingMoveSpeed;
-                    animator.SetTrigger(IsWalking);
+                    // animator.SetTrigger(IsWalking);
                     break;
                 }
             }

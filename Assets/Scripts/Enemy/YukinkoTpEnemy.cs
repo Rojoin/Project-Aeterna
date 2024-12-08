@@ -62,7 +62,7 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         
         states = YukinkoTpStates.Teleport;
         _navMeshAgent.SetDestination(teleportPosition);
-        animator.SetTrigger(IsWalking);
+     
 
         if (currentHealth <= 0 || currentHealth <= damage)
         {
