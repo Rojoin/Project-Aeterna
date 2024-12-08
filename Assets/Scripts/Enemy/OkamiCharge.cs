@@ -46,7 +46,7 @@ namespace Enemy
             materialBody = meshBody.material;
             materialFace = meshFace.material;
             animator.SetTrigger(IsIdle);
-            // attackTimerlife = enemyConfig.delayAfterAttack;
+             attackTimerlife = enemyConfig.delayAfterAttack;
         }
 
 
@@ -239,6 +239,7 @@ namespace Enemy
             else
             {
                 animator?.SetTrigger(Hurt);
+                animator?.SetTrigger(IsWalking);
                 currentHealth -= damage;
                 ChangeOnHitColor();
                 OnHit.Invoke();
