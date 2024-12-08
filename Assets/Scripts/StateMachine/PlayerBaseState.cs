@@ -23,6 +23,7 @@ namespace StateMachine
             OnMoveChannel = data[3] as Vector2ChannelSO;
             player = data[4] as PlayerEntitySO;
             this.onMove = onMove;
+            OnMoveChannel?.Subscribe(ChangeInputDirection);
         }
 
         protected virtual void Move(float deltaTime)
@@ -47,7 +48,7 @@ namespace StateMachine
 
         public override void OnEnter()
         {
-            OnMoveChannel.Subscribe(ChangeInputDirection);
+  
         }
 
         private void ChangeInputDirection(Vector2 obj)
@@ -63,7 +64,6 @@ namespace StateMachine
 
         public override void OnExit()
         {
-            OnMoveChannel.Unsubscribe(ChangeInputDirection);
         }
 
         public override void OnDestroy()
@@ -71,6 +71,7 @@ namespace StateMachine
             owner.GetComponent<MonoBehaviour>().StopAllCoroutines();
             OnMoveChannel.Unsubscribe(ChangeInputDirection);
             onMove = null;
+            inputDirection = Vector2.zero;
         }
 
         public virtual void Rotate(Vector3 newDirection)
