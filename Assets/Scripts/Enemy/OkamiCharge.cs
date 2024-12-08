@@ -46,6 +46,7 @@ namespace Enemy
             materialBody = meshBody.material;
             materialFace = meshFace.material;
             animator.SetTrigger(IsIdle);
+            // attackTimerlife = enemyConfig.delayAfterAttack;
         }
 
 
