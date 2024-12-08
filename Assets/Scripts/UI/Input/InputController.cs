@@ -40,6 +40,7 @@ namespace InputControls
         private void OnEnable()
         {
             OnControlSchemeChange.RaiseEvent(false);
+            OnMoveChannel.RaiseEvent(Vector2.zero);
         }
 
         public void OnChangeInput(PlayerInput input)
