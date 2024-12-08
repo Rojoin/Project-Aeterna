@@ -69,6 +69,7 @@ MonoBehaviour:
   restartTimeSpeed: 0.4
   nextCardIndicator: {fileID: 0}
   slowDownTime: 1
+  timeUntilCardAppears: 0.5
   activeSlowTime: {fileID: 11400000, guid: 2522655614c3a4f4b91b9c246caa9733, type: 2}
   OnSpawnPickUpLocation: {fileID: 11400000, guid: b68a4d8aec794f748b20e7d753f9d81c, type: 2}
   OnPickUpSpawning: {fileID: 11400000, guid: 9fa65d47fd694b642879fe1b139b1476, type: 2}
@@ -96,6 +97,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  maxSpawnPoint: 5
+  minSpawnPoint: -5
 --- !u!114 &7253291729269894926
 MonoBehaviour:
   m_ObjectHideFlags: 0
