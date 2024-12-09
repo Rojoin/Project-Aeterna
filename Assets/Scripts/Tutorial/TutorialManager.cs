@@ -46,7 +46,6 @@ namespace Tutorial
         {
             playerMovement.Unsubscribe(OnTutorialCompletedAction);
             moveObjective.enabled = true;
-            AkSoundEngine.PostEvent("ObjectiveCompleted", gameObject);
             CheckTutorialCondition();
         }
 

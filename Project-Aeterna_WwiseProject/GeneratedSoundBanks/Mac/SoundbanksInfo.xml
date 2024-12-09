@@ -121,7 +121,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{4E96EE60-52BC-CF32-20EC-9CB5AFA940D2}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{F49C719B-40F1-0D8C-9177-993B4C49FDE8}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -180,6 +180,10 @@
 				<File Id="276093354" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Add point card.wav</ShortName>
 					<CachePath>SFX/Add point card_818F3B66.wem</CachePath>
+				</File>
+				<File Id="291700092" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Healing.wav</ShortName>
+					<CachePath>SFX/Healing_818F3B66.wem</CachePath>
 				</File>
 				<File Id="301685552" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Drs_Table_Close_01.wav</ShortName>
@@ -359,6 +363,11 @@
 						<MediaRef Id="987444625"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2615123126" Name="HealingSound" DurationType="OneShot" DurationMin="3.4629607" DurationMax="3.4629607">
+					<MediaRefs>
+						<MediaRef Id="291700092"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1889019163" Name="NewCardAdded" DurationType="OneShot" DurationMin="2.9846485" DurationMax="2.9846485">
 					<MediaRefs>
 						<MediaRef Id="276093354"/>
@@ -484,5 +493,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{4D20723F-CA13-FF68-8E41-82B847B820BA}</FileHash>
+	<FileHash>{3C803357-7DB7-0968-D8CE-817145AEA4FE}</FileHash>
 </SoundBanksInfo>

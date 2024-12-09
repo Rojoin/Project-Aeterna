@@ -99,6 +99,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
             ChangePortrait.RaiseEvent(PlayerPortraitStates.Normal);
         }
 
+        AkSoundEngine.PostEvent("HealingSound", gameObject);
         vfxAura?.Play();
         healthBar.FillAmount = currentHealth;
     }
