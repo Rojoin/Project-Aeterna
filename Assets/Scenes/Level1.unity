@@ -1194,7 +1194,7 @@ MonoBehaviour:
   camera: {fileID: 1681417377}
   pickUpManager: {fileID: 1552293561}
   transitionGO: {fileID: 637629739}
-  seed: 959422033
+  seed: -1
   nextCardIndicator: {fileID: 1784881845}
   OnSendChambersValue:
     m_PersistentCalls:
@@ -1206,6 +1206,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Dummy: {fileID: 1194739708}
+  timeToActivate: 2
 --- !u!1001 &2050413946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1363,6 +1364,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3798039086116986496, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
+      propertyPath: m_AmplitudeGain
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8533366314051106492, guid: ed7dc984d8e3fa24c89b54125edd09fe, type: 3}
       propertyPath: m_Name
       value: MainCameraCM
