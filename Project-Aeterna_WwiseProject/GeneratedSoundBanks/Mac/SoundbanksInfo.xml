@@ -121,7 +121,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{264451C8-498A-9F44-0CDE-728860491FCD}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{4E96EE60-52BC-CF32-20EC-9CB5AFA940D2}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -140,6 +140,10 @@
 				<File Id="71909554" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SWORD_05.wav</ShortName>
 					<CachePath>SFX/SWORD_05_818F3B66.wem</CachePath>
+				</File>
+				<File Id="73217391" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Collectable_07.wav</ShortName>
+					<CachePath>SFX/Collectable_07_818F3B66.wem</CachePath>
 				</File>
 				<File Id="74241320" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Voice_Female_V2_Hit_Short_Mono_06.wav</ShortName>
@@ -360,6 +364,11 @@
 						<MediaRef Id="276093354"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2268807029" Name="ObjectiveCompleted" DurationType="OneShot" DurationMin="1.021875" DurationMax="1.021875">
+					<MediaRefs>
+						<MediaRef Id="73217391"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1219344685" Name="Okami_Attack" DurationType="OneShot" DurationMin="2.3596857" DurationMax="2.387104">
 					<MediaRefs>
 						<MediaRef Id="679832367"/>
@@ -475,5 +484,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{BC3A07FC-FFA7-ECDF-68DC-E472F9453954}</FileHash>
+	<FileHash>{4D20723F-CA13-FF68-8E41-82B847B820BA}</FileHash>
 </SoundBanksInfo>
