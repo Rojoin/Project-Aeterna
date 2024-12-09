@@ -1349,6 +1349,28 @@
 								<ActiveSource Name="Special Attack" ID="{785A8B9F-9A73-458E-BB47-BDEF198D9E60}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="CantUseSpecialAttack" ID="{701CEC09-69EB-4EBF-B607-E258F600B5FB}" ShortID="470634072">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Collectable_08" ID="{A3F38133-B0FE-47D8-BFA1-73E50501CCE0}">
+									<Language>SFX</Language>
+									<AudioFile>Collectable_08.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="774753008"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Collectable_08" ID="{A3F38133-B0FE-47D8-BFA1-73E50501CCE0}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Enviroment" ID="{32273F58-CD41-4FD6-BEC1-11F389AF9225}" ShortID="288433378">
@@ -1618,6 +1640,28 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="StarReach" ID="{A265CDFF-FF6A-4A10-B5BA-48C64B947D3B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="PickCard" ID="{898EA61B-DFA5-47D2-898C-8DA0AC1E17FE}" ShortID="447822783">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{23A0D9D6-F10B-4026-B911-A0A54255FD23}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{A21B0EAB-256D-4EC7-9265-1DA49E542744}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="PickCard" ID="{FC8682D0-EC24-4303-B826-630F93EBD8B1}">
+									<Language>SFX</Language>
+									<AudioFile>PickCard.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1002377728"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="PickCard" ID="{FC8682D0-EC24-4303-B826-630F93EBD8B1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

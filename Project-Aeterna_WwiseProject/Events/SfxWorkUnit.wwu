@@ -85,6 +85,17 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="Player_CantUseSpecialAttack" ID="{06F44757-183F-450A-B2EE-C4DBB9B497B3}">
+									<ChildrenList>
+										<Action Name="" ID="{9F84455F-AEBA-413C-A276-D65AF3952BF7}" ShortID="55601177">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="CantUseSpecialAttack" ID="{701CEC09-69EB-4EBF-B607-E258F600B5FB}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Enemies" ID="{FE1A87B4-3C97-48F8-A05C-34D8BBC429C0}" ShortID="58906333">
@@ -258,6 +269,17 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="StarReach" ID="{A4C22A27-F362-4FBE-9380-DF38C80E2EDD}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Card_Pick" ID="{7A26DF62-FAFA-4146-9C7F-12525B9590D4}">
+									<ChildrenList>
+										<Action Name="" ID="{89B83E88-C063-4DBC-A991-D3649AFA7327}" ShortID="299059825">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="PickCard" ID="{898EA61B-DFA5-47D2-898C-8DA0AC1E17FE}" WorkUnitID="{B4E413CE-30FB-4F57-850E-C09340EC1447}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
