@@ -121,7 +121,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{DEE73E5F-6BA6-D8D0-BDA9-57AED0809827}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{B65705B4-1718-9002-6950-90559B11331A}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -309,6 +309,10 @@
 					<ShortName>Snow1 6-Audio.wav</ShortName>
 					<CachePath>SFX/Snow1 6-Audio_818F3B66.wem</CachePath>
 				</File>
+				<File Id="919869129" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>ActiveCard.wav</ShortName>
+					<CachePath>SFX/ActiveCard_818F3B66.wem</CachePath>
+				</File>
 				<File Id="931501730" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Snow1 9-Audio.wav</ShortName>
 					<CachePath>SFX/Snow1 9-Audio_818F3B66.wem</CachePath>
@@ -347,6 +351,11 @@
 				</File>
 			</Media>
 			<Events>
+				<Event Id="3995766880" Name="ActiveSpecialAttack" DurationType="OneShot" DurationMin="1.3482766" DurationMax="1.3482766">
+					<MediaRefs>
+						<MediaRef Id="919869129"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2390159089" Name="Card_Pick" DurationType="OneShot" DurationMin="1.600771" DurationMax="1.600771">
 					<MediaRefs>
 						<MediaRef Id="1002377728"/>
@@ -511,5 +520,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{54D4CCDD-0EB8-5AAA-6BD0-8B2410E5EF93}</FileHash>
+	<FileHash>{267FE375-3CBD-9736-E17E-4E0D5731630B}</FileHash>
 </SoundBanksInfo>

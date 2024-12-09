@@ -223,6 +223,7 @@ namespace StateMachine
                 {
                     OnSpecialAttackTimerUpdate.Invoke(1);
                     vfxSpecialAura?.Play();
+                    AkSoundEngine.PostEvent("ActiveSpecialAttack", gameObject);
                 }
             }
         }
