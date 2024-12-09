@@ -33,6 +33,7 @@ namespace AK
         static const AkUniqueID SET_GAMEPLAY_COMBATMUSIC = 320826874U;
         static const AkUniqueID SET_GAMEPLAY_DEATHMUSIC = 3961518606U;
         static const AkUniqueID SET_GAMEPLAY_EXPLORINGMUSIC = 2016296512U;
+        static const AkUniqueID STAR_REACHDESTINATION = 1390084087U;
         static const AkUniqueID STOP_GAMEPLAY_DEFAULTMUSIC = 898535195U;
         static const AkUniqueID STOP_MENU_MUSIC = 3945748993U;
         static const AkUniqueID STOP_STORMSOUND = 2527860648U;
