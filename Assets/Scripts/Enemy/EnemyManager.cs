@@ -59,7 +59,8 @@ namespace Enemy
                                                                         .transform.localScale.y / 2) + 0.3f));
 
                 BaseEnemy newBaseEnemy = newEnemy.GetComponent<BaseEnemy>();
-
+                newBaseEnemy.Init();
+                newBaseEnemy.DeactivateModelEnemy();
                 newBaseEnemy.OnDeathRemove.AddListener(RemoveEnemy);
                 enemyList.Add(newBaseEnemy);
             }
@@ -74,8 +75,13 @@ namespace Enemy
 
         private IEnumerator ActivateEnemiesTimer(float timeToActivate)
         {
+            foreach (BaseEnemy currentEnemy in enemyList)
+            {
+                currentEnemy.ActivateModelEnemy(timeToActivate);
+            }
+
             yield return new WaitForSecondsRealtime(timeToActivate);
-            
+
             foreach (BaseEnemy currentEnemy in enemyList)
             {
                 currentEnemy.ActivateEnemy();

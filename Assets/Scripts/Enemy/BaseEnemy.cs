@@ -27,8 +27,9 @@ namespace Enemy
         protected static readonly int Dead = Animator.StringToHash("isDead");
         protected static readonly int Damage = Animator.StringToHash("Damage");
         [SerializeField] float timeAfterDeactivate = 0.50f;
+        [SerializeField] ParticleSystem spawnParticle;
         [SerializeField] protected float disappearSpeed = 5.0f;
-        
+        protected float heightValue = 5.91f;
         protected bool isActivated = false;
         private void OnEnable()
         {
@@ -49,6 +50,12 @@ namespace Enemy
             isActivated = true;
         }
 
+        public virtual void ActivateModelEnemy(float endTime)
+        {
+            spawnParticle?.Play();
+        }
+        public abstract void DeactivateModelEnemy();
+
         private void OnValidate()
         {
             ValidateMethod();
@@ -56,7 +63,7 @@ namespace Enemy
 
         protected abstract void ValidateMethod();
 
-        protected virtual void Init()
+        public virtual void Init()
         {
             maxHealth = config.health;
             currentHealth = maxHealth;

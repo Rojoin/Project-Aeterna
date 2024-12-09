@@ -108,7 +108,7 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         Destroy(particle.gameObject);
     }
     
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         enemyConfig = config as ShootingEnemySO;
@@ -116,6 +116,37 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
         materialBody = meshBody.material;
         materialFace = meshFace.material;
         _navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+    public override void ActivateModelEnemy(float endTime)
+    {
+        base.ActivateModelEnemy(endTime);
+        StartCoroutine(OnSpawnMaterialAnimation(endTime));
+    }
+
+    public override void DeactivateModelEnemy()
+    {
+        materialBody.SetFloat(CutOffHeight, -heightValue);
+        materialFace.SetFloat(CutOffHeight, -heightValue);
+    }
+
+    private IEnumerator OnSpawnMaterialAnimation(float endTime)
+    {
+        float animation = 0;
+        float startAnim = -heightValue;
+        float timer = 0;
+        float endAnimation = heightValue;
+        materialFace = meshFace.material;
+        while (timer < endTime)
+        {
+            timer += Time.deltaTime;
+            animation = Mathf.Lerp(startAnim, endAnimation, timer / endTime);
+            materialBody.SetFloat(CutOffHeight, animation);
+            materialFace.SetFloat(CutOffHeight, animation);
+            yield return null;
+        }
+
+        materialBody.SetFloat(CutOffHeight, endAnimation);
+        materialFace.SetFloat(CutOffHeight, endAnimation);
     }
 
     protected void Update()
@@ -208,20 +239,20 @@ public class YukinkoTpEnemy : BaseEnemy, IMovevable
 
     private IEnumerator OnDeathMaterialAnimation()
     {
-        float heightValue = materialBody.GetFloat(CutOffHeight);
+        float animation = heightValue;
         float endAnimation = -5.0f;
         materialFace = meshFace.material;
         animator.SetTrigger(Dead);
-        while (heightValue > endAnimation)
+        while (animation > endAnimation)
         {
-            heightValue -= Time.deltaTime * disappearSpeed;
-            materialBody.SetFloat(CutOffHeight, heightValue);
-            materialFace.SetFloat(CutOffHeight, heightValue);
+            animation -= Time.deltaTime * disappearSpeed;
+            materialBody.SetFloat(CutOffHeight, animation);
+            materialFace.SetFloat(CutOffHeight, animation);
             yield return null;
         }
 
-        materialBody.SetFloat(CutOffHeight, heightValue);
-        materialFace.SetFloat(CutOffHeight, heightValue);
+        materialBody.SetFloat(CutOffHeight, animation);
+        materialFace.SetFloat(CutOffHeight, animation);
         gameObject.SetActive(false);
     }
 

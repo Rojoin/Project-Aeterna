@@ -57,6 +57,7 @@ public class DungeonGeneration : MonoBehaviour
     public UnityEvent<RoomDirection> OnStartChangeRoom;
     public UnityEvent OnEndChangeRoom;
     [SerializeField] private GameObject Dummy;
+    [SerializeField] private float timeToActivate = 1.5f;
 
     private void Start()
     {
@@ -283,7 +284,7 @@ public class DungeonGeneration : MonoBehaviour
         }
 
         OnEndChangeRoom.Invoke();
-        actualPlayerRoom.enemyManager.ActivateEnemies(1f);
+        actualPlayerRoom.enemyManager.ActivateEnemies(timeToActivate);
 
         yield return new WaitForSecondsRealtime(1);
         oldRoom.roomBehaviour.SetDoorCollisions(true);

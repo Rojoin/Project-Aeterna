@@ -15,9 +15,9 @@ namespace Enemy
         private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
         public UnityEvent OnHitShield;
         [SerializeField] private MeshRenderer meshShield;
-        private Material materialShield;
-
-        protected override void Init()
+        private Material materialShield; 
+        
+        public override void Init()
         {
             base.Init();
             enemyConfig = config as DummySO;
@@ -202,6 +202,19 @@ namespace Enemy
         public void DeactivateShield()
         {
             StartCoroutine(DeactivateShieldAnimation());
+        }
+
+        public override void ActivateModelEnemy(float time)
+        {
+        }
+
+        public override void DeactivateModelEnemy()
+        {
+        }
+
+        private IEnumerator OnSpawnMaterialAnimation()
+        {
+            yield break;
         }
 
         private IEnumerator DeactivateShieldAnimation()
