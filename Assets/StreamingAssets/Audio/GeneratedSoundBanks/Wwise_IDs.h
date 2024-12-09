@@ -13,17 +13,22 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID ACTIVESPECIALATTACK = 3995766880U;
+        static const AkUniqueID CARD_PICK = 2390159089U;
         static const AkUniqueID CARDS_SELECT_PLAY = 2114297034U;
         static const AkUniqueID CARDS_SHOW_DECK = 32826058U;
         static const AkUniqueID CARDS_SHOW_PLAY = 1511560907U;
         static const AkUniqueID DOOR_CLOSE = 128625444U;
         static const AkUniqueID DOOR_OPEN = 535830432U;
+        static const AkUniqueID HEALINGSOUND = 2615123126U;
         static const AkUniqueID NEWCARDADDED = 1889019163U;
+        static const AkUniqueID OBJECTIVECOMPLETED = 2268807029U;
         static const AkUniqueID OKAMI_ATTACK = 1219344685U;
         static const AkUniqueID PLAY_GAMEPLAY_DEFAULTMUSIC = 4267938381U;
         static const AkUniqueID PLAY_MENU_MUSIC = 2228153899U;
         static const AkUniqueID PLAY_STORMSOUND = 4143195186U;
         static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
+        static const AkUniqueID PLAYER_CANTUSESPECIALATTACK = 1793577345U;
         static const AkUniqueID PLAYER_DASH = 2394582229U;
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
         static const AkUniqueID PLAYER_RECIEVEDAMAGE = 1990870923U;
@@ -33,6 +38,7 @@ namespace AK
         static const AkUniqueID SET_GAMEPLAY_COMBATMUSIC = 320826874U;
         static const AkUniqueID SET_GAMEPLAY_DEATHMUSIC = 3961518606U;
         static const AkUniqueID SET_GAMEPLAY_EXPLORINGMUSIC = 2016296512U;
+        static const AkUniqueID STAR_REACHDESTINATION = 1390084087U;
         static const AkUniqueID STOP_GAMEPLAY_DEFAULTMUSIC = 898535195U;
         static const AkUniqueID STOP_MENU_MUSIC = 3945748993U;
         static const AkUniqueID STOP_STORMSOUND = 2527860648U;

@@ -342,6 +342,8 @@ public class SelectCardMenu : MonoBehaviour
         selectCardMenuAnimator.SetBool("IsDesactive", true);
 
         yield return new WaitForSeconds(time);
+        
+        AkSoundEngine.PostEvent("Card_Pick", gameObject);
 
         ShowSelectCardMenu(false);
         selectCardMenuAnimator.SetBool("IsDesactive", false);

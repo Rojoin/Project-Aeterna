@@ -223,6 +223,7 @@ namespace StateMachine
                 {
                     OnSpecialAttackTimerUpdate.Invoke(1);
                     vfxSpecialAura?.Play();
+                    AkSoundEngine.PostEvent("ActiveSpecialAttack", gameObject);
                 }
             }
         }
@@ -248,7 +249,7 @@ namespace StateMachine
             }
             else
             {
-                //TODO: Add BadSound
+                AkSoundEngine.PostEvent("Player_CantUseSpecialAttack", gameObject);
             }
         }
 

@@ -53,6 +53,7 @@ namespace Tutorial
         {
             DashChannel.Unsubscribe(OnDashCompletedAction);
             dashObjective.enabled = true;
+            AkSoundEngine.PostEvent("ObjectiveCompleted", gameObject);
             CheckTutorialCondition();
         }
 
@@ -60,6 +61,7 @@ namespace Tutorial
         {
             SpecialAttack.Unsubscribe(OnSpecialCompletedAction);
             specialObjective.enabled = true;
+            AkSoundEngine.PostEvent("ObjectiveCompleted", gameObject);
             CheckTutorialCondition();
         }
 
@@ -67,6 +69,7 @@ namespace Tutorial
         {
             attackChannel.Unsubscribe(OnAttackCompletedAction);
             attackObjective.enabled = true;
+            AkSoundEngine.PostEvent("ObjectiveCompleted", gameObject);
             CheckTutorialCondition();
         }
 
