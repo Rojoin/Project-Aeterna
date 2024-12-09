@@ -121,7 +121,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{F49C719B-40F1-0D8C-9177-993B4C49FDE8}">
+		<SoundBank Id="3641780361" Type="User" Language="SFX" Hash="{3855E651-F407-7EAD-2401-9860DFA0194E}">
 			<ShortName>SfxSoundBank</ShortName>
 			<Path>SfxSoundBank.bnk</Path>
 			<Media>
@@ -273,6 +273,10 @@
 					<ShortName>SelectButton.wav</ShortName>
 					<CachePath>SFX/SelectButton_818F3B66.wem</CachePath>
 				</File>
+				<File Id="774753008" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Collectable_08.wav</ShortName>
+					<CachePath>SFX/Collectable_08_818F3B66.wem</CachePath>
+				</File>
 				<File Id="784391297" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>e.wav</ShortName>
 					<CachePath>SFX/e_818F3B66.wem</CachePath>
@@ -397,6 +401,11 @@
 						<MediaRef Id="802887724"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1793577345" Name="Player_CantUseSpecialAttack" DurationType="OneShot" DurationMin="1.1894271" DurationMax="1.1894271">
+					<MediaRefs>
+						<MediaRef Id="774753008"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2394582229" Name="Player_Dash" DurationType="OneShot" DurationMin="0.8482313" DurationMax="0.9863946">
 					<MediaRefs>
 						<MediaRef Id="266888604"/>
@@ -493,5 +502,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{66BE5BB6-5C63-11CE-3605-9592FE6C051F}</FileHash>
+	<FileHash>{D47CC954-3DE8-2797-7140-65E4EBE768CB}</FileHash>
 </SoundBanksInfo>

@@ -248,7 +248,7 @@ namespace StateMachine
             }
             else
             {
-                //TODO: Add BadSound
+                AkSoundEngine.PostEvent("Player_CantUseSpecialAttack", gameObject);
             }
         }
 

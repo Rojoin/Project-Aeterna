@@ -26,6 +26,7 @@ namespace AK
         static const AkUniqueID PLAY_MENU_MUSIC = 2228153899U;
         static const AkUniqueID PLAY_STORMSOUND = 4143195186U;
         static const AkUniqueID PLAYER_ATTACK_SWORD = 4161660071U;
+        static const AkUniqueID PLAYER_CANTUSESPECIALATTACK = 1793577345U;
         static const AkUniqueID PLAYER_DASH = 2394582229U;
         static const AkUniqueID PLAYER_DEATH = 3083087645U;
         static const AkUniqueID PLAYER_RECIEVEDAMAGE = 1990870923U;
